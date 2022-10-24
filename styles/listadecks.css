@@ -1,0 +1,21 @@
+.decksimage{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px 100 100px 100px 100px;
+    min-height: 0;
+    width:100%;
+    clear: both;
+
+    padding: 5px;
+    gap: 8  px;
+}
+
+.gridbuscarcarta {
+    display: grid;
+    width: 50%;
+    margin-top: 10em;
+}
+
+.nombresdecks{
+    font-size:smaller;
+    text-align: justify;
+}

@@ -1,0 +1,40 @@
+/*INFO DE CARTAS  */
+
+.cartainfo {
+    width: 30%;
+    float:left;
+    margin-left: 2em;
+    margin-right: 1em;
+  }
+  
+  .rarezainfo {
+    width: 13%;
+      display: grid;
+      float:inherit;
+      margin-left: 23.7ch;
+  }
+  
+  .botonesmargen {
+    margin-top: 10em;
+   
+  }
+  .searchmargen {
+    margin-top: 10em;
+  }
+  .nivel_rareza_info {
+    width: 40px;
+  }
+  
+  .atributo_info {
+  
+    width: 40px;
+  }
+  
+  .span_info {
+    text-align: justify !important;
+   
+  }
+
+  .ocultarinfo{
+    display: none   ;
+  }

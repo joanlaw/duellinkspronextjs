@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: auto;
+  background-color: #040d16;
+}
+
+.footermargin{
+  margin-bottom:auto;
+}
+
+header {
+  height: 10%;
+  font-weight: 60;
+}
+
+
+
+.loginheader{
+margin-left: auto;
+background: #0a1a2a; 
+color: #d6f7fb;
+font-weight: 600;
+
+}
+
+
+h1, h2, h3, h4, h5, h6, th, td, tr{
+  color: #d6f7fb;
+  text-align: center;
+}
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+  color: #d6f7fb;
+}
+
+p, a, span, label {
+  color: #d6f7fb;
+}
+
+.card-body, .page-link, .form-control{
+  background-color: #040d16 !important;
+  
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.invalid-field{
+  border-color: #dc3545;
+  color: #dc3545;
+  background-color: #fff;
+  }
+
+
+
+ /* .cartalist:hover{
+    border: 1px solid #000306;
+  } */
+
+
+
+  
+/*  Header decoracion  */  
+  a {
+    color: #d6f7fb !important;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #a8942c !important;
+    text-decoration: none;
+  }
+
+#header {
+  background-color: #0a141d;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+}
+
+/* Navegacion del menú     */
+
+.nav-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.nav-menu > ul {
+  display: flex;
+
+
+}
+
+.nav-menu > ul > li {
+  color: #d6f7fb;
+  display: block;
+  transition: 0.3s;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0 4px;
+  text-transform: uppercase;
+  position: relative;
+  white-space: nowrap;
+  padding: 10px 0 10px 22px;
+  
+ 
+}
+
+.nav-menu > ul > li:hover{
+  color: #a8942c;
+  cursor: pointer;
+}
+
+/*.nav-menu > ul > li::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: #d5ba27;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out;  
+}
+
+.nav-menu li:hover::before,
+.nav-menu .active::before{
+  visibility: visible;
+  width: 100%;
+
+}
+*/
+
+/* Lista de cartas */
+
+
+
+
+.listaa {
+  background-image: url(/src/assets/dl-bg15.jpg);
+}
+
+@media only screen and (max-width: 600px) {
+  .cartalist {
+    
+    width: 56px;
+    height: 87px;
+    
+    
+  }
+
+  .cartatop {
+    
+  }
+  .rareza{
+    width: 10%;
+  }
+  .limitacion{
+   width: 10px;
+  }
+
+  .listcards{
+    display: flex;
+  }
+}
+
+
+.listatopcards{
+  padding-left: 3em;
+}
+
+.cartalist2{
+  display: flex;
+  height: auto;
+  width: 90px;
+  flex-wrap: wrap;
+  padding: 0.2em;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+.listcards2{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  height: auto;
+  margin: 0 5px;
+  padding: 0;
+  width: 50%;
+  background-image: url(/src/assets/dl-bg08.jpg) ;
+  background-repeat: repeat;
+  height: auto;
+  border: 2px solid #1D3E67;
+  border-radius: 4px;
+  flex-wrap: wrap;
+  will-change: transform;
+  align-items: flex-end!important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  will-change: transform;
+  padding-left: 1.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

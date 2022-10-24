@@ -1,0 +1,142 @@
+.cartatop {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px;
+    min-height: 0;
+    width:100%;
+    clear: both;
+    position: relative;
+
+  }
+
+
+
+  .rareza{
+    width: 46%;
+    min-width: 42px;
+    display: grid;
+    float: right;
+    position: relative;
+    
+  }
+
+  .limitacion{
+    position: absolute;
+    top: 10;
+    width: 25%;
+    min-width: 20px;
+    max-width: 40px;
+    z-index: 2;
+    filter: drop-shadow(1px 1px 2px #000);
+  }
+
+
+ /* .cartalist {
+    height: auto;
+    width: 100px;
+    flex-wrap: wrap;
+    padding: 0.2em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+  } */
+
+
+.listcards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: minmax(100px, auto);
+    background-image: url(/src/assets/dl-bg08.jpg) ;
+    background-repeat: repeat;
+    border: 2px solid #1D3E67;
+    width: 100%;
+    gap:4px;
+    padding: 0.5em;
+      
+  }
+  
+  .ocultarinfoall{
+    display: none;
+  }
+
+  /*.grid-list-card{
+    position: relative;
+  }
+
+/*.grid-list-card::before, .grid-list-card::after{
+  --scale:0;
+  position: absolute;
+  
+  top: -.25rem;
+  left: 100%;
+  height: auto;
+  width: 800;
+  transform: translateX(100%) translateY(-100%) scale(var(--scale)) ;
+  transition: 150ms transform;
+  
+}
+
+.grid-list-card::before{
+  content: attr(data-tooltip);
+  
+ 
+  background:#333;
+  padding: .5rem;
+  border-radius: .3rem;
+  
+  font-size: x-small;
+}
+
+.grid-list-card:hover::before{
+  --scale:1;
+}*/
+
+
+
+.grid-tooltips-nombre-descripcion{
+  display: grid;
+
+  font-size: small;
+  font-weight: 500;
+  word-wrap: break-word
+}
+
+.grid-tooltips-tipo{
+  display: grid;
+
+}
+
+.atributo_tooltips{
+  width:5%;
+ margin-left: 450px;
+ margin-top: 17px;
+ position: absolute;
+ 
+}
+
+.nivel_tooltips{
+  width: 5.5%;
+  margin-left: 398px;
+  position: absolute;
+  margin-top: 17px;
+  font-size: x-small ;
+
+}
+
+.data-nivel-tooltip{
+  margin-left: 430px;
+  margin-top: 25px;
+  position: absolute;
+  
+}
+
+.atributo-tooltip{
+  position: absolute;
+  margin-left: 480px;
+  margin-top: 27px;
+  font-size: x-small;
+}
+
+.nombre-carta-tooltip{
+  font-size: medium;
+  font-weight: 600;
+}
