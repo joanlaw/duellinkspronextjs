@@ -58,6 +58,11 @@
     display: none;
   }
 
+  .containerlist{
+    display: grid;
+    width: 100%;
+  }
+
   /*.grid-list-card{
     position: relative;
   }

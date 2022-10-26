@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 //import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import Card from './Card'
+import Card from '../../components/Card.js'
 import axios from 'axios'
 //import { Pagination } from '../pages/!#/Pagination.js'
-import Header from './Header.js'
-import Footer from './Footer'
+import Header from '../../components/Header.js'
+import Footer from '../../components/Footer.js'
 
 
 

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Card from "./Card";
+import Card from "../components/Card.js";
 import axios from "axios";
-import { Pagination } from "./Pagination.js";
-import Header from "./Header.js";
-import Cardlist from "./Cardlist";
+import { Pagination } from "./cartas/#/Pagination.js"
+import Header from "../components/Header.js";
+import Cardlist from "../components/Cardlist.js";
+import Image from "next/image.js";
+
+import Footer from "../components/Footer.js";
+import Cardinfo from "../components/Cardinfo.js";
 
 
-import Footer from "./Footer";
-import Tooltipsdl from "./Tooltipsdl";
-import Cardinfo from "./Cardinfo";
+import Tooltipsdl from "../components/Tooltipsdl"
 
-//import "./allcards.css";
-
-export default function Allcards() {
+export default function Cartas() {
   const [cardList, setCardList] = useState([]);
   const [search, setSearch] = useState("");
   const [recordForEdit, setrecordForEdit] = useState("");
@@ -271,12 +271,18 @@ export default function Allcards() {
                 <span className="span_info">{data.caja}</span>
           </div>
         </div>}  > 
-        <img
+        <Image
+       width='106'
+       height='155'
+      
+      
+
+          
           src={data.image.secure_url}
           className="cartatop "
           alt={data.nombre}
           
-        ></img></Tooltipsdl>{" "}
+        ></Image></Tooltipsdl>{" "}
       </div>
     </div>
   );
@@ -303,7 +309,7 @@ export default function Allcards() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
+    <div className="container">
       <Header />
       
 
@@ -323,18 +329,18 @@ export default function Allcards() {
 
       <div className="listcards ">
         {currentPost.map((element) => (
-          <Link href={`/cartas/${element._id}/${element.nombre}/`}>
-        <a><ImageCard data={element} /></a>
+          <Link key={element._id} href={`/cartas/${element._id}/${element.nombre}`}>
+        <a><ImageCard data={element} /></a> 
           </Link>
         )).reverse()}
       </div>
 
-      <br />
+   {/*}   <br />
       <Pagination
         postPerPage={postPerPage}
         totalPost={results.length}
         paginate={paginate}
-      />
+        /> */}
 
       <div className=""></div>
       <Footer />

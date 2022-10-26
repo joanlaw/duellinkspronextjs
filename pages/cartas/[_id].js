@@ -1,25 +1,33 @@
-import React from "react";
-//import { useParams } from "react-router-dom";
-//import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
+import Header from '../../components/Header';
+import axios from 'axios';
+import Link from 'next/link';
+import Image from 'next/image';
+
+const Post = () => {
+
+  //const res = await fetch(`https://dlpro-backend.herokuapp.com/cartas/${_id}`)
+  //const json = await res.json()
+  //console.log(json);
 
 
-//import "./cartainfo.css";
-//import Allcards from './Allcards';
-//import axios from 'axios'
+  const router = useRouter()
+  console.log(router);
 
-const Cardinfo = () => {
-  console.log(useParams());
+  const { _id } = router.query
 
-  const { _id } = useParams();
-  console.log(_id);
-
-  const [cartas, setCartas] = React.useState([]);
-  const [image, setImage] = React.useState([]);
+  const [cartas, setCartas] = useState([]);
+  const [image, setImage] = useState([]);
   // const [ caja, Setcaja  ] = React.useState ([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const obtenerDatos = async () => {
+      const url = `https://dlpro-backend.herokuapp.com/cartas/${_id}`
+      
+      const result = await axios.get(url);
+     // console.log(result.data);
+
       const respuesta = await fetch(
         `https://dlpro-backend.herokuapp.com/cartas/${_id}`
       );
@@ -27,8 +35,10 @@ const Cardinfo = () => {
       // .then(data => console.log(data))
       // .catch(error => console.log(error))
       const carta = await respuesta.json();
-      setCartas(carta);
+      setCartas(result.data);
+      //console.log(cartas);
       setImage(carta.image);
+     // console.log(image);
       // Setcaja(carta)
     };
     obtenerDatos();
@@ -36,27 +46,21 @@ const Cardinfo = () => {
 
     //ATK</span> <span>{cartas.atk}</span> <span>/</span> <span>DEF</span> <span>{cartas.def}
   }, [_id]);
-  //const navigate = useNavigate();
 
-  /*if (caja.caja === 'Heart of xyz') {
-    Setcaja (cartas.caja)
-} else {
-    Setcaja('No es la caja')
-    return  
-}  */
+  //const { pid } = router.query
 
   return (
-    <div className="container">
+    <div className='container'>
       <Header />
-
-      <button
+     <Link href={'/cartas'} ><button
         className="btn btn-primary botonesmargen "
-        onClick={() => navigate(-1)}
+       // onClick={() => Link(-1)}
         data-tip
         data-for="tooltipsdlp"
       >
         Atrás
-      </button>
+      </button></Link>
+      
       <h1>{cartas.nombre}</h1>
       <br />
       <div className="row">
@@ -81,6 +85,10 @@ const Cardinfo = () => {
                     alt="rareza"
                   ></img>
                   <img
+               //     width="277px"
+                 //   height="404px"
+                 //   sizes="(min-width: 576px) 300px, (max-width: 575px) 80vw"
+                 //   layout='responsive'
                     src={image.secure_url}
                     className="cartainfo"
                     alt={cartas.nombre}
@@ -215,7 +223,8 @@ const Cardinfo = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cardinfo;
+export default Post
+

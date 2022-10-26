@@ -2,7 +2,7 @@ import React, { Fragment, cloneElement, useState, useRef, useEffect } from 'reac
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import "./tooltipsdl.css";
+
 
 // Content
 const TooltipContent = ({ tooltipClass, content, position, tooltipPosition, duration }) => {

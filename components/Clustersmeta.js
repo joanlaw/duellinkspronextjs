@@ -4,7 +4,7 @@ import Clustermeta from "./Clustermeta";
 import image1 from "../assets/image1.jpg";
 import image2 from '../assets/image2.jpg'
 import image3 from '../assets/image3.jpg'
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const clustersmeta = [
   {
@@ -12,7 +12,7 @@ const clustersmeta = [
     title: "Tier 0",
     image: image1,
     url: "/decks-meta/salamgrande",
-    text: <Link to={"/salamangrande"}>Salamangrande</Link>
+    text: <Link href={"/salamangrande"}>Salamangrande</Link>
   },
   {
     id: 2,
