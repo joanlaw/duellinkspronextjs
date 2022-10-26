@@ -4,7 +4,7 @@ import axios from "axios"
 import Footer from "../../components/Footer"
 import Link from "next/link"
 
-export default function index() {
+export default function Index() {
 
     const [cardList, setCardList] = useState([]);
     const [search, setSearch] = useState("");
