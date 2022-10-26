@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Card from "../components/Card.js";
 import axios from "axios";
-import { Pagination } from "./cartas/#/Pagination.js"
+//import { Pagination } from "./cartas/#/Pagination.js"
 import Header from "../components/Header.js";
 import Cardlist from "../components/Cardlist.js";
 import Image from "next/image.js";
