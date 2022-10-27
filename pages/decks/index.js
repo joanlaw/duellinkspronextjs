@@ -116,6 +116,7 @@ export default function Index() {
     //Cambio de pagina
 
   return (
+    <div>
     <div className=' container searchmargen'>
        <Header /> 
        <div className="gridbuscarcarta" >
@@ -143,7 +144,9 @@ export default function Index() {
         paginate={paginate}
         /> */}
      <br />
-     <Footer />
+     
+    </div>
+    <Footer />
     </div>
   )
 }

@@ -12,7 +12,7 @@ const clustersmeta = [
     title: "Tier 0",
     image: image1,
     url: "/decks-meta/salamgrande",
-    text: <Link href={"/salamangrande"}>Salamangrande</Link>
+    text: <Link href={"decks-meta/salamangrande"}>Salamangrande</Link>
   },
   {
     id: 2,
@@ -26,14 +26,16 @@ const clustersmeta = [
     title: "Tier 2",
     image: image3,
     url: "/noticias",
-    text: "Odd Eyes"
+    text: <Link href={"/ojos-anomalos"}>Ojos Anómalos</Link>
   },
   {
     id: 4,
     title: "Tier 3",
     image: image3,
     url: "/noticias",
-    text: "D/D/D" 
+    text: <Link href={"/d-d-d"}>D/D/D</Link> ,
+    text2: <Link href={"/abismo-ardiente"}>Abismo Ardiente</Link>,
+    text3: <Link href={"/heroes"}>Héroes</Link>
   },
 ];
 
@@ -41,9 +43,10 @@ function Clustersmeta() {
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
       <div className="row">
-        {clustersmeta.map(({ title, image, url, id, text }) => (
-          <div className="col-md-6" key={id}>
-            <Clustermeta imageSource={image} title={title}  text={text} />
+        {clustersmeta.map(({ title, image, url, id, text, text2, text3 }) => (
+          <div className="col-md-12" key={id}>
+            <Clustermeta  title={title}  text={text} text2={text2} text3={text3} />
+           {/* <Clustermeta imageSource={image} title={title}  text={text} />*/} 
           </div>
         ))}
       </div>

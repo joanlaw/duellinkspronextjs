@@ -302,7 +302,7 @@ export default function Cartas() {
   // Mostrar numero de cartas actual en el post
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPost = results.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPost = results.slice(indexOfFirstPost, indexOfLastPost).reverse();
 
   //Cambio de pagina
 
@@ -332,7 +332,7 @@ export default function Cartas() {
           <Link key={element._id} href={`/cartas/${element._id}/${element.nombre}`}>
         <a><ImageCard data={element} /></a> 
           </Link>
-        )).reverse()}
+        ))}
       </div>
 
    {/*}   <br />

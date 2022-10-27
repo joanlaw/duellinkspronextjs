@@ -5,7 +5,7 @@ import Image from "next/image";
 
 //import "./cluster.css";
 
-function Clustermeta({ imageSource, title, text, url }) {
+function Clustermeta({ imageSource, title, text, url, text2, text3 }) {
   return (
     <div className="card text-center bg-dark animate__animated animate__fadeInUp">
       <div className="overflow">
@@ -15,6 +15,12 @@ function Clustermeta({ imageSource, title, text, url }) {
         <h4 className="card-title">{title}</h4>
         <p className="card-text text-secondary">
           {text}
+        </p>
+        <p className="card-text text-secondary">
+          {text2}
+        </p>
+        <p className="card-text text-secondary">
+          {text3}
         </p>
       {/*  <Link to={url ? url : "#!"}
          // target="_blank"
