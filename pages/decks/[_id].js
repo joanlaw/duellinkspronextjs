@@ -580,24 +580,135 @@ const UrlAtributos = {
 
 }
 
+const UrlTipodeMagicaoTrampa = {
+  "De juego rápido": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_juego_rapido_mmsikz.webp",
+  "Normal": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/normal_vpey0j.webp",
+  "De campo": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_campo_qoxyag.webp",
+  "Continua": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/continua_wh3pfj.webp",
+  "De contraefecto": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/contraefecto_pxkz7z.webp"
+}
+
+//Atributos
+//1-10
 const AtributosMainuno = mainuno.atributo
+const AtributosMaindos = maindos.atributo
+const AtributosMaintres = maintres.atributo
+const AtributosMaincuatro = maincuatro.atributo
+const AtributosMaincinco = maincinco.atributo
+const AtributosMainseis = mainseis.atributo
+const AtributosMainsiete = mainsiete.atributo
+const AtributosMainocho = mainocho.atributo
+const AtributosMainnueve = mainnueve.atributo
+const AtributosMaindiez = maindiez.atributo
+
+//11-20
+const AtributosMainonce = mainonce.atributo
+const AtributosMaindoce = maindoce.atributo
+const AtributosMaintrece = maintrece.atributo
+const AtributosMaincatorce = maincatorce.atributo
+const AtributosMainquince = mainquince.atributo
+const AtributosMaindieciseis = maindieciseis.atributo
+const AtributosMaindiecisiete = maindiecisiete.atributo
+const AtributosMaindieciocho = maindieciocho.atributo
+const AtributosMaindiecinueve = maindiecinueve.atributo
+const AtributosMainveinte = mainveinte.atributo
+
+//21-30
+const AtributosMainveintiuno = mainveintiuno.atributo
+const AtributosMainveintidos = mainveintidos.atributo
+const AtributosMainveintitres = mainveintitres.atributo
+const AtributosMainveinticuatro = mainveinticuatro.atributo
+const AtributosMainveinticinco = mainveinticinco.atributo
+const AtributosMainveintiseis = mainveintiseis.atributo
+const AtributosMainveintisiete = mainveintisiete.atributo
+const AtributosMainveintiocho = mainveintiocho.atributo
+const AtributosMainveintinueve = mainveintinueve.atributo
+const AtributosMaintreinta = maintreinta.atributo
+
+//31-40
+const AtributosExtrauno = extrauno.atributo
+const AtributosExtrados = extrados.atributo
+const AtributosExtratres = extratres.atributo
+const AtributosExtracuatro = extracuatro.atributo
+const AtributosExtracinco = extracinco.atributo
+const AtributosExtraseis = extraseis.atributo
+const AtributosExtrasiete = extrasiete.atributo
+const AtributosExtraocho = extraocho.atributo
+
+//41-50
+
+//VALOR DEFAULT
 const DefaultAtributoMainuno = ""
 
-const AtributoMainuno = UrlAtributos[AtributosMainuno]  || DefaultAtributoMainuno
+//VALOR PARA RENDERIZAR DEL 1-10
+const AtributoMainuno = UrlAtributos[AtributosMainuno] || DefaultAtributoMainuno
+const AtributoMaindos = UrlAtributos[AtributosMaindos] || DefaultAtributoMainuno
+const AtributoMaintres = UrlAtributos[AtributosMaintres] || DefaultAtributoMainuno
+const AtributoMaincuatro = UrlAtributos[AtributosMaincuatro] || DefaultAtributoMainuno
+const AtributoMaincinco = UrlAtributos[AtributosMaincinco] || DefaultAtributoMainuno
+const AtributoMainseis = UrlAtributos[AtributosMainseis] || DefaultAtributoMainuno
+const AtributoMainsiete = UrlAtributos[AtributosMainsiete] || DefaultAtributoMainuno
+const AtributoMainocho = UrlAtributos[AtributosMainocho] || DefaultAtributoMainuno
+const AtributoMainnueve = UrlAtributos[AtributosMainnueve] || DefaultAtributoMainuno
+const AtributoMaindiez = UrlAtributos[AtributosMaindiez] || DefaultAtributoMainuno
+
+//11-20
+const AtributoMainonce = UrlAtributos[AtributosMainonce] || DefaultAtributoMainuno
+const AtributoMaindoce = UrlAtributos[AtributosMaindoce] || DefaultAtributoMainuno
+const AtributoMaintrece = UrlAtributos[AtributosMaintrece] || DefaultAtributoMainuno
+const AtributoMaincatorce = UrlAtributos[AtributosMaincatorce] || DefaultAtributoMainuno
+const AtributoMainquince = UrlAtributos[AtributosMainquince] || DefaultAtributoMainuno
+const AtributoMaindieciseis = UrlAtributos[AtributosMaindieciseis] || DefaultAtributoMainuno
+const AtributoMaindiecisiete = UrlAtributos[AtributosMaindiecisiete] || DefaultAtributoMainuno
+const AtributoMaindieciocho = UrlAtributos[AtributosMaindieciocho] || DefaultAtributoMainuno
+const AtributoMaindiecinueve = UrlAtributos[AtributosMaindiecinueve] || DefaultAtributoMainuno
+const AtributoMainveinte = UrlAtributos[AtributosMainveinte] || DefaultAtributoMainuno
+
+//21-30
+const AtributoMainveintiuno = UrlAtributos[AtributosMainveintiuno] || DefaultAtributoMainuno
+const AtributoMainveintidos = UrlAtributos[AtributosMainveintidos] || DefaultAtributoMainuno
+const AtributoMainveintitres = UrlAtributos[AtributosMainveintitres] || DefaultAtributoMainuno
+const AtributoMainveinticuatro = UrlAtributos[AtributosMainveinticuatro] || DefaultAtributoMainuno
+const AtributoMainveinticinco = UrlAtributos[AtributosMainveinticinco] || DefaultAtributoMainuno
+const AtributoMainveintiseis = UrlAtributos[AtributosMainveintiseis] || DefaultAtributoMainuno
+const AtributoMainveintisiete = UrlAtributos[AtributosMainveintisiete] || DefaultAtributoMainuno
+const AtributoMainveiniocho = UrlAtributos[AtributosMainveintiocho] || DefaultAtributoMainuno
+const AtributoMainveininueve = UrlAtributos[AtributosMainveintinueve] || DefaultAtributoMainuno
+const AtributoMaintreinta = UrlAtributos[AtributosMaintreinta] || DefaultAtributoMainuno
+
+//Tipo de Magica trampa
+const TiposdeMagicaTrampaMainuno = mainuno.tipo_magica_trampa
+const TiposdeMagicaTrampaMaindos = maindos.tipo_magica_trampa
+const TiposdeMagicaTrampaMaintres = maintres.tipo_magica_trampa
+const TiposdeMagicaTrampaMaincuatro = maincuatro.tipo_magica_trampa
+const TiposdeMagicaTrampaMaincinco = maincinco.tipo_magica_trampa
+const TiposdeMagicaTrampaMainseis = mainseis.tipo_magica_trampa
+
+//VALOR DEFAULT
+const DefaultTipodeMagicaTrampa = ""
 
 
-//
+//TIPOS DE MAGICA TRAMPA PARA RENDERIZAR
+//1-10
+const TipodeMagicaTrampaMainuno = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMainuno] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMaindos = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaindos] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMaintres = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaintres] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMaincuatro = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaincuatro] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMaincinco = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaincinco] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMainseis = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMainseis] || DefaultTipodeMagicaTrampa
 
 
+//const TiposdecartasMainuno = mainuno.tipo_de_carta
+
+//Main uno **
 const Tooltipsmainuno = (()=>{
   return(
 <div className="grid-tooltips">
           <div className="grid-tooltips-nombre-descripcion" ><span className="nombre-carta-tooltip" >{mainuno.nombre}</span><img
                   src={AtributoMainuno}
                   className="atributo_tooltips"
-                  alt=''
                 ></img>{" "}
-                <span className="atributo-tooltip" > {mainuno.atributo} </span>
+                <span className="atributo-tooltip" >{mainuno.atributo}</span>
                 <img
                   src={
                     mainuno.tipo_de_carta === "Xyz"
@@ -642,19 +753,7 @@ const Tooltipsmainuno = (()=>{
                 }   `}</span>
                 <img src={mainuno.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{mainuno.escala === 0 ? '' : mainuno.escala}</span>
                 <img
-                  src={
-                    mainuno.tipo_magica_trampa === "De juego rápido"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_juego_rapido_mmsikz.webp"
-                      : mainuno.tipo_magica_trampa === "Normal"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/normal_vpey0j.webp"
-                      : mainuno.tipo_magica_trampa === "De campo"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_campo_qoxyag.webp"
-                      : mainuno.tipo_magica_trampa === "Continua"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/continua_wh3pfj.webp"
-                      : mainuno.tipo_magica_trampa === "De contraefecto"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/contraefecto_pxkz7z.webp"
-                      : mainuno.tipo_magica_trampa
-                  }
+                  src={TipodeMagicaTrampaMainuno}
                   className="nivel_rareza_info "
                 ></img>{" "}
                 <span>{mainuno.tipo_magica_trampa}</span>
@@ -696,6 +795,14 @@ const Tooltipsmainuno = (()=>{
                <span className="span_info">¿Cómo obtener?</span>
                 <br />
                 <span className="span_info">{mainuno.caja}</span>
+               
+                <span className="span_info">{mainuno.estructura}</span>
+               
+                <span className="span_info">{mainuno.selection_box}</span>
+                
+                <span className="span_info">{mainuno.lote}</span>
+                
+                <span className="span_info">{mainuno.adicional}</span>
           </div>
         </div>
   )
@@ -706,11 +813,331 @@ const Tooltipsmainuno = (()=>{
 // Main Dos **
 const Tooltipsmaindos = (()=>{
   return(
-    <div>
-      <span>{maindos.nombre}</span>
-    </div>
+<div className="grid-tooltips">
+          <div className="grid-tooltips-nombre-descripcion" ><span className="nombre-carta-tooltip" >{maindos.nombre}</span><img
+                  src={AtributoMaindos}
+                  className="atributo_tooltips"
+                ></img>{" "}
+                <span className="atributo-tooltip" > {maindos.atributo} </span>
+                <img
+                  src={
+                    maindos.tipo_de_carta === "Xyz"
+                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
+                      : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
+                  }
+                  className={
+                    maindos.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : maindos.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maindos.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : "nivel_tooltips"
+                  }
+                ></img>{" "}
+                <span
+                  className={
+                    maindos.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : maindos.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maindos.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : "data-nivel-tooltip"
+                  }
+                >{`${
+                  maindos.nivel_rango_link == 1 ||
+                  2 ||
+                  3 ||
+                  4 ||
+                  5 ||
+                  6 ||
+                  7 ||
+                  8 ||
+                  9 ||
+                  10 ||
+                  11 ||
+                  12
+                    ? maindos.nivel_rango_link || maindos.nivel_rango
+                    : ""
+                }   `}</span>
+                <img src={maindos.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{maindos.escala === 0 ? '' : maindos.escala}</span>
+                <img
+                  src={TipodeMagicaTrampaMaindos}
+                  className="nivel_rareza_info "
+                ></img>{" "}
+                <span>{maindos.tipo_magica_trampa}</span>
+                <br />
+                <br />
+                <span
+                  className={maindos.tipo === "" ? "ocultarinfo" : "span_info"}
+                >
+                  {" "}
+                  [{" "}
+                  {`${maindos.tipo} / ${maindos.tipo_de_carta}   ${
+                    maindos.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
+                  }  ${maindos.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
+                    maindos.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
+                  } ${
+                    maindos.tipo_de_carta === "Link" ? "/ Efecto" :  maindos.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                  }  `}{" "}
+                  ]{" "}
+                </span>
+                <br />
+                <span className="span_info">{maindos.descripcion}</span>
+                <br />
+                <br />
+                <span className="span_info">{maindos.efecto_pendulo}</span>
+                <br />
+                <span
+                  className={`${
+                    maindos.atk == 0 ? "ocultarinfo" : "span_info"
+                  }  ${maindos.atk == null ? "ocultarinfo" : "span_info"}  `}
+                >
+                  {" "}
+                  {` ATK/ ${maindos.atk}  ${
+                    maindos.tipo_de_carta === "Link"
+                      ? "LINK - " + maindos.nivel_rango_link
+                      : "DEF/ " + maindos.def
+                  }   `}{" "}
+                </span>
+                <br />
+               <span className="span_info">¿Cómo obtener?</span>
+                <br />
+                <span className="span_info">{maindos.caja}</span>
+
+                <span className="span_info">{maindos.estructura}</span>
+               
+               <span className="span_info">{maindos.selection_box}</span>
+               
+               <span className="span_info">{maindos.lote}</span>
+               
+               <span className="span_info">{maindos.adicional}</span>
+          </div>
+        </div>
   )
 })
+
+//Main tres
+const Tooltipsmaintres = (()=>{
+  return(
+<div className="grid-tooltips">
+          <div className="grid-tooltips-nombre-descripcion" ><span className="nombre-carta-tooltip" >{maintres.nombre}</span><img
+                  src={AtributoMaintres}
+                  className="atributo_tooltips"
+                ></img>{" "}
+                <span className="atributo-tooltip" > {maintres.atributo} </span>
+                <img
+                  src={
+                    maintres.tipo_de_carta === "Xyz"
+                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
+                      : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
+                  }
+                  className={
+                    maintres.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : maintres.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maintres.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : "nivel_tooltips"
+                  }
+                ></img>{" "}
+                <span
+                  className={
+                    maintres.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : maintres.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maintres.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : "data-nivel-tooltip"
+                  }
+                >{`${
+                  maintres.nivel_rango_link == 1 ||
+                  2 ||
+                  3 ||
+                  4 ||
+                  5 ||
+                  6 ||
+                  7 ||
+                  8 ||
+                  9 ||
+                  10 ||
+                  11 ||
+                  12
+                    ? maintres.nivel_rango_link || maintres.nivel_rango
+                    : ""
+                }   `}</span>
+                <img src={maintres.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{maintres.escala === 0 ? '' : maintres.escala}</span>
+                <img
+                  src={TipodeMagicaTrampaMaintres}
+                  className="nivel_rareza_info "
+                ></img>{" "}
+                <span>{maintres.tipo_magica_trampa}</span>
+                <br />
+                <br />
+                <span
+                  className={maintres.tipo === "" ? "ocultarinfo" : "span_info"}
+                >
+                  {" "}
+                  [{" "}
+                  {`${maintres.tipo} / ${maintres.tipo_de_carta}   ${
+                    maintres.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
+                  }  ${maintres.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
+                    maintres.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
+                  } ${
+                    maintres.tipo_de_carta === "Link" ? "/ Efecto" :  maintres.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                  }  `}{" "}
+                  ]{" "}
+                </span>
+                <br />
+                <span className="span_info">{maintres.descripcion}</span>
+                <br />
+                <br />
+                <span className="span_info">{maintres.efecto_pendulo}</span>
+                <br />
+                <span
+                  className={`${
+                    maintres.atk == 0 ? "ocultarinfo" : "span_info"
+                  }  ${maintres.atk == null ? "ocultarinfo" : "span_info"}  `}
+                >
+                  {" "}
+                  {` ATK/ ${maintres.atk}  ${
+                    maintres.tipo_de_carta === "Link"
+                      ? "LINK - " + maintres.nivel_rango_link
+                      : "DEF/ " + maintres.def
+                  }   `}{" "}
+                </span>
+                <br />
+               <span className="span_info">¿Cómo obtener?</span>
+                <br />
+                <span className="span_info">{maintres.caja}</span>
+
+                <span className="span_info">{maintres.estructura}</span>
+               
+               <span className="span_info">{maintres.selection_box}</span>
+               
+               <span className="span_info">{maintres.lote}</span>
+               
+               <span className="span_info">{maintres.adicional}</span>
+          </div>
+        </div>
+  )
+})
+
+//Maincuatro
+
+const Tooltipsmaincuatro = (()=>{
+  return(
+<div className="grid-tooltips">
+          <div className="grid-tooltips-nombre-descripcion" ><span className="nombre-carta-tooltip" >{maincuatro.nombre}</span><img
+                  src={AtributoMaincuatro}
+                  className="atributo_tooltips"
+                ></img>{" "}
+                <span className="atributo-tooltip" > {maincuatro.atributo} </span>
+                <img
+                  src={
+                    maincuatro.tipo_de_carta === "Xyz"
+                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
+                      : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
+                  }
+                  className={
+                    maincuatro.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : maincuatro.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maincuatro.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : "nivel_tooltips"
+                  }
+                ></img>{" "}
+                <span
+                  className={
+                    maincuatro.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : maincuatro.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : maincuatro.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : "data-nivel-tooltip"
+                  }
+                >{`${
+                  maincuatro.nivel_rango_link == 1 ||
+                  2 ||
+                  3 ||
+                  4 ||
+                  5 ||
+                  6 ||
+                  7 ||
+                  8 ||
+                  9 ||
+                  10 ||
+                  11 ||
+                  12
+                    ? maincuatro.nivel_rango_link || maincuatro.nivel_rango
+                    : ""
+                }   `}</span>
+                <img src={maincuatro.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{maincuatro.escala === 0 ? '' : maincuatro.escala}</span>
+                <img
+                  src={TipodeMagicaTrampaMaincuatro}
+                  className="nivel_rareza_info "
+                ></img>{" "}
+                <span>{maincuatro.tipo_magica_trampa}</span>
+                <br />
+                <br />
+                <span
+                  className={maincuatro.tipo === "" ? "ocultarinfo" : "span_info"}
+                >
+                  {" "}
+                  [{" "}
+                  {`${maincuatro.tipo} / ${maincuatro.tipo_de_carta}   ${
+                    maincuatro.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
+                  }  ${maincuatro.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
+                    maincuatro.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
+                  } ${
+                    maincuatro.tipo_de_carta === "Link" ? "/ Efecto" :  maincuatro.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                  }  `}{" "}
+                  ]{" "}
+                </span>
+                <br />
+                <span className="span_info">{maincuatro.descripcion}</span>
+                <br />
+                <br />
+                <span className="span_info">{maincuatro.efecto_pendulo}</span>
+                <br />
+                <span
+                  className={`${
+                    maincuatro.atk == 0 ? "ocultarinfo" : "span_info"
+                  }  ${maincuatro.atk == null ? "ocultarinfo" : "span_info"}  `}
+                >
+                  {" "}
+                  {` ATK/ ${maincuatro.atk}  ${
+                    maincuatro.tipo_de_carta === "Link"
+                      ? "LINK - " + maincuatro.nivel_rango_link
+                      : "DEF/ " + maincuatro.def
+                  }   `}{" "}
+                </span>
+                <br />
+               <span className="span_info">¿Cómo obtener?</span>
+                <br />
+                <span className="span_info">{maincuatro.caja}</span>
+
+                <span className="span_info">{maincuatro.estructura}</span>
+               
+               <span className="span_info">{maincuatro.selection_box}</span>
+               
+               <span className="span_info">{maincuatro.lote}</span>
+               
+               <span className="span_info">{maincuatro.adicional}</span>
+          </div>
+        </div>
+  )
+})
+
+//Maincinco
+
+//Mainseis
 
 //COMIENZAN CONDICIONALES
 
@@ -939,10 +1366,10 @@ const UrlLimitacion = {
         </div>
         {/* DEL 1-10   */}
         <div className='deck-grid'   >
-         <div className='container-item item1'><img src={Rarezauno}  className='rareza'  ></img><img src={Limitacionuno}  className='limitacion'  ></img> <Link  href={`/cartas/${mainuno._id}/${mainuno.nombre}/`} ><a><Tooltipsdl position="right" content={<Tooltipsmainuno />}><div><img src={cartauno.secure_url} className='cartatop2 item1' alt={mainuno.nombre} ></img></div></Tooltipsdl></a></Link></div>
-          <div className='container-item item2' ><img src={Rarezados}  className='rareza'  ></img><img src={Limitaciondos}  className='limitacion'  ></img><Link  href={`/cartas/${maindos._id}/${maindos.nombre}/`} ><a><Tooltipsdl position="right" content={<Tooltipsmaindos />}><div><img src={cartados.secure_url} className='cartatop2' alt={maindos.nombre}   ></img></div></Tooltipsdl></a></Link></div>
-          <div className='container-item item3' ><img src={Rarezatres}  className='rareza'  ></img><img src={Limitaciontres}  className='limitacion'  ></img> <Link  href={`/cartas/${maintres._id}/${maintres.nombre}/`} ><div><img src={cartatres.secure_url} className='cartatop2' alt={maintres.nombre}   ></img></div></Link> </div>
-          <div className='container-item item4'><img src={Rarezacuatro}  className='rareza' ></img><img src={Limitacioncuatro}  className='limitacion'  ></img><Link  href={`/cartas/${maincuatro._id}/${maincuatro.nombre}/`} ><div><img src={cartacuatro.secure_url} className='cartatop2' alt={maincuatro.nombre}  ></img></div></Link> </div>
+         <div className='container-item item1'><img src={Rarezauno}  className='rareza'  ></img><img src={Limitacionuno}  className='limitacion'  ></img> <Link  href={`/cartas/${mainuno._id}/${mainuno.nombre}/`} ><a><Tooltipsdl position="right" animationDuration={600} content={<Tooltipsmainuno />}><div><img src={cartauno.secure_url} className='cartatop2 item1' alt={mainuno.nombre} ></img></div></Tooltipsdl></a></Link></div>
+          <div className='container-item item2' ><img src={Rarezados}  className='rareza'  ></img><img src={Limitaciondos}  className='limitacion'  ></img><Link  href={`/cartas/${maindos._id}/${maindos.nombre}/`} ><a><Tooltipsdl position="right" animationDuration={600} content={<Tooltipsmaindos />}><div><img src={cartados.secure_url} className='cartatop2' alt={maindos.nombre}></img></div></Tooltipsdl></a></Link></div>
+          <div className='container-item item3' ><img src={Rarezatres}  className='rareza'  ></img><img src={Limitaciontres}  className='limitacion'  ></img> <Link  href={`/cartas/${maintres._id}/${maintres.nombre}/`} ><a><Tooltipsdl position="right" animationDuration={600} content={<Tooltipsmaintres />}><div><img src={cartatres.secure_url} className='cartatop2' alt={maintres.nombre}></img></div></Tooltipsdl></a></Link> </div>
+          <div className='container-item item4'><img src={Rarezacuatro}  className='rareza' ></img><img src={Limitacioncuatro}  className='limitacion'  ></img><Link  href={`/cartas/${maincuatro._id}/${maincuatro.nombre}/`} ><a><Tooltipsdl position="right" animationDuration={600} content={<Tooltipsmaincuatro />}><div><img src={cartacuatro.secure_url} className='cartatop2' alt={maincuatro.nombre}  ></img></div></Tooltipsdl></a></Link> </div>
           <div className='container-item item5' ><img src={Rarezacinco}  className='rareza'  ></img><img src={Limitacioncinco}  className='limitacion'  ></img><Link  href={`/cartas/${maincinco._id}/${maincinco.nombre}/`} ><div><img src={cartacinco.secure_url} className='cartatop2' alt={maincinco.nombre}   ></img></div></Link> </div>
           <div className='container-item item6' ><img src={Rarezaseis}  className='rareza'  ></img><img src={Limitacionseis}  className='limitacion'  ></img><Link  href={`/cartas/${mainseis._id}/${mainseis.nombre}/`} ><div><img src={cartaseis.secure_url} className='cartatop2' alt={mainseis.nombre}  ></img></div></Link></div>
           <div className='container-item item7' ><img src={Rarezasiete}  className='rareza'  ></img><img src={Limitacionsiete}  className='limitacion'  ></img><Link  href={`/cartas/${mainsiete._id}/${mainsiete.nombre}/`} ><div><img src={cartasiete.secure_url} className='cartatop2' alt={mainsiete.nombre}   ></img></div></Link> </div>

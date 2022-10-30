@@ -213,7 +213,7 @@ export default function Cartas() {
                     ? data.nivel_rango_link || data.nivel_rango
                     : ""
                 }   `}</span>
-                <img src={data.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{data.escala === 0 ? '' : data.escala}</span>
+                <img src={data.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='pendulo_tooltips' ></img> <span className="escala_tooltips" >{data.escala === 0 ? '' : data.escala}</span>
                 <img
                   src={
                     data.tipo_magica_trampa === "De juego rápido"
@@ -228,9 +228,9 @@ export default function Cartas() {
                       ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/contraefecto_pxkz7z.webp"
                       : data.tipo_magica_trampa
                   }
-                  className="nivel_rareza_info "
+                  className="nivel_rareza_tooltips"
                 ></img>{" "}
-                <span>{data.tipo_magica_trampa}</span>
+                <span className="tipo_magica_trampa_tooltip">{data.tipo_magica_trampa}</span>
                 <br />
                 <br />
                 <span
@@ -269,6 +269,14 @@ export default function Cartas() {
                <span className="span_info">¿Cómo obtener?</span>
                 <br />
                 <span className="span_info">{data.caja}</span>
+
+                <span className="span_info">{data.estructura}</span>
+               
+               <span className="span_info">{data.selection_box}</span>
+               
+               <span className="span_info">{data.lote}</span>
+               
+               <span className="span_info">{data.adicional}</span>
           </div>
         </div>}  > 
         <Image

@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import Header from '../../../components/Header';
 import axios from 'axios';
@@ -49,17 +49,16 @@ const Cartainfo = () => {
 
   //const { pid } = router.query
 
+
   return (
     <div className='container'>
       <Header />
-     <Link href={'/cartas'} ><button
+     <button
         className="btn btn-primary botonesmargen "
-       // onClick={() => Link(-1)}
-        data-tip
-        data-for="tooltipsdlp"
+        onClick={() => router.back()}
       >
         Atrás
-      </button></Link>
+      </button>
       
       <h1>{cartas.nombre}</h1>
       <br />
@@ -217,6 +216,14 @@ const Cartainfo = () => {
                <span className="span_info">¿Cómo obtener?</span>
                 <br />
                 <span className="span_info">{cartas.caja}</span>
+
+                <span className="span_info">{cartas.estructura}</span>
+               
+               <span className="span_info">{cartas.selection_box}</span>
+               
+               <span className="span_info">{cartas.lote}</span>
+               
+               <span className="span_info">{cartas.adicional}</span>
               </div>
             </form>
           </div>
