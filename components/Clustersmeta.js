@@ -10,28 +10,28 @@ const clustersmeta = [
   {
     id: 1,
     title: "Tier 0",
-    image: image1,
+  //  image: image1,
     url: "/decks-meta/salamgrande",
     text: <Link href={"decks-meta/salamangrande"}>Salamangrande</Link>
   },
   {
     id: 2,
     title: "Tier 1",
-    image: image2,
+  //  image: image2,
     url: "/decks-cominidad",
     text: ""
   },
   {
     id: 3,
     title: "Tier 2",
-    image: image3,
+  //  image: image3,
     url: "/noticias",
     text: <Link href={"/ojos-anomalos"}>Ojos Anómalos</Link>
   },
   {
     id: 4,
     title: "Tier 3",
-    image: image3,
+  //  image: image3,
     url: "/noticias",
     text: <Link href={"/d-d-d"}>D/D/D</Link> ,
     text2: <Link href={"/abismo-ardiente"}>Abismo Ardiente</Link>,
