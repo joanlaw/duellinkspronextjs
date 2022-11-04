@@ -12,7 +12,7 @@ const clustersmeta = [
     title: "Tier 0",
   //  image: image1,
     url: "/decks-meta/salamgrande",
-    text: <Link href={"decks-meta/salamangrande"}>Salamangrande</Link>
+    text: <Link href={"decks-meta/salamangrande"}><a>Salamangrande</a></Link>
   },
   {
     id: 2,
@@ -26,16 +26,16 @@ const clustersmeta = [
     title: "Tier 2",
   //  image: image3,
     url: "/noticias",
-    text: <Link href={"/ojos-anomalos"}>Ojos Anómalos</Link>
+    text: <Link href={"/ojos-anomalos"}><a>Ojos Anómalos</a></Link>
   },
   {
     id: 4,
     title: "Tier 3",
   //  image: image3,
     url: "/noticias",
-    text: <Link href={"/d-d-d"}>D/D/D</Link> ,
-    text2: <Link href={"/abismo-ardiente"}>Abismo Ardiente</Link>,
-    text3: <Link href={"/heroes"}>Héroes</Link>
+    text: <Link href={"/d-d-d"}><a>D/D/D</a></Link> ,
+    text2: <Link href={"/abismo-ardiente"}><a>Abismo Ardiente</a></Link>,
+    text3: <Link href={"/heroes"}><a>Héroes</a></Link>
   },
 ];
 
