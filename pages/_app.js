@@ -1,3 +1,4 @@
+import GoogleAnalytics from '@bradgarropy/next-google-analytics'
 import '../styles/globals.css'
 import '../styles/Home.module.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -14,7 +15,13 @@ import '../styles/minicajas.css'
 
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+  <GoogleAnalytics measurementId='G-G7SZ0BHCCP' />
+
+  <Component {...pageProps} />
+  </>
+  ) 
 }
 
 export default MyApp
