@@ -277,7 +277,19 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <option value="Fantastic arc">Fantastic arc</option>
                         <option value="Dark dimension">Dark dimension</option>
                         <option value="Shining hope">Shining hope</option>
-                        <option value="Photom of galaxy">Photom of galaxy</option>
+                        <option value="Infinity ray">Infinity ray</option>
+                        <option value="Rage of volcano">Rage of volcano</option>
+                        <option value="Shark fang">Shark fang</option>
+                        <option value="Voltage of the metal">Voltage of the metal</option>
+                        <option value="Arena of sanctuary">Arena of sanctuary</option>
+                        <option value="Infernity destruction">Infernity destruction</option>
+                        <option value="Chronicle of glory">Chronicle of glory</option>
+                        <option value="Witch's sorcery">Witch's sorcery</option>
+                        <option value="Flames of the heart">Flames of the heart</option>
+                        <option value="Fortress of gears">Fortress of gears</option>
+                        <option value="Judgement force">Judgement force</option>
+                        <option value="Master of shadow">Master of shadow</option>
+                        <option value="Future horizon">Future horizon</option>
 
                         </select>
                         <label>Estructura</label>

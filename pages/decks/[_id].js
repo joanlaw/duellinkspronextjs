@@ -683,6 +683,7 @@ const TiposdeMagicaTrampaMaintres = maintres.tipo_magica_trampa
 const TiposdeMagicaTrampaMaincuatro = maincuatro.tipo_magica_trampa
 const TiposdeMagicaTrampaMaincinco = maincinco.tipo_magica_trampa
 const TiposdeMagicaTrampaMainseis = mainseis.tipo_magica_trampa
+const TiposdeMagicaTrampaMainsiete = mainsiete.tipo_magica_trampa
 
 //VALOR DEFAULT
 const DefaultTipodeMagicaTrampa = ""
@@ -696,6 +697,7 @@ const TipodeMagicaTrampaMaintres = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMai
 const TipodeMagicaTrampaMaincuatro = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaincuatro] || DefaultTipodeMagicaTrampa
 const TipodeMagicaTrampaMaincinco = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMaincinco] || DefaultTipodeMagicaTrampa
 const TipodeMagicaTrampaMainseis = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMainseis] || DefaultTipodeMagicaTrampa
+const TipodeMagicaTrampaMainsiete = UrlTipodeMagicaoTrampa[TiposdeMagicaTrampaMainsiete] || DefaultTipodeMagicaTrampa
 
 
 //const TiposdecartasMainuno = mainuno.tipo_de_carta
@@ -1348,6 +1350,115 @@ const Tooltipsmainseis = (()=>{
                <span className="span_info">{mainseis.lote}</span>
                
                <span className="span_info">{mainseis.adicional}</span>
+          </div>
+        </div>
+  )
+})
+
+//Mainsiete
+
+const Tooltipsmainsiete = (()=>{
+  return(
+<div className="grid-tooltips">
+          <div className="grid-tooltips-nombre-descripcion" ><span className="nombre-carta-tooltip" >{mainsiete.nombre}</span><img
+                  src={AtributoMainsiete}
+                  className="atributo_tooltips"
+                ></img>{" "}
+                <span className="atributo-tooltip" > {mainsiete.atributo} </span>
+                <img
+                  src={
+                    mainsiete.tipo_de_carta === "Xyz"
+                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
+                      : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
+                  }
+                  className={
+                    mainsiete.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : mainsiete.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : mainsiete.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : "nivel_tooltips"
+                  }
+                ></img>{" "}
+                <span
+                  className={
+                    mainsiete.tipo_de_carta === "Link"
+                      ? "ocultarinfo"
+                      : mainsiete.atributo === "TRAMPA"
+                      ? "ocultarinfo"
+                      : mainsiete.atributo === "MÁGICA"
+                      ? "ocultarinfo"
+                      : "data-nivel-tooltip"
+                  }
+                >{`${
+                  mainsiete.nivel_rango_link == 1 ||
+                  2 ||
+                  3 ||
+                  4 ||
+                  5 ||
+                  6 ||
+                  7 ||
+                  8 ||
+                  9 ||
+                  10 ||
+                  11 ||
+                  12
+                    ? mainsiete.nivel_rango_link || mainsiete.nivel_rango
+                    : ""
+                }   `}</span>
+                <img src={mainsiete.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{mainsiete.escala === 0 ? '' : mainsiete.escala}</span>
+                <img
+                  src={TipodeMagicaTrampaMainsiete}
+                  className="nivel_rareza_info "
+                ></img>{" "}
+                <span>{mainsiete.tipo_magica_trampa}</span>
+                <br />
+                <br />
+                <span
+                  className={mainsiete.tipo === "" ? "ocultarinfo" : "span_info"}
+                >
+                  {" "}
+                  [{" "}
+                  {`${mainsiete.tipo} / ${mainsiete.tipo_de_carta}   ${
+                    mainsiete.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
+                  }  ${mainsiete.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
+                    mainsiete.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
+                  } ${
+                    mainsiete.tipo_de_carta === "Link" ? "/ Efecto" :  mainsiete.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                  }  `}{" "}
+                  ]{" "}
+                </span>
+                <br />
+                <span className="span_info">{mainsiete.descripcion}</span>
+                <br />
+                <br />
+                <span className="span_info">{mainsiete.efecto_pendulo}</span>
+                <br />
+                <span
+                  className={`${
+                    mainsiete.atk == 0 ? "ocultarinfo" : "span_info"
+                  }  ${mainseis.atk == null ? "ocultarinfo" : "span_info"}  `}
+                >
+                  {" "}
+                  {` ATK/ ${mainsiete.atk}  ${
+                    mainsiete.tipo_de_carta === "Link"
+                      ? "LINK - " + mainsiete.nivel_rango_link
+                      : "DEF/ " + mainsiete.def
+                  }   `}{" "}
+                </span>
+                <br />
+               <span className="span_info">¿Cómo obtener?</span>
+                <br />
+                <span className="span_info">{mainsiete.caja}</span>
+
+                <span className="span_info">{mainsiete.estructura}</span>
+               
+               <span className="span_info">{mainsiete.selection_box}</span>
+               
+               <span className="span_info">{mainsiete.lote}</span>
+               
+               <span className="span_info">{mainsiete.adicional}</span>
           </div>
         </div>
   )
