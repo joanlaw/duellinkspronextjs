@@ -195,6 +195,9 @@ const Cartainfo = () => {
                   ]{" "}
                 </span>
                 <br />
+                <br />
+                <span>{cartas.materiales}</span>
+                <br />
                 <span className="span_info">{cartas.descripcion}</span>
                 <br />
                 <br />

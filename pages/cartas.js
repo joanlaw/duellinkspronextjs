@@ -248,6 +248,7 @@ export default function Cartas() {
                   ]{" "}
                 </span>
                 <br />
+                <span>{data.materiales}</span>
                 <span className="span_info">{data.descripcion}</span>
                 <br />
                 <br />
