@@ -284,7 +284,7 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <option value="Arena of sanctuary">Arena of sanctuary</option>
                         <option value="Infernity destruction">Infernity destruction</option>
                         <option value="Chronicle of glory">Chronicle of glory</option>
-                        <option value="Witch's sorcery">Witch's sorcery</option>
+                        <option value="Witch's sorcery">Witchs sorcery</option>
                         <option value="Flames of the heart">Flames of the heart</option>
                         <option value="Fortress of gears">Fortress of gears</option>
                         <option value="Judgement force">Judgement force</option>
