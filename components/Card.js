@@ -290,6 +290,52 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <option value="Judgement force">Judgement force</option>
                         <option value="Master of shadow">Master of shadow</option>
                         <option value="Future horizon">Future horizon</option>
+                        <option value="Soul of resurrection">Soul of resurrection</option>
+                        <option value="Aerial assault">Aerial assault</option>
+                        <option value="Spirit of the beast">Spirit of the beast</option>
+                        <option value="Valhalla calling">Valhalla calling</option>
+                        <option value="Curse of dread">Curse of dread</option>
+                        <option value="Cybernetic rebellion">Cybernetic rebellion</option>
+                        <option value="Guardians of rock">Guardians of rock</option>
+                        <option value="Blazing rose">Blazing rose</option>
+                        <option value="Lords of shining">Lords of shining</option>
+                        <option value="Warriors unite">Warriors unite</option>
+                        <option value="Dimensions of the wizards">Dimensions of the wizards</option>
+                        <option value="Absolute inferno">Absolute inferno</option>
+                        <option value="Tornado of phantoms">Tornado of phantoms</option>
+                        <option value="Revolution beginning">Revolution beginning</option>
+                        <option value="Secrets of the ancients">Secrets of the ancients</option>
+                        <option value="Blacktorm rising">Blacktorm rising</option>
+                        <option value="Power of bravery">Power of bravery</option>
+                        <option value="Stardust acceleration">Stardust acceleration</option>
+                        <option value="Gaia genesis">Gaia genesis</option>
+                        <option value="Empire of scarlet">Empire of scarlet</option>
+                        <option value="Birning nova">Birning nova</option>
+                        <option value="Clash of wings">Clash of wings</option>
+                        <option value="Crusaders Battlegrounds">Crusaders Battlegrounds</option>
+                        <option value="Visions of ice">Visions of ice</option>
+                        <option value="Valiant souls">Valiant souls</option>
+                        <option value="Rampage of the forest">Rampage of the forest</option>
+                        <option value="Abyss encounters">Abyss encounters</option>
+                        <option value="Resonance of contrast">Resonance of contrast</option>
+                        <option value="Primal burst">Primal burst</option>
+                        <option value="Blades of spirits">Blades of spirits</option>
+                        <option value="Galactic origin">Galactic origin</option>
+                        <option value="Servants of kings">Servants of kings</option>
+                        <option value="Generation next">Generation next</option>
+                        <option value="Echoes of silence">Echoes of silence</option>
+                        <option value="Electric overload">Electric overload</option>
+                        <option value="Dawn of destiny">Dawn of destiny</option>
+                        <option value="Crimson kingdom">Crimson kingdom</option>
+                        <option value="Land of the titans">Land of the titans</option>
+                        <option value="Chaotic compliance">Chaotic compliance</option>
+                        <option value="Wonders of the sky">Wonders of the sky</option>
+                        <option value="Valkyrie's rage">Valkyries rage</option>
+                        <option value="Flame of the tyrant">Flame of the tyrant</option>
+                        <option value="Neo-impact">Neo-impact</option>
+                        <option value="Age of discovery">Age of discovery</option>
+                        <option value="The ultimate rising">The ultimate rising</option>
+                        
 
                         </select>
                         <label>Estructura</label>
@@ -301,6 +347,11 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <option value="Brave hope">Brave hope</option>
                         <option value="Heart of xyz">Tellarknight advent</option>
                         <option value="Cross dimension">Sword of paladin</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
                         
 
                         </select>

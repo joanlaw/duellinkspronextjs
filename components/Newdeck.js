@@ -190,6 +190,7 @@ class Newdeck extends React.Component {
                                         <option value="https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png">shiranui</option>
                                         <option value="https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064642/imagenes%20arquetipos/Creaci%C3%B3n_de_los_Emperadores_Meklord_solqne.jpg">meklord</option>
                                         <option value="https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg">buster blader</option>
+                                        <option value="https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg">Infernity</option>
                                         
                         </select>
  
