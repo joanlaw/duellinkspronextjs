@@ -38,3 +38,21 @@
   .ocultarinfo{
     display: none   ;
   }
+
+  @media only screen and (max-width: 600px) {
+    .rarezainfo{
+      width: 13%;
+    display: grid;
+    margin-left: 10.8ch;
+    }
+
+
+  }
+  
+  @media only screen and (min-width: 768px   )
+  and  (max-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+
+
+  }
