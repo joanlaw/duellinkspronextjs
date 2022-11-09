@@ -64,10 +64,10 @@
     }
 
     .extra-grid{
-      grid-template-columns: repeat(auto-fill, minmax(45px, 0.5fr));
-      grid-auto-rows: minmax(80px, auto);
+      grid-template-columns: repeat(auto-fill, minmax(40px, 0.5fr));
+      grid-auto-rows: minmax(50px, auto);
       width: 100%;  
-      gap: 5px; 
+      gap: 2px; 
     }
 
   }
