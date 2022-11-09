@@ -55,7 +55,7 @@
     padding: 0.5em;
   }
 
-  @media only screen and (min-width: 375px)
+ /* @media only screen and (min-width: 375px)
   { 
     .deck-grid{
       grid-template-columns: repeat(auto-fill, minmax(40px, 0.5fr));
@@ -72,7 +72,7 @@
     }
 
   
-  }
+  } */
 
  @media only screen and (max-width: 600px) {
     .deck-grid{
