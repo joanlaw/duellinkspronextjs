@@ -53,6 +53,10 @@
   and  (max-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1) {
 
-
+    .rarezainfo{
+      width: 13%;
+    display: grid;
+    margin-left: 10.8ch;
+    }
 
   }
