@@ -89,7 +89,12 @@
       gap: 5px; 
     }
 
+
   }
+
+ /* @media only screen and (max-width: 600px){
+    .
+  } */
 
 .spanhabilidad{
   height: 2em;
@@ -117,4 +122,23 @@ margin-bottom: 0.5rem;
   float: left;
  margin-top: 2rem;
   position: absolute;
+}
+
+/*  Habilidad grid*/
+
+@media only screen and (max-width: 600px) {
+
+  .gridhabilidad {
+    display: grid;
+    width: 100%;
+  }
+  .button-grid {
+    width: 20%;
+  }
+
+  .compartirdeck {
+    width: 20%;
+    margin-top: 3em;
+  }
+
 }
