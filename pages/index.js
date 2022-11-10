@@ -10,6 +10,10 @@ export default function Index() {
 
   return (
 <>
+<Head>
+  <title>Duel Links Pro</title>
+  <meta name='Home' content='Bienvenidos a Duel Links Pro, la mejor web de Yugioh Duel Links en Latinoamerica' />
+</Head>
 <Home />
 
 
