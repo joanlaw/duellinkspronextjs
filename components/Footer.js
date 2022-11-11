@@ -1,12 +1,32 @@
 import React from 'react'
 import Link from 'next/link';
+import Head from 'next/head';
 //import { Link } from 'react-router-dom'
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Script from 'next/script';
 
+// import the icons you need
+/*import {
+    faSearch,
+    faAmbulance,
+    faAnchor,
+    faBell,
+    faFacebook
+  } from "@fortawesome/free-solid-svg-icons";
+  
+*/
 //import "./footer.css";
 
 function Footer() {
   return (
 
+<>
+<Head>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+
+</Head>
+<Script src="https://kit.fontawesome.com/84fb9c4e8e.js" crossorigin="anonymous" />
             <footer className='pie-pagina'>
         <div className='grupo-1'>
             <div className='box'>
@@ -26,10 +46,12 @@ function Footer() {
             <div className='box'>
                 <h2>SÍGUENOS</h2>
                 <div className='red-social redesfooter'>
-                    <a href="#" className='fa fa-facebook' ></a>
+                    <a href="https://www.facebook.com/profile.php?id=100087752888287" className='fa fa-facebook' target="_blank" rel="noopener noreferrer"></a>
+                    <a href="https://www.youtube.com/channel/UCSzOZtjYoPgHr82A38TGCTw" className='fa fa-youtube' target="_blank" rel="noopener noreferrer"></a>
+                    <a href="https://discord.gg/vfB636u" className='fa-brands fa-discord' target="_blank" rel="noopener noreferrer"></a>
                     <a href="#" className='fa fa-instagram' ></a>
-                    <a href="#" className='fa fa-twitter'></a>
-                    <a href="#" className='fa fa-youtube'></a>
+                    
+                    
 
                 </div>
             </div>
@@ -38,7 +60,7 @@ function Footer() {
             <small>&copy; 2022 <b>Duel Links Pro</b> - Todos los Derechos Reservados.</small>
         </div>
     </footer>
-
+    </>
   )
 }
 
