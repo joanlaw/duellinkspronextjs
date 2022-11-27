@@ -71,7 +71,7 @@ COMIENZA EL EXTRA DECK
     const obtenerDeck = async ()=>{
 
      // const cartaid = 
-      const url = `https://dlpro-backend.herokuapp.com/decks/${_id}`;
+      const url = `https://api.duellinks.pro/decks/${_id}`;
       const result = await axios.get(url);
 
       console.log(result.data);
@@ -316,51 +316,51 @@ COMIENZA EL EXTRA DECK
     const obtenerDatos = async ()=>{
 
      // const cartaid = 
-      const urlmainuno = `https://dlpro-backend.herokuapp.com/cartas/634fc0c3dc94857f1e41d30f`;
-      const urlmaindos = `https://dlpro-backend.herokuapp.com/cartas/634fc048dc94857f1e41d30c`;
-      const urlmaintres = `https://dlpro-backend.herokuapp.com/cartas/634fbf6cdc94857f1e41d309`;
-      const urlmaincuatro = `https://dlpro-backend.herokuapp.com/cartas/6350653764860b07e83bef11`;
-      const urlmaincinco = `https://dlpro-backend.herokuapp.com/cartas/6350656f64860b07e83bef14`;
-      const urlmainseis = `https://dlpro-backend.herokuapp.com/cartas/635065e964860b07e83bef21`;
-      const urlmainsiete = `https://dlpro-backend.herokuapp.com/cartas/6350690064860b07e83bef84`;
-      const urlmainocho = `https://dlpro-backend.herokuapp.com/cartas/6350693f64860b07e83bef87`;
-      const urlmainnueve = `https://dlpro-backend.herokuapp.com/cartas/635069c364860b07e83bef8a`;
-      const urlmaindiez = `https://dlpro-backend.herokuapp.com/cartas/635069fb64860b07e83bef8d`;
+      const urlmainuno = `https://api.duellinks.pro/cartas/634fc0c3dc94857f1e41d30f`;
+      const urlmaindos = `https://api.duellinks.pro/cartas/634fc048dc94857f1e41d30c`;
+      const urlmaintres = `https://api.duellinks.pro/cartas/634fbf6cdc94857f1e41d309`;
+      const urlmaincuatro = `https://api.duellinks.pro/cartas/6350653764860b07e83bef11`;
+      const urlmaincinco = `https://api.duellinks.pro/cartas/6350656f64860b07e83bef14`;
+      const urlmainseis = `https://api.duellinks.pro/cartas/635065e964860b07e83bef21`;
+      const urlmainsiete = `https://api.duellinks.pro/cartas/6350690064860b07e83bef84`;
+      const urlmainocho = `https://api.duellinks.pro/cartas/6350693f64860b07e83bef87`;
+      const urlmainnueve = `https://api.duellinks.pro/cartas/635069c364860b07e83bef8a`;
+      const urlmaindiez = `https://api.duellinks.pro/cartas/635069fb64860b07e83bef8d`;
       //DIEZ URL
-      const urlmainonce = `https://dlpro-backend.herokuapp.com/cartas/63506a4064860b07e83bef90`;
-      const urlmaindoce = `https://dlpro-backend.herokuapp.com/cartas/63506a9264860b07e83bef93`;
-      const urlmaintrce = `https://dlpro-backend.herokuapp.com/cartas/63506b6664860b07e83bef96`;
-      const urlmaincatorce = `https://dlpro-backend.herokuapp.com/cartas/${maincatorce}`;
-      const urlmainquince = `https://dlpro-backend.herokuapp.com/cartas/${mainquince}`;
-      const urlmaindieciseis = `https://dlpro-backend.herokuapp.com/cartas/${maindieciseis}`;
-      const urlmaindiecisiete = `https://dlpro-backend.herokuapp.com/cartas/${maindiecisiete}`;
-      const urlmaindieciocho = `https://dlpro-backend.herokuapp.com/cartas/${maindieciocho}`;
-      const urlmaindiecinueve = `https://dlpro-backend.herokuapp.com/cartas/${maindiecinueve}`;
-      const urlmainveinte = `https://dlpro-backend.herokuapp.com/cartas/${mainveinte}`;
+      const urlmainonce = `https://api.duellinks.pro/cartas/63506a4064860b07e83bef90`;
+      const urlmaindoce = `https://api.duellinks.pro/cartas/63506a9264860b07e83bef93`;
+      const urlmaintrce = `https://api.duellinks.pro/cartas/63506b6664860b07e83bef96`;
+      const urlmaincatorce = `https://api.duellinks.pro/cartas/${maincatorce}`;
+      const urlmainquince = `https://api.duellinks.pro/cartas/${mainquince}`;
+      const urlmaindieciseis = `https://api.duellinks.pro/cartas/${maindieciseis}`;
+      const urlmaindiecisiete = `https://api.duellinks.pro/cartas/${maindiecisiete}`;
+      const urlmaindieciocho = `https://api.duellinks.pro/cartas/${maindieciocho}`;
+      const urlmaindiecinueve = `https://api.duellinks.pro/cartas/${maindiecinueve}`;
+      const urlmainveinte = `https://api.duellinks.pro/cartas/${mainveinte}`;
       //VEINTE URL
-      const urlmainveintiuno = `https://dlpro-backend.herokuapp.com/cartas/${mainveintiuno}`;
-      const urlmainveintidos = `https://dlpro-backend.herokuapp.com/cartas/${mainveintidos}`;
-      const urlmainveintitres = `https://dlpro-backend.herokuapp.com/cartas/${mainveintitres}`;
-        const urlmainveinticuatro = `https://dlpro-backend.herokuapp.com/cartas/${mainveinticuatro}`;
-      const urlmainveinticinco = `https://dlpro-backend.herokuapp.com/cartas/${mainveinticinco}`;
-       const urlmainveintiseis = `https://dlpro-backend.herokuapp.com/cartas/${mainveintiseis}`;
-      const urlmainveintisiete = `https://dlpro-backend.herokuapp.com/cartas/${mainveintisiete}`;
-      const urlmainveintiocho = `https://dlpro-backend.herokuapp.com/cartas/${mainveintiocho}`;
-      const urlmainveintinueve = `https://dlpro-backend.herokuapp.com/cartas/${mainveintinueve}`;
-      const urlmaintreinta = `https://dlpro-backend.herokuapp.com/cartas/${maintreinta}`;
+      const urlmainveintiuno = `https://api.duellinks.pro/cartas/${mainveintiuno}`;
+      const urlmainveintidos = `https://api.duellinks.pro/cartas/${mainveintidos}`;
+      const urlmainveintitres = `https://api.duellinks.pro/cartas/${mainveintitres}`;
+        const urlmainveinticuatro = `https://api.duellinks.pro/cartas/${mainveinticuatro}`;
+      const urlmainveinticinco = `https://api.duellinks.pro/cartas/${mainveinticinco}`;
+       const urlmainveintiseis = `https://api.duellinks.pro/cartas/${mainveintiseis}`;
+      const urlmainveintisiete = `https://api.duellinks.pro/cartas/${mainveintisiete}`;
+      const urlmainveintiocho = `https://api.duellinks.pro/cartas/${mainveintiocho}`;
+      const urlmainveintinueve = `https://api.duellinks.pro/cartas/${mainveintinueve}`;
+      const urlmaintreinta = `https://api.duellinks.pro/cartas/${maintreinta}`;
       
       //COMIENZAN URL DE EXTRA DECK
 
-      const urlextrauno = `https://dlpro-backend.herokuapp.com/cartas/${extrauno}`;
-      const urlextrados = `https://dlpro-backend.herokuapp.com/cartas/${extrados}`;
-      const urlextratres = `https://dlpro-backend.herokuapp.com/cartas/${extratres}`;
-      const urlextracuatro = `https://dlpro-backend.herokuapp.com/cartas/${extracuatro}`;
-      const urlextracinco = `https://dlpro-backend.herokuapp.com/cartas/${extracinco}`;
-      const urlextraseis = `https://dlpro-backend.herokuapp.com/cartas/${extraseis}`;
-      const urlextrasiete = `https://dlpro-backend.herokuapp.com/cartas/${extrasiete}`;
-      const urlextraocho = `https://dlpro-backend.herokuapp.com/cartas/${extraocho}`;
-    //  const urlextranueve = `https://dlpro-backend.herokuapp.com/cartas/${extranueve.extranuevepos}`;
-    //  const urlextradiez = `https://dlpro-backend.herokuapp.com/cartas/${extradiez.extradiezpos}`;   */
+      const urlextrauno = `https://api.duellinks.pro/cartas/${extrauno}`;
+      const urlextrados = `https://api.duellinks.pro/cartas/${extrados}`;
+      const urlextratres = `https://api.duellinks.pro/cartas/${extratres}`;
+      const urlextracuatro = `https://api.duellinks.pro/cartas/${extracuatro}`;
+      const urlextracinco = `https://api.duellinks.pro/cartas/${extracinco}`;
+      const urlextraseis = `https://api.duellinks.pro/cartas/${extraseis}`;
+      const urlextrasiete = `https://api.duellinks.pro/cartas/${extrasiete}`;
+      const urlextraocho = `https://api.duellinks.pro/cartas/${extraocho}`;
+    //  const urlextranueve = `https://api.duellinks.pro/cartas/${extranueve.extranuevepos}`;
+    //  const urlextradiez = `https://api.duellinks.pro/cartas/${extradiez.extradiezpos}`;   */
 
       const resultmainuno = await axios.get(urlmainuno); 
       const resultmaindos = await axios.get(urlmaindos);
