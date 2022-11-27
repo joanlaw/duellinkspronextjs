@@ -78,7 +78,7 @@ const router = useRouter()
     const obtenerDeck = async ()=>{
 
      // const cartaid = 
-      const url = `https://dlpro-backend.herokuapp.com/decks/${_id}`;
+      const url = `https://api.duellinks.pro/decks/${_id}`;
       const result = await axios.get(url);
 
       console.log(result.data);
@@ -323,51 +323,51 @@ const router = useRouter()
     const obtenerDatos = async ()=>{
 
      // const cartaid = 
-      const urlmainuno = `https://dlpro-backend.herokuapp.com/cartas/${deckuno.mainuno}`;
-      const urlmaindos = `https://dlpro-backend.herokuapp.com/cartas/${deckdos.maindos}`;
-      const urlmaintres = `https://dlpro-backend.herokuapp.com/cartas/${decktres.maintres}`;
-      const urlmaincuatro = `https://dlpro-backend.herokuapp.com/cartas/${deckcuatro.maincuatro}`;
-      const urlmaincinco = `https://dlpro-backend.herokuapp.com/cartas/${deckcinco.maincinco}`;
-      const urlmainseis = `https://dlpro-backend.herokuapp.com/cartas/${deckseis.mainseis}`;
-      const urlmainsiete = `https://dlpro-backend.herokuapp.com/cartas/${decksiete.mainsiete}`;
-      const urlmainocho = `https://dlpro-backend.herokuapp.com/cartas/${deckocho.mainocho}`;
-      const urlmainnueve = `https://dlpro-backend.herokuapp.com/cartas/${decknueve.mainnueve}`;
-      const urlmaindiez = `https://dlpro-backend.herokuapp.com/cartas/${deckdiez.maindiez}`;
+      const urlmainuno = `https://api.duellinks.pro/cartas/${deckuno.mainuno}`;
+      const urlmaindos = `https://api.duellinks.pro/cartas/${deckdos.maindos}`;
+      const urlmaintres = `https://api.duellinks.pro/cartas/${decktres.maintres}`;
+      const urlmaincuatro = `https://api.duellinks.pro/cartas/${deckcuatro.maincuatro}`;
+      const urlmaincinco = `https://api.duellinks.pro/cartas/${deckcinco.maincinco}`;
+      const urlmainseis = `https://api.duellinks.pro/cartas/${deckseis.mainseis}`;
+      const urlmainsiete = `https://api.duellinks.pro/cartas/${decksiete.mainsiete}`;
+      const urlmainocho = `https://api.duellinks.pro/cartas/${deckocho.mainocho}`;
+      const urlmainnueve = `https://api.duellinks.pro/cartas/${decknueve.mainnueve}`;
+      const urlmaindiez = `https://api.duellinks.pro/cartas/${deckdiez.maindiez}`;
       //DIEZ URL
-      const urlmainonce = `https://dlpro-backend.herokuapp.com/cartas/${deckonce.mainonce}`;
-      const urlmaindoce = `https://dlpro-backend.herokuapp.com/cartas/${deckdoce.maindoce}`;
-      const urlmaintrce = `https://dlpro-backend.herokuapp.com/cartas/${decktrece.maintrece}`;
-      const urlmaincatorce = `https://dlpro-backend.herokuapp.com/cartas/${deckcatorce.maincatorce}`;
-      const urlmainquince = `https://dlpro-backend.herokuapp.com/cartas/${deckquince.mainquince}`;
-      const urlmaindieciseis = `https://dlpro-backend.herokuapp.com/cartas/${deckdieciseis.maindieciseis}`;
-      const urlmaindiecisiete = `https://dlpro-backend.herokuapp.com/cartas/${deckdiecisiete.maindiecisiete}`;
-      const urlmaindieciocho = `https://dlpro-backend.herokuapp.com/cartas/${deckdieciocho.maindieciocho}`;
-      const urlmaindiecinueve = `https://dlpro-backend.herokuapp.com/cartas/${deckdiecinueve.maindiecinueve}`;
-      const urlmainveinte = `https://dlpro-backend.herokuapp.com/cartas/${deckveinte.mainveinte}`;
+      const urlmainonce = `https://api.duellinks.pro/cartas/${deckonce.mainonce}`;
+      const urlmaindoce = `https://api.duellinks.pro/cartas/${deckdoce.maindoce}`;
+      const urlmaintrce = `https://api.duellinks.pro/cartas/${decktrece.maintrece}`;
+      const urlmaincatorce = `https://api.duellinks.pro/cartas/${deckcatorce.maincatorce}`;
+      const urlmainquince = `https://api.duellinks.pro/cartas/${deckquince.mainquince}`;
+      const urlmaindieciseis = `https://api.duellinks.pro/cartas/${deckdieciseis.maindieciseis}`;
+      const urlmaindiecisiete = `https://api.duellinks.pro/cartas/${deckdiecisiete.maindiecisiete}`;
+      const urlmaindieciocho = `https://api.duellinks.pro/cartas/${deckdieciocho.maindieciocho}`;
+      const urlmaindiecinueve = `https://api.duellinks.pro/cartas/${deckdiecinueve.maindiecinueve}`;
+      const urlmainveinte = `https://api.duellinks.pro/cartas/${deckveinte.mainveinte}`;
       //VEINTE URL
-      const urlmainveintiuno = `https://dlpro-backend.herokuapp.com/cartas/${deckveintiuno.mainveintiuno}`;
-      const urlmainveintidos = `https://dlpro-backend.herokuapp.com/cartas/${deckveintidos.mainveintidos}`;
-      const urlmainveintitres = `https://dlpro-backend.herokuapp.com/cartas/${deckveintitres.mainveintitres}`;
-        const urlmainveinticuatro = `https://dlpro-backend.herokuapp.com/cartas/${deckveinticuatro.mainveinticuatro}`;
-      const urlmainveinticinco = `https://dlpro-backend.herokuapp.com/cartas/${deckveinticinco.mainveinticinco}`;
-       const urlmainveintiseis = `https://dlpro-backend.herokuapp.com/cartas/${deckveintiseis.mainveintiseis}`;
-      const urlmainveintisiete = `https://dlpro-backend.herokuapp.com/cartas/${deckveintisiete.mainveintisiete}`;
-      const urlmainveintiocho = `https://dlpro-backend.herokuapp.com/cartas/${deckveintiocho.mainveintiocho}`;
-      const urlmainveintinueve = `https://dlpro-backend.herokuapp.com/cartas/${deckveinitinueve.mainveintinueve}`;
-      const urlmaintreinta = `https://dlpro-backend.herokuapp.com/cartas/${decktreinta.maintreinta}`;
+      const urlmainveintiuno = `https://api.duellinks.pro/cartas/${deckveintiuno.mainveintiuno}`;
+      const urlmainveintidos = `https://api.duellinks.pro/cartas/${deckveintidos.mainveintidos}`;
+      const urlmainveintitres = `https://api.duellinks.pro/cartas/${deckveintitres.mainveintitres}`;
+        const urlmainveinticuatro = `https://api.duellinks.pro/cartas/${deckveinticuatro.mainveinticuatro}`;
+      const urlmainveinticinco = `https://api.duellinks.pro/cartas/${deckveinticinco.mainveinticinco}`;
+       const urlmainveintiseis = `https://api.duellinks.pro/cartas/${deckveintiseis.mainveintiseis}`;
+      const urlmainveintisiete = `https://api.duellinks.pro/cartas/${deckveintisiete.mainveintisiete}`;
+      const urlmainveintiocho = `https://api.duellinks.pro/cartas/${deckveintiocho.mainveintiocho}`;
+      const urlmainveintinueve = `https://api.duellinks.pro/cartas/${deckveinitinueve.mainveintinueve}`;
+      const urlmaintreinta = `https://api.duellinks.pro/cartas/${decktreinta.maintreinta}`;
       
       //COMIENZAN URL DE EXTRA DECK
 
-      const urlextrauno = `https://dlpro-backend.herokuapp.com/cartas/${deckextrauno.extrauno}`;
-      const urlextrados = `https://dlpro-backend.herokuapp.com/cartas/${deckextrados.extrados}`;
-      const urlextratres = `https://dlpro-backend.herokuapp.com/cartas/${deckextratres.extratres}`;
-      const urlextracuatro = `https://dlpro-backend.herokuapp.com/cartas/${deckextracuatro.extracuatro}`;
-      const urlextracinco = `https://dlpro-backend.herokuapp.com/cartas/${deckextracinco.extracinco}`;
-      const urlextraseis = `https://dlpro-backend.herokuapp.com/cartas/${deckextraseis.extraseis}`;
-      const urlextrasiete = `https://dlpro-backend.herokuapp.com/cartas/${deckextrasiete.extrasiete}`;
-      const urlextraocho = `https://dlpro-backend.herokuapp.com/cartas/${deckextraocho.extraocho}`;
-    //  const urlextranueve = `https://dlpro-backend.herokuapp.com/cartas/${extranueve.extranuevepos}`;
-    //  const urlextradiez = `https://dlpro-backend.herokuapp.com/cartas/${extradiez.extradiezpos}`;   */
+      const urlextrauno = `https://api.duellinks.pro/cartas/${deckextrauno.extrauno}`;
+      const urlextrados = `https://api.duellinks.pro/cartas/${deckextrados.extrados}`;
+      const urlextratres = `https://api.duellinks.pro/cartas/${deckextratres.extratres}`;
+      const urlextracuatro = `https://api.duellinks.pro/cartas/${deckextracuatro.extracuatro}`;
+      const urlextracinco = `https://api.duellinks.pro/cartas/${deckextracinco.extracinco}`;
+      const urlextraseis = `https://api.duellinks.pro/cartas/${deckextraseis.extraseis}`;
+      const urlextrasiete = `https://api.duellinks.pro/cartas/${deckextrasiete.extrasiete}`;
+      const urlextraocho = `https://api.duellinks.pro/cartas/${deckextraocho.extraocho}`;
+    //  const urlextranueve = `https://api.duellinks.pro/cartas/${extranueve.extranuevepos}`;
+    //  const urlextradiez = `https://api.duellinks.pro/cartas/${extradiez.extradiezpos}`;   */
 
       const resultmainuno = await axios.get(urlmainuno); 
       const resultmaindos = await axios.get(urlmaindos);
