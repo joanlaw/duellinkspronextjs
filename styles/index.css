@@ -140,6 +140,33 @@ code {
 
 }
 */
+@media (max-width:750px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+}
+
+.mobile-nav-toggle{
+  position: fixed;
+  top: 18px;
+  right: 15px;
+  z-index: 9998;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  transition: all 0.4s;
+  outline: none !important;
+  line-height: 1;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mobile-nav-toggle i {
+  color: #fff;
+}
 
 /* Lista de cartas */
 

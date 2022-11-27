@@ -27,7 +27,7 @@ export default function Cartas() {
     refreshCardList();
   }, []);
 
-  const cardsApi = (url = "https://dlpro-backend.herokuapp.com/cartas/") => {
+  const cardsApi = (url = "https://api.duellinks.pro/cartas/") => {
     return {
       fetchAll: () => axios.get(url),
       create: (newRecord) => axios.post(url, newRecord),

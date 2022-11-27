@@ -23,13 +23,13 @@ const Cartainfo = () => {
 
   useEffect(() => {
     const obtenerDatos = async () => {
-      const url = `https://dlpro-backend.herokuapp.com/cartas/${_id}`
+      const url = `https://api.duellinks.pro/cartas/${_id}`
       
       const result = await axios.get(url);
      // console.log(result.data);
 
       const respuesta = await fetch(
-        `https://dlpro-backend.herokuapp.com/cartas/${_id}`
+        `https://api.duellinks.pro/cartas/${_id}`
       );
       // .then(response => response.json())
       // .then(data => console.log(data))
