@@ -4,6 +4,7 @@ import Header from '../../../components/Header';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const Cartainfo = () => {
 
@@ -51,6 +52,11 @@ const Cartainfo = () => {
 
 
   return (
+    <>
+    <Head>
+    <title>▷ {cartas.nombre} | Duel Links Pro</title>
+    <meta name={cartas.nombre} content={cartas.descripcion} />
+    </Head>
     <div className='container'>
       <Header />
      <button
@@ -233,6 +239,7 @@ const Cartainfo = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
