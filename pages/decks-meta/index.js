@@ -7,7 +7,7 @@ export default function index() {
   return (
     <>
     <Head>
-    <title>Decks Meta</title>
+    <title>Decks Meta | Duel Links Pro</title>
   <meta name='Tier List' content='Decks meta o Tier List basados en criterios de la comunidad y los decks o mazos más ganadores' />
     </Head>
     <div>

@@ -12,6 +12,7 @@ import Cardinfo from "../components/Cardinfo.js";
 
 
 import Tooltipsdl from "../components/Tooltipsdl"
+import Head from "next/head.js";
 
 export default function Cartas() {
   const [cardList, setCardList] = useState([]);
@@ -318,6 +319,11 @@ export default function Cartas() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <>
+    <Head>
+    <title>Cartas | Duel Links Pro</title>
+    <meta name='Cartas' content='Todas las cartas del juego Yugioh Duel Links en español' />
+    </Head>
     <div className="container">
       <Header />
       
@@ -354,5 +360,6 @@ export default function Cartas() {
       <div className=""></div>
       <Footer />
     </div>
+    </>
   );
 }
