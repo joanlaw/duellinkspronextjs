@@ -55,7 +55,7 @@ const Cartainfo = () => {
     <>
     <Head>
     <title>▷ {cartas.nombre} | Duel Links Pro</title>
-    <meta name={cartas.nombre} content={cartas.descripcion} />
+    <meta name="description" content={cartas.descripcion} />
     </Head>
     <div className='container'>
       <Header />

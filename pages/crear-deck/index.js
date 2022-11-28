@@ -69,7 +69,7 @@ class Newdeck extends React.Component {
   }
  
   componentDidMount() {
-    const url = 'https://dlpro-backend.herokuapp.com/decks/'
+    const url = 'https://api.duellinks.pro.com/decks/'
     axios.get(url).then(response => response.data)
     .then((data) => {
       this.setState({ contacts: data })
@@ -145,7 +145,7 @@ class Newdeck extends React.Component {
       sidediez: this.state.sidediez,
     }
 
-    axios.post('https://dlpro-backend.herokuapp.com/decks/', data_to_send)
+    axios.post('https://api.duellinks.pro.com/decks/', data_to_send)
     .then(function (response) {
       //handle success
       console.log(response)

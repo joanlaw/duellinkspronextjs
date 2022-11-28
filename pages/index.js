@@ -12,7 +12,7 @@ export default function Index() {
 <>
 <Head>
   <title>Duel Links Pro</title>
-  <meta name='description' content='Bienvenidos a Duel Links Pro, la mejor web de Yugioh Duel Links en Latinoamerica' />
+  <meta name='description' content='Bienvenidos a Duel Links Pro, una web especializada en el juego Yugioh Duel Links, con contenido en español' />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald:wght@200;600;700&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet" />
 
 </Head>
