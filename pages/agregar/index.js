@@ -23,7 +23,7 @@ export default function Cardlist() {
     refreshCardList();
   },[])
 
-  const cardsApi = (url = 'https://api.duellinks.pro/cartas/',) => {
+  const cardsApi = (url = 'https://back-render-cloud-dlp.onrender.com/cartas/',) => {
     return {
         fetchAll: () => axios.get(url),
         create: newRecord => axios.post(url, newRecord),

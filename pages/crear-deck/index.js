@@ -69,7 +69,7 @@ class Newdeck extends React.Component {
   }
  
   componentDidMount() {
-    const url = 'https://api.duellinks.pro.com/decks/'
+    const url = 'https://back-render-cloud-dlp.onrender.com/decks/'
     axios.get(url).then(response => response.data)
     .then((data) => {
       this.setState({ contacts: data })
@@ -145,7 +145,7 @@ class Newdeck extends React.Component {
       sidediez: this.state.sidediez,
     }
 
-    axios.post('https://api.duellinks.pro.com/decks/', data_to_send)
+    axios.post('https://back-render-cloud-dlp.onrender.com/decks/', data_to_send)
     .then(function (response) {
       //handle success
       console.log(response)
