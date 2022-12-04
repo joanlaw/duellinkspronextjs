@@ -19,7 +19,7 @@ export default function Index() {
       refreshCardList();
     }, []);
   
-    const cardsApi = (url = "https://back-render-cloud-dlp.onrender.com/decks/") => {
+    const cardsApi = (url = "https://api.duellinks.pro/decks/") => {
       return {
         fetchAll: () => axios.get(url),
         create: (newRecord) => axios.post(url, newRecord),
