@@ -15,6 +15,7 @@ import '../styles/listadecks.css'
 import '../styles/cartainfo.css'
 import '../styles/deckscreator.css'
 import '../styles/minicajas.css'
+import '../styles/navbar.css'
 
 
 

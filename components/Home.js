@@ -49,14 +49,8 @@ export default function Home(){
 
     return(
         <div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
             <Header />
-
+      <br />
         <Clusters />
         <div>
             <br />

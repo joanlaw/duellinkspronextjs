@@ -5150,16 +5150,15 @@ const UrlLimitacion = {
 // const divtreinta = useState (decktreinta)
 
   return (
-
-
     <div className='' >
+      <Header />
       <div className='box-grid container'>
-        <Header />
+        
        <button className='btn btn-primary button-grid' onClick={() => router.back()} >Atrás</button>
         <h1>{deckuno.arquetipo}</h1>
         <h2>{deckuno.top}</h2>
         <div>
-      <a href='#'>  <img src='https://res.cloudinary.com/dqofcbeaq/image/upload/v1666132178/iconos%20dlp/act-compdk_bdkyzn.png' className='compartirdeck' ></img> </a>
+   {/*  <a href='#'>  <img src='https://res.cloudinary.com/dqofcbeaq/image/upload/v1666132178/iconos%20dlp/act-compdk_bdkyzn.png' className='compartirdeck' ></img> </a> */} 
         </div>
         <div className='gridhabilidad' >
           <h3>{deckuno.jugador}</h3>

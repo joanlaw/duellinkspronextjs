@@ -324,11 +324,13 @@ export default function Cartas() {
     <title>Cartas | Duel Links Pro</title>
     <meta name='Cartas' content='Todas las cartas del juego Yugioh Duel Links en español' />
     </Head>
+    <Header />
+    <br />
     <div className="container">
-      <Header />
+      
       
 
-      <div className="gridbuscarcarta" >
+      <div className="" >
       
         <input
         value={search}
@@ -358,8 +360,9 @@ export default function Cartas() {
         /> */}
 
       <div className=""></div>
-      <Footer />
+      
     </div>
+    <Footer />
     </>
   );
 }

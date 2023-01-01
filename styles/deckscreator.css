@@ -1,7 +1,7 @@
 
 
 .box-grid{
-  margin-top: 10em;
+  margin-top: 2em;
   display: grid;
 }
 
@@ -140,7 +140,7 @@ margin-bottom: 0.5rem;
 .compartirdeck{
   float: left;
  margin-top: 2rem;
-  position: absolute;
+  position: grid;
 }
 
 /*  Habilidad grid*/
@@ -158,6 +158,10 @@ margin-bottom: 0.5rem;
   .compartirdeck {
     width: 20%;
     margin-top: 3em;
+  }
+
+  .limitacion {
+    width: 5%;
   }
 
 }

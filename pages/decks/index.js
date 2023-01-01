@@ -117,9 +117,11 @@ export default function Index() {
 
   return (
     <div>
-    <div className=' container searchmargen'>
        <Header /> 
-       <div className="gridbuscarcarta" >
+       <br />
+    <div className=' container'>
+      
+       <div className="" >
       
       <input
       value={search}
