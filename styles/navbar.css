@@ -60,7 +60,7 @@ nav {
 	}
 
 	header nav {
-		position: fixed;
+		position: absolute !important;
 		top: 0;
 		left: 0;
 		height: 100%;
@@ -73,6 +73,7 @@ nav {
 		background-color: var(--mainColor);
 		transition: 1s;
 		transform: translateY(-100vh);
+		z-index: 3;
 	}
 
 	header .responsive_nav {
@@ -81,10 +82,10 @@ nav {
 	}
 
 	nav .nav-close-btn {
-		position: absolute !important;
+		position: absolute;
 		top: 2rem;
 		right: 2rem;
-		z-index: 3;
+		
 	}
 
 	nav a {

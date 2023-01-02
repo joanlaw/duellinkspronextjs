@@ -281,7 +281,7 @@ export default function Cartas() {
                <span className="span_info">{data.adicional}</span>
           </div>
         </div>}  > 
-        <Image
+        <img
        width='106'
        height='155'
       
@@ -292,7 +292,7 @@ export default function Cartas() {
           className="cartatop "
           alt={data.nombre}
           
-        ></Image></Tooltipsdl>{" "}
+        ></img></Tooltipsdl>{" "}
       </div>
     </div>
   );
