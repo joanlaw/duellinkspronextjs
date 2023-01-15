@@ -3,6 +3,7 @@ import Header from "../../components/Header"
 import axios from "axios"
 import Footer from "../../components/Footer"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Index() {
 
@@ -86,15 +87,48 @@ export default function Index() {
     //  setrecordForEdit(data)
     //  }
   
+
+
+
+
     //Solicitar a la api los datos de cartas para mostrar
   
-  
-    const ImageCard = ({ data }) => (
-      <div >
-        <img src={data.arquetipo_image} className='decksimage' ></img>{/*<span className='nombresdecks' >{data.arquetipo}</span> */}
-        
+
+    const ImageCard = ({data})=>{
+          //OBTNER IMAGNES DE ARQUETIPOS
+
+    const UrlImageArquetipo = {
+      Salamangrande: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
+      "Buster blader": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg",
+      "Serafin estelar": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666071109/imagenes%20arquetipos/tumblr_72189f00d45466bbaed867d46c875b3a_dff1f5cc_640_xti00b.jpg",
+      "Mago oscuro": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064732/imagenes%20arquetipos/Foto_mago_oscuro_ldozix.jpg",
+      "Héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
+      "Shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png",
+      "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
+      "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp"
+    }
+
+    const ImagenArquetipos = data.arquetipo
+
+    const ImageArquetipoDefault = ""
+
+    const ImageArquetipo = UrlImageArquetipo[ImagenArquetipos]  || ImageArquetipoDefault
+
+    return (
+      <div>
+        <img src={ImageArquetipo} className='decksimage'></img>
       </div>
-    );
+    )
+
+    }
+  
+//    const ImageCard = ({ data }) => (
+      
+ //     <div >
+ //       <img src={data.arquetipo_image} className='decksimage' ></img>{/*<span className='nombresdecks' >{data.arquetipo}</span> */}
+ //       
+ //     </div>
+ //   );
   
     //Solicitar a la api datos funcion para limitacion
   
