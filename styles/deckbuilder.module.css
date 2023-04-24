@@ -1,0 +1,45 @@
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.card-image {
+  margin-right: 10px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-rarity {
+  margin-bottom: 5px;
+}
+
+.card-limitation {
+  margin-bottom: 5px;
+}
+
+.add-card-button {
+  background-color: #0080ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-card-button:hover {
+  background-color: #0059b3;
+}

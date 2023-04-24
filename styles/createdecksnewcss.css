@@ -1,0 +1,47 @@
+.lista-cartas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 1rem;
+  }
+  
+  .carta {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .carta:hover {
+    transform: scale(1.05);
+  }
+  
+  .deck {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .deck > div {
+    margin: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .deck > div:hover {
+    transform: scale(1.05);
+  }
+  
+  .deck > div > img {
+    max-height: 100px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .deck > div > p {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
+  
