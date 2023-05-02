@@ -81,7 +81,7 @@ const router = useRouter()
       const url = `https://api.duellinks.pro/decks/${_id}`;
       const result = await axios.get(url);
 
-      console.log(result.data);
+      //console.log(result.data);
       setDeckuno(result.data);
       setDeckdos(result.data)
       setDecktres(result.data)
