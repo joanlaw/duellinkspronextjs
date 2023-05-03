@@ -138,7 +138,23 @@ for (let i = 1; i <= numeroPaginas; i++) {
 }
 
 //EVENTOS DEL FORMULARIO
-const [formState, setFormState] = useState({
+
+
+const initialState = {
+  jugador: "",
+  habilidad: "",
+  arquetipo: "",
+  top: "",
+  puesto: ""
+};
+
+const [formState, setFormState] = useState(initialState);
+
+const handleReset = () => {
+  setFormState(initialState);
+};
+
+ /* const [formState, setFormState] = useState({
   jugador: "",
   habilidad: "",
   arquetipo: "",
@@ -146,7 +162,7 @@ const [formState, setFormState] = useState({
   engine: "",
   top: "",
   puesto: "",
-});
+});  */
 
 const handleChange = (event) => {
   setFormState({ ...formState, [event.target.name]: event.target.value });
@@ -163,7 +179,8 @@ const handleChange = (event) => {
     const engine = formState.engine;
     const top = formState.top;
     const puesto = formState.puesto;
-
+    
+    handleReset();
     axios
       .post("https://back-render-cloud-dlp.onrender.com/decks/",{
         jugador: jugador,

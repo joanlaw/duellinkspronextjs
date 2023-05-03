@@ -20,7 +20,7 @@ export default function Index() {
       refreshCardList();
     }, []);
   
-    const cardsApi = (url = "https://api.duellinks.pro/decks/") => {
+    const decksApi = (url = "https://back-render-cloud-dlp.onrender.com/decks/") => {
       return {
         fetchAll: () => axios.get(url),
         create: (newRecord) => axios.post(url, newRecord),
@@ -59,7 +59,7 @@ export default function Index() {
     //const results = !search ? cardList : cardList.filter((dato)=> dato.nombre.toLowerCase().includes(search?.toLocaleLowerCase()))
   
     function refreshCardList() {
-      cardsApi()
+      decksApi()
         .fetchAll()
         .then((res) => setCardList(res.data))
         .catch((err) => console.log(err));
@@ -67,7 +67,7 @@ export default function Index() {
   
     const addOrEdit = (formData, onSuccess) => {
       //  if (FormData.get('_id') == "0")
-      cardsApi()
+      decksApi()
         .create(formData)
         .then((res) => {
           onSuccess();
@@ -75,7 +75,7 @@ export default function Index() {
         })
         .catch((err) => console.log(err));
       //   else
-      //    cardsApi().update(FormData.get('_id'),FormData)
+      //    decksApi().update(FormData.get('_id'),FormData)
       //   .then(res => {
       //      onSuccess();
       //      refreshCardList();
@@ -98,7 +98,7 @@ export default function Index() {
           //OBTNER IMAGNES DE ARQUETIPOS
 
     const UrlImageArquetipo = {
-      Salamangrande: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
+      "Salamangrande": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
       "Buster blader": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg",
       "Serafin estelar": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666071109/imagenes%20arquetipos/tumblr_72189f00d45466bbaed867d46c875b3a_dff1f5cc_640_xti00b.jpg",
       "Mago oscuro": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064732/imagenes%20arquetipos/Foto_mago_oscuro_ldozix.jpg",
@@ -153,6 +153,7 @@ export default function Index() {
     <div>
        <Header /> 
        <br />
+       <h2>Lista de Decks</h2>
     <div className=' container'>
       
        <div className="" >
