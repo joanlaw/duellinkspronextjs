@@ -19,3 +19,68 @@
     font-size:smaller;
     text-align: justify;
 }
+
+/* COMIENZAN LOS ESTILOS DEL FILTRADO */
+.container-filtrado {
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+  
+  select {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  select:focus {
+    outline: none;
+    border: 1px solid #666;
+  }
+  
+  button {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #aaa;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .container-filtrado {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    select {
+      width: calc(33.33% - 10px);
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+  
+    select:last-of-type {
+      margin-right: 0;
+    }
+  
+    label {
+      margin-bottom: 0;
+    }
+  }

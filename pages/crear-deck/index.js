@@ -115,7 +115,7 @@ const [search, setSearch ] = useState("")
 
 
 //PAGINACION
-const cartasPorPagina = 48;
+const cartasPorPagina = 52;
   const paginaInicio = (paginaActual - 1) * cartasPorPagina;
   const paginaFinal = paginaInicio + cartasPorPagina;
   const cartasPaginadas = results.slice(paginaInicio, paginaFinal);
@@ -268,8 +268,7 @@ const handleChange = (event) => {
     <div>
       <h1>Creador de decks DLP</h1>
     </div>
-    <br />
-    <div className="container"> 
+    <div className="container-creador"> 
     <div>
     <form onSubmit={handleSubmit}>
       <label htmlFor="jugador">Jugador:</label>
@@ -293,8 +292,8 @@ const handleChange = (event) => {
   <div className="buscar">
     <input type="text" id="buscar" placeholder="Buscar por nombre" onChange={searcher}  value={search} />
   </div>
-  <br /> 
-  <div className="lista-cartas">
+
+  <div className="lista-cartas-creador">
     {cartasPaginadas.map((carta) => (
       <Carta key={carta.id} carta={carta} onClick={() => onClick(carta)} />
     ))}
@@ -302,7 +301,7 @@ const handleChange = (event) => {
   <div className="paginacion">{botonesPaginacion}</div>
 
   <h2>Deck</h2>
-  <div className="deck">
+  <div className="deck-creador">
     {deck.map((carta, index) => (
       <div key={index} onClick={() => handleQuitarCarta(index)}>
         <img src={carta.image.secure_url} alt={carta.nombre} />
@@ -311,7 +310,7 @@ const handleChange = (event) => {
   </div>
 
   <h2>Extra Deck</h2>
-  <div className="deck">
+  <div className="deck-creador">
     {deckextra.map((carta, index) => (
       <div key={index} onClick={() => handleQuitarCartaExtra(index)}>
         <img src={carta.image.secure_url} alt={carta.nombre} />

@@ -114,6 +114,8 @@ export default function Index() {
 
     const ImageArquetipo = UrlImageArquetipo[ImagenArquetipos]  || ImageArquetipoDefault
 
+
+
     return (
       <div>
         <img src={ImageArquetipo} className='decksimage'></img>
@@ -149,12 +151,94 @@ export default function Index() {
   
     //Cambio de pagina
 
+
+    //
+    //FILTRADO DE DECKS
+
+    const [filtro, setFiltro] = useState({
+      createdAt: '',
+      habilidad: '',
+      arquetipo: '',
+      top: ''
+    });
+
+    function handleFiltroChange(event) {
+      const { name, value } = event.target;
+      setFiltro(prevFiltro => ({
+        ...prevFiltro,
+        [name]: value
+      }));
+    }
+
+    const elementosFiltrados = currentPost.filter(currentPost => {
+      return (!filtro.createdAt || currentPost.createdAt === filtro.createdAt) &&
+             (!filtro.habilidad || currentPost.habilidad === filtro.habilidad) &&
+             (!filtro.arquetipo || currentPost.arquetipo === filtro.arquetipo) &&
+             (!filtro.top || currentPost.top === filtro.top);
+    });
+
+
   return (
     <div>
        <Header /> 
-       <br />
        <h2>Lista de Decks</h2>
-    <div className=' container'>
+       <div className="container-filtrado">
+       <label>Mes</label>
+       <select type="text" name="createdAt" value={filtro.createdAt} onChange={handleFiltroChange}>
+                                        <option value=""></option>
+                                        <option value="Salamangrande">Enero</option>
+                                        <option value="">Febrero</option>
+                                        <option value="">Marzo</option>
+                                        <option value="">Abril</option>
+                                        <option value="">Mayo</option>
+                                        <option value="">Junio</option>
+                                        <option value="">Julio</option>
+                                        <option value="Buster blader">Agosto</option>
+                                        <option value="">Septiempre</option>
+                                        <option value="">Octubre</option>
+                                        <option value="">Noviembre</option>
+                                        <option value="">Diciembre</option>
+                                        
+                        </select>
+                        <label>Habilidad</label>
+    <select type="text" name="habilidad" value={filtro.habilidad} onChange={handleFiltroChange}>
+                                        <option value=""></option>
+                                        <option value="Salamangrande">Robo del destino</option>
+                                        <option value="">serafin estelar</option>
+                                        <option value="">héroes</option>
+                                        <option value="">telcaballero</option>
+                                        <option value="">mago oscuro</option>
+                                        <option value="">shiranui</option>
+                                        <option value="">meklord</option>
+                                        <option value="Buster blader">buster blader</option>
+                                        <option value="">Infernity</option>
+                                        
+                        </select>
+
+                        <label>Arquetipo</label>
+    <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
+                                        <option value=""></option>
+                                        <option value="Salamangrande">salamangrande</option>
+                                        <option value="">serafin estelar</option>
+                                        <option value="">héroes</option>
+                                        <option value="">telcaballero</option>
+                                        <option value="">mago oscuro</option>
+                                        <option value="">shiranui</option>
+                                        <option value="">meklord</option>
+                                        <option value="Buster blader">buster blader</option>
+                                        <option value="">Infernity</option>
+                                        
+                        </select>
+                        <label className="">Top</label>
+                        <select className="" type="text" name="top" value={filtro.top} onChange={handleFiltroChange}>
+                                        <option value=""></option>
+                                        <option value="rey de los duelos">Rey de duelos</option>
+                                        <option value="">Torneo x</option>
+                                        
+                        </select>
+         
+  </div>
+    <div className='container'>
       
        <div className="" >
       
@@ -168,8 +252,11 @@ export default function Index() {
      
     />
     </div>
+    <div>
+    <p>Cantidad de decks: {elementosFiltrados.length}</p>
+    </div>
        <div className="listcards ">
-        {currentPost.map((element)=> (
+        {elementosFiltrados.map((element)=> (
           <Link key={element._id}  href={`/decks/${element._id}`}>
           <a><ImageCard data={element} /></a> 
           </Link>
