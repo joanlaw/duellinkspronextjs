@@ -13,7 +13,7 @@ const Decksmeta = () => {
         <Header />
         <h1 className='h1margen'>Tier List</h1>
         <br />
-        <Clustersmeta />
+        <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL, GRACIAS POR VISITARNOS.</p>
         <br />
         <Footer />
     </div>
