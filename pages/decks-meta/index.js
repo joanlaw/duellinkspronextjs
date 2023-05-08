@@ -20,7 +20,7 @@ export default function index() {
     <div className='container'>
             <br />
             <h1>Tier List</h1>
-      <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL, GRACIAS POR VISITARNOS.</p>
+      <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL.</p>
       <br />
       <br />
       <br />
