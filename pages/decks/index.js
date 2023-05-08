@@ -20,7 +20,7 @@ export default function Index() {
       refreshCardList();
     }, []);
   
-    const decksApi = (url = "https://back-render-cloud-dlp.onrender.com/decks/") => {
+    const decksApi = (url = "https://api.duellinks.pro/decks") => {
       return {
         fetchAll: () => axios.get(url),
         create: (newRecord) => axios.post(url, newRecord),
@@ -36,17 +36,7 @@ export default function Index() {
       //console.log(e.target.value);
     };
   
-    //metodo de filtrado 1
-  
-    // let results = []
-    // if (!search) {
-    //   results = cardList
-    //  } else {
-    //    results = cardList.filter( (dato) =>
-    //    dato.nombre.toLowerCase().includes(search.toLocaleLowerCase()))
-    //  }
-  
-    //Metodo filtrado 2
+    //FILTRADO
   
     const results = !search
       ? cardList
@@ -54,9 +44,6 @@ export default function Index() {
           data.arquetipo.toLowerCase().includes(search.toLowerCase())
         );
   
-    //const results = search? Cardlist : cardList.filter((dato)=>dato.nombre.toLowerCase().includes(search?.toLowerCase()))
-  
-    //const results = !search ? cardList : cardList.filter((dato)=> dato.nombre.toLowerCase().includes(search?.toLocaleLowerCase()))
   
     function refreshCardList() {
       decksApi()
@@ -74,18 +61,7 @@ export default function Index() {
           refreshCardList();
         })
         .catch((err) => console.log(err));
-      //   else
-      //    decksApi().update(FormData.get('_id'),FormData)
-      //   .then(res => {
-      //      onSuccess();
-      //      refreshCardList();
-      //  })
-      // .catch(err => console.log(err))
     };
-  
-    //  const showRecordDetails = data => {
-    //  setrecordForEdit(data)
-    //  }
   
 
 
@@ -123,26 +99,6 @@ export default function Index() {
     )
 
     }
-  
-//    const ImageCard = ({ data }) => (
-      
- //     <div >
- //       <img src={data.arquetipo_image} className='decksimage' ></img>{/*<span className='nombresdecks' >{data.arquetipo}</span> */}
- //       
- //     </div>
- //   );
-  
-    //Solicitar a la api datos funcion para limitacion
-  
-    //    function imageCard(data){
-    //     const imageCard = data()
-    //     return (
-    //    <div className='card'>
-    //     <div><img src={data.rareza} className='rareza'  ></img></div>
-    //    <img src={data.image.secure_url} className='card-img-top' height='200px' max-width='121.41px' ></img>
-    //   </div>
-    //     )
-    // }
   
     // Mostrar numero de cartas actual en el post
     const indexOfLastPost = currentPage * postPerPage;

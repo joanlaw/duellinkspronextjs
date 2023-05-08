@@ -53,7 +53,7 @@ export default function Home(){
       <br />
       <div className="">
         <Clusters />
-        <div>
+    {/*   <div>
             <br />
         <h2>Noticias y eventos</h2>
         <br />
@@ -66,7 +66,7 @@ export default function Home(){
         ))}
       </div>
     </div>
-     </div>
+     </div> */}  
         <div className='footermargin' ></div>
         <br />
       </div>

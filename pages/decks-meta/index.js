@@ -4,6 +4,11 @@ import Footer from "../../components/Footer"
 import Head from "next/head"
 
 export default function index() {
+
+      //HOOKS - CAPTURA ESTADOS
+    
+     // const [tier, setTier] = useState ([])
+
   return (
     <>
     <Head>
@@ -12,10 +17,14 @@ export default function index() {
     </Head>
     <div>
     <Header />
-    <h1 className='h1margen'>Tier List</h1>
-    <br />
-    <Clustersmeta />
-    <br />
+    <div className='container'>
+            <br />
+            <h1>Tier List</h1>
+      <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL, GRACIAS POR VISITARNOS.</p>
+      <br />
+      <br />
+      <br />
+    </div>
     <Footer />
 </div>
 </>
