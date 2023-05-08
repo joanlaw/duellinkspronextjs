@@ -25,10 +25,10 @@ const clusters = [
   },
   {
     id: 3,
-    title: "Noticias",
+    title: "Torneos",
     image: image3,
-    url: "/noticias",
-    text: "noticias"
+    url: "/torneos",
+    text: "torneos"
   },
 ];
 
