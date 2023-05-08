@@ -84,3 +84,27 @@
       margin-bottom: 0;
     }
   }
+
+/*GRID*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.block1 {
+  
+  padding: 20px;
+}
+
+.block2 {
+  
+  padding: 20px;
+}
+
+
+/*BOTON ENVIAR*/
+.crear-deck-container {
+  margin-top: 30px;
+}

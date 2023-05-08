@@ -115,7 +115,7 @@ const [search, setSearch ] = useState("")
 
 
 //PAGINACION
-const cartasPorPagina = 52;
+const cartasPorPagina = 25;
   const paginaInicio = (paginaActual - 1) * cartasPorPagina;
   const paginaFinal = paginaInicio + cartasPorPagina;
   const cartasPaginadas = results.slice(paginaInicio, paginaFinal);
@@ -287,8 +287,12 @@ const handleChange = (event) => {
       <input type="text" name="puesto" value={formState.puesto} onChange={handleChange} />
     </form>
   </div>
+{/*COMIENZA GRID*/}
 
+  <div class="grid-container">
+  <div class="block1">
   <h2>Cartas</h2>
+  <p>{cartasPaginadas.length}</p>
   <div className="buscar">
     <input type="text" id="buscar" placeholder="Buscar por nombre" onChange={searcher}  value={search} />
   </div>
@@ -299,8 +303,10 @@ const handleChange = (event) => {
     ))}
   </div>
   <div className="paginacion">{botonesPaginacion}</div>
-
+  </div>
+  <div class="block2">
   <h2>Deck</h2>
+  <p>{deck.length}</p>
   <div className="deck-creador">
     {deck.map((carta, index) => (
       <div key={index} onClick={() => handleQuitarCarta(index)}>
@@ -310,6 +316,7 @@ const handleChange = (event) => {
   </div>
 
   <h2>Extra Deck</h2>
+  <p>{deckextra.length}</p>
   <div className="deck-creador">
     {deckextra.map((carta, index) => (
       <div key={index} onClick={() => handleQuitarCartaExtra(index)}>
@@ -318,9 +325,13 @@ const handleChange = (event) => {
     ))}
   </div>
 
-  <button onClick={handleSubmit}>Crear deck</button>
+  <div className="crear-deck-container">
+    <button onClick={handleSubmit}>Crear deck</button>
+  </div>
 </div>
     <br />
+  </div>
+</div>
     <Footer />
     </>
   );
