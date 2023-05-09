@@ -4,6 +4,7 @@ import axios from "axios"
 import Footer from "../../components/Footer"
 import Link from "next/link"
 import Image from "next/image"
+import moment from 'moment';
 
 export default function Index() {
 
@@ -111,7 +112,7 @@ export default function Index() {
     //
     //FILTRADO DE DECKS
 
-    const [filtro, setFiltro] = useState({
+/*    const [filtro, setFiltro] = useState({
       createdAt: '',
       habilidad: '',
       arquetipo: '',
@@ -133,35 +134,81 @@ export default function Index() {
              (!filtro.top || currentPost.top === filtro.top);
     });
 
+*/
+
+const fechaActual = moment();
+const fechaFormateada = fechaActual.format('YYYY-MM-DD');
+
+//FILTRADO 2
+const [filtro, setFiltro] = useState({
+  createdAt: '',
+  habilidad: '',
+  arquetipo: '',
+  top: ''
+});
+
+function handleFiltroChange(event) {
+  const { name, value } = event.target;
+  setFiltro(prevFiltro => ({
+    ...prevFiltro,
+    [name]: value
+  }));
+}
+
+const elementosFiltrados = currentPost.filter(currentPost => {
+  let fechaLimite;
+  switch (filtro.createdAt) {
+    case 'ultimos7dias':
+      fechaLimite = moment().subtract(7, 'days');
+      break;
+    case 'ultimas2semanas':
+      fechaLimite = moment().subtract(2, 'weeks');
+      break;
+    case 'ultimas4semanas':
+      fechaLimite = moment().subtract(4, 'weeks');
+      break;
+    case 'ultimas8semanas':
+      fechaLimite = moment().subtract(8, 'weeks');
+      break;
+    case 'ultimodia':
+      fechaLimite = moment();
+      break;
+    default:
+      fechaLimite = moment('1970-01-01');
+  }
+
+  const fechaCreacion = moment(currentPost.createdAt);
+  return (fechaCreacion >= fechaLimite) &&
+         (!filtro.habilidad || currentPost.habilidad === filtro.habilidad) &&
+         (!filtro.arquetipo || currentPost.arquetipo === filtro.arquetipo) &&
+         (!filtro.top || currentPost.top === filtro.top);
+});
+
+
 
   return (
     <div>
        <Header /> 
        <h2>Lista de Decks</h2>
        <div className="container-filtrado">
-       <label>Mes</label>
-       <select type="text" name="createdAt" value={filtro.createdAt} onChange={handleFiltroChange}>
-                                        <option value=""></option>
-                                        <option value="Salamangrande">Enero</option>
-                                        <option value="">Febrero</option>
-                                        <option value="">Marzo</option>
-                                        <option value="">Abril</option>
-                                        <option value="">Mayo</option>
-                                        <option value="">Junio</option>
-                                        <option value="">Julio</option>
-                                        <option value="Buster blader">Agosto</option>
-                                        <option value="">Septiempre</option>
-                                        <option value="">Octubre</option>
-                                        <option value="">Noviembre</option>
-                                        <option value="">Diciembre</option>
-                                        
-                        </select>
-                        <label>Habilidad</label>
+        <label>Fecha</label>
+       <select name="createdAt" defaultValue="" onChange={handleFiltroChange}>
+  <option value="">Selecciona una opción</option>
+  <option value="ultimodia">{`Hoy (${moment().format('DD/MM/YYYY')})`}</option>
+  <option value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
+  <option value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
+  <option value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
+  <option value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
+</select>
+
+
+
+         {/*               <label>Habilidad</label>
     <select type="text" name="habilidad" value={filtro.habilidad} onChange={handleFiltroChange}>
                                         <option value=""></option>
                                         <option value="Salamangrande">Robo del destino</option>
-                                        <option value="">serafin estelar</option>
-                                        <option value="">héroes</option>
+                                        <option value="serafin estelar">serafin estelar</option>
+                                        <option value="heroes">héroes</option>
                                         <option value="">telcaballero</option>
                                         <option value="">mago oscuro</option>
                                         <option value="">shiranui</option>
@@ -170,13 +217,13 @@ export default function Index() {
                                         <option value="">Infernity</option>
                                         
                         </select>
-
+*/} 
                         <label>Arquetipo</label>
     <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
-                                        <option value=""></option>
+                                        <option value="">Selecciona una opción</option>
                                         <option value="Salamangrande">salamangrande</option>
-                                        <option value="">serafin estelar</option>
-                                        <option value="">héroes</option>
+                                        <option value="serafin estelar">serafin estelar</option>
+                                        <option value="heroes">héroes</option>
                                         <option value="">telcaballero</option>
                                         <option value="">mago oscuro</option>
                                         <option value="">shiranui</option>
@@ -185,6 +232,7 @@ export default function Index() {
                                         <option value="">Infernity</option>
                                         
                         </select>
+                        {/* 
                         <label className="">Top</label>
                         <select className="" type="text" name="top" value={filtro.top} onChange={handleFiltroChange}>
                                         <option value=""></option>
@@ -192,7 +240,7 @@ export default function Index() {
                                         <option value="">Torneo x</option>
                                         
                         </select>
-         
+         */}
   </div>
     <div className='container'>
       
