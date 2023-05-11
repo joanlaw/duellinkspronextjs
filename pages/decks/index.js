@@ -82,7 +82,8 @@ export default function Index() {
       "Héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
       "Shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png",
       "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
-      "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp"
+      "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
+      "oscust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg"
     }
 
     const ImagenArquetipos = data.arquetipo
@@ -100,11 +101,12 @@ export default function Index() {
     )
 
     }
-  
+  //PAGINACION
     // Mostrar numero de cartas actual en el post
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
-    const currentPost = results.slice(indexOfFirstPost, indexOfLastPost);
+  //  const indexOfLastPost = currentPage * postPerPage;
+   // const indexOfFirstPost = indexOfLastPost - postPerPage;
+   // const currentPost = results.slice(indexOfFirstPost, indexOfLastPost);
+   const currentPost = results.slice(-30).reverse();
   
     //Cambio de pagina
 
@@ -221,7 +223,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
                         <label>Arquetipo</label>
     <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
                                         <option value="">Selecciona una opción</option>
-                                        <option value="Salamangrande">salamangrande</option>
+                                        <option value="salamangrande">salamangrande</option>
                                         <option value="serafin estelar">serafin estelar</option>
                                         <option value="heroes">héroes</option>
                                         <option value="">telcaballero</option>

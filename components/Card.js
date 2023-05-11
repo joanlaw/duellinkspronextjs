@@ -265,6 +265,12 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <select  className='form-control' placeholder='caja' name='caja' value={values.caja} onChange={handleInputChange} > 
 
                         <option value=""></option>
+                        <option value="Solflare ligthting">Solflare ligthting</option>
+                        <option value="Pulse of the quasars">Pulse of the quasars</option>
+                        <option value="Raiders requiem">Raiders requiem</option>
+                        <option value="Lord of borrel">Lord of borrel</option>
+                        <option value="Future circuit">Future circuit</option>
+                        <option value="Arms of giant">Arms of giant</option>
                         <option value="Braver victory">Braver victory</option>
                         <option value="Stage of trickstar">Stage of trickstar</option>
                         <option value="Link revolution">Link revolution</option>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
+import Footer from '../../../components/Footer';
 
 const Cartainfo = () => {
 
@@ -57,8 +58,9 @@ const Cartainfo = () => {
     <title>▷ {cartas.nombre} | Duel Links Pro</title>
     <meta name="description" content={cartas.descripcion} />
     </Head>
+    <div><Header />
     <div className='container'>
-      <Header />
+
      <button
         className="btn btn-primary botonesmargen "
         onClick={() => router.back()}
@@ -238,6 +240,9 @@ const Cartainfo = () => {
           </div>
         </div>
       </div>
+    </div>
+    <br />
+    <Footer />
     </div>
     </>
   )

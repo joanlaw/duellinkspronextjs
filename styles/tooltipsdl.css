@@ -179,3 +179,20 @@
     border: 1px solid var(--dark);
     margin-bottom: 20px;
   }
+
+  /* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  /* Ocultar el tooltip por defecto en dispositivos móviles */
+  .tooltip {
+    display: none;
+  }
+  
+  /* Mostrar el tooltip al hacer clic en pantalla completa */
+  .fullscreen:focus + .tooltip {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

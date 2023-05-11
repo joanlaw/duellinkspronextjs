@@ -308,11 +308,12 @@ export default function Cartas() {
   //   </div>
   //     )
   // }
-
+                  //FILTRADO
   // Mostrar numero de cartas actual en el post
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPost = results.slice(indexOfFirstPost, indexOfLastPost).reverse();
+  //const indexOfLastPost = currentPage * postPerPage;
+  //const indexOfFirstPost = indexOfLastPost - postPerPage;
+ // const currentPost = results.slice(indexOfFirstPost, indexOfLastPost).reverse();
+ const currentPost = results.slice(-36).reverse();
 
   //Cambio de pagina
 
@@ -342,8 +343,9 @@ export default function Cartas() {
        
       />
       </div>
-
-
+      <div>
+    <p>Cantidad de cartas: {currentPost.length}</p>
+    </div>
       <div className="listcards ">
         {currentPost.map((element) => (
           <Link key={element._id} href={`/cartas/${element._id}/${element.nombre}`}>

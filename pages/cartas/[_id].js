@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import Footer from '../../components/Footer';
 
 const Post = () => {
 
@@ -50,8 +51,11 @@ const Post = () => {
   //const { pid } = router.query
 
   return (
+    <>
+    <div><Header />
+  
     <div className='container'>
-      <Header />
+
      <Link href={'/cartas'} ><button
         className="btn btn-primary botonesmargen "
        // onClick={() => Link(-1)}
@@ -223,6 +227,9 @@ const Post = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </div>
+    </>
   )
 }
 
