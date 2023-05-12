@@ -122,3 +122,79 @@
   margin: 10px;
   padding: 10px;
 }
+
+/*LISTA DECKS*/
+
+/* Estilos generales de la tabla */
+.deck-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.deck-table th,
+.deck-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #0a141d;
+}
+
+/* Estilos específicos de la columna de imagen */
+.deck-table .arquetipo-image {
+  display: flex;
+  align-items: center;
+}
+
+.deck-table .arquetipo-image img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .deck-table {
+    overflow-x: auto;
+  }
+
+  .deck-table thead {
+    display: none;
+  }
+
+  .deck-table tbody,
+  .deck-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .deck-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+  }
+
+  .deck-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .deck-table .arquetipo-image {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+
+  .deck-table .arquetipo-image img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+

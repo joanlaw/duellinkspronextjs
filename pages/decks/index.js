@@ -195,7 +195,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
        <div className="container-filtrado">
         <label>Fecha</label>
        <select name="createdAt" defaultValue="" onChange={handleFiltroChange}>
-  <option value="">Selecciona una opción</option>
+  <option value="">Todos los tiempos</option>
   <option value="ultimodia">{`Hoy (${moment().format('DD/MM/YYYY')})`}</option>
   <option value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
   <option value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
@@ -223,15 +223,15 @@ const elementosFiltrados = currentPost.filter(currentPost => {
                         <label>Arquetipo</label>
     <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
                                         <option value="">Selecciona una opción</option>
-                                        <option value="salamangrande">salamangrande</option>
+                                        <option value="Salamangrande">salamangrande</option>
                                         <option value="serafin estelar">serafin estelar</option>
                                         <option value="heroes">héroes</option>
-                                        <option value="">telcaballero</option>
-                                        <option value="">mago oscuro</option>
-                                        <option value="">shiranui</option>
-                                        <option value="">meklord</option>
-                                        <option value="Buster blader">buster blader</option>
-                                        <option value="">Infernity</option>
+                                        <option value="telcaballero">telcaballero</option>
+                                        <option value="mago oscuro">mago oscuro</option>
+                                        <option value="shiranui">shiranui</option>
+                                        <option value="meklord">meklord</option>
+                                        <option value="buster blader">buster blader</option>
+                                        <option value="infernity">Infernity</option>
                                         
                         </select>
                         {/* 
@@ -258,7 +258,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
      
     />
     </div>
-    <div>
+  {/*   <div>
     <p>Cantidad de decks: {elementosFiltrados.length}</p>
     </div>
        <div className="listcards ">
@@ -268,6 +268,54 @@ const elementosFiltrados = currentPost.filter(currentPost => {
           </Link>
         )).reverse()}
       </div>
+      <div>
+  <p>Cantidad de decks: {elementosFiltrados.length}</p>
+</div>
+<div className="listcards">
+  {elementosFiltrados.map((element) => (
+    <Link key={element._id} href={`/decks/${element._id}`}>
+      <a>
+        <ImageCard data={element} />
+      </a>
+    </Link>
+  )).reverse()}
+</div>
+*/}
+<div>
+  <p>Cantidad de decks: {elementosFiltrados.length}</p>
+</div>
+<table className="deck-table">
+  <thead>
+    <tr>
+      <th>Arquetipo</th>
+      <th>Habilidad</th>
+      <th>Top</th>
+      <th>Jugador</th>
+      <th>Racha</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    {elementosFiltrados.map((element) => (
+      <tr key={element._id}>
+        <td>
+          <div className="arquetipo-image">
+            <Link href={`/decks/${element._id}`}>
+              <a>
+                <img src={element.arquetipo_image} alt={element.arquetipo} />
+              </a>
+            </Link>
+          </div>
+        </td>
+        <td>{element.habilidad}</td>
+        <td>{element.top}</td>
+        <td>{element.jugador}</td>
+        <td>{element.racha}</td>
+        <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
+      </tr>
+    )).reverse()}
+  </tbody>
+</table>
    {/*   <Pagination
         postPerPage={postPerPage}
         totalPost={results.length}
