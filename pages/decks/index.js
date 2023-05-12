@@ -284,7 +284,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
 <div>
   <p>Cantidad de decks: {elementosFiltrados.length}</p>
 </div>
-<table className="deck-table">
+<table className="deck-table deck-table-mobile">
   <thead>
     <tr>
       <th>Arquetipo</th>

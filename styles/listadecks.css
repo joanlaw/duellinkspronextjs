@@ -155,46 +155,88 @@
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
   .deck-table {
+    display: block;
     overflow-x: auto;
   }
 
   .deck-table thead {
-    display: none;
+    display: table;
+    width: 100%;
+    background-color: #0a141d;
+    text-align: center; /* Centrar los títulos del thead en mobile */
   }
 
   .deck-table tbody,
   .deck-table tr {
     display: block;
-    width: 100%;
+    border: 1px solid #0a141d;
+    margin-bottom: 10px;
   }
 
   .deck-table td {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     border: none;
-    border-bottom: 1px solid #ddd;
-    padding: 12px;
+    position: relative;
+    padding: 8px;
+    font-size: 14px;
+    text-align: left;
+    white-space: normal; /* Permitir el ajuste del texto en varias líneas en mobile */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .deck-table td::before {
     content: attr(data-label);
+    position: absolute;
+    top: 0;
+    left: 10px;
     font-weight: bold;
-    margin-right: 8px;
+    font-size: 12px;
   }
 
   .deck-table .arquetipo-image {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    margin-right: 8px;
+    width: 60px;
+    height: 60px;
   }
 
   .deck-table .arquetipo-image img {
     width: 100%;
     height: 100%;
   }
+  
+  /* Ajustar el ancho de la columna de habilidad en mobile */
+  .deck-table td:nth-child(2) {
+    width: 50%;
+  }
+  
+  /* Ocultar columnas no deseadas en mobile */
+  .deck-table th:nth-child(4),
+  .deck-table td:nth-child(4),
+  .deck-table th:nth-child(5),
+  .deck-table td:nth-child(5),
+  .deck-table th:nth-child(6),
+  .deck-table td:nth-child(6) {
+    display: none;
+  }
+  
+  /* Alinear verticalmente los títulos del thead */
+  .deck-table th {
+    vertical-align: middle;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
