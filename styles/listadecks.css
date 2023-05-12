@@ -131,6 +131,9 @@
   border-collapse: collapse;
   margin-bottom: 20px;
 }
+.deck-table thead {
+  background-color: #0a141d;
+}
 
 .deck-table th,
 .deck-table td {
