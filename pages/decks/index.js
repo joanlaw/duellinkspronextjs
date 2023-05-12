@@ -83,7 +83,7 @@ export default function Index() {
       "Shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png",
       "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
       "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
-      "oscust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg"
+      "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg"
     }
 
     const ImagenArquetipos = data.arquetipo
@@ -222,7 +222,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
 */} 
                         <label>Arquetipo</label>
     <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
-                                        <option value="">Selecciona una opción</option>
+                                        <option value="">Todos los arquetipos</option>
                                         <option value="Salamangrande">salamangrande</option>
                                         <option value="serafin estelar">serafin estelar</option>
                                         <option value="heroes">héroes</option>
@@ -232,6 +232,7 @@ const elementosFiltrados = currentPost.filter(currentPost => {
                                         <option value="meklord">meklord</option>
                                         <option value="buster blader">buster blader</option>
                                         <option value="infernity">Infernity</option>
+                                        <option value="orcust">Orcust</option>
                                         
                         </select>
                         {/* 
