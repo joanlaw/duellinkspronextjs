@@ -45,6 +45,7 @@ const {addOrEdit } = props
 //Use state de los valores
 const [values, setValues] = useState(initialFieldValues)
 const [errors, setErrors] = useState({})
+const [editing, setEditing] = useState(false);
 
 //useEffect (()=>{
  //   if (recordForEdit!=null)
@@ -265,6 +266,7 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <select  className='form-control' placeholder='caja' name='caja' value={values.caja} onChange={handleInputChange} > 
 
                         <option value=""></option>
+                        <option value="Wings of clearness">Wings of clearness</option>
                         <option value="Solflare ligthting">Solflare ligthting</option>
                         <option value="Pulse of the quasars">Pulse of the quasars</option>
                         <option value="Raiders requiem">Raiders requiem</option>
@@ -354,10 +356,10 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                         <option value="Brave hope">Brave hope</option>
                         <option value="Heart of xyz">Tellarknight advent</option>
                         <option value="Cross dimension">Sword of paladin</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        <option value="Blazing gearfried">Blazing gearfried</option>
+                        <option value="Odd-eyes challenger">Odd-eyes challenger</option>
+                        <option value="Secret of magicians">Secret of magicians</option>
+                        <option value="Imperial joker">Imperial joker</option>
                         <option value=""></option>
                         
 

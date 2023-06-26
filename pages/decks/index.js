@@ -106,7 +106,7 @@ export default function Index() {
   //  const indexOfLastPost = currentPage * postPerPage;
    // const indexOfFirstPost = indexOfLastPost - postPerPage;
    // const currentPost = results.slice(indexOfFirstPost, indexOfLastPost);
-   const currentPost = results.slice(-30).reverse();
+   const currentPost = results.slice(-30);
   
     //Cambio de pagina
 
