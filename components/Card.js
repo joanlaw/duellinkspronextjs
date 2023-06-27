@@ -171,6 +171,7 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                                         <option value="Péndulo">Péndulo</option>
                                         <option value="Péndulo normal">Péndulo Normal</option>
                                         <option value="Efecto">Efecto</option>
+                                        <option value="Tuner">Tuner</option>
                                         <option value="Fusion">Fusión</option>
                                         <option value="Xyz">Xyz</option>
                                         <option value="Link">Link</option>

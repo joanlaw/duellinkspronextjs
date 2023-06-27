@@ -198,7 +198,7 @@ const Cartainfo = () => {
                   }  ${cartas.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
                     cartas.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
                   } ${
-                    cartas.tipo_de_carta === "Link" ? "/ Efecto" :  cartas.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                    cartas.tipo_de_carta === "Link" ? "/ Efecto" : cartas.tipo_de_carta === 'Tuner' ? "/ Efecto": cartas.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
                   }  `}{" "}
                   ]{" "}
                 </span>

@@ -8,136 +8,85 @@ import moment from 'moment';
 
 export default function Index() {
 
-    const [cardList, setCardList] = useState([]);
-    const [search, setSearch] = useState("");
-    const [recordForEdit, setrecordForEdit] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage] = useState(36);
+  const [cardList, setCardList] = useState([]);
+  const [search, setSearch] = useState("");
+  const [recordForEdit, setrecordForEdit] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(36);
   
-    const [rarezacards, setRarezacards] = useState("");
+  const [rarezacards, setRarezacards] = useState("");
   
-    useEffect(() => {
-      refreshCardList();
-    }, []);
+  useEffect(() => {
+    refreshCardList();
+  }, []);
   
-    const decksApi = (url = "https://api.duellinks.pro/decks") => {
-      return {
-        fetchAll: () => axios.get(url),
-        create: (newRecord) => axios.post(url, newRecord),
-        update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
-        delete: (id) => axios.delete(url + id),
-      };
+  const decksApi = (url = "https://api.duellinks.pro/decks") => {
+    return {
+      fetchAll: () => axios.get(url),
+      create: (newRecord) => axios.post(url, newRecord),
+      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+      delete: (id) => axios.delete(url + id),
     };
+  };
   
-    //Funcion de búsqueda
+  const searcher = (e) => {
+    setSearch(e.target.value);
+  };
   
-    const searcher = (e) => {
-      setSearch(e.target.value);
-      //console.log(e.target.value);
-    };
+  const results = !search
+    ? cardList
+    : cardList.filter((data) =>
+        data.arquetipo.toLowerCase().includes(search.toLowerCase())
+      );
   
-    //FILTRADO
+  function refreshCardList() {
+    decksApi()
+      .fetchAll()
+      .then((res) => setCardList(res.data))
+      .catch((err) => console.log(err));
+  }
   
-    const results = !search
-      ? cardList
-      : cardList.filter((data) =>
-          data.arquetipo.toLowerCase().includes(search.toLowerCase())
-        );
+  const addOrEdit = (formData, onSuccess) => {
+    decksApi()
+      .create(formData)
+      .then((res) => {
+        onSuccess();
+        refreshCardList();
+      })
+      .catch((err) => console.log(err));
+  };
   
+  const UrlImageArquetipo = {
+    "Salamangrande": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
+    "Buster blader": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg",
+    "Serafin estelar": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666071109/imagenes%20arquetipos/tumblr_72189f00d45466bbaed867d46c875b3a_dff1f5cc_640_xti00b.jpg",
+    "Mago oscuro": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064732/imagenes%20arquetipos/Foto_mago_oscuro_ldozix.jpg",
+    "Héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
+    "Shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png",
+    "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
+    "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
+    "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg",
+    "fuerza-s": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687821946/imagenes%20arquetipos/22180094_vy8kgu.jpg",
+    "cristron": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687823488/imagenes%20arquetipos/13455674_1_lef0vr.jpg",
+    "cohette": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg",
+  };
   
-    function refreshCardList() {
-      decksApi()
-        .fetchAll()
-        .then((res) => setCardList(res.data))
-        .catch((err) => console.log(err));
-    }
+  const ImageCard = ({ data }) => {
+    const arquetipo = data?.arquetipo || "";
+    const imageArquetipo = UrlImageArquetipo[arquetipo] || "";
   
-    const addOrEdit = (formData, onSuccess) => {
-      //  if (FormData.get('_id') == "0")
-      decksApi()
-        .create(formData)
-        .then((res) => {
-          onSuccess();
-          refreshCardList();
-        })
-        .catch((err) => console.log(err));
-    };
-  
-
-
-
-
-    //Solicitar a la api los datos de cartas para mostrar
-  
-
-    const ImageCard = ({data})=>{
-          //OBTNER IMAGNES DE ARQUETIPOS
-
-    const UrlImageArquetipo = {
-      "Salamangrande": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
-      "Buster blader": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg",
-      "Serafin estelar": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666071109/imagenes%20arquetipos/tumblr_72189f00d45466bbaed867d46c875b3a_dff1f5cc_640_xti00b.jpg",
-      "Mago oscuro": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064732/imagenes%20arquetipos/Foto_mago_oscuro_ldozix.jpg",
-      "Héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
-      "Shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064774/imagenes%20arquetipos/Shiranui_svasvr.png",
-      "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
-      "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
-      "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg"
-    }
-
-    const ImagenArquetipos = data.arquetipo
-
-    const ImageArquetipoDefault = ""
-
-    const ImageArquetipo = UrlImageArquetipo[ImagenArquetipos]  || ImageArquetipoDefault
-
-
-
     return (
       <div>
-        <img src={ImageArquetipo} className='decksimage'></img>
+        <img src={imageArquetipo} className='arquetipo-image' alt={arquetipo} />
       </div>
-    )
-
-    }
-  //PAGINACION
-    // Mostrar numero de cartas actual en el post
-  //  const indexOfLastPost = currentPage * postPerPage;
-   // const indexOfFirstPost = indexOfLastPost - postPerPage;
-   // const currentPost = results.slice(indexOfFirstPost, indexOfLastPost);
-   const currentPost = results.slice(-30);
+    );
+  };
   
-    //Cambio de pagina
+  const currentPost = results.slice(-30);
+  
 
-
-    //
-    //FILTRADO DE DECKS
-
-/*    const [filtro, setFiltro] = useState({
-      createdAt: '',
-      habilidad: '',
-      arquetipo: '',
-      top: ''
-    });
-
-    function handleFiltroChange(event) {
-      const { name, value } = event.target;
-      setFiltro(prevFiltro => ({
-        ...prevFiltro,
-        [name]: value
-      }));
-    }
-
-    const elementosFiltrados = currentPost.filter(currentPost => {
-      return (!filtro.createdAt || currentPost.createdAt === filtro.createdAt) &&
-             (!filtro.habilidad || currentPost.habilidad === filtro.habilidad) &&
-             (!filtro.arquetipo || currentPost.arquetipo === filtro.arquetipo) &&
-             (!filtro.top || currentPost.top === filtro.top);
-    });
-
-*/
-
+   //FECHA
 const fechaActual = moment();
 const fechaFormateada = fechaActual.format('YYYY-MM-DD');
 
@@ -233,6 +182,8 @@ const elementosFiltrados = currentPost.filter(currentPost => {
                                         <option value="buster blader">buster blader</option>
                                         <option value="infernity">Infernity</option>
                                         <option value="orcust">Orcust</option>
+                                        <option value="fuerza-s">Fuerza-s</option>
+                                        <option value="velociroid">Velociroid</option>
                                         
                         </select>
                         {/* 
@@ -300,13 +251,13 @@ const elementosFiltrados = currentPost.filter(currentPost => {
     {elementosFiltrados.map((element) => (
       <tr key={element._id}>
         <td>
-          <div className="arquetipo-image">
-            <Link href={`/decks/${element._id}`}>
-              <a>
-                <img src={element.arquetipo_image} alt={element.arquetipo} />
-              </a>
-            </Link>
-          </div>
+        <div className="arquetipo-image">
+  <Link href={`/decks/${element._id}`}>
+    <a>
+      <ImageCard data={element} />
+    </a>
+  </Link>
+</div>
         </td>
         <td>{element.habilidad}</td>
         <td>{element.top}</td>
