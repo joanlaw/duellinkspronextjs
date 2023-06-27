@@ -121,9 +121,9 @@ const elementosFiltrados = currentPost.filter(currentPost => {
     case 'ultimas8semanas':
       fechaLimite = moment().subtract(8, 'weeks');
       break;
-    case 'ultimodia':
-      fechaLimite = moment();
-      break;
+      case 'ultimodia':
+        fechaLimite = moment().startOf('day');
+        break;
     default:
       fechaLimite = moment('1970-01-01');
   }
