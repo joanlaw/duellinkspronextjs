@@ -69,7 +69,8 @@ export default function Index() {
     "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg",
     "fuerza-s": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687821946/imagenes%20arquetipos/22180094_vy8kgu.jpg",
     "cristron": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687823488/imagenes%20arquetipos/13455674_1_lef0vr.jpg",
-    "cohette": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg"
+    "cohette": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg",
+    "gandora": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687974314/imagenes%20arquetipos/58330108_1_dvhgsv.jpg"
   };
   
   const ImageCard = ({ data }) => {
