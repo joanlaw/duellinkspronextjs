@@ -75,7 +75,8 @@ export default function Index() {
     "héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
     "velociroid": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151038/imagenes%20arquetipos/5772618_1_cpzzdx.jpg",
     "sablelemento": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151038/imagenes%20arquetipos/45702014_hl0dd2.jpg",
-    "invoked": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151223/imagenes%20arquetipos/86120751_1_yra1cn.jpg"
+    "invoked": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151223/imagenes%20arquetipos/86120751_1_yra1cn.jpg",
+    "dragón de ojos anómalos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688598295/imagenes%20arquetipos/16178681_1_h4uupe.jpg"
   };
   
   const ImageCard = ({ data }) => {
@@ -216,29 +217,6 @@ const elementosFiltrados = currentPost.filter(currentPost => {
      
     />
     </div>
-  {/*   <div>
-    <p>Cantidad de decks: {elementosFiltrados.length}</p>
-    </div>
-       <div className="listcards ">
-        {elementosFiltrados.map((element)=> (
-          <Link key={element._id}  href={`/decks/${element._id}`}>
-          <a><ImageCard data={element} /></a> 
-          </Link>
-        )).reverse()}
-      </div>
-      <div>
-  <p>Cantidad de decks: {elementosFiltrados.length}</p>
-</div>
-<div className="listcards">
-  {elementosFiltrados.map((element) => (
-    <Link key={element._id} href={`/decks/${element._id}`}>
-      <a>
-        <ImageCard data={element} />
-      </a>
-    </Link>
-  )).reverse()}
-</div>
-*/}
 <div>
   <p>Cantidad de decks: {elementosFiltrados.length}</p>
 </div>

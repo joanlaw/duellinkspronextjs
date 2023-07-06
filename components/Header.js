@@ -24,6 +24,7 @@ function Header() {
       <Link href="/decks-meta" ><a>TIER LIST</a></Link>
       <Link href="/decks"><a>DECKS COMUNIDAD</a></Link>
       <Link href="/torneos"><a>TORNEOS</a></Link>
+	  <Link href="/articulos"><a>ARTÍCULOS</a></Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>

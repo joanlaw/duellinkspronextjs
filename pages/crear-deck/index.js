@@ -76,7 +76,7 @@ const [search, setSearch ] = useState("")
 
   //CONDICIONAL PARA PRINCIPAL O EXTRA DECK
   const onClick = (carta) => {
-    if (carta.tipo_de_carta === "Fusion" || carta.tipo_de_carta === "Sincronía" || carta.tipo_de_carta === "Xyz" || carta.tipo_de_carta === "Link") {
+    if (carta.tipo_de_carta === "Fusion" || carta.tipo_de_carta === "Sincronía" || carta.tipo_de_carta === "Xyz" || carta.tipo_de_carta === "Sincronía / Cantante" || carta.tipo_de_carta === "Xyz / Péndulo" || carta.tipo_de_carta === "Link") {
       handleAgregarCartaDeckExtra(carta);
     } else {
       handleAgregarCarta(carta);

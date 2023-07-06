@@ -171,7 +171,10 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                                         <option value="Péndulo">Péndulo</option>
                                         <option value="Péndulo normal">Péndulo Normal</option>
                                         <option value="Efecto">Efecto</option>
-                                        <option value="Tuner">Tuner</option>
+                                        <option value="Cantante">Cantante</option>
+                                        <option value="Cantante / Normal">Cantante / Normal</option>
+                                        <option value="Sincronía / Cantante">Sincronía / Cantante</option>
+                                        <option value="Xyz / Péndulo">Xyz / Péndulo</option>
                                         <option value="Fusion">Fusión</option>
                                         <option value="Xyz">Xyz</option>
                                         <option value="Link">Link</option>
@@ -221,6 +224,7 @@ const applyErrorClass = field => ((field in errors && errors[field]===false )?' 
                                         <option value="Psiquico">Psíquico</option>
                                         <option value="Wyrm">Wyrm</option>
                                         <option value="Ciberso">Ciberso</option>
+                                        
                                         
                         
                         </select>

@@ -244,7 +244,7 @@ export default function Cartas() {
                   }  ${data.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
                     data.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
                   } ${
-                    data.tipo_de_carta === "Link" ? "/ Efecto" : data.tipo_de_carta === 'Tuner' ? "/ Efecto": data.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
+                    data.tipo_de_carta === "Link" ? "/ Efecto" : data.tipo_de_carta === 'Cantante' ? "/ Efecto": data.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
                   }  `}{" "}
                   ]{" "}
                 </span>

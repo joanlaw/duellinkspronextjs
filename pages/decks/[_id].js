@@ -5155,8 +5155,8 @@ const UrlLimitacion = {
       <div className='box-grid container'>
         
        <button className='btn btn-primary button-grid' onClick={() => router.back()} >Atrás</button>
-        <h1>{deckuno.arquetipo}</h1>
-        <h2>{deckuno.top}</h2>
+        <h1>Dek {deckuno.arquetipo}</h1>
+        <h3>{deckuno.top}</h3>
         <div>
    {/*  <a href='#'>  <img src='https://res.cloudinary.com/dqofcbeaq/image/upload/v1666132178/iconos%20dlp/act-compdk_bdkyzn.png' className='compartirdeck' ></img> </a> */} 
         </div>
