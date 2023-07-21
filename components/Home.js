@@ -14,37 +14,6 @@ import stageoftrickstar from "../assets/stageoftrickstar.webp";
 
 export default function Home(){
 
-    const eventos = [
-        {
-          id: 1,
-          title: "Stage of Trickstar",
-          image: stageoftrickstar,
-          url: "/noticias/stage-of-trickstar",
-     //    text: "Stage of Trickstar"
-        }
-     //   {
-    //      id: 2,
-     //     title: "Tier 1",
-     //  //   image: image2,
-     //     url: "/decks-cominidad",
-     //     text: <Link to={"/salamangrande"}>Salamangrande</Link>
-    //    },
-    //    {
-    //      id: 3,
-    //      title: "Tier 2",
-      //    image: image3,
-     //     url: "/noticias",
-    //      text: "noticias"
-  //      },
-   //     {
-    //      id: 4,
-    //      title: "Tier 3",
-        //  image: image3,
-   //       url: "/noticias",
-    //      text: "noticias"
-   //     }, 
-      ];
-      
 
 
     return(
@@ -52,21 +21,7 @@ export default function Home(){
             <Header />
       <br />
       <div className="">
-        <Clusters />
-    {/*   <div>
-            <br />
-        <h2>Noticias y eventos</h2>
-        <br />
-        <div className="container d-flex justify-content-center align-items-center h-100">
-      <div className="row">
-        {eventos.map(({ title, image, url, id, text }) => (
-          <div className="col-md-6" key={id}>
-     <Link href={url} ><a><Eventos imageSource={image} title={title} /></a></Link>
-          </div>
-        ))}
-      </div>
-    </div>
-     </div> */}  
+        <Clusters /> 
         <div className='footermargin' ></div>
         <br />
       </div>

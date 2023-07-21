@@ -25,7 +25,7 @@ const Cartainfo = () => {
 
   useEffect(() => {
     const obtenerDatos = async () => {
-      const url = `https://api.duellinks.pro/cartas/${_id}`
+      const url = `https://api.duellinks.pro/cards/${_id}`
       
       const result = await axios.get(url);
      // console.log(result.data);

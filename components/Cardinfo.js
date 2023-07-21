@@ -2,6 +2,7 @@ import React from "react";
 //import { useParams } from "react-router-dom";
 //import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { useRouter } from "next/router";
 
 
 //import "./cartainfo.css";
@@ -9,55 +10,45 @@ import Header from "./Header";
 //import axios from 'axios'
 
 const Cardinfo = () => {
-  console.log(useParams());
-
-  const { _id } = useParams();
-  console.log(_id);
+  const router = useRouter();
+  const { name_english } = router.query;
 
   const [cartas, setCartas] = React.useState([]);
   const [image, setImage] = React.useState([]);
-  // const [ caja, Setcaja  ] = React.useState ([])
 
   React.useEffect(() => {
     const obtenerDatos = async () => {
-      const respuesta = await fetch(
-        `https://dlpro-backend.herokuapp.com/cartas/${_id}`
-      );
-      // .then(response => response.json())
-      // .then(data => console.log(data))
-      // .catch(error => console.log(error))
-      const carta = await respuesta.json();
-      setCartas(carta);
-      setImage(carta.image);
-      // Setcaja(carta)
+      try {
+        const respuesta = await fetch(
+          `https://api.duellinks.pro/cards/${name_english}`
+        );
+        const carta = await respuesta.json();
+        setCartas(carta);
+        setImage(carta.image);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    obtenerDatos();
-    //  [ {cartas.tipo} / {cartas.tipo_de_carta  } ]
+    if (name_english) {
+      obtenerDatos();
+    }
+  }, [name_english]);
 
-    //ATK</span> <span>{cartas.atk}</span> <span>/</span> <span>DEF</span> <span>{cartas.def}
-  }, [_id]);
-  //const navigate = useNavigate();
-
-  /*if (caja.caja === 'Heart of xyz') {
-    Setcaja (cartas.caja)
-} else {
-    Setcaja('No es la caja')
-    return  
-}  */
+  const handleGoBack = () => {
+    router.back(); // Retrocede a la ubicación anterior
+  };
 
   return (
     <div className="container">
-      <Header />
+     
 
       <button
-        className="btn btn-primary botonesmargen "
-        onClick={() => navigate(-1)}
-        data-tip
-        data-for="tooltipsdlp"
+        className="btn btn-primary botonesmargen"
+        onClick={handleGoBack}
       >
         Atrás
       </button>
-      <h1>{cartas.nombre}</h1>
+     
       <br />
       <div className="row">
         <div className="col-md-10">

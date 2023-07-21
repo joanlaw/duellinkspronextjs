@@ -1,21 +1,8 @@
 import React from 'react'
 import Link from 'next/link';
 import Head from 'next/head';
-//import { Link } from 'react-router-dom'
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Script from 'next/script';
 
-// import the icons you need
-/*import {
-    faSearch,
-    faAmbulance,
-    faAnchor,
-    faBell,
-    faFacebook
-  } from "@fortawesome/free-solid-svg-icons";
-  
-*/
-//import "./footer.css";
 
 function Footer() {
   return (
@@ -38,10 +25,12 @@ function Footer() {
             </div>
             <div className='box redesfooter '>
                 <h2>PÁGINAS LOCALES</h2>
-                <Link href="/agregar" ><a>AGREGAR CARTA</a></Link>
+           {/*    <Link href="/agregar" ><a>AGREGAR CARTA</a></Link>
                 <br />
-                <Link href="/crear-deck" ><a>CREAR DECK</a></Link>
+                <Link href="/crear-deck" ><a>CREAR DECK</a></Link> */} 
                 <p>CONTACTO</p>
+                <p>POLÍTICA DE PRIVACIDAD</p>
+                <p>PANEL</p>
             </div>
             <div className='box'>
                 <h2>SÍGUENOS</h2>
@@ -57,7 +46,7 @@ function Footer() {
             </div>
         </div>
         <div className='grupo-2'>
-            <small>&copy; 2022 <b>Duel Links Pro</b> - Todos los Derechos Reservados.</small>
+            <small>&copy; 2023 <b>Duel Links Pro</b> - Todos los Derechos Reservados.</small>
         </div>
     </footer>
     </>

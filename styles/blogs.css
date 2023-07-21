@@ -1,0 +1,91 @@
+.blog-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .blog-item {
+    width: calc(33.33% - 20px);
+  }
+  
+  .blog-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .blog-item h3 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  /* Estilos para el componente PostBlog */
+.blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #040d16;
+  }
+  
+  .blog-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .blog-body {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  
+  /* Estilos adicionales para imágenes dentro del cuerpo del blog */
+  .blog-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  /* Estilos responsivos para dispositivos móviles */
+@media (max-width: 767px) {
+    .blog-container {
+      padding: 10px;
+    }
+  
+    .blog-title {
+      font-size: 24px;
+    }
+  
+    .blog-body {
+      font-size: 14px;
+    }
+  }
+
+  /* Estilos responsivos para dispositivos móviles */
+@media (max-width: 767px) {
+    .index-container {
+      grid-template-columns: 1fr;
+      padding: 10px;
+    }
+  
+    .index-card {
+      border-radius: 8px;
+    }
+  
+    .index-image {
+      height: 180px;
+      border-radius: 8px 8px 0 0;
+    }
+  
+    .index-content {
+      padding: 10px;
+    }
+  
+    .index-title {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  }

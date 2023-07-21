@@ -7,24 +7,18 @@ import Image from "next/image";
 
 function Cluster({ imageSource, title, text, url }) {
   return (
-    <div className="card text-center bg-dark animate__animated animate__fadeInUp">
-      <div className="overflow">
-        <Image src={imageSource} alt="a wallpaper" className="card-img-top" />
-      </div>
-      <div className="card-body text-light">
-        <h4 className="card-title">{title}</h4>
-        <p className="card-text text-secondary">
-          {text}
-        </p>
-      {/*  <Link to={url ? url : "#!"}
-         // target="_blank"
-          className="btn btn-outline-secondary border-0"
-          rel="noreferrer"
-        >
-          Ir a {title}
-        </Link> */}
-      </div>
-    </div>
+<div className="card text-center bg-dark animate__animated animate__fadeInUp">
+  <div className="overflow">
+    <Image src={imageSource} alt="a wallpaper" className="card-img-top" />
+  </div>
+  <div className="">
+    <h4 className="card-title">{title}</h4>
+    <p className="" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontWeight: "bold" }}>
+      <span className="badge bg-danger">{text}</span>
+    </p>
+  </div>
+</div>
+
   );
 }
 

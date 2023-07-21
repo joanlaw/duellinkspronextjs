@@ -20,11 +20,11 @@ function Header() {
 			<Link href='/' className="navbar-brand"  ><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="70" ></img></a></Link>
       <div className="container d-flex align-items-center">
 			<nav ref={navRef}>
-      <Link href="/cartas" ><a>CARTAS</a></Link>
+      <Link href="/cards" ><a>CARTAS</a></Link>
       <Link href="/decks-meta" ><a>TIER LIST</a></Link>
-      <Link href="/decks"><a>DECKS COMUNIDAD</a></Link>
+      <Link href="/mazos"><a>DECKS COMUNIDAD</a></Link>
       <Link href="/torneos"><a>TORNEOS</a></Link>
-	  <Link href="/articulos"><a>ARTÍCULOS</a></Link>
+	  <Link href="/blogs"><a>BLOG</a></Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>

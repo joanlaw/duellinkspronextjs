@@ -18,6 +18,7 @@ import '../styles/minicajas.css'
 import '../styles/navbar.css'
 import '../styles/creardeck.css'
 import '../styles/createdecksnewcss.css'
+import '../styles/blogs.css'
 
 
 

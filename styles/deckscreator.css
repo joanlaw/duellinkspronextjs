@@ -1,5 +1,3 @@
-
-
 .box-grid{
   margin-top: 2em;
   display: grid;
@@ -35,6 +33,7 @@
     width: 50%;
     gap: 5px;
     padding: 0.5em;
+    cursor: pointer;
   }
 
   .deck-grid2{
@@ -63,7 +62,7 @@
 
   .extra-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     grid-auto-rows: minmax(130px, auto);
     background-image: url("https://res.cloudinary.com/dqofcbeaq/image/upload/v1666016948/iconos%20dlp/dl-bg08_tk1z6w.webp") ;
     background-repeat: repeat;
@@ -183,3 +182,216 @@ margin-bottom: 0.5rem;
   }
 
 }
+
+/*POPUP*/
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  
+}
+
+.popup-content {
+  width: 60%;
+  height: 60%;
+  background-color: rgba(51, 51, 51, 0.8);
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.popup-image {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.popup-info {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+.card-rareza {
+  position: absolute;
+  top: -6px; /* Ajusta el valor negativo según la posición vertical deseada */
+  left: 275px; /* Ajusta el valor según la posición horizontal deseada */
+  width: 100px; /* Ajusta el ancho según tus necesidades */
+  height: 50px; /* Ajusta el alto según tus necesidades */
+  z-index: 1; /* Asegura que la imagen de rareza esté por encima de la imagen de la carta */
+  /* Agrega cualquier otro estilo adicional que desees */
+}
+
+/* Para tablet */
+@media only screen and (max-width: 768px) {
+  .popup-content {
+    width: 80%;
+    height: 80%;
+  }
+
+  .popup-image,
+  .popup-info {
+    padding: 10px;
+  }
+
+  .popup-info {
+    font-size: 0.8em;
+  }
+
+  .card-rareza {
+    width: 70px;
+    height: 35px;
+    left: 200px;
+  }
+}
+
+
+/* Para tablet */
+@media only screen and (max-width: 768px) {
+  .popup-content {
+    width: 80%;
+    height: 80%;
+  }
+
+  .popup-image {
+    padding-top: 40px; /* Aumenta este valor para bajar la carta */
+  }
+  .popup-info {
+    padding: 10px;
+  }
+
+  .popup-info {
+    font-size: 0.8em;
+  }
+
+  .card-rareza {
+    width: 70px;
+    height: 35px;
+    left: 200px;
+  }
+
+  /* Suponiendo que el nombre de la carta está en un h2 */
+  .popup-info h2 {
+    margin-top: 0;
+  }
+}
+
+/* Para móvil */
+@media only screen and (max-width: 480px) {
+  .popup-content {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .popup-image {
+    height: 50%;
+  }
+
+  .popup-info {
+    height: 50%;
+    overflow-y: auto;  /* Agregamos scroll en caso de que el texto sea muy largo */
+    font-size: 0.7em;
+    position: relative; /* Agregar posición relativa */
+    padding-bottom: 60px; /* Espacio para el botón en la parte inferior */
+  }
+
+  .card-rareza {
+    width: 100%;
+    height: 25px;
+    top: 14.5px;
+    left: 88px;
+  }
+
+
+  
+
+  /* Suponiendo que el nombre de la carta está en un h2 */
+  .popup-info h2 {
+    margin-top: 0;
+  }
+}
+
+.more-info-button {
+  background-color: #0d6efd;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/*CSS PARA VIDEOS */
+/* videoDeckStyles.css */
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Estilos para dispositivos móviles y tabletas */
+.video-container.mobile-or-tablet {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container.mobile-or-tablet iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Agregamos una media query para ajustar el tamaño del video en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  .video-container {
+    padding: 0.5rem;
+  }
+}
+

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Card from "../components/Card.js";
+//import Card from "../components/Card.js";
 import axios from "axios";
-import Header from "../components/Header.js";
-import Cardlist from "../components/Cardlist.js";
+import Header from "../../components/Header.js";
+//import Cardlist from "../components/Cardlist.js";
 import Image from "next/image.js";
-import Footer from "../components/Footer.js";
-import Cardinfo from "../components/Cardinfo.js";
+import Footer from "../../components/Footer.js";
+//import Cardinfo from "../components/Cardinfo.js";
 import Head from "next/head.js";
 
-export default function Cartas() {
+export default function Cards() {
   const [cardList, setCardList] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
