@@ -14,7 +14,8 @@ export default function Index() {
   <title>Duel Links Pro</title>
   <meta name='description' content='Bienvenidos a Duel Links Pro, una web especializada en el juego Yugioh Duel Links, con contenido en español' />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald:wght@200;600;700&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet" />
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5210980356764360"
+     crossorigin="anonymous"></script>  
 </Head>
 <Home />
 
