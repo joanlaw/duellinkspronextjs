@@ -33,11 +33,11 @@ const DeckViewer = () => {
         const extraDeckCards = deckData.extraDeck;
 
         const mainDeckPromises = mainDeckCards.map((card) =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${card.cardId}`)
+          axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
         );
 
         const extraDeckPromises = extraDeckCards.map((card) =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${card.cardId}`)
+          axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
         );
 
         const mainDeckResponse = await Promise.all(mainDeckPromises);
