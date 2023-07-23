@@ -79,7 +79,8 @@ export default function Index() {
     "Odd-Eyes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688598295/imagenes%20arquetipos/16178681_1_h4uupe.jpg",
     "Destiny Hero": "https://images.ygoprodeck.com/images/cards_cropped/63362460.jpg",
     "Gouki": "https://images.ygoprodeck.com/images/cards_cropped/24073068.jpg",
-    "Nekroz": "https://images.ygoprodeck.com/images/cards_cropped/26674724.jpg"
+    "Nekroz": "https://images.ygoprodeck.com/images/cards_cropped/26674724.jpg",
+    "Blackwing": "https://images.ygoprodeck.com/images/cards_cropped/91351370.jpg"
   };
   
   const ImageCard = ({ data }) => {
