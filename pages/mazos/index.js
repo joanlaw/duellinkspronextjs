@@ -58,26 +58,28 @@ export default function Index() {
   };
   
   const UrlImageArquetipo = {
-    "Salamangrande": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
+    "Salamangreat": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665726153/imagenes%20arquetipos/image_r5nz4a.webp",
     "Buster blader": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666074601/imagenes%20arquetipos/buster_blader__the_dragon_destroyer_swordsman_by_omgitsjohannes_dbt3eth-fullview_ywyylf.jpg",
     "Serafin estelar": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666071109/imagenes%20arquetipos/tumblr_72189f00d45466bbaed867d46c875b3a_dff1f5cc_640_xti00b.jpg",
     "mago oscuro": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666064732/imagenes%20arquetipos/Foto_mago_oscuro_ldozix.jpg",
     "shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688146561/imagenes%20arquetipos/59843383_snj3jw.jpg",
-    "Inférnicos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
+    "Infernity": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
     "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
     "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg",
     "fuerza-s": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687821946/imagenes%20arquetipos/22180094_vy8kgu.jpg",
     "cristron": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687823488/imagenes%20arquetipos/13455674_1_lef0vr.jpg",
-    "cohette": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg",
+    "Rokket": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg",
     "gandora": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687974314/imagenes%20arquetipos/58330108_1_dvhgsv.jpg",
     "héroes del destino": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688146455/imagenes%20arquetipos/63362460_qy2mpp.jpg",
     "héroes elementales": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688150912/imagenes%20arquetipos/40044918_x1m1us.jpg",
     "héroes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665797061/imagenes%20arquetipos/E.H._Stratos_vef3ns.png",
-    "velociroid": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151038/imagenes%20arquetipos/5772618_1_cpzzdx.jpg",
+    "speedroid": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151038/imagenes%20arquetipos/5772618_1_cpzzdx.jpg",
     "sablelemento": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151038/imagenes%20arquetipos/45702014_hl0dd2.jpg",
     "invoked": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688151223/imagenes%20arquetipos/86120751_1_yra1cn.jpg",
-    "dragón de ojos anómalos": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688598295/imagenes%20arquetipos/16178681_1_h4uupe.jpg",
-    "Destiny Hero": "https://images.ygoprodeck.com/images/cards_cropped/63362460.jpg"
+    "Odd-Eyes": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688598295/imagenes%20arquetipos/16178681_1_h4uupe.jpg",
+    "Destiny Hero": "https://images.ygoprodeck.com/images/cards_cropped/63362460.jpg",
+    "Gouki": "https://images.ygoprodeck.com/images/cards_cropped/24073068.jpg",
+    "Nekroz": "https://images.ygoprodeck.com/images/cards_cropped/26674724.jpg"
   };
   
   const ImageCard = ({ data }) => {
