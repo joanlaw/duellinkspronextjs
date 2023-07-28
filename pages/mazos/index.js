@@ -87,7 +87,8 @@ export default function Index() {
     "Nekroz": "https://images.ygoprodeck.com/images/cards_cropped/26674724.jpg",
     "Blackwing": "https://images.ygoprodeck.com/images/cards_cropped/91351370.jpg",
     "Lunalight": "https://images.ygoprodeck.com/images/cards_cropped/24550676.jpg",
-    "Yubel": "https://images.ygoprodeck.com/images/cards_cropped/78371393.jpg"
+    "Yubel": "https://images.ygoprodeck.com/images/cards_cropped/78371393.jpg",
+    "Fur Hire": "https://images.ygoprodeck.com/images/cards_cropped/93850652.jpg"
   };
   
   const ImageCard = ({ data }) => {
