@@ -85,7 +85,9 @@ export default function Index() {
     "Destiny Hero": "https://images.ygoprodeck.com/images/cards_cropped/63362460.jpg",
     "Gouki": "https://images.ygoprodeck.com/images/cards_cropped/24073068.jpg",
     "Nekroz": "https://images.ygoprodeck.com/images/cards_cropped/26674724.jpg",
-    "Blackwing": "https://images.ygoprodeck.com/images/cards_cropped/91351370.jpg"
+    "Blackwing": "https://images.ygoprodeck.com/images/cards_cropped/91351370.jpg",
+    "Lunalight": "https://images.ygoprodeck.com/images/cards_cropped/24550676.jpg",
+    "Yubel": "https://images.ygoprodeck.com/images/cards_cropped/78371393.jpg"
   };
   
   const ImageCard = ({ data }) => {
