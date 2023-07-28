@@ -5,6 +5,7 @@ import Footer from "../../components/Footer"
 import Link from "next/link"
 import Image from "next/image"
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
 export default function Index() {
 
@@ -16,7 +17,11 @@ export default function Index() {
   const [postPerPage] = useState(36);
   
   const [rarezacards, setRarezacards] = useState("");
+
+  const [groupedDecks, setGroupedDecks] = useState({});
   
+  const router = useRouter();
+
   useEffect(() => {
     refreshCardList();
   }, []);
@@ -65,7 +70,7 @@ export default function Index() {
     "shiranui": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1688146561/imagenes%20arquetipos/59843383_snj3jw.jpg",
     "Infernity": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1667696211/imagenes%20arquetipos/Foto_archidemonio_inf_3Frnico_1_bymuoi.webp",
     "Mekk-caballeros": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1673761355/imagenes%20arquetipos/mekk_icono_jdd0xz.webp",
-    "orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg",
+    "Orcust": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1683839693/imagenes%20arquetipos/dingirsu__the_orcust_of_the_evening_star_b0lf7x.jpg",
     "fuerza-s": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687821946/imagenes%20arquetipos/22180094_vy8kgu.jpg",
     "cristron": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687823488/imagenes%20arquetipos/13455674_1_lef0vr.jpg",
     "Rokket": "https://res.cloudinary.com/dqofcbeaq/image/upload/v1687831723/imagenes%20arquetipos/68464358_1_vffatp.jpg",
@@ -107,6 +112,7 @@ const [filtro, setFiltro] = useState({
   habilidad: '',
   arquetipo: '',
   top: ''
+  
 });
 
 function handleFiltroChange(event) {
@@ -146,13 +152,69 @@ const elementosFiltrados = results.filter(currentPost => {
          (!filtro.top || currentPost.top === filtro.top);
 });
 
+function refreshCardList() {
+  decksApi()
+    .fetchAll()
+    .then((res) => {
+      setCardList(res.data);
+      
+      // Agrupa los mazos por arquetipo
+      let decks = res.data;
+      let groups = {};
+      decks.forEach(deck => {
+        let createdAt = moment(deck.createdAt);
+        let fourWeeksAgo = moment().subtract(4, 'weeks');
+        if (createdAt >= fourWeeksAgo) {  // Solo considera los mazos de las últimas 4 semanas
+          if (!groups[deck.arquetipo]) {
+            groups[deck.arquetipo] = 0;
+          }
+          groups[deck.arquetipo]++;  // Incrementa la cuenta para este arquetipo
+        }
+      });
+      setGroupedDecks(groups);
+    })
+    .catch((err) => console.log(err));
+}
 
+// Este componente genera los botones
+function DeckButtons({ filteredDecks }) {
+  const buttons = [];
+
+  let groupedDecks = {}; // Agrupa los mazos filtrados por arquetipo
+  filteredDecks.forEach(deck => {
+    if (!groupedDecks[deck.arquetipo]) {
+      groupedDecks[deck.arquetipo] = 0;
+    }
+    groupedDecks[deck.arquetipo]++;  // Incrementa la cuenta para este arquetipo
+  });
+
+  // Crear un array desde los objetos groupedDecks y ordenar por la cantidad de mazos
+  const sortedDeckGroups = Object.entries(groupedDecks).sort((a, b) => b[1] - a[1]);
+
+  for (let i = 0; i < sortedDeckGroups.length; i++) {
+    const archetype = sortedDeckGroups[i][0];
+    buttons.push(
+      <button className="deck-button" key={archetype} onClick={() => setFiltro({ ...filtro, arquetipo: archetype })}>
+        <div className="arquetipo-image">
+          <ImageCard data={{ arquetipo: archetype }} />
+        </div>
+        {archetype} ({groupedDecks[archetype]})
+      </button>
+    );
+  }
+
+  return (
+    <div className="deck-buttons-container">
+      {buttons}
+    </div>
+  );
+}
 
   return (
     <div>
        <Header /> 
        <h2>Lista de Decks</h2>
-       <div className="container-filtrado">
+       <div className="container">
         <label>Fecha</label>
        <select name="createdAt" defaultValue="" onChange={handleFiltroChange}>
   <option value="">Todos los tiempos</option>
@@ -180,7 +242,7 @@ const elementosFiltrados = results.filter(currentPost => {
                                         
                         </select>
 */} 
-                        <label>Arquetipo</label>
+       {/*                 <label>Arquetipo</label>
     <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
                                         <option value="">Todos los arquetipos</option>
                                         <option value="Salamangrande">salamangrande</option>
@@ -196,16 +258,17 @@ const elementosFiltrados = results.filter(currentPost => {
                                         <option value="fuerza-s">Fuerza-s</option>
                                         <option value="velociroid">Velociroid</option>
                                         
-                        </select>
-                        {/* 
+</select>  */}
+  
                         <label className="">Top</label>
                         <select className="" type="text" name="top" value={filtro.top} onChange={handleFiltroChange}>
                                         <option value=""></option>
-                                        <option value="rey de los duelos">Rey de duelos</option>
-                                        <option value="">Torneo x</option>
+                                        <option value="Rey de duelos">Rey de duelos</option>
+                                        <option value="Ensalada">Ensalada</option>
+                                        <option value="Fun">Fun</option>
                                         
                         </select>
-         */}
+
   </div>
     <div className='container'>
       
@@ -216,11 +279,16 @@ const elementosFiltrados = results.filter(currentPost => {
       onChange={searcher}
       className="mb-2 form-control "
       type="search"
-      placeholder="Buscar Deck"
+      placeholder="Busca tu deck o arquetipo favorito"
       aria-label="Search"
      
     />
     </div>
+    <div className="decksbuttons">
+    <DeckButtons filteredDecks={elementosFiltrados} />
+      </div>
+    
+
 <div>
   <p>Cantidad de decks: {elementosFiltrados.length}</p>
 </div>
@@ -236,31 +304,32 @@ const elementosFiltrados = results.filter(currentPost => {
     </tr>
   </thead>
   <tbody>
-    {elementosFiltrados.map((element) => (
-      <tr key={element._id}>
-        <td>
-        <div className="arquetipo-image">
-  <Link href={`/mazos/${element._id}`}>
-    <a>
-      <ImageCard data={element} />
-    </a>
-  </Link>
-</div>
-        </td>
-        <td>{element.habilidad}</td>
-        <td>{element.top}</td>
-        <td>{element.jugador}</td>
-        <td>{element.racha}</td>
-        <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
-      </tr>
-    )).reverse()}
+  {elementosFiltrados.map((element) => (
+        <tr 
+          key={element._id} 
+          onClick={() => router.push(`/mazos/${element._id}`)}
+          style={{ 
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5093bc'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = ''}
+        >
+          <td>
+            <div className="arquetipo-image">
+              <ImageCard data={element} />
+            </div>
+          </td>
+          <td>{element.habilidad}</td>
+          <td>{element.top}</td>
+          <td>{element.jugador}</td>
+          <td>{element.racha}</td>
+          <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
+        </tr>
+      )).reverse()}
   </tbody>
 </table>
-   {/*   <Pagination
-        postPerPage={postPerPage}
-        totalPost={results.length}
-        paginate={paginate}
-        /> */}
+
      <br />
      
     </div>

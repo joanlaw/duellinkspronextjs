@@ -18,7 +18,7 @@ const clusters = [
     id: 2,
     title: "Decks de la comunidad",
     image: image2,
-    url: "/decks",
+    url: "/mazos",
     text: "decks de la comunidad",
   },
   {
