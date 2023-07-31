@@ -89,7 +89,7 @@ function Clusters() {
                 </a>
               </Link>
             </div>
-          ))}
+          )).reverse}
         </div>
       </div>
     </>

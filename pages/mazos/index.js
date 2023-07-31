@@ -51,7 +51,7 @@ export default function Index() {
   
   
 
-  const decksApi = (url = "https://api.duellinks.pro/mazos/") => {
+  const decksApi = (url = "https://backend-dlp-neuronube.koyeb.app/mazos/") => {
     return {
       fetchAll: () => axios.get(url),
       create: (newRecord) => axios.post(url, newRecord),
