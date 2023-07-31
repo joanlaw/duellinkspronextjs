@@ -322,7 +322,7 @@ function DeckButtons({ filteredDecks }) {
       <th>Habilidad</th>
       <th>Top</th>
       <th>Jugador</th>
-      <th>Racha</th>
+      <th>Motor</th>
       <th>Fecha</th>
     </tr>
   </thead>
@@ -346,7 +346,7 @@ function DeckButtons({ filteredDecks }) {
           <td>{element.habilidad}</td>
           <td>{element.top}</td>
           <td>{element.jugador}</td>
-          <td>{element.racha}</td>
+          <td>{element.engine}</td>
           <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
         </tr>
       )).reverse()}
