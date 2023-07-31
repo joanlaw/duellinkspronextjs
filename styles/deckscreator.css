@@ -321,13 +321,13 @@ margin-bottom: 0.5rem;
 
   .popup-image {
     height: 50%;
-    padding-bottom: 60px;
+    position: relative; /* Agregar posición relativa */
   }
 
   .popup-info {
     height: 50%;
     overflow-y: auto;  /* Agregamos scroll en caso de que el texto sea muy largo */
-    font-size: 0.7em;
+    font-size: 0.6em;
     position: relative; /* Agregar posición relativa */
     padding-bottom: 60px; /* Espacio para el botón en la parte inferior */
   }
@@ -344,8 +344,8 @@ margin-bottom: 0.5rem;
 
   /* Suponiendo que el nombre de la carta está en un h2 */
   .popup-info h2 {
-    margin-top: 60px;
     font-size: medium ;
+    margin-top: auto;
   }
 }
 
