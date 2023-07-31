@@ -321,6 +321,7 @@ margin-bottom: 0.5rem;
 
   .popup-image {
     height: 50%;
+    padding-bottom: 60px;
   }
 
   .popup-info {
