@@ -52,18 +52,18 @@ function VideoDeck() {
         }
 
         if (data.deck) {
-          const deckResponse = await axios.get(`https://api.duellinks.pro/mazos/${data.deck}`);
+          const deckResponse = await axios.get(`https://backend-dlp-neuronube.koyeb.app/mazos/${data.deck}`);
           const deckData = deckResponse.data;
           setDeckData(deckData);
           const mainDeckCards = deckData.mainDeck;
           const extraDeckCards = deckData.extraDeck;
 
           const mainDeckPromises = mainDeckCards.map((card) =>
-            axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
           );
 
           const extraDeckPromises = extraDeckCards.map((card) =>
-            axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
           );
 
           const mainDeckResponses = await Promise.all(mainDeckPromises);
