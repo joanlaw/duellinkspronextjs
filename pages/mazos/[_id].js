@@ -171,7 +171,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   <div className="popup" onClick={handleClosePopup}>
     <div className="popup-content" onClick={(event) => event.stopPropagation()}>
       <div className="popup-image">
-        {selectedCard.rareza && <img src={
+     {/*   {selectedCard.rareza && <img src={
           selectedCard.rareza === "ur"
           ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106735/iconos%20dlp/UR_rpfhm2.png"
           : selectedCard.rareza === "sr"
@@ -179,7 +179,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
           : selectedCard.rareza === "r" 
           ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106750/iconos%20dlp/R_btrot4.png"
           : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106746/iconos%20dlp/N_lofrdg.png"
-        } alt="" className="card-rareza" width={200} height={100} layout={'responsive'} />}
+        } alt="" className="card-rareza" width={200} height={100} layout={'responsive'} />} */}
         <img src={selectedCard.image.secure_url} alt={selectedCard.nombre} />
       </div>
       <div className="popup-info">
