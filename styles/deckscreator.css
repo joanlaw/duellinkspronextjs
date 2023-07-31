@@ -209,7 +209,6 @@ margin-bottom: 0.5rem;
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
-  z-index: 100;
 }
 
 .popup-image {
@@ -218,7 +217,6 @@ margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Add relative positioning */
 }
 
 .popup-image img {
@@ -330,6 +328,7 @@ margin-bottom: 0.5rem;
     overflow-y: auto;  /* Agregamos scroll en caso de que el texto sea muy largo */
     font-size: 0.7em;
     position: relative; /* Agregar posición relativa */
+    padding-top: 50px;
     padding-bottom: 60px; /* Espacio para el botón en la parte inferior */
   }
 
