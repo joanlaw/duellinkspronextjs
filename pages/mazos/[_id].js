@@ -33,11 +33,11 @@ const DeckViewer = () => {
         const extraDeckCards = deckData.extraDeck;
 
         const mainDeckPromises = mainDeckCards.map((card) =>
-          axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
         );
 
         const extraDeckPromises = extraDeckCards.map((card) =>
-          axios.get(`https://api.duellinks.pro/cards/${card.cardId}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
         );
 
         const mainDeckResponse = await Promise.all(mainDeckPromises);
