@@ -320,14 +320,14 @@ margin-bottom: 0.5rem;
   }
 
   .popup-image {
-    height: 40%;
+    height: 50%;
     position: relative; /* Agregar posición relativa */
   }
 
   .popup-info {
     height: 50%;
     overflow-y: auto;  /* Agregamos scroll en caso de que el texto sea muy largo */
-    font-size: 0.5em;
+    font-size: 0.6em;
     position: relative; /* Agregar posición relativa */
     padding-bottom: 60px; /* Espacio para el botón en la parte inferior */
   }
