@@ -45,7 +45,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-auto-rows: minmax(100px, auto);
-    background-image: url("https://res.cloudinary.com/dqofcbeaq/image/upload/q_70/v1666016948/iconos%20dlp/dl-bg08_tk1z6w.webp") ;
+    background-color: #010609;
     background-repeat: repeat;
     border: 2px solid #1D3E67;
     width: 100%;
