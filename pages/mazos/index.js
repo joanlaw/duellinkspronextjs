@@ -245,7 +245,7 @@ function DeckButtons({ filteredDecks }) {
        <h2>Lista de Decks</h2>
        <div className="container">
         <label>Fecha</label>
-       <select name="createdAt" defaultValue="" onChange={handleFiltroChange}>
+        <select name="createdAt" defaultValue="ultimas4semanas" onChange={handleFiltroChange}>
   <option value="">Todos los tiempos</option>
   <option value="ultimodia">{`Hoy (${moment().format('DD/MM/YYYY')})`}</option>
   <option value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
@@ -253,6 +253,7 @@ function DeckButtons({ filteredDecks }) {
   <option value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
   <option value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, 'days').format('DD/MM/YYYY')} - ${moment().format('DD/MM/YYYY')})`}</option>
 </select>
+
 
 
 

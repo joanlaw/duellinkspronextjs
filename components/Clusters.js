@@ -33,6 +33,16 @@ const clusters = [
 function Clusters() {
   const [videos, setVideos] = useState([]);
 
+    // Estado para controlar la cantidad de videos mostrados
+    const [resultsToShow, setResultsToShow] = useState(6);
+
+    // Función para manejar el evento de clic del botón "Mostrar Más"
+    const handleShowMore = () => {
+      // Aumentar el número de resultados a mostrar en 4
+      setResultsToShow(prevResults => prevResults + 6);
+    };
+  
+
   // Función para obtener la lista de videos desde la API
   const fetchVideos = async () => {
     try {
@@ -92,6 +102,14 @@ function Clusters() {
           )).reverse()}
         </div>
       </div>
+            {/* Botón "Mostrar Más" */}
+            {resultsToShow < videos?.length && (
+        <div className="show-more-container">
+          <button className="show-more-button" onClick={handleShowMore}>
+            Mostrar Más
+          </button>
+        </div>
+      )}
     </>
   );
 }
