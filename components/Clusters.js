@@ -33,15 +33,12 @@ const clusters = [
 function Clusters() {
   const [videos, setVideos] = useState([]);
 
-    // Estado para controlar la cantidad de videos mostrados
-    const [resultsToShow, setResultsToShow] = useState(6);
+  const [resultsToShow, setResultsToShow] = useState(6);
 
-    // Función para manejar el evento de clic del botón "Mostrar Más"
-    const handleShowMore = () => {
-      // Aumentar el número de resultados a mostrar en 4
-      setResultsToShow(prevResults => prevResults + 6);
-    };
-  
+  // Función para manejar el evento de clic del botón "Mostrar Más"
+  const handleShowMore = () => {
+    setResultsToShow(prevResults => prevResults + 6);
+  };
 
   // Función para obtener la lista de videos desde la API
   const fetchVideos = async () => {
@@ -61,8 +58,6 @@ function Clusters() {
 
   console.log("Videos state:", videos);
 
-  console.log("Videos state:", videos); // Verificar qué datos se al
-
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center h-100">
@@ -71,7 +66,7 @@ function Clusters() {
             <div className="col-md-4" key={id}>
               <Link href={url}>
                 <a>
-                  <Cluster imageSource={image} title={title}   />
+                  <Cluster imageSource={image} title={title} />
                 </a>
               </Link>
             </div>
@@ -81,7 +76,7 @@ function Clusters() {
       <h2>Últimos articulos y videos</h2>
       <div className="container d-flex justify-content-center align-items-center h-100">
         <div className="row">
-          {videos?.map(({ titulo, banner_video, _id }) => (
+          {videos?.slice(0, resultsToShow).map(({ titulo, banner_video, _id }) => (
             <div className="col-md-4" key={_id}>
               <Link href={`/videos/${encodeURIComponent(titulo)}`}>
                 <a>
@@ -92,7 +87,7 @@ function Clusters() {
                     <div className="">
                       <h4 className="card-title">{titulo}</h4>
                       <p className="badge-container">
-                      {/*<span className="badge bg-danger">{link_video}</span>*/}  
+                        {/*<span className="badge bg-danger">{link_video}</span>*/}
                       </p>
                     </div>
                   </div>
@@ -102,8 +97,8 @@ function Clusters() {
           )).reverse()}
         </div>
       </div>
-            {/* Botón "Mostrar Más" */}
-            {resultsToShow < videos?.length && (
+      {/* Botón "Mostrar Más" */}
+      {resultsToShow < videos?.length && (
         <div className="show-more-container">
           <button className="show-more-button" onClick={handleShowMore}>
             Mostrar Más
