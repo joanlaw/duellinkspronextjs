@@ -19,6 +19,7 @@ import '../styles/navbar.css'
 import '../styles/creardeck.css'
 import '../styles/createdecksnewcss.css'
 import '../styles/blogs.css'
+import '../styles/globals.css'
 
 
 

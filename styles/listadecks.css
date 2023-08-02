@@ -154,7 +154,7 @@
   width: 40px;
   height: 40px;
   object-fit: cover;
-  border-radius: 50%;
+
 }
 
 /* Estilos responsivos */
@@ -164,8 +164,7 @@
   }
 
   .deck-table thead {
-    
-    display: none; /* Centrar los títulos del thead en mobile */
+    display: none;
   }
 
   .deck-table tbody,
@@ -181,7 +180,7 @@
     padding: 8px;
     font-size: 14px;
     text-align: left;
-    white-space: normal; /* Permitir el ajuste del texto en varias líneas en mobile */
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -204,12 +203,19 @@
     width: 100%;
     height: 100%;
   }
-  
-  /* Ajustar el ancho de la columna de habilidad en mobile */
+
+  /* Establecer un ancho fijo y centrar el contenido en la columna de Habilidad */
   .deck-table td:nth-child(2) {
-    width: 50%;
+    width: 100px;
+    text-align: center;
   }
-  
+
+  /* Establecer un ancho fijo y centrar el contenido en la columna de Top */
+  .deck-table td:nth-child(3) {
+    width: 80px;
+    text-align: center;
+  }
+
   /* Ocultar columnas no deseadas en mobile */
   .deck-table th:nth-child(4),
   .deck-table td:nth-child(4),
@@ -219,8 +225,7 @@
   .deck-table td:nth-child(6) {
     display: none;
   }
-  
-  /* Alinear verticalmente los títulos del thead */
+
   .deck-table th {
     vertical-align: middle;
   }
@@ -353,6 +358,35 @@
 }
 
 
+/* Estilos para el botón "Mostrar Más" */
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.show-more-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #5093bc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show-more-button:hover {
+  background-color: #387da7;
+}
+
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .deck-table {
+    font-size: 14px;
+  }
+}
 
 
 

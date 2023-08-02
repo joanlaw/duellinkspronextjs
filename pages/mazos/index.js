@@ -18,6 +18,8 @@ export default function Index() {
   const [groupedDecks, setGroupedDecks] = useState({});
   const [archetypes, setArchetypes] = useState([]);
 
+  const [resultsToShow, setResultsToShow] = useState(10);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -49,6 +51,11 @@ export default function Index() {
     fetchPage(baseUrl);
   };
   
+    // Función para manejar el evento de clic del botón "Mostrar Más"
+    const handleShowMore = () => {
+      // Aumentar el número de resultados a mostrar en 10
+      setResultsToShow(prevResults => prevResults + 10);
+    };
   
 
   const decksApi = (url = "https://backend-dlp-neuronube.koyeb.app/mazos/") => {
@@ -316,43 +323,52 @@ function DeckButtons({ filteredDecks }) {
   <p>Cantidad de decks: {elementosFiltrados.length}</p>
 </div>
 <table className="deck-table deck-table-mobile">
-  <thead>
-    <tr>
-      <th>Arquetipo</th>
-      <th>Habilidad</th>
-      <th>Top</th>
-      <th>Jugador</th>
-      <th>Motor</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-  {elementosFiltrados.map((element) => (
-        <tr 
-          key={element._id} 
-          onClick={() => router.push(`/mazos/${element._id}`)}
-          style={{ 
-            cursor: 'pointer',
-            transition: 'background-color 0.3s ease',
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5093bc'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = ''}
-        >
-          <td>
-            <div className="arquetipo-image">
-              <ImageCard data={element} archetypes={archetypes} />
-            </div>
-          </td>
-          <td>{element.habilidad}</td>
-          <td>{element.top}</td>
-          <td>{element.jugador}</td>
-          <td>{element.engine}</td>
-          <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
-        </tr>
-      )).reverse()}
-  </tbody>
-</table>
-
+          <thead>
+            <tr>
+              <th>Arquetipo</th>
+              <th>Habilidad</th>
+              <th>Top</th>
+              <th>Jugador</th>
+              <th>Motor</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+  {elementosFiltrados
+    .slice(elementosFiltrados.length - resultsToShow, elementosFiltrados.length)
+    .map((element) => (
+      <tr
+        key={element._id}
+        onClick={() => router.push(`/mazos/${element._id}`)}
+        style={{
+          cursor: "pointer",
+          transition: "background-color 0.3s ease"
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#5093bc")}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "")}
+      >
+        <td>
+          <div className="arquetipo-image">
+            <ImageCard data={element} archetypes={archetypes} />
+          </div>
+        </td>
+        <td>{element.habilidad}</td>
+        <td>{element.top}</td>
+        <td>{element.jugador}</td>
+        <td>{element.engine}</td>
+        <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
+      </tr>
+    ))
+    .reverse()}
+</tbody>
+        </table>
+{resultsToShow < elementosFiltrados.length && (
+                 <div className="show-more-container">
+                 <button className="show-more-button" onClick={handleShowMore}>
+                   Mostrar Más
+                 </button>
+               </div>
+        )}
      <br />
      
     </div>

@@ -1,18 +1,63 @@
+:root {
+  --font-principal: 'Quicksand', sans-serif;
+}
 html,
 body {
   padding: 10;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-principal);
+}
+
+p, h1, h2, h3, h4, h5{
+  font-family: 'Quicksand', sans-serif ;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.mb-2, .form-control {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Estilo personalizado para el elemento select */
+select {
+  font-family: var(--font-principal) !important; /* Utiliza la variable --font-principal */
+  /* Otros estilos personalizados para el elemento select */
+}
+select option {
+  font-family: var(--font-principal) !important; /* Utiliza la variable --font-principal */
+  /* Otros estilos personalizados para las opciones */
+}
+/* Estilo personalizado para botones */
+button {
+  font-family: var(--font-principal) !important;
+  /* Otros estilos personalizados para los botones */
+}
+
+/* Estilo personalizado para los textos dentro de las tablas */
+table {
+  font-family: var(--font-principal);
+  /* Otros estilos personalizados para las tablas */
+}
+
+/* Estilo personalizado para los encabezados de tabla */
+th {
+  font-family: var(--font-principal);
+  /* Otros estilos personalizados para los encabezados de tabla */
+}
+
+/* Estilo personalizado para los datos de tabla */
+td {
+  font-family: var(--font-principal);
+  /* Otros estilos personalizados para los datos de tabla */
 }
 
 * {
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
