@@ -30,7 +30,7 @@ export default function Cartas() {
     refreshCardList();
   }, []);
 
-  const cardsApi = (url = "https://api.duellinks.pro/cards/") => {
+  const cardsApi = (url = "https://backend-dlp-neuronube.koyeb.app/cards/") => {
     return {
       fetchAll: (searchTerm, page, size) =>
         axios.get(url, {

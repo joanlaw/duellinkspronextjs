@@ -43,7 +43,7 @@ function Clusters() {
   // Función para obtener la lista de videos desde la API
   const fetchVideos = async () => {
     try {
-      const response = await fetch("https://api.duellinks.pro/videos");
+      const response = await fetch("https://backend-dlp-neuronube.koyeb.app/videos");
       const data = await response.json();
       console.log("Data from API:", data);
       setVideos(data.docs); // Actualizar el estado con data.docs en lugar de data.data
