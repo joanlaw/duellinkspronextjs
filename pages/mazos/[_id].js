@@ -17,7 +17,7 @@ const DeckViewer = () => {
   useEffect(() => {
     if (_id) {
       axios
-        .get(`https://api.duellinks.pro/mazos/${_id}`)
+        .get(`https://backend-dlp-neuronube.koyeb.app/mazos/${_id}`)
         .then((response) => {
           console.log("Deck Data:", response.data);
           setDeckData(response.data);

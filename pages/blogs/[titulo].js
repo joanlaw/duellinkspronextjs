@@ -11,7 +11,7 @@ function PostBlog() {
   // Función para obtener los detalles del blog desde el backend
   const fetchBlogDetails = async () => {
     try {
-      const response = await fetch(`https://back-render-cloud-dlp.onrender.com/blogs/${encodeURIComponent(titulo)}`); // Cambia la ruta a tu endpoint de blogs con el título como parámetro
+      const response = await fetch(`https://backend-dlp-neuronube.koyeb.app/blogs/${encodeURIComponent(titulo)}`); // Cambia la ruta a tu endpoint de blogs con el título como parámetro
       const data = await response.json();
       setBlog(data);
     } catch (error) {
