@@ -6,6 +6,7 @@ body {
   padding: 10;
   margin: 0;
   font-family: var(--font-principal);
+  background: linear-gradient(to bottom, #010609, #0d2030);
 }
 
 p, h1, h2, h3, h4, h5{

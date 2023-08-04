@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import YouTube from 'react-youtube';
+import Head from 'next/head';
 
 function VideoDeck() {
   const router = useRouter();
@@ -125,6 +126,30 @@ function VideoDeck() {
 
   return (
     <>
+<Head>
+        {/* Título dinámico */}
+        <title>{videoData ? `${videoData.titulo} | Duel Links Pro` : 'Cargando...'}</title>
+        <meta
+          name="description"
+          content={videoData ? videoData.descripcion : 'Cargando...'}
+        />
+
+        {/* Meta etiquetas para redes sociales */}
+        {videoData && (
+          <>
+            <meta property="og:title" content={`${videoData.titulo} | Duel Links Pro`} />
+            <meta property="og:description" content={videoData.descripcion} />
+            {/* URL de la imagen para compartir (puedes utilizar una imagen específica del video o cualquier otra relevante) */}
+            <meta property="og:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
+
+            {/* Meta etiquetas para Twitter */}
+            <meta name="twitter:title" content={`${videoData.titulo} | Duel Links Pro`} />
+            <meta name="twitter:description" content={videoData.descripcion} />
+            {/* URL de la imagen para compartir en Twitter (puedes utilizar una imagen específica del video o cualquier otra relevante) */}
+            <meta name="twitter:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
+          </>
+        )}
+      </Head>
       <Header />
       <h1>
       {videoData ? videoData.titulo : 'Cargando...'}
@@ -166,20 +191,24 @@ function VideoDeck() {
             </div>
             <div className={`video-container ${isMobileOrTablet ? 'mobile-or-tablet' : ''}`}>
 
-      {videoData && (
-        <YouTube
-          videoId={videoData.link_video}
-          opts={{
-            height: '390',
-            width: '640',
-            playerVars: {
-              // https://developers.google.com/youtube/player_parameters
-              autoplay: 0,
-            },
-          }}
-          className="video-player" // Aplica la clase CSS para centrar el cuadro de reproducción
-        />
-      )}
+            {videoData && (
+  <div className='container'>
+    <YouTube
+      videoId={videoData.link_video}
+      opts={{
+        height: '390',
+        width: '640',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 0,
+        },
+      }}
+      className="video-player" // Aplica la clase CSS para centrar el cuadro de reproducción
+    />
+    {/* Muestra la descripción debajo del video */}
+    <p>{videoData.descripcion}</p>
+  </div>
+)}
     </div>
 
             {selectedCard && (

@@ -29,7 +29,7 @@
     grid-auto-rows: minmax(100px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 2px solid #1D3E67;
+    border: 3px solid #1D3E67;
     width: 50%;
     gap: 1px;
     padding: 0.3em;
@@ -42,7 +42,7 @@
     grid-auto-rows: minmax(150px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 2px solid #1D3E67;
+    border: 3px solid #1D3E67;
     width: 100%;
     gap: 5px;
     padding: 0.5em;
@@ -66,7 +66,7 @@
     grid-auto-rows: minmax(130px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 2px solid #1D3E67;
+    border: 3px solid #1D3E67;
     width: 50%;
     gap: 3px;
     padding: 0.5em;

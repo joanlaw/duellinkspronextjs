@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import Link from 'next/link';
+import Footer from '../../components/Footer';
+import Head from 'next/head';
 
 const DeckViewer = () => {
   const router = useRouter();
@@ -98,6 +100,25 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
 
   return (
     <>
+<Head>
+  <title>Deck {deckData ? deckData.arquetipo : 'Cargando...'}</title>
+  <meta
+    name="description"
+    content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`}
+  />
+  {deckData && <link rel="canonical" href={`https://tu-sitio.com/decks/${deckData._id}`} />}
+  
+  {/* Meta etiquetas para Facebook */}
+  <meta property="og:title" content={`Deck ${deckData ? deckData.arquetipo : 'Cargando...'}`} />
+  <meta property="og:description" content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`} />
+  <meta property="og:url" content={`https://tu-sitio.com/decks/${deckData ? deckData._id : ''}`} />
+  <meta property="og:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
+
+  {/* Meta etiquetas para Twitter */}
+  <meta name="twitter:title" content={`Deck ${deckData ? deckData.arquetipo : 'Cargando...'}`} />
+  <meta name="twitter:description" content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`} />
+  <meta name="twitter:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
+</Head>
     <Header />
   <div className="">
   {deckData && (
@@ -205,6 +226,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
     </div>
   )}
 </div>
+<Footer />
 
     </>
   );
