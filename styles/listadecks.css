@@ -336,8 +336,8 @@
   position: absolute;
   top: -5px; /* Ajusta esta posición según lo desees */
   right: -80px; /* Ajusta esta posición según lo desees */
-  background-color: #0a141d; /* Color de fondo */
-  color: #fff; /* Color del texto */
+  background: linear-gradient(45deg, #FF0000, #FFA500); /* Fondo degradado en tonos de rojo */
+  color: #d6f7fb; /* Color del texto */
   padding: 5px 10px;
   border-radius: 5px;
   opacity: 1; /* Comienza con opacidad 1 para que siempre esté visible */
