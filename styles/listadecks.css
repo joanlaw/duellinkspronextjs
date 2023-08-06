@@ -277,20 +277,21 @@
 .decksbuttons button {
   flex: 1 1 calc(20% - 2*10px); /* Cada botón ocupa 20% del ancho del grid, descontando el espacio entre ellos */
   margin: 5px;
-  padding: 10px;
+  padding: 1px;
   font-size: 16px;
   border-radius: 5px;
   border: none;
-  background-color: #0a141d;
-  color: #fff;
+  background-image: linear-gradient(to right, #a9bcc3, rgba(169, 188, 195, 0.8)); /* Gradiente de fondo */
+  color: #000; /* Texto negro */
   display: flex;
   align-items: center;
   transition: transform 0.3s ease-in-out; /* Cambia a 0.3s para hacer la transición más rápida */
+  border: 3px solid #212529; /* Borde de 1px en color negro */
 }
 
 .decksbuttons button:hover {
   transform: translateX(10px); /* Añade esto */
-  color: #fff; /* Asegura que el color del texto permanece blanco al pasar el cursor */
+  /*color: #ffff; /* Asegura que el color del texto permanece blanco al pasar el cursor */
   background-color: #0a141d; /* Asegura que el color de fondo permanece constante al pasar el cursor */
 }
 
@@ -308,9 +309,25 @@
   background-repeat: no-repeat;
   margin-right: 10px;
 }
+/* Estilo del icono del Deck Hoy */
+.deck-icon-new {
+  display: flex;
+
+  position:relative;
+  top: -16px;
+  right: -68px;
+  width: 2.6em;
+  padding: 0 5px; /* Ajusta el espacio entre el icono y el borde derecho del botón */
+}
+
 
 /* Media query para móviles */
 @media (max-width: 600px) {
+
+  .deck-icon-new{
+    right: -18px;
+  }
+
   .decksbuttons {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Los botones se ajustan automáticamente al ancho de la pantalla */
   }
@@ -356,6 +373,9 @@
     gap: 10px; /* Espacio entre los botones */
   }
 }
+
+/* Estilo del icono del Deck Hoy */
+
 
 
 /* Estilos para el botón "Mostrar Más" */

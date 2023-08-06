@@ -222,12 +222,16 @@ function DeckButtons({ filteredDecks }) {
 
   for (let i = 0; i < sortedDeckGroups.length; i++) {
     const archetype = sortedDeckGroups[i][0];
+    const isDeckToday = filteredDecks.some(deck => deck.arquetipo === archetype && moment(deck.createdAt).isSame(moment(), 'day'));
     buttons.push(
-      <button className="deck-button" key={archetype} onClick={() => setFiltro({ ...filtro, arquetipo: archetype })}>
+      <button className={`deck-button ${isDeckToday ? 'with-icon' : ''}`} key={archetype} onClick={() => setFiltro({ ...filtro, arquetipo: archetype })}>
+        
         <div className="arquetipo-image">
-        <ImageCard data={{ arquetipo: archetype }} archetypes={archetypes} />
+          <ImageCard data={{ arquetipo: archetype }} archetypes={archetypes} />
         </div>
+       
         {archetype} ({groupedDecks[archetype]})
+        {isDeckToday && <img src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1691297195/iconos%20dlp/new_icon_vkkkix.png" alt="Icono Deck Hoy" className="deck-icon-new" />}
       </button>
     );
   }
