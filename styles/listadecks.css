@@ -326,7 +326,34 @@
   width: 2em;
 
 }
+.new-deck {
+  position: relative; /* Añade esta línea para que el posicionamiento funcione */
+}
 
+/* Estilo para el efecto "New" */
+.new-deck::after {
+  content: "New"; /* Texto "New" que se mostrará con la animación */
+  position: absolute;
+  top: -5px; /* Ajusta esta posición según lo desees */
+  right: -80px; /* Ajusta esta posición según lo desees */
+  background-color: #0a141d; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 1; /* Comienza con opacidad 1 para que siempre esté visible */
+  transform: scale(1); /* Asegura que no tenga transformaciones iniciales */
+  animation: pulseEffect 2s infinite; /* Agrega la animación de pulso */
+}
+
+/* Definición de la animación de pulso */
+@keyframes pulseEffect {
+  0%, 100% {
+    transform: scale(1); /* Estado inicial y final (sin cambios) */
+  }
+  50% {
+    transform: scale(1.2); /* Escala al 120% a la mitad de la animación */
+  }
+}
 
 /* Media query para móviles */
 @media (max-width: 600px) {
