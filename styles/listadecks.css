@@ -335,7 +335,7 @@
   content: "New"; /* Texto "New" que se mostrará con la animación */
   position: absolute;
   top: -5px; /* Ajusta esta posición según lo desees */
-  right: -80px; /* Ajusta esta posición según lo desees */
+  right: -100px; /* Ajusta esta posición según lo desees */
   background: linear-gradient(45deg, #FF0000, #FFA500); /* Fondo degradado en tonos de rojo */
   color: #d6f7fb; /* Color del texto */
   padding: 5px 10px;
@@ -357,6 +357,10 @@
 
 /* Media query para móviles */
 @media (max-width: 600px) {
+
+  .new-deck::after{
+    right: -80px; /* Ajusta esta posición según lo desees */
+  }
   .decksbuttons {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Los botones se ajustan automáticamente al ancho de la pantalla */
   }
@@ -381,6 +385,11 @@
 
 /* Media query para tablets */
 @media (max-width: 1024px) {
+
+  .new-deck::after{
+    right: -50px; /* Ajusta esta posición según lo desees */
+  }
+
   .decksbuttons {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Los botones se ajustan automáticamente al ancho de la pantalla */
   }
