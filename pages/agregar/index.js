@@ -25,7 +25,7 @@ export default function Cardlist() {
     refreshCardList();
   },[])
 
-  const cardsApi = (url = 'https://back-render-cloud-dlp.onrender.com/cartas/',) => {
+  const cardsApi = (url = 'https://back-render-cloud-dlp.onrender.com/cards/',) => {
     return {
         fetchAll: () => axios.get(url),
         create: newRecord => axios.post(url, newRecord),
@@ -74,9 +74,7 @@ const results = !search ? cardList : cardList.filter((data)=> data.nombre.toLowe
    </div>
   )
 
-    const indexOfLastPost = currentPage * postPerPage
-    const indexOfFirstPost = indexOfLastPost - postPerPage
-    const currentPost = results.slice(indexOfFirstPost, indexOfLastPost)
+
 
     //Cambio de pagina
 
