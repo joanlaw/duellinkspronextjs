@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  max-width: 90%; /* Reducir el ancho del contenedor al 90% */
+  max-width: 100%; /* Reducir el ancho del contenedor al 90% */
 
 }
 
