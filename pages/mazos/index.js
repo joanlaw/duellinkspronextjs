@@ -137,7 +137,7 @@ const fechaFormateada = fechaActual.format('YYYY-MM-DD');
 
 //FILTRADO 2
 const [filtro, setFiltro] = useState({
-  createdAt: '',
+  createdAt: 'ultimas2semanas',
   habilidad: '',
   arquetipo: '',
   top: ''
