@@ -258,6 +258,10 @@
 /* ... (otros estilos) */
 
 /* Estilo de los botones */
+
+.label-fecha, .label-top {
+  font-size: 0.9em;
+}
 .deck-button button {
   width: 100%;
   height: 45px;

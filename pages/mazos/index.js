@@ -248,7 +248,7 @@ function DeckButtons({ filteredDecks }) {
        <Header /> 
        <h2>Lista de Decks</h2>
        <div className="container">
-        <label>Fecha</label>
+        <label className="label-fecha">Fecha</label>
         <select name="createdAt" defaultValue="ultimas4semanas" onChange={handleFiltroChange}>
   <option value="">Todos los tiempos</option>
   <option value="ultimodia">{`Hoy (${moment().format('DD/MM/YYYY')})`}</option>
@@ -294,7 +294,7 @@ function DeckButtons({ filteredDecks }) {
                                         
 </select>  */}
   
-                        <label className="">Top</label>
+                        <label className="label-top">Top</label>
                         <select className="" type="text" name="top" value={filtro.top} onChange={handleFiltroChange}>
                                         <option value=""></option>
                                         <option value="Rey de duelos">Rey de duelos</option>
