@@ -280,11 +280,10 @@
 
 .decksbuttons button {
   flex: 1 1 calc(20% - 2*10px); /* Cada botón ocupa 20% del ancho del grid, descontando el espacio entre ellos */
-  margin: 3px;
-  padding: 1px;
+  margin: 0.2px;
+  padding: 0.5px;
   font-size: 16px;
   border-radius: 5px;
-  border: none;
   background-image: linear-gradient(to right, #a9bcc3, rgba(169, 188, 195, 0.8)); /* Gradiente de fondo */
   color: #000; /* Texto negro */
   display: flex;
@@ -306,8 +305,8 @@
 
 
 .decksbuttons button .arquetipo-image {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -341,8 +340,8 @@
   }
 
   .decksbuttons button .arquetipo-image {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
   }
 
@@ -365,8 +364,8 @@
   }
 
   .decksbuttons button .arquetipo-image {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin-right: 10px;
   }
 
