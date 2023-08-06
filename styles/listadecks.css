@@ -276,7 +276,7 @@
 
 .decksbuttons button {
   flex: 1 1 calc(20% - 2*10px); /* Cada botón ocupa 20% del ancho del grid, descontando el espacio entre ellos */
-  margin: 5px;
+  margin: 3px;
   padding: 1px;
   font-size: 16px;
   border-radius: 5px;
@@ -314,10 +314,14 @@
   display: flex;
 
   position:relative;
-  top: -16px;
+
+/*  top: -16px;
   right: -68px;
-  width: 2.6em;
-  padding: 0 5px; /* Ajusta el espacio entre el icono y el borde derecho del botón */
+  width: 2.6em; */
+  top: -6px;
+  right: -8px;
+  width: 2em;
+
 }
 
 
@@ -325,7 +329,8 @@
 @media (max-width: 600px) {
 
   .deck-icon-new{
-    right: -18px;
+  /*  right: -18px; */
+  height: 60%;
   }
 
   .decksbuttons {
