@@ -231,7 +231,7 @@ function DeckButtons({ filteredDecks }) {
         </div>
        
         {archetype} ({groupedDecks[archetype]})
-        {isDeckToday && <img src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1691297195/iconos%20dlp/new_icon_vkkkix.png" alt="Icono Deck Hoy" className="deck-icon-new" />}
+    {/* {isDeckToday && <img src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1691297195/iconos%20dlp/new_icon_vkkkix.png" alt="Icono Deck Hoy" className="deck-icon-new" />} */}   
       </button>
     );
   }
