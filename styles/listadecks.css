@@ -327,12 +327,6 @@
 
 /* Media query para móviles */
 @media (max-width: 600px) {
-
-  .deck-icon-new{
-  /*  right: -18px; */
- /* height: 60%; */
-  }
-
   .decksbuttons {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Los botones se ajustan automáticamente al ancho de la pantalla */
   }
