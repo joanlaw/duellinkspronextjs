@@ -380,8 +380,8 @@ width: 2em;
 @media (max-width: 600px) {
   .count-deck {
     position: absolute;
-    top: -1px; /* Ajustamos esta posición según lo desees */
-    left: 160px; /* Ajustamos esta posición según lo desees */
+    top: 1px; /* Ajustamos esta posición según lo desees */
+    left: 155px; /* Ajustamos esta posición según lo desees */
     font-size: 10px; /* Ajusta el tamaño del número */
   }
 
