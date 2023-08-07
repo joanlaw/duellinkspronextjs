@@ -326,35 +326,34 @@ right: -8px;
 width: 2em;
 
 }
-.new-deck {
-position: relative; /* Añade esta línea para que el posicionamiento funcione */
+/* Estilo para el efecto "New" */
+.deck-button {
+  position: relative; /* Agregamos posicionamiento relativo al botón padre */
 }
 
-/* Estilo para el efecto "New" */
-/* Estilo para el efecto "New" */
-.new-deck::after {
-content: "New"; /* Texto "New" que se mostrará con la animación */
-position: absolute;
-top: -5px; /* Ajusta esta posición según lo desees */
-right: -100px; /* Ajusta esta posición según lo desees */
-background: linear-gradient(45deg, #FF0000, #FFA500); /* Fondo degradado en tonos de rojo */
-color: #fff; /* Color del texto */
-padding: 2px 6px; /* Ajusta el tamaño del "New" */
-border-radius: 5px;
-opacity: 1; /* Comienza con opacidad 1 para que siempre esté visible */
-transform: scale(0.8); /* Ajusta el tamaño del "New" */
-animation: pulseEffect 2s infinite, shadowEffect 2s infinite; /* Agrega la animación de pulso y sombra */
-box-shadow: 0 0 5px rgba(255, 165, 0, 0.7); /* Añade una sombra con color naranja */
+.new-deck {
+  content: "New";
+  position: absolute;
+  bottom: -5px; /* Ajustamos esta posición según lo desees */
+  right: -5px; /* Ajustamos esta posición según lo desees */
+  background: linear-gradient(45deg, #FF0000, #FFA500);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 5px;
+  opacity: 1;
+  transform: scale(3);
+  animation: pulseEffect 2s infinite, shadowEffect 2s infinite;
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
 }
 
 /* Definición de la animación de pulso */
 @keyframes pulseEffect {
-0%, 100% {
-  transform: scale(0.8); /* Estado inicial y final (sin cambios) */
-}
-50% {
-  transform: scale(1); /* Escala al 100% a la mitad de la animación */
-}
+  0%, 100% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
 }
 
 /* Definición de la animación de sombra */

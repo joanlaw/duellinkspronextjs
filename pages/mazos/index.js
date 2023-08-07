@@ -224,15 +224,15 @@ function DeckButtons({ filteredDecks }) {
     const archetype = sortedDeckGroups[i][0];
     const isDeckToday = filteredDecks.some(deck => deck.arquetipo === archetype && moment(deck.createdAt).isSame(moment(), 'day'));
     buttons.push(
-      <button className={`deck-button ${isDeckToday ? 'with-icon' : ''}`} key={archetype} onClick={() => setFiltro({ ...filtro, arquetipo: archetype })}>
-        
-        <div className="arquetipo-image">
-          <ImageCard data={{ arquetipo: archetype }} archetypes={archetypes} />
-        </div>
-       
-        {archetype} ({groupedDecks[archetype]})
-        {isDeckToday && <div className="new-deck"></div>}
-      </button>
+<button className={`deck-button ${isDeckToday ? 'with-icon' : ''}`} key={archetype} onClick={() => setFiltro({ ...filtro, arquetipo: archetype })}>
+  {isDeckToday && <div className="new-deck">New</div>}
+  
+  <div className="arquetipo-image">
+    <ImageCard data={{ arquetipo: archetype }} archetypes={archetypes} />
+  </div>
+
+  {archetype} ({groupedDecks[archetype]})
+</button>
     );
   }
 
