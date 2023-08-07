@@ -346,6 +346,16 @@ width: 2em;
   box-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
 }
 
+.count-deck {
+  position: absolute;
+  top: -2px; /* Ajustamos esta posición según lo desees */
+  left: 230px; /* Ajustamos esta posición según lo desees */
+  background-color: transparent;
+  color: #000;
+  font-size: 15px; /* Ajusta el tamaño del número */
+  font-weight: bold; /* Peso del texto en negrita */
+}
+
 /* Definición de la animación de pulso */
 @keyframes pulseEffect {
   0%, 100% {
@@ -368,6 +378,12 @@ width: 2em;
 
 /* Media query para móviles */
 @media (max-width: 600px) {
+  .count-deck {
+    position: absolute;
+    top: -1px; /* Ajustamos esta posición según lo desees */
+    left: 160px; /* Ajustamos esta posición según lo desees */
+    font-size: 10px; /* Ajusta el tamaño del número */
+  }
 
 .new-deck::after{
   right: -80px; /* Ajusta esta pos  ición según lo desees */
