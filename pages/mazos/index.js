@@ -345,7 +345,7 @@ export default function Index() {
           <option value="Rey de duelos">Rey de duelos</option>
           <option value="Ensalada">Ensalada</option>
           <option value="Fun">Fun</option>
-          <option value="Fun">Farmeo</option>
+          <option value="Farmeo">Farmeo</option>
         </select>
       </div>
       <div className="container">
