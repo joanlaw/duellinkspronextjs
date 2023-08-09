@@ -76,25 +76,28 @@ function Clusters() {
       <h2>Últimos articulos y videos</h2>
       <div className="container d-flex justify-content-center align-items-center h-100">
         <div className="row">
-          {videos?.slice(0, resultsToShow).map(({ titulo, banner_video, _id }) => (
-            <div className="col-md-4" key={_id}>
-              <Link href={`/videos/${encodeURIComponent(titulo)}`}>
-                <a>
-                  <div className="card text-center bg-dark animate__animated animate__fadeInUp">
-                    <div className="overflow">
-                      <img src={banner_video} alt="a wallpaper" className="card-img-top" />
-                    </div>
-                    <div className="">
-                      <h4 className="card-title">{titulo}</h4>
-                      <p className="badge-container">
-                        {/*<span className="badge bg-danger">{link_video}</span>*/}
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </Link>
+        {videos
+    .slice(-resultsToShow)
+    .reverse()
+    .map(({ titulo, banner_video, _id }) => (
+      <div className="col-md-4" key={_id}>
+        <Link href={`/videos/${encodeURIComponent(titulo)}`}>
+          <a>
+            <div className="card text-center bg-dark animate__animated animate__fadeInUp">
+              <div className="overflow">
+                <img src={banner_video} alt="a wallpaper" className="card-img-top" />
+              </div>
+              <div className="">
+                <h4 className="card-title">{titulo}</h4>
+                <p className="badge-container">
+                  {/*<span className="badge bg-danger">{link_video}</span>*/}
+                </p>
+              </div>
             </div>
-          )).reverse()}
+          </a>
+        </Link>
+      </div>
+    ))}
         </div>
       </div>
       {/* Botón "Mostrar Más" */}

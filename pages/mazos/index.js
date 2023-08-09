@@ -378,12 +378,12 @@ export default function Index() {
             </tr>
           </thead>
           <tbody>
-            {elementosFiltrados
-              .slice(
-                elementosFiltrados.length - resultsToShow,
-                elementosFiltrados.length
-              )
-              .map((element) => (
+          {elementosFiltrados
+    .slice(
+      Math.max(elementosFiltrados.length - resultsToShow, 0),
+      elementosFiltrados.length
+    )
+    .map((element) => (
                 <tr
                   key={element._id}
                   onClick={() => router.push(`/mazos/${element._id}`)}
