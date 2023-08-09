@@ -181,6 +181,19 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
         ))}
       </div>
 
+                            {/* Agregar el botón bonito con enlace al deck */}
+                            {deckData && (
+        <div className="link_deck">
+          <a
+            href={deckData.link_deck}
+            target="_blank"  // Esta línea hace que se abra en una nueva pestaña
+            rel="noopener noreferrer"
+            className="button-link"
+          >
+            Copiar Deck
+          </a>
+        </div>
+      )}
 <h3>Otros decks</h3>
 
 </div>
@@ -225,6 +238,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
 
     </div>
   )}
+
 </div>
 <Footer />
 

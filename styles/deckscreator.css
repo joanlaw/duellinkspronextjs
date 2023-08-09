@@ -398,3 +398,26 @@ margin-bottom: 0.5rem;
 }
 
 
+/* Estilos para el botón bonito */
+.link_deck {
+  display: grid;
+  width: 50%;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.button-link {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  background-color: #0056b3; /* Cambiar el color en hover */
+  transform: scale(1.05); /* Hacer que el botón se agrande un poco al pasar el mouse */
+}
