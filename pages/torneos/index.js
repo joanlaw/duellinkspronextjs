@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CountdownTimer from '../../components/CountdownTimer';
 
-export default function torneos() {
+export default function Torneos() {
     const [leagues, setLeagues] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
