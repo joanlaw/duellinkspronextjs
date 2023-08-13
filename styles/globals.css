@@ -75,3 +75,21 @@ td {
     background: black;
   }
 }
+
+
+/*ESTILOS PARA EL RELOJ CUENTA REGRESIVA*/
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-item {
+  margin: 0 10px;
+  text-align: center;
+}
+
+.countdown-number {
+  font-size: 2em;
+  font-weight: bold;
+}
