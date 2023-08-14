@@ -24,22 +24,22 @@ function Header() {
 	  };
 
 	  useEffect(() => {
-		const authenticated = Cookies.get("authenticated"); // Obtén el valor de la cookie de autenticación
-		console.log("Authenticated:", authenticated); // Imprime el valor de la cookie
+		const authenticatedCookie = document.cookie.split(";").find(cookie => cookie.includes("authenticated"));
+		const authenticated = authenticatedCookie ? authenticatedCookie.split("=")[1].trim() : undefined;
+		console.log("Authenticated:", authenticated);
 	
-		if (authenticated === 'true') {
-			fetch("https://api.duellinks.pro/get-user-info/")
-				.then((response) => response.json())
-				.then((data) => {
-					console.log("User info response:", data);
-					setUserImage(data.authenticated ? data.image : null);
-				})
-				.catch((error) => {
-					console.error("Error fetching user info:", error);
-				});
+		if (authenticated === "true") {
+		  fetch("https://api.duellinks.pro/get-user-info/")
+			.then((response) => response.json())
+			.then((data) => {
+			  console.log("User info response:", data);
+			  setUserImage(data.authenticated ? data.image : null);
+			})
+			.catch((error) => {
+			  console.error("Error fetching user info:", error);
+			});
 		}
-	}, []);
-	
+	  }, []);
   
 	  return (
 		<header>
