@@ -94,11 +94,32 @@ td {
   font-weight: bold;
 }
 
+/* Estilos para el botón de login */
 .login-button {
-  border: 2px solid #000; /* Define el color del borde */
-  padding: 5px 10px;
-  margin-left: auto; /* Alinea el botón a la derecha */
-  display: block; /* Si es necesario */
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  text-align: center;
 }
+
+.login-button:hover {
+  background-color: #2980b9;
+}
+
+/* Estilos para la imagen de usuario */
+.user-image {
+  width: 40px; /* Ajusta el ancho según tus preferencias */
+  height: 40px; /* Ajusta la altura según tus preferencias */
+  border-radius: 50%; /* Esto crea una forma circular para la imagen */
+  margin-right: 10px; /* Añade margen a la derecha para separar la imagen del contenido */
+}
+
+/* Estilos para la navegación responsive */
+.responsive_nav {
+  display: block;
+}
+
+/* Resto de tus estilos */
+
