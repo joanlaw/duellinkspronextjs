@@ -76,6 +76,16 @@ nav {
 		z-index: 3;
 	}
 
+	nav .login-button {
+        display: block; /* Asegura que el botón de inicio de sesión se muestre como bloque */
+    }
+
+    /* Estilos para la imagen de usuario en el menú móvil */
+    nav .user-image {
+        display: block; /* Asegura que la imagen de usuario se muestre como bloque */
+    }
+
+
 	header .responsive_nav {
 		transform: none;
        
@@ -92,13 +102,6 @@ nav {
 		font-size: 1.5rem;
 	}
 }
-
-
-/* Estilos para la navegación responsive */
-.responsive_nav {
-	display: block;
-  }
-  
   /* Estilos para la imagen de usuario */
   .user-image {
 	width: 50px; /* Ajusta el ancho según tus preferencias */
@@ -109,7 +112,7 @@ nav {
   
   /* Estilos para el botón de login */
   .login-button {
-	background-color: #3498db;
+	background-color: #5093bc;
 	color: white;
 	border: none;
 	padding: 10px 20px;
@@ -122,3 +125,28 @@ nav {
   }
   
   /* Resto de tus estilos */
+
+  /* Asegúrate de que el botón de inicio de sesión y la imagen de usuario tengan los mismos estilos para el menú móvil */
+nav .login-button,
+nav .user-image {
+    font-size: 1.5rem;
+    margin-top: 1.5rem; /* Ajusta el margen según tus necesidades */
+    color: var(--textColor); /* Asegura que el color del texto sea visible */
+    text-decoration: none; /* Quita la decoración de enlace si es necesario */
+}
+
+/* Estilos para el botón de inicio de sesión en el menú móvil */
+nav .login-button {
+    font-size: 1rem; /* Ajusta el tamaño de fuente según tus necesidades */
+    margin-top: 1rem; /* Agrega espacio en la parte superior para separar del menú */
+    padding: 8px 16px; /* Ajusta el padding para controlar el tamaño del botón */
+}
+
+/* Estilos para la imagen de usuario en el menú móvil */
+nav .user-image {
+    width: 30px; /* Ajusta el ancho según tus preferencias */
+    height: 30px; /* Ajusta la altura según tus preferencias */
+    margin-left: 8px; /* Ajusta el margen izquierdo para separar la imagen */
+}
+
+

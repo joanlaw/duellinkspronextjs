@@ -47,7 +47,7 @@ function Header() {
 	  return (
 		<header>
 		  <div className='container'>
-			<Link href='/' className="navbar-brand"><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="60" ></img></a></Link>
+			<Link href='/' className="navbar-brand"><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="70" ></img></a></Link>
 			<div className="container d-flex align-items-center">
 			  <nav ref={navRef}>
 				<Link href="/cards"><a>CARTAS</a></Link>
@@ -59,12 +59,14 @@ function Header() {
 				  <FaTimes />
 				</button>
 			  </nav>
-			  {userImage ? (
-  <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
-) : (
-  <button className="login-button" onClick={handleLogin}>LOGIN</button>
-)}
-
+                {/* Mueve user-image dentro del nav */}
+                <nav className="d-none d-md-block">
+                    {userImage ? (	
+                        <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
+                    ) : (
+                        <button className="login-button" onClick={handleLogin}>LOGIN</button>
+                    )}
+                </nav>
 			</div>
 		  </div>
 		  <button className="nav-btn" onClick={showNavbar}>
