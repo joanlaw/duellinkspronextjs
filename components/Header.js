@@ -27,7 +27,9 @@ function Header() {
 		const cookies = parse(document.cookie);
 		console.log("Cookies:", cookies);
 	  
-		fetch("https://api.duellinks.pro/get-user-info/")
+		fetch("https://api.duellinks.pro/get-user-info/", {
+			credentials: 'include'
+		})
 		  .then((response) => {
 			console.log("Response headers:", response.headers); // Verificar los headers de la respuesta
 			return response.json();
