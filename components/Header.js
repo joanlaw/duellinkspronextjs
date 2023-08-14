@@ -60,7 +60,7 @@ function Header() {
 				</button>
 			  </nav>
 			  {userImage ? (
-  <img src={userImage} alt="User" className="user-image" />
+  <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
 ) : (
   <button className="login-button" onClick={handleLogin}>LOGIN</button>
 )}
