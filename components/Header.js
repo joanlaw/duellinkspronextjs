@@ -25,14 +25,21 @@ function Header() {
 	  useEffect(() => {
 		const cookies = parse(document.cookie);
 		console.log("Cookies:", cookies);
-	
+	  
 		fetch("https://api.duellinks.pro/get-user-info/")
-		  .then((response) => response.json())
+		  .then((response) => {
+			console.log("Response headers:", response.headers); // Verificar los headers de la respuesta
+			return response.json();
+		  })
 		  .then((data) => {
-			console.log("User info response:", data);
+			console.log("User info response:", data); // Verificar la respuesta del servidor
 			setUserImage(data.authenticated ? data.image : null);
+		  })
+		  .catch((error) => {
+			console.error("Error fetching user info:", error); // Verificar si hay errores en la llamada fetch
 		  });
 	  }, []);
+	  
   
 	  return (
 		<header>
