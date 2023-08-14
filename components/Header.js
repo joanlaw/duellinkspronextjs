@@ -21,7 +21,7 @@ function Header() {
 		window.location.href = "https://api.duellinks.pro/login";
 	  };
 	  useEffect(() => {
-		fetch("/https://api.duellinks.pro/get-user-info") // Cambia la ruta según cómo hayas definido tu ruta en el backend
+		fetch("/https://api.duellinks.pro/get-user-image") // Cambia la ruta según cómo hayas definido tu ruta en el backend
 		  .then((response) => response.json())
 		  .then((data) => {
 			setUserImage(data.authenticated ? data.image : null);
