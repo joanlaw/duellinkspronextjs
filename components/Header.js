@@ -47,7 +47,7 @@ function Header() {
 	  return (
 		<header>
 		  <div className='container'>
-			<Link href='/' className="navbar-brand"><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="70" ></img></a></Link>
+			<Link href='/' className="navbar-brand"><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="60" ></img></a></Link>
 			<div className="container d-flex align-items-center">
 			  <nav ref={navRef}>
 				<Link href="/cards"><a>CARTAS</a></Link>
