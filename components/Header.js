@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 //import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { parse } from 'cookie'; // Importa parse de la librería 'cookie'
+import Cookies from "js-cookie"; // Importa la biblioteca js-cookie
 
 function Header() {
 
@@ -23,22 +24,20 @@ function Header() {
 	  };
 
 	  useEffect(() => {
-		const cookies = parse(document.cookie);
-		console.log("Cookies:", cookies);
-	  
-		fetch("https://api.duellinks.pro/get-user-info/")
-		  .then((response) => {
-			console.log("Response headers:", response.headers); // Verificar los headers de la respuesta
-			return response.json();
-		  })
-		  .then((data) => {
-			console.log("User info response:", data); // Verificar la respuesta del servidor
-			setUserImage(data.authenticated ? data.image : null);
-		  })
-		  .catch((error) => {
-			console.error("Error fetching user info:", error); // Verificar si hay errores en la llamada fetch
-		  });
-	  }, []);
+		const authenticated = Cookies.get("authenticated"); // Obtén el valor de la cookie de autenticación
+
+		if (authenticated === 'true') {
+			fetch("https://api.duellinks.pro/get-user-info/")
+				.then((response) => response.json())
+				.then((data) => {
+					console.log("User info response:", data);
+					setUserImage(data.authenticated ? data.image : null);
+				})
+				.catch((error) => {
+					console.error("Error fetching user info:", error);
+				});
+		}
+	}, []);
 	  
   
 	  return (
@@ -57,11 +56,10 @@ function Header() {
 				</button>
 			  </nav>
 			  {userImage ? (
-  <img src={userImage} alt="User" className="user-image" />
-) : (
-  <button className="login-button" onClick={handleLogin}>LOGIN</button>
-)}
-
+						<img src={userImage} alt="User" className="user-image" />
+					) : (
+						<button className="login-button" onClick={handleLogin}>LOGIN</button>
+					)}
 			</div>
 		  </div>
 		  <button className="nav-btn" onClick={showNavbar}>
