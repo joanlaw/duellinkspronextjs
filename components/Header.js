@@ -63,11 +63,27 @@ function Header() {
 				<div className="container d-flex justify-content-end align-items-start">
 				<nav className="d-none d-md-block">
 
-        {userImage ? (	
-            <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
-        ) : (
-            <button className="login-button" onClick={handleLogin}>LOGIN</button>
-        )}
+				{userImage ? (
+  <Link href="/user">
+    <a>
+      <img
+        src={userImage}
+        alt="User"
+        className="user-image"
+        style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          marginRight: '10px',
+        }}
+      />
+    </a>
+  </Link>
+) : (
+  <button className="login-button" onClick={handleLogin}>
+    LOGIN
+  </button>
+)}
 
 </nav>
 </div>

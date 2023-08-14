@@ -123,6 +123,7 @@ nav {
 	height: 50px; /* Ajusta la altura según tus preferencias */
 	border-radius: 50%; /* Esto crea una forma circular para la imagen */
 	margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido */
+	cursor: pointer;
   }
   
   /* Estilos para el botón de login */
@@ -166,12 +167,6 @@ nav .user-image {
     margin-left: 8px; /* Ajusta el margen izquierdo para separar la imagen */
 }
 
-/* Centra horizontalmente los elementos dentro del nav */
-.nav-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 
