@@ -25,7 +25,8 @@ function Header() {
 
 	  useEffect(() => {
 		const authenticated = Cookies.get("authenticated"); // Obtén el valor de la cookie de autenticación
-
+		console.log("Authenticated:", authenticated); // Imprime el valor de la cookie
+	
 		if (authenticated === 'true') {
 			fetch("https://api.duellinks.pro/get-user-info/")
 				.then((response) => response.json())
@@ -38,7 +39,7 @@ function Header() {
 				});
 		}
 	}, []);
-	  
+	
   
 	  return (
 		<header>
