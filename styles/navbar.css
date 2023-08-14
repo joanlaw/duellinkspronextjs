@@ -127,13 +127,15 @@ nav {
   /* Resto de tus estilos */
 
   /* Asegúrate de que el botón de inicio de sesión y la imagen de usuario tengan los mismos estilos para el menú móvil */
-nav .login-button,
-nav .user-image {
-    font-size: 1.5rem;
-    margin-top: 1.5rem; /* Ajusta el margen según tus necesidades */
-    color: var(--textColor); /* Asegura que el color del texto sea visible */
-    text-decoration: none; /* Quita la decoración de enlace si es necesario */
-}
+  nav .login-button,
+  nav .user-image {
+	  font-size: 1.5rem;
+	  color: var(--textColor);
+	  text-decoration: none;
+	  display: block; /* Cambia a display: block para centrar verticalmente */
+	  margin: 1rem auto; /* Márgenes para centrar vertical y horizontalmente */
+	  text-align: center; /* Centra el texto horizontalmente */
+  }
 
 /* Estilos para el botón de inicio de sesión en el menú móvil */
 nav .login-button {
