@@ -10,7 +10,9 @@ body {
 }
 
 .container {
-  max-width: 100%; /* Reducir el ancho del contenedor al 90% */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
 }
 
@@ -94,6 +96,19 @@ td {
   font-weight: bold;
 }
 
+/* Estilos para la navegación responsive */
+.responsive_nav {
+  display: block;
+}
+
+/* Estilos para la imagen de usuario */
+.user-image {
+  width: 40px; /* Ajusta el ancho según tus preferencias */
+  height: 40px; /* Ajusta la altura según tus preferencias */
+  border-radius: 50%; /* Esto crea una forma circular para la imagen */
+  margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido */
+}
+
 /* Estilos para el botón de login */
 .login-button {
   background-color: #3498db;
@@ -108,15 +123,4 @@ td {
   background-color: #2980b9;
 }
 
-/* Estilos para la imagen de usuario */
-.user-image {
-  width: 40px; /* Ajusta el ancho según tus preferencias */
-  height: 40px; /* Ajusta la altura según tus preferencias */
-  border-radius: 50%; /* Esto crea una forma circular para la imagen */
-  margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido */
-}
-
-/* Estilos para la navegación responsive */
-.responsive_nav {
-  display: block;
-}
+/* Resto de tus estilos */
