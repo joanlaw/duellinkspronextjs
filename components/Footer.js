@@ -29,8 +29,9 @@ function Footer() {
                 <br />
                 <Link href="/crear-deck" ><a>CREAR DECK</a></Link> */} 
                 <p>CONTACTO</p>
-                <p>POLÍTICA DE PRIVACIDAD</p>
-                <p>PANEL</p>
+               <Link to href="/politica-de-privacidad" ><a>POLÍTICA DE PRIVACIDAD</a></Link>
+               <p></p>
+                <a href="https://panel.duellinks.pro/" target="_blank" rel="noopener noreferrer">PANEL</a>
             </div>
             <div className='box'>
                 <h2>SÍGUENOS</h2>
