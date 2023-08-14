@@ -12,7 +12,7 @@ export default function Torneos() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://backend-dlp-neuronube.koyeb.app/leagues');
+                const response = await axios.get('https://api.duellinks.pro/leagues');
                 
                 // Verificar que docs existe
                 if (response.data && Array.isArray(response.data.docs)) {

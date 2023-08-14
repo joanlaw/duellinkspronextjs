@@ -93,3 +93,12 @@ td {
   font-size: 2em;
   font-weight: bold;
 }
+
+.login-button {
+  border: 2px solid #000; /* Define el color del borde */
+  padding: 5px 10px;
+  margin-left: auto; /* Alinea el botón a la derecha */
+  display: block; /* Si es necesario */
+  cursor: pointer;
+  text-align: center;
+}
