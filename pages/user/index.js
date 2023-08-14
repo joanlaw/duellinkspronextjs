@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { parse } from 'cookie';
-import Header from '../../components/Header'; // Asegúrate de importar el Header correcto
+import Header from '../../components/Header';
 import Link from 'next/link';
+import Footer from '../../components/Footer';
 
 function UserPage() {
   const [userData, setUserData] = useState(null);
@@ -24,6 +25,7 @@ function UserPage() {
   return (
     <div>
       <Header /> {/* Asegúrate de que esto esté correctamente enlazado */}
+      <div className='container'>
       <h1>User Profile</h1>
       {userData ? (
         <div>
@@ -45,6 +47,8 @@ function UserPage() {
       <Link href="/">
         <a>Back to Home</a>
       </Link>
+      </div>
+      <Footer />
     </div>
   );
 }
