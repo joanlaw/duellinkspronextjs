@@ -103,8 +103,8 @@ td {
 
 /* Estilos para la imagen de usuario */
 .user-image {
-  width: 40px; /* Ajusta el ancho según tus preferencias */
-  height: 40px; /* Ajusta la altura según tus preferencias */
+  width: 50px; /* Ajusta el ancho según tus preferencias */
+  height: 50px; /* Ajusta la altura según tus preferencias */
   border-radius: 50%; /* Esto crea una forma circular para la imagen */
   margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido */
 }
