@@ -35,18 +35,22 @@ export default function Torneos() {
         <>
             <Header />
             <div className='container'>
-                <br />
-                <h1>Torneos</h1>
-                <div>
-                    {leagues.map(league => (
-                        <div key={league?._id}>
-                            <h2>{league?.league_name}</h2>
-                            {league?.start_date && <CountdownTimer targetDate={league.start_date} />}
-                            {/* Puedes agregar otros detalles del torneo aquí */}
-                        </div>
-                    ))}
-                </div>
+    <h1>Torneos</h1>
+    <div className='tournament-card-container-grid'>
+        {leagues.map(league => (
+            <div className='tournament-card' key={league?._id}>
+                <h2 className='tournament-name'>{league?.league_name}</h2>
+                <div className='divider'></div> {/* Línea divisoria */}
+                {league?.start_date && <CountdownTimer targetDate={league.start_date} className='countdown-timer' />}
+                {/* Puedes agregar otros detalles del torneo aquí */}
+                <p>Esta será una descripción de prueba del torneo.</p>
             </div>
+        ))}
+    </div>
+</div>
+
+
+
             <Footer />
         </>
     );

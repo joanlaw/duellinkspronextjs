@@ -83,6 +83,7 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .countdown-item {
@@ -91,6 +92,42 @@ td {
 }
 
 .countdown-number {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
+  
 }
+
+.tournament-card-container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
+  gap: 30px; /* Ajusta el valor del gap según tus preferencias */
+  justify-items: center; /* Centra horizontalmente dentro del grid */
+}
+
+.tournament-card {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Primera fila se ajusta automáticamente, segunda toma el resto */
+  background-color: #090909;
+  padding: 20px;
+  border: 1px solid #ccc;
+  text-align: center; /* Centra verticalmente el contenido */
+}
+
+.tournament-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.countdown-timer {
+  font-size: 10px;
+}
+
+.divider {
+  width: 50%;
+  height: 2px;
+  background-color: #ccc;
+  margin: 10px auto; /* Centra horizontalmente */
+}
+
+

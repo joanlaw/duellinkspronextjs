@@ -24,13 +24,15 @@ function Footer() {
                 </figure>
             </div>
             <div className='box redesfooter '>
-                <h2>PÁGINAS LOCALES</h2>
+                <h2>PÁGINAS IMPORTANTES</h2>
            {/*    <Link href="/agregar" ><a>AGREGAR CARTA</a></Link>
                 <br />
                 <Link href="/crear-deck" ><a>CREAR DECK</a></Link> */} 
                 <Link to href="/contacto" ><a>CONTACTO</a></Link>
                 <p></p>
                <Link to href="/politica-de-privacidad" ><a>POLÍTICA DE PRIVACIDAD</a></Link>
+               <p></p>
+               <Link to href="/politica-de-cookies" ><a>POLÍTICA DE COOKIES</a></Link>
                <p></p>
                 <a href="https://panel.duellinks.pro/" target="_blank" rel="noopener noreferrer">PANEL</a>
             </div>
