@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 //import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { parse } from 'cookie'; // Importa parse de la librería 'cookie'
 
 function Header() {
 
