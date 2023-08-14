@@ -24,16 +24,15 @@ function Header() {
 
 	  useEffect(() => {
 		const cookies = parse(document.cookie);
-		console.log("Cookies:", cookies); // Verifica las cookies aquí
+		console.log("Cookies:", cookies);
 	
 		fetch("https://api.duellinks.pro/get-user-info/")
 		  .then((response) => response.json())
 		  .then((data) => {
-			console.log("User info response:", data); // Verifica la respuesta del servidor
+			console.log("User info response:", data);
 			setUserImage(data.authenticated ? data.image : null);
 		  });
 	  }, []);
-	  
   
 	  return (
 		<header>
@@ -51,10 +50,11 @@ function Header() {
 				</button>
 			  </nav>
 			  {userImage ? (
-            <img src={userImage} alt="User" className="user-image" />
-          ) : (
-            <button className="login-button" onClick={handleLogin}>LOGIN</button>
-          )}
+  <img src={userImage} alt="User" className="user-image" />
+) : (
+  <button className="login-button" onClick={handleLogin}>LOGIN</button>
+)}
+
 			</div>
 		  </div>
 		  <button className="nav-btn" onClick={showNavbar}>
