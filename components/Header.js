@@ -51,8 +51,8 @@ function Header() {
 			<div className="container d-flex align-items-center">
 			  <nav ref={navRef}>
 				<Link href="/cards"><a>CARTAS</a></Link>
-				<Link href="/decks-meta"><a>TIER LIST</a></Link>
-				<Link href="/mazos"><a>DECKS COMUNIDAD</a></Link>
+				<Link href="/decks-meta"><a>TIER</a></Link>
+				<Link href="/mazos"><a>DECKS</a></Link>
 				<Link href="/torneos"><a>TORNEOS</a></Link>
 				<Link href="/blogs"><a>BLOG</a></Link>
 				<button className="nav-btn nav-close-btn" onClick={showNavbar}>
@@ -60,15 +60,17 @@ function Header() {
 				</button>
 			  </nav>
                 {/* Mueve user-image dentro del nav */}
+				<div className="container d-flex justify-content-end align-items-start">
 				<nav className="d-none d-md-block">
-    <div className="nav-right">
+
         {userImage ? (	
             <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
         ) : (
             <button className="login-button" onClick={handleLogin}>LOGIN</button>
         )}
-    </div>
+
 </nav>
+</div>
 
 			</div>
 		  </div>
