@@ -22,10 +22,8 @@ function Header() {
 	const handleLogin = () => {
 		window.location.href = "https://api.duellinks.pro/login";
 	  };
-
 	  useEffect(() => {
-		const authenticatedCookie = document.cookie.split(";").find(cookie => cookie.includes("authenticated"));
-		const authenticated = authenticatedCookie ? authenticatedCookie.split("=")[1].trim() : undefined;
+		const authenticated = Cookies.get("authenticated");
 		console.log("Authenticated:", authenticated);
 	
 		if (authenticated === "true") {
