@@ -20,10 +20,15 @@ function Header() {
 	const handleLogin = () => {
 		window.location.href = "https://api.duellinks.pro/login";
 	  };
+
 	  useEffect(() => {
-		fetch("/https://api.duellinks.pro/get-user-image") // Cambia la ruta según cómo hayas definido tu ruta en el backend
+		const cookies = parse(document.cookie);
+		console.log("Cookies:", cookies); // Verifica las cookies aquí
+	
+		fetch("https://api.duellinks.pro/get-user-info/")
 		  .then((response) => response.json())
 		  .then((data) => {
+			console.log("User info response:", data); // Verifica la respuesta del servidor
 			setUserImage(data.authenticated ? data.image : null);
 		  });
 	  }, []);
@@ -45,10 +50,10 @@ function Header() {
 				</button>
 			  </nav>
 			  {userImage ? (
-				<img src={userImage} alt="User" className="user-image" />
-			  ) : (
-				<button className="login-button" onClick={handleLogin}>LOGIN</button>
-			  )}
+            <img src={userImage} alt="User" className="user-image" />
+          ) : (
+            <button className="login-button" onClick={handleLogin}>LOGIN</button>
+          )}
 			</div>
 		  </div>
 		  <button className="nav-btn" onClick={showNavbar}>
