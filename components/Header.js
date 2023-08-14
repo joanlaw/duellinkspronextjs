@@ -60,13 +60,16 @@ function Header() {
 				</button>
 			  </nav>
                 {/* Mueve user-image dentro del nav */}
-                <nav className="d-none d-md-block">
-                    {userImage ? (	
-                        <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
-                    ) : (
-                        <button className="login-button" onClick={handleLogin}>LOGIN</button>
-                    )}
-                </nav>
+				<nav className="d-none d-md-block">
+    <div className="nav-right">
+        {userImage ? (	
+            <img src={userImage} alt="User" className="user-image" style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }} />
+        ) : (
+            <button className="login-button" onClick={handleLogin}>LOGIN</button>
+        )}
+    </div>
+</nav>
+
 			</div>
 		  </div>
 		  <button className="nav-btn" onClick={showNavbar}>

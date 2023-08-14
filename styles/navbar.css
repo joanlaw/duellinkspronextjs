@@ -5,6 +5,15 @@
 	font-family: "Titillium Web", sans-serif; 
   /*  font-weight: 500; */
 }
+/* Estilos para alinear elementos a la derecha */
+/* Estilos para alinear elementos a la derecha */
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Esto empujará los elementos a la derecha */
+}
+
+
 
 :root {
 	--mainColor: #0a141d;
@@ -13,6 +22,12 @@
 	--textColor: #d6f7fb;
    
 }
+
+.container-new{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }
 
 header {
 	display: flex;
