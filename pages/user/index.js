@@ -3,9 +3,12 @@ import { parse } from 'cookie';
 import Header from '../../components/Header';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+import LeaguesComponent from '../../components/LeaguesComponent';
 
 function UserPage() {
   const [userData, setUserData] = useState(null);
+  const [showLeagues, setShowLeagues] = useState(false); // Controla la visibilidad del componente
+
 
   useEffect(() => {
     const cookies = parse(document.cookie);
@@ -44,9 +47,13 @@ function UserPage() {
             )}
             
             <div className='list-group mt-4'>
-              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
-                Menú 1
-              </a>
+            <button
+                className='list-group-item list-group-item-action'
+                onClick={() => setShowLeagues(!showLeagues)}
+                style={{ backgroundColor: '#5093bc', color: 'white' }}
+              >
+                Button 1
+              </button>
               <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
                 Menú 2
               </a>
@@ -80,7 +87,7 @@ function UserPage() {
           <div className='col-md-9'>
             <h1>User Profile</h1>
             {/* Aquí puedes colocar otros detalles del usuario */}
-
+            {showLeagues && <LeaguesComponent />} {/* Renderiza el componente si showLeagues es true */}
           </div>
         </div>
       </div>
