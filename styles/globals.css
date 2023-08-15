@@ -189,3 +189,15 @@ td {
     width: 100%;
   }
 }
+
+@media (max-width: 320px) {
+  .tournament-card-container-grid {
+    grid-template-columns: 1fr; /* Cambia a una sola columna */
+    justify-items: center; /* Centra horizontalmente las tarjetas */
+  }
+
+  .search-input,
+  .clear-button {
+    width: 100%;
+  }
+}
