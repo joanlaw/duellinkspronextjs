@@ -227,7 +227,7 @@ nav .user-image {
 	}
   
 	/* Estilos para el botón de inicio de sesión en versión móvil */
-	.login-button-container, .user-image {
+	.login-button-container {
 	  text-align: left; /* Alinea el botón a la izquierda */
 	  margin-left: 2rem; /* Agrega espacio al margen izquierdo */
 	}
@@ -235,4 +235,17 @@ nav .user-image {
 	/* ... (otros estilos existentes) ... */
   }
   
+  @media only screen and (max-width: 1024px) {
+	/* ... (otros estilos existentes) ... */
+  
+	/* Estilos para la imagen de usuario en versión móvil */
+	.user-image {
+	  width: 30px; /* Ajusta el ancho según tus preferencias */
+	  height: 30px; /* Ajusta la altura según tus preferencias */
+	  border-radius: 50%;
+	  margin-right: 1rem; /* Agrega espacio al margen derecho */
+	}
+  
+	/* ... (otros estilos existentes) ... */
+  }
 
