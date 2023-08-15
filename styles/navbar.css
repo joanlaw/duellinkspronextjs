@@ -227,7 +227,7 @@ nav .user-image {
 	}
   
 	/* Estilos para el botón de inicio de sesión en versión móvil */
-	.login-button-container {
+	.login-button-container, .user-image {
 	  text-align: left; /* Alinea el botón a la izquierda */
 	  margin-left: 2rem; /* Agrega espacio al margen izquierdo */
 	}
