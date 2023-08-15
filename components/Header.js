@@ -81,8 +81,8 @@ function Header() {
                 alt="User"
                 className="user-image"
                 style={{
-                  width: '30px', // Ajusta el tamaño según tus preferencias
-                  height: '30px', // Ajusta el tamaño según tus preferencias
+                  width: '50px', // Ajusta el tamaño según tus preferencias
+                  height: '50px', // Ajusta el tamaño según tus preferencias
                   borderRadius: '50%',
                 }}
               />
