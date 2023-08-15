@@ -72,27 +72,28 @@ function Header() {
       </button>
     </nav>
     {/* Mueve user-image dentro del nav */}
-    <nav className="d-none d-md-block">
-      {userImage ? (
-        <Link href="/user">
-          <a>
-            <img
-              src={userImage}
-              alt="User"
-              className="user-image"
-            />
-          </a>
-        </Link>
-      ) : null}
-    </nav>
-    {/* Agrega el botón de inicio de sesión fuera del menú */}
-    <div className="login-button-container">
-      {userImage ? null : (
-        <button className="login-button" onClick={handleLogin}>
-          LOGIN
-        </button>
-      )}
-    </div>
+	<div className="login-button-container">
+        {userImage ? (
+          <Link href="/user">
+            <a>
+              <img
+                src={userImage}
+                alt="User"
+                className="user-image"
+                style={{
+                  width: '30px', // Ajusta el tamaño según tus preferencias
+                  height: '30px', // Ajusta el tamaño según tus preferencias
+                  borderRadius: '50%',
+                }}
+              />
+            </a>
+          </Link>
+        ) : (
+          <button className="login-button" onClick={handleLogin}>
+            LOGIN
+          </button>
+        )}
+      </div>
   </div>
 </header>
 
