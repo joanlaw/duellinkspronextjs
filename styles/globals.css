@@ -168,11 +168,12 @@ td {
 
 @media (max-width: 768px) {
   .tournament-card-container-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Cambia a una sola columna */
+    justify-items: center; /* Centra horizontalmente las tarjetas */
   }
 
   .search-input,
   .clear-button {
-      width: 100%;
+    width: 100%;
   }
 }
