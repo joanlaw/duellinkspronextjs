@@ -45,55 +45,57 @@ function Header() {
 	  
   
 	  return (
-		<header>
-		  <div className='container'>
-			<Link href='/' className="navbar-brand"><a><img src='https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png' height="70" ></img></a></Link>
-			<div className="container d-flex align-items-center">
-			  <nav ref={navRef}>
-				<Link href="/cards"><a>CARTAS</a></Link>
-				<Link href="/decks-meta"><a>TIER</a></Link>
-				<Link href="/mazos"><a>DECKS</a></Link>
-				<Link href="/torneos"><a>TORNEOS</a></Link>
-				<Link href="/blogs"><a>BLOG</a></Link>
-				<button className="nav-btn nav-close-btn" onClick={showNavbar}>
-				  <FaTimes />
-				</button>
-			  </nav>
-                {/* Mueve user-image dentro del nav */}
-				<div className="container d-flex justify-content-end align-items-start">
-				<nav className="d-none d-md-block">
+<header>
+  <div className="container">
+    <div className="header-content">
+      <Link href="/" className="navbar-brand">
+        <a>
+          <img
+            src="https://res.cloudinary.com/dqofcbeaq/image/upload/q_auto/v1663790369/iconos%20dlp/ico-d01_kui7ic.png"
+            height="70"
+            alt="Logo"
+          />
+        </a>
+      </Link>
+      <button className="nav-btn" onClick={showNavbar}>
+        <FaBars />
+      </button>
+    </div>
+    <nav ref={navRef}>
+      <Link href="/cards"><a>CARTAS</a></Link>
+      <Link href="/decks-meta"><a>TIER</a></Link>
+      <Link href="/mazos"><a>DECKS</a></Link>
+      <Link href="/torneos"><a>TORNEOS</a></Link>
+      <Link href="/blogs"><a>BLOG</a></Link>
+      <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+        <FaTimes />
+      </button>
+    </nav>
+    {/* Mueve user-image dentro del nav */}
+    <nav className="d-none d-md-block">
+      {userImage ? (
+        <Link href="/user">
+          <a>
+            <img
+              src={userImage}
+              alt="User"
+              className="user-image"
+            />
+          </a>
+        </Link>
+      ) : null}
+    </nav>
+    {/* Agrega el botón de inicio de sesión fuera del menú */}
+    <div className="login-button-container">
+      {userImage ? null : (
+        <button className="login-button" onClick={handleLogin}>
+          LOGIN
+        </button>
+      )}
+    </div>
+  </div>
+</header>
 
-				{userImage ? (
-  <Link href="/user">
-    <a>
-      <img
-        src={userImage}
-        alt="User"
-        className="user-image"
-        style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          marginRight: '10px',
-        }}
-      />
-    </a>
-  </Link>
-) : (
-  <button className="login-button" onClick={handleLogin}>
-    LOGIN
-  </button>
-)}
-
-</nav>
-</div>
-
-			</div>
-		  </div>
-		  <button className="nav-btn" onClick={showNavbar}>
-			<FaBars />
-		  </button>
-		</header>
 	  );
 }
 

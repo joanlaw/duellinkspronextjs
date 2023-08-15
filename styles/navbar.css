@@ -168,5 +168,71 @@ nav .user-image {
 }
 
 
+/* Añade estos estilos a tu archivo HeaderStyles.css */
 
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 1024px) {
+	/* ... (otros estilos existentes) ... */
+  
+	/* Alinear elementos a la izquierda en la versión móvil */
+	.container-new {
+	  justify-content: flex-start;
+	}
+  
+	/* Alinear el botón de menú en la versión móvil */
+	header .nav-btn {
+	  margin-left: 1rem;
+	}
+  
+	/* Alinear el logotipo en la versión móvil */
+	.navbar-brand {
+	  margin-left: 1rem;
+	}
+  
+	/* Estilos para la barra de navegación en versión móvil */
+	header nav {
+	  /* ... (otros estilos existentes) ... */
+	  text-align: left; /* Alinea los enlaces a la izquierda */
+	}
+  
+	/* Estilos para la imagen de usuario en versión móvil */
+	nav .user-image {
+	  width: 30px;
+	  height: 30px;
+	  margin-left: 1rem; /* Ajusta el margen izquierdo */
+	}
+  
+	/* Estilos para el botón de inicio de sesión en versión móvil */
+	nav .login-button {
+	  /* ... (otros estilos existentes) ... */
+	  margin-left: 1rem; /* Ajusta el margen izquierdo */
+	}
+  }
+  
+  /* Estilos para dispositivos móviles */
+@media only screen and (max-width: 1024px) {
+	/* ... (otros estilos existentes) ... */
+  
+	/* Estilos para el menú en versión móvil */
+	.header-content {
+	  display: flex;
+	  align-items: center;
+	  justify-content: flex-end; /* Alinea el contenido a la derecha */
+	  padding: 1rem 0; /* Agrega un poco de espacio alrededor */
+	}
+  
+	.navbar-brand {
+	  flex: 1; /* Ocupa el espacio disponible */
+	  text-align: center; /* Centra el logo en el centro */
+	}
+  
+	/* Estilos para el botón de inicio de sesión en versión móvil */
+	.login-button-container {
+	  text-align: left; /* Alinea el botón a la izquierda */
+	  margin-left: 2rem; /* Agrega espacio al margen izquierdo */
+	}
+  
+	/* ... (otros estilos existentes) ... */
+  }
+  
 
