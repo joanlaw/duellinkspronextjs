@@ -178,22 +178,22 @@ td {
   }
 }
 
+/* Agrega estos estilos en tu archivo CSS */
+/* ... Tus estilos anteriores ... */
+
+/* Agrega estos estilos en tu archivo CSS */
+/* ... Tus estilos anteriores ... */
+
 @media (max-width: 375px) {
   .tournament-card-container-grid {
-    grid-template-columns: 1fr; /* Cambia a una sola columna */
-    justify-items: center; /* Centra horizontalmente las tarjetas */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra verticalmente */
   }
 
-  .search-input,
-  .clear-button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 320px) {
-  .tournament-card-container-grid {
-    grid-template-columns: 1fr; /* Cambia a una sola columna */
-    justify-items: center; /* Centra horizontalmente las tarjetas */
+  .tournament-card {
+    width: 100%; /* Opcional: para asegurarte de que ocupe todo el ancho */
+    margin: 10px 0; /* Agrega margen superior e inferior para separar las tarjetas */
   }
 
   .search-input,
