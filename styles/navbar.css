@@ -249,3 +249,17 @@ nav .user-image {
 	/* ... (otros estilos existentes) ... */
   }
 
+  /* Estilos para el encabezado */
+.header-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between; /* Alinea los elementos a la derecha */
+	padding: 1rem 0; /* Agrega un poco de espacio alrededor */
+  }
+  
+  /* Estilos para el botón de inicio de sesión y la imagen de usuario */
+  .login-button-container {
+	margin-left: auto; /* Mueve los elementos a la derecha */
+  }
+  
+
