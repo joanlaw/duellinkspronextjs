@@ -24,30 +24,67 @@ function UserPage() {
 
   return (
     <div>
-      <Header /> {/* Asegúrate de que esto esté correctamente enlazado */}
+      <Header />
       <div className='container'>
-      <h1>User Profile</h1>
-      {userData ? (
-        <div>
-          <img
-            src={userData.image}
-            alt="User"
-            style={{
-              width: '100px',
-              height: '100px',
-              borderRadius: '50%',
-            }}
-          />
-          <p>Username: {userData.username}</p>
-          {/* Otros detalles del usuario */}
+        <div className='row mt-5'>
+          <div className='col-md-3'>
+            {userData ? (
+              <div className='text-center'>
+                <img
+                  src={userData.image}
+                  alt='User'
+                  className='rounded-circle img-fluid mb-3'
+                  style={{ maxWidth: '150px' }}
+                />
+                <p>Username: {userData.username}</p>
+                {/* Otros detalles del usuario */}
+              </div>
+            ) : (
+              <p>Loading user data...</p>
+            )}
+            
+            <div className='list-group mt-4'>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 1
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 2
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 3
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 4
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 5
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 6
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 7
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 8
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 9
+              </a>
+              <a href='#' className='list-group-item list-group-item-action' style={{ backgroundColor: '#5093bc', color: 'white' }}>
+                Menú 10
+              </a>
+            </div>
+            
+          </div>
+          <div className='col-md-9'>
+            <h1>User Profile</h1>
+            {/* Aquí puedes colocar otros detalles del usuario */}
+
+          </div>
         </div>
-      ) : (
-        <p>Loading user data...</p>
-      )}
-      <Link href="/">
-        <a>Back to Home</a>
-      </Link>
       </div>
+     <p></p>
       <Footer />
     </div>
   );
