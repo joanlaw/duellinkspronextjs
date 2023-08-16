@@ -102,11 +102,11 @@ export default function NavbarCustom() {
               )}
             </DropdownTrigger>
             {authenticated ? (
-              <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
-                  <p className="font-semibold">{userImage ? userImage : "Login"}</p>
-                </DropdownItem>
+  <DropdownMenu aria-label="Profile Actions" variant="flat">
+  <DropdownItem key="profile" className="h-14 gap-2">
+    <p className="font-semibold">Logged in as</p>
+    <p className="font-semibold">{username}</p>
+  </DropdownItem>
                 <DropdownItem key="settings">My Settings</DropdownItem>
                 <DropdownItem key="team_settings">Team Settings</DropdownItem>
                 <DropdownItem key="analytics">Analytics</DropdownItem>
