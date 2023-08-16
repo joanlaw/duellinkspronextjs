@@ -104,8 +104,9 @@ export default function NavbarCustom() {
             {authenticated ? (
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
-                  <p className="font-semibold">{userImage ? userImage : "Login"}</p>
+                <p className="font-semibold">{authenticated ? "Logged in as" : "Login"}</p>
+                <p className="font-semibold">{authenticated ? username : "Login"}</p>
+
                 </DropdownItem>
                 <DropdownItem key="settings">My Settings</DropdownItem>
                 <DropdownItem key="team_settings">Team Settings</DropdownItem>
