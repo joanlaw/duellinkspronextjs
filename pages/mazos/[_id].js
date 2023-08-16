@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
 import NavbarCustom from '../../components/NavbarCustom';
+import { Text, Card, Row, Col } from '@nextui-org/react';
+
 
 const DeckViewer = () => {
   const router = useRouter();

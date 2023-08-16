@@ -273,7 +273,7 @@ export default function Index() {
 
       <div className="container mx-auto">
       <h2 className="text-4xl font-semibold mb-4">Lista de Decks</h2>
-        <label className="label-fecha">Fecha</label>
+    
         <select
           name="createdAt"
           defaultValue="ultimas2semanas"
@@ -304,40 +304,6 @@ export default function Index() {
             "DD/MM/YYYY"
           )})`}</option>
         </select>
-
-        {/*               <label>Habilidad</label>
-    <select type="text" name="habilidad" value={filtro.habilidad} onChange={handleFiltroChange}>
-                                        <option value=""></option>
-                                        <option value="Salamangrande">Robo del destino</option>
-                                        <option value="serafin estelar">serafin estelar</option>
-                                        <option value="heroes">héroes</option>
-                                        <option value="">telcaballero</option>
-                                        <option value="">mago oscuro</option>
-                                        <option value="">shiranui</option>
-                                        <option value="">meklord</option>
-                                        <option value="Buster blader">buster blader</option>
-                                        <option value="">Infernity</option>
-                                        
-                        </select>
-*/}
-        {/*                 <label>Arquetipo</label>
-    <select type="text" name="arquetipo" value={filtro.arquetipo} onChange={handleFiltroChange}>
-                                        <option value="">Todos los arquetipos</option>
-                                        <option value="Salamangrande">salamangrande</option>
-                                        <option value="serafin estelar">serafin estelar</option>
-                                        <option value="heroes">héroes</option>
-                                        <option value="telcaballero">telcaballero</option>
-                                        <option value="mago oscuro">mago oscuro</option>
-                                        <option value="shiranui">shiranui</option>
-                                        <option value="meklord">meklord</option>
-                                        <option value="buster blader">buster blader</option>
-                                        <option value="infernity">Infernity</option>
-                                        <option value="orcust">Orcust</option>
-                                        <option value="fuerza-s">Fuerza-s</option>
-                                        <option value="velociroid">Velociroid</option>
-                                        
-</select>  */}
-
         <label className="label-top">Top</label>
         <select
           className=""

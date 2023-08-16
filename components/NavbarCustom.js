@@ -87,17 +87,31 @@ export default function NavbarCustom() {
         </NavbarItem>
       </NavbarMenu>
 
-      <NavbarContent className="hidden sm:flex gap-3" justify="start">
+      <NavbarContent className="hidden sm:flex flex-grow gap-4 justify-between">
         <NavbarBrand className="mr-4">
           <AcmeLogo />
           <Link href="/">
             <p className="font-bold text-inherit">DUEL LINKS PRO</p>
           </Link>
         </NavbarBrand>
-        {/*...otros elementos del Navbar...*/}
+        <NavbarItem>
+          <Link href="/mazos">
+            Decks
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="/torneos">
+            Torneos
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="/cards">
+            Cartas
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent as="div" className="items-center justify-end">
+      <NavbarContent as="div" className="items-center" justify="end">
         {/*...otros elementos del Navbar...*/}
 
         <Dropdown placement="bottom-end">
