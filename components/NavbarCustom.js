@@ -21,6 +21,7 @@ import { parse } from 'cookie';
 export default function NavbarCustom() {
   const [userImage, setUserImage] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -40,6 +41,7 @@ export default function NavbarCustom() {
         console.log("User info response:", data);
         setUserImage(data.authenticated ? data.image : null);
         setAuthenticated(data.authenticated);
+        setUsername(data.username); // <-- Añade esta línea
       })
       .catch((error) => {
         console.error("Error fetching user info:", error);
@@ -117,25 +119,29 @@ export default function NavbarCustom() {
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             {authenticated ? (
+               <div className="flex gap-4 items-center">
               <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                color="secondary"
-                name="User"
-                size="sm"
+                isBordered radius="full"
+                
+                className="flex gap-4 items-center"
+                
+                
+              
                 src={userImage}
               />
+              </div>
             ) : (
+              <div className="flex gap-4 items-center">
               <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                color="secondary"
-                name="Jason Hughes"
-                size="sm"
+                isBordered radius="full"
+               
+                className="flex gap-4 items-center"
+                
+             
+                
                 src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
               />
+              </div>
             )}
           </DropdownTrigger>
 
@@ -143,7 +149,7 @@ export default function NavbarCustom() {
             <DropdownMenu aria-label="Profile Actions" variant="flat">
               <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
-                  <p className="font-semibold">{userImage ? userImage : "Login"}</p>
+              <p className="font-semibold">{userImage ? username : "Login"}</p>
               </DropdownItem>
               {/*... otros elementos del menú ... */}
             </DropdownMenu>
