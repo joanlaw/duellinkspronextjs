@@ -2,6 +2,7 @@ import Clustersmeta from "../../components/Clustersmeta"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import Head from "next/head"
+import NavbarCustom from "../../components/NavbarCustom"
 
 export default function index() {
 
@@ -16,8 +17,8 @@ export default function index() {
   <meta name='Tier List' content='Decks meta o Tier List basados en criterios de la comunidad y los decks o mazos más ganadores' />
     </Head>
     <div>
-    <Header />
-    <div className='container'>
+    <NavbarCustom />
+    <div className='container mx-auto'>
             <br />
             <h1>Tier List</h1>
       <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL.</p>

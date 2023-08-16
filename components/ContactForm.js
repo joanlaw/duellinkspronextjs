@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import {Textarea} from "@nextui-org/react";
+
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -38,18 +40,41 @@ const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="name" className="form-label">Nombre</label>
-        <input type="text" className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre</label>
+        <input 
+          type="text" 
+          className="mt-1 p-2 w-full border rounded-md" 
+          id="name" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+        />
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">Correo Electrónico</label>
-        <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input 
+          type="email" 
+          className="mt-1 p-2 w-full border rounded-md" 
+          id="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+        />
       </div>
       <div className="mb-3">
-        <label htmlFor="message" className="form-label">Mensaje</label>
-        <textarea className="form-control" id="message" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} />
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700">Mensaje</label>
+        <Textarea
+          className="mt-1 p-2 w-full border rounded-md"
+          id="message" 
+          rows="5" 
+          value={message} 
+          onChange={(e) => setMessage(e.target.value)} 
+        />
       </div>
-      <button type="submit" className="btn btn-primary">Enviar</button>
+      <button 
+        type="submit" 
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+      >
+        Enviar
+      </button>
       {submitted && <p className="mt-2 text-success">¡Formulario enviado!</p>}
     </form>
   );

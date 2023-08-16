@@ -13,6 +13,7 @@ function Footer() {
         />
       </Head>
       <Script src="https://kit.fontawesome.com/84fb9c4e8e.js" crossorigin="anonymous" />
+
       <footer className='pie-pagina'>
         <div className='grupo-1'>
             <div className='box'>
@@ -52,6 +53,7 @@ function Footer() {
             <small>&copy; 2023 <b>Duel Links Pro</b> - Todos los Derechos Reservados.</small>
         </div>
       </footer>
+
     </>
   )
 }

@@ -122,23 +122,15 @@ export default function NavbarCustom() {
                <div className="flex gap-4 items-center">
               <Avatar
                 isBordered radius="full"
-                
-                className="flex gap-4 items-center"
-                
-                
-              
+                className="flex gap-4 items-center cursor-pointer"
                 src={userImage}
               />
               </div>
             ) : (
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center cursor-pointer">
               <Avatar
                 isBordered radius="full"
-               
                 className="flex gap-4 items-center"
-                
-             
-                
                 src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
               />
               </div>
