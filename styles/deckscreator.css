@@ -354,17 +354,22 @@ margin-bottom: 0.5rem;
     width: 100%;
   }
 
+  .close-button {
+    margin-top: 30px;
+  }
+
   .popup-image {
+    margin-top: 30px;
     height: 40%;
     position: relative; /* Agregar posición relativa */
   }
 
   .popup-info {
-    height: 60%;
+    height: 100%;
     overflow-y: auto;  /* Agregamos scroll en caso de que el texto sea muy largo */
     font-size: 0.6em;
     position: relative; /* Agregar posición relativa */
-    padding-bottom: 60px; /* Espacio para el botón en la parte inferior */
+    padding-bottom: 150px; /* Espacio para el botón en la parte inferior */
   }
 
   .card-rareza {
