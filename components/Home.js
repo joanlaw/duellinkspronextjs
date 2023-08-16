@@ -8,6 +8,7 @@ import Clusters from './Clusters'
 import Footer from './Footer'
 import Eventos from './Eventos'
 //import styles from '../styles/Home.module.css'
+import NavbarCustom from './NavbarCustom.js'
 
 import stageoftrickstar from "../assets/stageoftrickstar.webp";
 
@@ -18,13 +19,10 @@ export default function Home(){
 
     return(
       <div>
-            <Header />
-      <br />
-      <div className="">
+            <NavbarCustom />
+
         <Clusters /> 
-        <div className='footermargin' ></div>
-        <br />
-      </div>
+       
         <Footer />
       </div>
     )

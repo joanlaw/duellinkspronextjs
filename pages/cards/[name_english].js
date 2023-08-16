@@ -4,6 +4,7 @@ import Head from "next/head.js";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Cardinfo from "../../components/Cardinfo";
+import NavbarCustom from "../../components/NavbarCustom";
 
 export default function CardPage() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function CardPage() {
       <Head>
         <title>{name_english} | Información de Carta</title>
       </Head>
-      <Header />
+      <NavbarCustom />
       <div className="container">
         <h1>{name_english}</h1>
         <Cardinfo nameEnglish={name_english} />

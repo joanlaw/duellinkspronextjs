@@ -5,6 +5,10 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import moment from "moment";
 import { useRouter } from "next/router";
+import NavbarCustom from "../../components/NavbarCustom";
+import DeckTable from "../../components/CustomTable";
+import { SearchIcon } from "../../components/SearchIcon";
+import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
 
 export default function Index() {
   const [cardList, setCardList] = useState([]);
@@ -265,9 +269,10 @@ export default function Index() {
 
   return (
     <div>
-      <Header />
-      <h2>Lista de Decks</h2>
-      <div className="container">
+      <NavbarCustom />
+
+      <div className="container mx-auto">
+      <h2 className="text-4xl font-semibold mb-4">Lista de Decks</h2>
         <label className="label-fecha">Fecha</label>
         <select
           name="createdAt"
@@ -348,16 +353,17 @@ export default function Index() {
           <option value="Farmeo">Farmeo</option>
         </select>
       </div>
-      <div className="container">
+      <div className="container mx-auto">
         <div className="">
-          <input
+        <Input
+            className='w-full lg:w-1/3'
+            type='text'
+            startContent={<SearchIcon size={18} />}
+            placeholder='Busca tu deck, carta o arquetipo favorito'
             value={search}
             onChange={searcher}
-            className="mb-2 form-control "
-            type="search"
-            placeholder="Busca tu deck, carta o arquetipo favorito"
-            aria-label="Search"
-          />
+        />
+        <br />
         </div>
         <div className="decksbuttons">
           <DeckButtons filteredDecks={elementosFiltrados} />
@@ -366,53 +372,7 @@ export default function Index() {
         <div>
           <p>Cantidad de decks: {elementosFiltrados.length}</p>
         </div>
-        <table className="deck-table deck-table-mobile">
-          <thead>
-            <tr>
-              <th>Arquetipo</th>
-              <th>Habilidad</th>
-              <th>Top</th>
-              <th>Jugador</th>
-              <th>Motor</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-          {elementosFiltrados
-    .slice(
-      Math.max(elementosFiltrados.length - resultsToShow, 0),
-      elementosFiltrados.length
-    )
-    .map((element) => (
-                <tr
-                  key={element._id}
-                  onClick={() => router.push(`/mazos/${element._id}`)}
-                  style={{
-                    cursor: "pointer",
-                    transition: "background-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#5093bc")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "")
-                  }
-                >
-                  <td>
-                    <div className="arquetipo-image">
-                      <ImageCard data={element} archetypes={archetypes} />
-                    </div>
-                  </td>
-                  <td>{element.habilidad}</td>
-                  <td>{element.top}</td>
-                  <td>{element.jugador}</td>
-                  <td>{element.engine}</td>
-                  <td>{moment(element.createdAt).format("MMM DD, YYYY")}</td>
-                </tr>
-              ))
-              .reverse()}
-          </tbody>
-        </table>
+        <DeckTable data={elementosFiltrados} archetypes={archetypes} resultsToShow={resultsToShow} />
         {resultsToShow < elementosFiltrados.length && (
           <div className="show-more-container">
             <button className="show-more-button" onClick={handleShowMore}>

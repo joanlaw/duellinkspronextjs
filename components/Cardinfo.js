@@ -1,13 +1,7 @@
 import React from "react";
-//import { useParams } from "react-router-dom";
-//import { useNavigate } from "react-router-dom";
-import Header from "./Header";
 import { useRouter } from "next/router";
 
-
-//import "./cartainfo.css";
-//import Allcards from './Allcards';
-//import axios from 'axios'
+import Header from "./Header";
 
 const Cardinfo = () => {
   const router = useRouter();
@@ -39,171 +33,143 @@ const Cardinfo = () => {
   };
 
   return (
-    <div className="container">
-     
-
+    <div className="container mx-auto">
       <button
-        className="btn btn-primary botonesmargen"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={handleGoBack}
       >
         Atrás
       </button>
-     
-      <br />
-      <div className="row">
-        <div className="col-md-10">
-          <div className="card">
-            <form className="card-body">
-              <div className="form-group">
-                <div className="form-group">
-                  <img
-                    src={
-                      cartas.rareza === "ur"
-                        ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106735/iconos%20dlp/UR_rpfhm2.png"
-                        : cartas.rareza === "sr"
-                        ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106742/iconos%20dlp/SR_lwpagj.png"
-                        : cartas.rareza === "r" 
-                        ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106750/iconos%20dlp/R_btrot4.png"
-                        : cartas.rareza === "n"
-                        ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106746/iconos%20dlp/N_lofrdg.png"
-                        : cartas.rareza
-                    }
-                    className="rarezainfo"
-                    alt="rareza"
-                  ></img>
-                  <img
-                    src={image.secure_url}
-                    className="cartainfo"
-                    alt={cartas.nombre}
-                  ></img>
-                </div>
-                <img
-                  src={
-                    cartas.atributo === "AGUA"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-a_bgb8gi.png"
-                      : cartas.atributo === "OSCURIDAD"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-o_mpvorg.png"
-                      : cartas.atributo === "LUZ"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-l_qr3a8g.png"
-                      : cartas.atributo === "FUEGO"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-f_x0zolt.png"
-                      : cartas.atributo === "TIERRA"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-t_bfdbhz.png"
-                      : cartas.atributo === "VIENTO"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-v_tlniay.png"
-                      : cartas.atributo === "DIVINIDAD"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-d_ssxcag.png"
-                      : cartas.atributo === "MÁGICA"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-m_gojjne.png"
-                      : cartas.atributo === "TRAMPA"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-tr_zdjtkd.png"
-                      : ""
-                  }
-                  className="atributo_info"
-                ></img>{" "}
-                <span> {cartas.atributo} </span>
-                <img
-                  src={
-                    cartas.tipo_de_carta === "Xyz"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
-                      : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
-                  }
-                  className={
-                    cartas.atributo === "MÁGICA"
-                      ? "ocultarinfo"
-                      : cartas.atributo === "TRAMPA"
-                      ? "ocultarinfo"
-                      : cartas.tipo_de_carta === "Link"
-                      ? "ocultarinfo"
-                      : "nivel_rareza_info"
-                  }
-                ></img>{" "}
-                <span
-                  className={
-                    cartas.tipo_de_carta === "Link"
-                      ? "ocultarinfo"
-                      : cartas.atributo === "TRAMPA"
-                      ? "ocultarinfo"
-                      : cartas.atributo === "MÁGICA"
-                      ? "ocultarinfo"
-                      : ""
-                  }
-                >{`${
-                  cartas.nivel_rango_link == 1 ||
-                  2 ||
-                  3 ||
-                  4 ||
-                  5 ||
-                  6 ||
-                  7 ||
-                  8 ||
-                  9 ||
-                  10 ||
-                  11 ||
-                  12
-                    ? cartas.nivel_rango_link || cartas.nivel_rango
-                    : ""
-                }   `}</span>
-                <img src={cartas.tipo_de_carta === 'Péndulo' ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp": '' }  className='atributo_info' ></img> <span>{cartas.escala === 0 ? '' : cartas.escala}</span>
-                <img
-                  src={
-                    cartas.tipo_magica_trampa === "De juego rápido"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_juego_rapido_mmsikz.webp"
-                      : cartas.tipo_magica_trampa === "Normal"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/normal_vpey0j.webp"
-                      : cartas.tipo_magica_trampa === "De campo"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/de_campo_qoxyag.webp"
-                      : cartas.tipo_magica_trampa === "Continua"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/continua_wh3pfj.webp"
-                      : cartas.tipo_magica_trampa === "De contraefecto"
-                      ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/contraefecto_pxkz7z.webp"
-                      : cartas.tipo_magica_trampa
-                  }
-                  className="nivel_rareza_info "
-                ></img>{" "}
-                <span>{cartas.tipo_magica_trampa}</span>
-                <br />
-                <br />
-                <span
-                  className={cartas.tipo === "" ? "ocultarinfo" : "span_info"}
-                >
-                  {" "}
-                  [{" "}
-                  {`${cartas.tipo} / ${cartas.tipo_de_carta}   ${
-                    cartas.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
-                  }  ${cartas.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
-                    cartas.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
-                  } ${
-                    cartas.tipo_de_carta === "Link" ? "/ Efecto" :  cartas.tipo_de_carta === 'Cantante' ? "/ Efecto": cartas.tipo_de_carta === "Sincronía / Cantante" ? "/ Efecto": cartas.tipo_de_carta === "Xyz / Péndulo" ? "/ Efecto": cartas.tipo_de_carta === 'Péndulo' ? "/ Efecto" : ""
-                  }  `}{" "}
-                  ]{" "}
-                </span>
-                <br />
-                <span className="span_info">{cartas.descripcion}</span>
-                <br />
-                <br />
-                <span className="span_info">{cartas.efecto_pendulo}</span>
-                <br />
-                <span
-                  className={`${
-                    cartas.atk == 0 ? "ocultarinfo" : "span_info"
-                  }  ${cartas.atk == null ? "ocultarinfo" : "span_info"}  `}
-                >
-                  {" "}
-                  {` ATK/ ${cartas.atk}  ${
-                    cartas.tipo_de_carta === "Link"
-                      ? "LINK - " + cartas.nivel_rango_link
-                      : "DEF/ " + cartas.def
-                  }   `}{" "}
-                </span>
-                <br />
-               <span className="span_info">¿Cómo obtener?</span>
-                <br />
-                <span className="span_info">{cartas.caja}</span>
-              </div>
-            </form>
-          </div>
+
+      <div className="flex flex-col items-center mt-8">
+        <img
+          src={
+            cartas.rareza === "ur"
+              ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106735/iconos%20dlp/UR_rpfhm2.png"
+              : cartas.rareza === "sr"
+              ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106742/iconos%20dlp/SR_lwpagj.png"
+              : cartas.rareza === "r"
+              ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106750/iconos%20dlp/R_btrot4.png"
+              : cartas.rareza === "n"
+              ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106746/iconos%20dlp/N_lofrdg.png"
+              : cartas.rareza
+          }
+          className="rarezainfo"
+          alt="rareza"
+        />
+        <img
+          src={image.secure_url}
+          className="cartainfo mt-4"
+          alt={cartas.nombre}
+        />
+        
+        <div className="mt-4">
+          <img
+            src={
+              cartas.atributo === "AGUA"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-a_bgb8gi.png"
+                : cartas.atributo === "OSCURIDAD"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-o_mpvorg.png"
+                : cartas.atributo === "LUZ"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-l_qr3a8g.png"
+                : cartas.atributo === "FUEGO"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-f_x0zolt.png"
+                : cartas.atributo === "TIERRA"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-t_bfdbhz.png"
+                : cartas.atributo === "VIENTO"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-v_tlniay.png"
+                : cartas.atributo === "DIVINIDAD"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-d_ssxcag.png"
+                : cartas.atributo === "MÁGICA"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-m_gojjne.png"
+                : cartas.atributo === "TRAMPA"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663818431/iconos%20dlp/at-tr_zdjtkd.png"
+                : ""
+            }
+            className="atributo_info mt-2"
+          />{" "}
+          <span> {cartas.atributo} </span>
         </div>
+        
+        <div className="mt-4">
+          <img
+            src={
+              cartas.tipo_de_carta === "Xyz"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663823033/iconos%20dlp/rango_xyz_wepehq.webp"
+                : "https://res.cloudinary.com/dqofcbeaq/image/upload/v1663822936/iconos%20dlp/nivel_monstruo_mq6vmx.webp"
+            }
+            className={
+              cartas.atributo === "MÁGICA"
+                ? "ocultarinfo"
+                : cartas.atributo === "TRAMPA"
+                ? "ocultarinfo"
+                : cartas.tipo_de_carta === "Link"
+                ? "ocultarinfo"
+                : "nivel_rareza_info"
+            }
+          />{" "}
+          <span
+            className={
+              cartas.tipo_de_carta === "Link"
+                ? "ocultarinfo"
+                : cartas.atributo === "TRAMPA"
+                ? "ocultarinfo"
+                : cartas.atributo === "MÁGICA"
+                ? "ocultarinfo"
+                : ""
+            }
+          >
+            {`${
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(
+                cartas.nivel_rango_link
+              )
+                ? cartas.nivel_rango_link || cartas.nivel_rango
+                : ""
+            }   `}
+          </span>
+          <img
+            src={
+              cartas.tipo_de_carta === "Péndulo"
+                ? "https://res.cloudinary.com/dqofcbeaq/image/upload/v1666163466/iconos%20dlp/escalapendulo_vvabsb.webp"
+                : ""
+            }
+            className="atributo_info mt-2"
+          />{" "}
+          <span>{cartas.escala === 0 ? "" : cartas.escala}</span>
+        </div>
+
+        <div className="mt-4">
+  <span className="text-gray-400">{"Tipo / Tipo de Carta / Efecto"}</span>
+  <span className="block mt-1">{`[${cartas.tipo} / ${cartas.tipo_de_carta}   ${
+    cartas.tipo_de_carta === "Sincronía" ? "/ Efecto" : ""
+  }  ${cartas.tipo_de_carta === "Fusion" ? " / Efecto" : ""} ${
+    cartas.tipo_de_carta == "Xyz" ? "/ Efecto" : ""
+  } ${
+    ["Link", "Cantante"].includes(cartas.tipo_de_carta) ? "/ Efecto" : ""
+  }  ]`}</span>
+</div>
+
+<div className="mt-4">
+  <span className="text-gray-400">{"Descripción"}</span>
+  <p className="mt-1">{cartas.descripcion}</p>
+</div>
+
+<div className="mt-4">
+  <span className="text-gray-400">{"Efecto Péndulo"}</span>
+  <p className="mt-1">{cartas.efecto_pendulo}</p>
+</div>
+
+<div className="mt-4">
+  <span className="text-gray-400">{"ATK / DEF / Nivel / Rango"}</span>
+  <span className="block mt-1">{`ATK / ${cartas.atk} ${
+    cartas.atributo === "Link" ? "LINK - " + cartas.nivel_rango_link : "DEF / " + cartas.def
+  }`}</span>
+</div>
+
+<div className="mt-4">
+  <span className="text-gray-400">{"¿Cómo obtener?"}</span>
+  <p className="mt-1">{cartas.caja}</p>
+</div>
       </div>
     </div>
   );

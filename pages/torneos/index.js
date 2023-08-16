@@ -5,6 +5,10 @@ import Footer from '../../components/Footer';
 import CountdownTimer from '../../components/CountdownTimer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import NavbarCustom from '../../components/NavbarCustom'
+import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import { SearchIcon } from '../../components/SearchIcon';
+
 
 export default function Torneos() {
     const [leagues, setLeagues] = useState([]);
@@ -57,47 +61,103 @@ export default function Torneos() {
 
     return (
         <>
-        <Header />
-        <div className='container'>
-            <h1>Torneos</h1>
-            <div className='datepicker-container'>
-                <input
-                    className='search-input'
-                    type='text'
-                    placeholder='Buscar por nombre de liga'
-                    value={searchTerm}
-                    onChange={event => setSearchTerm(event.target.value)}
-                />
-                <div className='react-datepicker-wrapper'>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={date => setStartDate(date)}
-                        placeholderText='Rango inicial'
-                    />
-                </div>
-                <div className='react-datepicker-wrapper'>
-                    <DatePicker
-                        selected={endDate}
-                        onChange={date => setEndDate(date)}
-                        placeholderText='Rango final'
-                    />
-                </div>
-                <button className='clear-button' onClick={() => { setStartDate(null); setEndDate(null); setSearchTerm(''); }}>
-                    Borrar Filtros
-                </button>
-            </div>
+        <NavbarCustom />
+        <div className='container mx-auto p-4'>
+    <h1 className='text-4xl font-semibold mb-4'>Torneos</h1>
+
+    <div className='flex flex-col lg:flex-row gap-6 items-center'>
+      
+        <Input
+            className='w-full lg:w-1/3'
+            type='text'
+            startContent={<SearchIcon size={18} />}
+            placeholder='Buscar torneos...'
+            value={searchTerm}
+            onChange={event => setSearchTerm(event.target.value)}
+        />
+        
+        <div className='w-full lg:w-1/4 react-datepicker-wrapper'>
+  <div className='date-picker-input'>
+    <DatePicker
+      selected={startDate}
+      onChange={date => setStartDate(date)}
+      placeholderText='Rango inicial'
+      className='w-full'
+    />
+  </div>
+</div>
+
+<div className='w-full lg:w-1/4 react-datepicker-wrapper'>
+  <div className='date-picker-input'>
+    <DatePicker
+      selected={endDate}
+      onChange={date => setEndDate(date)}
+      placeholderText='Rango final'
+      className='w-full'
+    />
+  </div>
+</div>
+
+        <Button 
+            color="primary" 
+            variant="solid" 
+            onClick={() => { setStartDate(null); setEndDate(null); setSearchTerm(''); }}
+        >
+            Borrar Filtros
+        </Button>
+
+    </div>
             <div className='tournament-card-container'>
-                <div className='tournament-card-container-grid'>
-                    {filterLeagues().map(league => (
-                        <div className='tournament-card' key={league?._id}>
-                            <h2 className='tournament-name'>{league?.league_name}</h2>
-                            <div className='divider'></div>
-                            {league?.start_date && <CountdownTimer targetDate={league.start_date} className='countdown-timer' />}
-                            <p>Esta será una descripción de prueba del torneo.</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <div className='tournament-card-container-grid'>
+  {filterLeagues().map(league => (
+    <Card key={league?._id} className="max-w-[340px] tournament-card">
+      
+      <CardHeader className="justify-between">
+        <div className="flex gap-5">
+       
+          <div className="flex flex-col gap-1 items-start justify-center">
+            <h4 className="text-small font-semibold leading-none text-default-600">{league?.league_name}</h4>
+            <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
+          </div>
+        </div>
+        <Button
+          color="primary"
+          radius="full"
+          size="sm"
+          variant="solid"
+          onClick={() => {/* Navegación al torneo */}}
+        >
+          Link
+        </Button>
+      </CardHeader>
+      
+      <CardBody className="px-3 py-0 text-small text-default-400">
+        <p>
+          Frontend developer and UI/UX enthusiast. Join me on this coding adventure!
+        </p>
+        <span className="pt-2">
+          #FrontendWithZoey
+          <span className="py-2" aria-label="computer" role="img">
+            💻
+          </span>
+        </span>
+      </CardBody>
+      
+      <CardFooter className="gap-3">
+        <div className="flex gap-1">
+          <p className="font-semibold text-default-400 text-small">4</p>
+          <p className="text-default-400 text-small">Following</p>
+        </div>
+        <div className="flex gap-1">
+          <p className="font-semibold text-default-400 text-small">97.1K</p>
+          <p className="text-default-400 text-small">Followers</p>
+        </div>
+      </CardFooter>
+    </Card>
+  ))}
+</div>
+
+</div>
         </div>
         <Footer />
     </>

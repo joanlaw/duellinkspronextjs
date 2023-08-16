@@ -45,7 +45,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-auto-rows: minmax(100px, auto);
-    background-color: #010609;
+
     background-repeat: repeat;
     border: 2px solid #1D3E67;
     width: 100%;

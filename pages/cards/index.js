@@ -8,6 +8,9 @@ import Image from "next/image.js";
 import Footer from "../../components/Footer.js";
 //import Cardinfo from "../components/Cardinfo.js";
 import Head from "next/head.js";
+import NavbarCustom from "../../components/NavbarCustom.js";
+import { SearchIcon } from "../../components/SearchIcon.js";
+import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
 
 export default function Cards() {
   const [cardList, setCardList] = useState([]);
@@ -176,18 +179,18 @@ export default function Cards() {
           content="Todas las cartas del juego Yugioh Duel Links en español"
         />
       </Head>
-      <Header />
+      <NavbarCustom />
       <br />
-      <div className="container">
+      <div className="container mx-auto">
         <div className="">
-          <input
+        <Input
+            className='w-full lg:w-1/3'
+            type='text'
+            startContent={<SearchIcon size={18} />}
+            placeholder='Buscar Carta..'
             value={search}
             onChange={searcher}
-            className="mb-2 form-control"
-            type="search"
-            placeholder="Buscar Carta"
-            aria-label="Search"
-          />
+        />
         </div>
         <div>
           <p>Cantidad de cartas: {currentPost.length}</p>
@@ -225,12 +228,13 @@ export default function Cards() {
                 x
               </button>
               <Link href={`/cards/${selectedCard.name_english}`}>
-                <a className="more-info-button">Más información</a>
+                <p className="more-info-button">Más información</p>
               </Link>
             </div>
           </div>
         )}
       </div>
+      <br />
       <Footer />
     </>
   );

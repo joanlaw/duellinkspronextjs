@@ -1,3 +1,9 @@
+/* styles/tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 :root {
   --font-principal: 'Quicksand', sans-serif;
 }
@@ -6,13 +12,9 @@ body {
   padding: 10;
   margin: 0;
   font-family: var(--font-principal);
-  background: linear-gradient(to bottom, #010609, #0d2030);
-}
-
-.container {
-  max-width: 100%; /* Reducir el ancho del contenedor al 90% */
 
 }
+
 
 
 p, h1, h2, h3, h4, h5{  
@@ -72,8 +74,7 @@ td {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+
   }
 }
 
@@ -99,8 +100,8 @@ td {
 
 /* Agrega estos estilos en tu archivo CSS */
 .tournament-card-container {
-  background-color: rgba(9, 9, 9, 0.5);
-  border: 1px solid #ccc;
+ 
+ 
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -114,7 +115,7 @@ td {
 
 .tournament-card {
   background-color: rgba(9, 9, 9, 0.7);
-  background-image: url('https://res.cloudinary.com/dqofcbeaq/image/upload/v1692065231/leagues_tournaments/image_3_tijkib.webp');
+
   padding: 20px;
   background-size: cover;
   background-blend-mode: overlay;
@@ -160,12 +161,12 @@ td {
   background-color: #0056b3;
 }
 
-.search-input {
+/*.search-input {
   border: 1px solid #ccc;
   padding: 5px 20px;
   width: 100%;
 }
-
+*/
 @media (max-width: 768px) {
   .tournament-card-container-grid {
     grid-template-columns: 1fr; /* Cambia a una sola columna */
@@ -201,3 +202,49 @@ td {
     width: 100%;
   }
 }
+
+/*clases para calendario*/
+
+.date-picker-input {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent !important;
+}
+
+.date-picker-input:hover {
+  border-color: #b5b5b5;
+}
+
+.date-picker-input:focus-within {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.date-picker-input > input {
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container > input {
+  background-color: transparent !important;
+}
+.react-datepicker {
+  z-index: 3 !important;
+}
+.tournament-card button {
+  position: relative;
+  z-index: 1;
+}
+

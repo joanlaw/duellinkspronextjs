@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
+import NavbarCustom from '../../components/NavbarCustom';
 
 const DeckViewer = () => {
   const router = useRouter();
@@ -119,8 +120,8 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   <meta name="twitter:description" content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`} />
   <meta name="twitter:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
 </Head>
-    <Header />
-  <div className="">
+    <NavbarCustom />
+  <div className="container mx-auto">
   {deckData && (
     <div>
       <h2>Deck: {deckData.arquetipo}</h2>
@@ -229,7 +230,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   x
 </button>
 <Link href={`/cards/${selectedCard.name_english}`}>
-                <a className="more-info-button">Más información</a>
+                <p className="more-info-button">Más información</p>
               </Link>
     </div>
   </div>

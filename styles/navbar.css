@@ -1,21 +1,7 @@
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	font-family: "Titillium Web", sans-serif; 
-  /*  font-weight: 500; */
-}
-/* Estilos para alinear elementos a la derecha */
-/* Estilos para alinear elementos a la derecha */
-.nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Esto empujará los elementos a la derecha */
-}
 
 
 
-:root {
+/*:root {
 	--mainColor: #0a141d;
 	--mainColorLight: #0a141d;
 	--secondaryColor: #db2b39;
@@ -92,12 +78,12 @@ nav {
 	}
 
 	nav .login-button {
-        display: block; /* Asegura que el botón de inicio de sesión se muestre como bloque */
-    }
+        display: block; /* Asegura que el botón de inicio de sesión se muestre como bloque 
+    } 
 
-    /* Estilos para la imagen de usuario en el menú móvil */
+    /* Estilos para la imagen de usuario en el menú móvil 
     nav .user-image {
-        display: block; /* Asegura que la imagen de usuario se muestre como bloque */
+        display: block; /* Asegura que la imagen de usuario se muestre como bloque 
     }
 
 
@@ -117,16 +103,16 @@ nav {
 		font-size: 1.5rem;
 	}
 }
-  /* Estilos para la imagen de usuario */
+  /* Estilos para la imagen de usuario 
   .user-image {
-	width: 50px; /* Ajusta el ancho según tus preferencias */
-	height: 50px; /* Ajusta la altura según tus preferencias */
-	border-radius: 50%; /* Esto crea una forma circular para la imagen */
-	margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido */
+	width: 50px; /* Ajusta el ancho según tus preferencias 
+	height: 50px; /* Ajusta la altura según tus preferencias 
+	border-radius: 50%; /* Esto crea una forma circular para la imagen 
+	margin-left: 10px; /* Añade margen a la izquierda para separar la imagen del contenido 
 	cursor: pointer;
   }
   
-  /* Estilos para el botón de login */
+  /* Estilos para el botón de login 
   .login-button {
 	background-color: #5093bc;
 	color: white;
@@ -142,124 +128,124 @@ nav {
   
   /* Resto de tus estilos */
 
-  /* Asegúrate de que el botón de inicio de sesión y la imagen de usuario tengan los mismos estilos para el menú móvil */
+  /* Asegúrate de que el botón de inicio de sesión y la imagen de usuario tengan los mismos estilos para el menú móvil 
   nav .login-button,
   nav .user-image {
 	  font-size: 1.5rem;
 	  color: var(--textColor);
 	  text-decoration: none;
-	  display: block; /* Cambia a display: block para centrar verticalmente */
-	  margin: 1rem auto; /* Márgenes para centrar vertical y horizontalmente */
-	  text-align: center; /* Centra el texto horizontalmente */
+	  display: block; /* Cambia a display: block para centrar verticalmente 
+	  margin: 1rem auto; /* Márgenes para centrar vertical y horizontalmente 
+	  text-align: center; /* Centra el texto horizontalmente 
   }
 
-/* Estilos para el botón de inicio de sesión en el menú móvil */
+/* Estilos para el botón de inicio de sesión en el menú móvil 
 nav .login-button {
-    font-size: 1rem; /* Ajusta el tamaño de fuente según tus necesidades */
-    margin-top: 1rem; /* Agrega espacio en la parte superior para separar del menú */
-    padding: 8px 16px; /* Ajusta el padding para controlar el tamaño del botón */
+    font-size: 1rem; /* Ajusta el tamaño de fuente según tus necesidades 
+    margin-top: 1rem; /* Agrega espacio en la parte superior para separar del menú 
+    padding: 8px 16px; /* Ajusta el padding para controlar el tamaño del botón 
 }
 
-/* Estilos para la imagen de usuario en el menú móvil */
+/* Estilos para la imagen de usuario en el menú móvil 
 nav .user-image {
-    width: 30px; /* Ajusta el ancho según tus preferencias */
-    height: 30px; /* Ajusta la altura según tus preferencias */
-    margin-left: 8px; /* Ajusta el margen izquierdo para separar la imagen */
+    width: 30px; /* Ajusta el ancho según tus preferencias 
+    height: 30px; /* Ajusta la altura según tus preferencias 
+    margin-left: 8px; /* Ajusta el margen izquierdo para separar la imagen 
 }
 
 
 /* Añade estos estilos a tu archivo HeaderStyles.css */
 
-/* Estilos para dispositivos móviles */
+/* Estilos para dispositivos móviles 
 @media only screen and (max-width: 1024px) {
 	/* ... (otros estilos existentes) ... */
   
-	/* Alinear elementos a la izquierda en la versión móvil */
+	/* Alinear elementos a la izquierda en la versión móvil 
 	.container-new {
 	  justify-content: flex-start;
 	}
   
-	/* Alinear el botón de menú en la versión móvil */
+	/* Alinear el botón de menú en la versión móvil 
 	header .nav-btn {
 	  margin-left: 1rem;
 	}
   
-	/* Alinear el logotipo en la versión móvil */
+	/* Alinear el logotipo en la versión móvil 
 	.navbar-brand {
 	  margin-left: 1rem;
 	}
   
-	/* Estilos para la barra de navegación en versión móvil */
+	/* Estilos para la barra de navegación en versión móvil 
 	header nav {
-	  /* ... (otros estilos existentes) ... */
-	  text-align: left; /* Alinea los enlaces a la izquierda */
+	  /* ... (otros estilos existentes) ... 
+	  text-align: left; /* Alinea los enlaces a la izquierda 
 	}
   
-	/* Estilos para la imagen de usuario en versión móvil */
+	/* Estilos para la imagen de usuario en versión móvil 
 	nav .user-image {
 	  width: 30px;
 	  height: 30px;
-	  margin-left: 1rem; /* Ajusta el margen izquierdo */
+	  margin-left: 1rem; /* Ajusta el margen izquierdo 
 	}
   
-	/* Estilos para el botón de inicio de sesión en versión móvil */
+	/* Estilos para el botón de inicio de sesión en versión móvil 
 	nav .login-button {
-	  /* ... (otros estilos existentes) ... */
-	  margin-left: 1rem; /* Ajusta el margen izquierdo */
+	  /* ... (otros estilos existentes) ... 
+	  margin-left: 1rem; /* Ajusta el margen izquierdo 
 	}
   }
   
-  /* Estilos para dispositivos móviles */
+  /* Estilos para dispositivos móviles 
 @media only screen and (max-width: 1024px) {
 	/* ... (otros estilos existentes) ... */
   
-	/* Estilos para el menú en versión móvil */
+	/* Estilos para el menú en versión móvil 
 	.header-content {
 	  display: flex;
 	  align-items: center;
-	  justify-content: flex-end; /* Alinea el contenido a la derecha */
-	  padding: 1rem 0; /* Agrega un poco de espacio alrededor */
+	  justify-content: flex-end; /* Alinea el contenido a la derecha 
+	  padding: 1rem 0; /* Agrega un poco de espacio alrededor 
 	}
   
 	.navbar-brand {
-	  flex: 1; /* Ocupa el espacio disponible */
-	  text-align: center; /* Centra el logo en el centro */
+	  flex: 1; /* Ocupa el espacio disponible 
+	  text-align: center; /* Centra el logo en el centro 
 	}
   
-	/* Estilos para el botón de inicio de sesión en versión móvil */
+	/* Estilos para el botón de inicio de sesión en versión móvil 
 	.login-button-container {
-	  text-align: left; /* Alinea el botón a la izquierda */
-	  margin-left: 2rem; /* Agrega espacio al margen izquierdo */
+	  text-align: left; /* Alinea el botón a la izquierda 
+	  margin-left: 2rem; /* Agrega espacio al margen izquierdo 
 	}
   
-	/* ... (otros estilos existentes) ... */
+	/* ... (otros estilos existentes) ... 
   }
   
   @media only screen and (max-width: 1024px) {
 	/* ... (otros estilos existentes) ... */
   
-	/* Estilos para la imagen de usuario en versión móvil */
+	/* Estilos para la imagen de usuario en versión móvil 
 	.user-image {
-	  width: 30px; /* Ajusta el ancho según tus preferencias */
-	  height: 30px; /* Ajusta la altura según tus preferencias */
+	  width: 30px; /* Ajusta el ancho según tus preferencias 
+	  height: 30px; /* Ajusta la altura según tus preferencias 
 	  border-radius: 50%;
-	  margin-right: 1rem; /* Agrega espacio al margen derecho */
+	  margin-right: 1rem; /* Agrega espacio al margen derecho 
 	}
   
-	/* ... (otros estilos existentes) ... */
+	/* ... (otros estilos existentes) ... 
   }
 
-  /* Estilos para el encabezado */
+  /* Estilos para el encabezado 
 .header-content {
 	display: flex;
 	align-items: center;
-	justify-content: space-between; /* Alinea los elementos a la derecha */
-	padding: 1rem 0; /* Agrega un poco de espacio alrededor */
+	justify-content: space-between; /* Alinea los elementos a la derecha 
+	padding: 1rem 0; /* Agrega un poco de espacio alrededor 
   }
   
-  /* Estilos para el botón de inicio de sesión y la imagen de usuario */
+  /* Estilos para el botón de inicio de sesión y la imagen de usuario 
   .login-button-container {
-	margin-left: auto; /* Mueve los elementos a la derecha */
-  }
+	margin-left: auto; /* Mueve los elementos a la derecha 
+  }*/
   
 
