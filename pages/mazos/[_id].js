@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Footer from '../../components/Footer';
 import Head from 'next/head';
 import NavbarCustom from '../../components/NavbarCustom';
-import { Text, Card, Row, Col } from '@nextui-org/react';
+import { Text, Card, Row, Col, CardBody } from '@nextui-org/react';
 
 
 const DeckViewer = () => {
@@ -101,6 +101,14 @@ const RarezaDefault = "";
 const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
 
 
+  const cardStyles = {
+    width: "",
+    borderRadius: "0", // Anula el border-radius y hace los bordes cuadrados
+    border: "1px solid #1D3E67", // Agrega un borde para separar visualmente el contenido
+    backgroundColor: "#010609" // Fondo translúcido (blanco con 80% de opacidad)
+  };
+
+
   return (
     <>
 <Head>
@@ -126,14 +134,21 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   <div className="container mx-auto">
   {deckData && (
     <div>
-      <h2>Deck: {deckData.arquetipo}</h2>
-      <h3>Top: {deckData.top}</h3>
-
-      <div className="box-grid container">
-      <div className='gridhabilidad' >
-          <h3>{deckData.jugador}</h3>
-        <span className='habilidadtexto'> <img src='https://res.cloudinary.com/dqofcbeaq/image/upload/v1665971318/iconos%20dlp/descarga_5_s7lpmt.webp' className='spanhabilidad' /> {deckData.habilidad}</span>
+      <div className="box-grid">
+        <div className='info-grid'>
+      <Card style={cardStyles}>
+      <CardBody>
+        <h2 style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold" }}>
+          Deck: {deckData.arquetipo}
+        </h2>
+        <h3 style={{ textAlign: "center" }}>Top: {deckData.top}</h3>
+        <div className="">
+          <p style={{ textAlign: "center" }}>Jugador: {deckData.jugador}</p>
+          <p style={{ textAlign: "center" }}>Habilidad: {deckData.habilidad}</p>
         </div>
+      </CardBody>
+    </Card>
+    </div>
       <div className="deck-grid"> {/* Contenedor del grid */}
   {mainDeckData.map((card, index) => (
     <div key={card._id} className={`container-item item${index + 1}`} onClick={() => handleCardClick(card)}>
@@ -198,12 +213,8 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
         </div>
       )}
 <h3>Otros decks</h3>
-
+<p>Aca va la tabla</p>
 </div>
-
-
-
-
 {selectedCard && (
   <div className="popup" onClick={handleClosePopup}>
     <div className="popup-content" onClick={(event) => event.stopPropagation()}>

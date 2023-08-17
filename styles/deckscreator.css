@@ -9,6 +9,11 @@
  grid-template-columns: 1fr 1fr;
 }
 
+.info-grid{
+  display: grid;
+  width: 50%;
+}
+
 .button-grid{
   width: 5%;
  }
@@ -29,7 +34,7 @@
     grid-auto-rows: minmax(100px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 3px solid #1D3E67;
+    border: 1px solid #1D3E67;
     width: 50%;
     gap: 1px;
     padding: 0.3em;
@@ -42,7 +47,7 @@
     grid-auto-rows: minmax(150px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 3px solid #1D3E67;
+    border: 1px solid #1D3E67;
     width: 100%;
     gap: 5px;
     padding: 0.5em;
@@ -67,7 +72,7 @@
     grid-auto-rows: minmax(130px, auto);
     background-color: #010609;
     background-repeat: repeat;
-    border: 3px solid #1D3E67;
+    border: 1px solid #1D3E67;
     width: 50%;
     gap: 3px;
     padding: 0.5em;
@@ -116,6 +121,7 @@
 }
 
 
+
  @media only screen and (max-width: 600px) {
     .deck-grid{
       grid-template-columns: repeat(auto-fill, minmax(60px, 0.5fr));
@@ -129,6 +135,10 @@
       grid-auto-rows: minmax(50px, auto);
       width: 100%;  
       gap: 2px; 
+    }
+    .info-grid{
+      display: grid;
+      width: 100%;
     }
 
   }
@@ -149,7 +159,10 @@
       width: 60%;  
       gap: 5px; 
     }
-
+    .info-grid{
+      display: grid;
+      width: 100%;
+    }
 
   }
 

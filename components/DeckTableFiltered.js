@@ -12,10 +12,11 @@ import {
   Radio,
 } from "@nextui-org/react";
 import ImageCard from "./ImageCard"; // Ajusta la ruta según la ubicación real
+import ImageCardTable from "./ImageCardDecksTable";
 
 const colors = ["default", "primary", "secondary", "success", "warning", "danger"];
 
-const DeckTable = ({ data, archetypes, resultsToShow, currentArquetipo  }) => {
+const DeckTableFiltered = ({ data, archetypes, resultsToShow, currentArquetipo }) => {
   const router = useRouter();
   const [selectedColor, setSelectedColor] = useState("default");
 
@@ -27,7 +28,7 @@ const DeckTable = ({ data, archetypes, resultsToShow, currentArquetipo  }) => {
         color={selectedColor}
         selectionMode="single"
         defaultSelectedKeys={["2"]}
-        aria-label="Tabla de mazos"
+        aria-label="Tabla de mazos filtrada"
       >
         <TableHeader>
           <TableColumn>Arquetipo</TableColumn>
@@ -38,8 +39,8 @@ const DeckTable = ({ data, archetypes, resultsToShow, currentArquetipo  }) => {
           <TableColumn>Fecha</TableColumn>
         </TableHeader>
         <TableBody>
-          {data
-            .slice(Math.max(data.length - resultsToShow, 0), data.length)
+          {filteredData
+            .slice(Math.max(filteredData.length - resultsToShow, 0), filteredData.length)
             .map((element) => (
               <TableRow
                 key={element._id}
@@ -97,4 +98,4 @@ const DeckTable = ({ data, archetypes, resultsToShow, currentArquetipo  }) => {
   );
 };
 
-export default DeckTable;
+export default DeckTableFiltered;
