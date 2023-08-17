@@ -25,51 +25,36 @@
     const [username, setUsername] = useState(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    useEffect(() => {
+      // Obtén el token del localStorage
+      const token = localStorage.getItem("token");
+  
+      if (token) {
+        // Realiza una solicitud POST al endpoint de callback para obtener información del usuario
+        fetch("https://api.duellinks.pro/callback", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }), // Envia el token en el cuerpo de la solicitud
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setUserImage(data.authenticated ? data.image : null);
+            setAuthenticated(data.authenticated);
+            setUsername(data.username);
+          })
+          .catch((error) => {
+            console.error("Error fetching user info:", error);
+          });
+      }
+    }, []);
+  
     const handleLogin = () => {
       window.location.href = "https://api.duellinks.pro/login";
     };
-    
-    // Después de obtener la respuesta en el callback de autenticación
-    fetch("https://api.duellinks.pro/callback")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          const token = data.token; // Aquí obtienes el token del servidor
-          localStorage.setItem("token", token);
-        } else {
-          console.error("Autenticación fallida:", data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al autenticar:", error);
-      });
-    
+  
 
-
-      useEffect(() => {
-        const token = localStorage.getItem("token");
-      
-        if (token) {
-          fetch("https://api.duellinks.pro/get-user-info/", {
-            credentials: "include",
-            headers: {
-              Authorization: token, // No necesitas "Bearer" aquí, solo el token
-            },
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              setUserImage(data.authenticated ? data.image : null);
-              setAuthenticated(data.authenticated);
-              setUsername(data.username);
-            })
-            .catch((error) => {
-              console.error("Error fetching user info:", error);
-            });
-        }
-      }, []);
-
-      
     return (
       <Navbar isBordered className="bg-[#0a141d]">
         <NavbarContent className="sm:hidden" justify="start">
