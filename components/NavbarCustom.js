@@ -30,17 +30,16 @@
       const token = localStorage.getItem("token");
   
       if (token) {
-        // Agrega las cabeceras necesarias para las solicitudes, incluyendo el token
         const headers = new Headers();
         headers.append("Authorization", token);
   
         fetch("https://api.duellinks.pro/get-user-info/", {
           credentials: "include",
-          headers: headers, // Usa las cabeceras que contienen el token
+          headers: headers,
         })
           .then((response) => response.json())
           .then((data) => {
-            setUserImage(data.authenticated ? data.image : null);
+            setUserImage(data.image);
             setAuthenticated(data.authenticated);
             setUsername(data.username);
           })
