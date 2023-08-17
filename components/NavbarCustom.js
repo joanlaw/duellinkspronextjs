@@ -25,18 +25,18 @@
     const [username, setUsername] = useState(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     useEffect(() => {
-      // Obtén el token del localStorage
       const token = localStorage.getItem("token");
   
       if (token) {
-        // Realiza una solicitud POST al endpoint de callback para obtener información del usuario
-        fetch("https://api.duellinks.pro/callback", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }), // Envia el token en el cuerpo de la solicitud
+        // Agrega las cabeceras necesarias para las solicitudes, incluyendo el token
+        const headers = new Headers();
+        headers.append("Authorization", token);
+  
+        fetch("https://api.duellinks.pro/get-user-info/", {
+          credentials: "include",
+          headers: headers, // Usa las cabeceras que contienen el token
         })
           .then((response) => response.json())
           .then((data) => {
