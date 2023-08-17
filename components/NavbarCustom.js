@@ -25,28 +25,30 @@
     const [username, setUsername] = useState(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      
-      if (token) {
-        fetch("https://api.duellinks.pro/get-user-info/", {
-          credentials: "include",
-          headers: {
-            Authorization: `Bearer ${token}`, // Incluye el token en los encabezados
-          },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          setUserImage(data.authenticated ? data.image : null);
-          setAuthenticated(data.authenticated);
-          setUsername(data.username);
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-        });
-      }
-    }, []);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  
+  if (token) {
+    fetch("https://api.duellinks.pro/get-user-info/", {
+      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${token}`, // Incluye el token en los encabezados
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("User info response:", data); // Agrega este log para verificar la respuesta
+      setUserImage(data.authenticated ? data.image : null);
+      setAuthenticated(data.authenticated);
+      setUsername(data.username);
+    })
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+    });
+  }
+}, []);
+
     const handleLogin = () => {
       window.location.href = "https://api.duellinks.pro/login";
     };
