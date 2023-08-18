@@ -82,23 +82,24 @@ function Clusters() {
         .map(({ titulo, banner_video, _id }) => (
           <div className="col-span-1" key={_id}>
             <Link href={`/videos/${encodeURIComponent(titulo)}`}>
-              <div className="bg-gray-800 animate__animated animate__fadeInUp p-4 rounded-lg">
-                <div className="overflow-hidden">
-                  <img
-                    src={banner_video}
-                    alt="a wallpaper"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="mt-4">
-                  <h4 className="text-xl font-semibold">{titulo}</h4>
+              <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 ease-in-out animate__animated animate__fadeInUp relative">
+                <img
+                  src={banner_video}
+                  alt="a wallpaper"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-75">
+                  <h4 className="text-white font-semibold text-center">{titulo}</h4>
                 </div>
               </div>
             </Link>
           </div>
         ))}
     </div>
-  </div>
+</div>
+
+
+
   {resultsToShow < videos?.length && (
     <div className="text-center mt-6">
       <button

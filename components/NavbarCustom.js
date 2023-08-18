@@ -67,7 +67,7 @@
     };
 
     return (
-      <Navbar isBordered className="bg-[#0a141d]">
+      <Navbar isBordered className="">
         <NavbarContent className="sm:hidden" justify="start">
           <NavbarMenuToggle
             aria-label="Open Menu"

@@ -6,8 +6,9 @@ import CountdownTimer from '../../components/CountdownTimer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import NavbarCustom from '../../components/NavbarCustom'
-import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input, Spinner} from "@nextui-org/react";
 import { SearchIcon } from '../../components/SearchIcon';
+import FooterCustom from '../../components/FooterCustom';
 
 
 export default function Torneos() {
@@ -56,7 +57,10 @@ export default function Torneos() {
         return filteredLeagues;
     };
 
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return     <div className="flex gap-4">
+
+    <Spinner size="lg" />
+  </div> ;
     if (error) return <p>Hubo un error al cargar la data: {error.message}</p>;
 
     return (
@@ -120,21 +124,30 @@ export default function Torneos() {
             <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
           </div>
         </div>
-        <Button
-          color="primary"
-          radius="full"
-          size="sm"
-          variant="solid"
-          onClick={() => {/* Navegación al torneo */}}
-        >
-          Link
-        </Button>
+        <a href={league?.enlace_torneo} target="_blank" rel="noopener noreferrer">
+          <Button
+            color="primary"
+            radius="full"
+            size="sm"
+            variant="solid"
+            onClick={() => {/* Opcional: Aquí puedes agregar acciones adicionales al hacer clic */}}
+          >
+            Link
+          </Button>
+        </a>
       </CardHeader>
       
       <CardBody className="px-3 py-0 text-small text-default-400">
-        <p>
-          Frontend developer and UI/UX enthusiast. Join me on this coding adventure!
-        </p>
+        <div className="tournament-info">
+          {league?.infoTorneo.map((info, index) => (
+            <div key={index}>
+              <p><strong>Formato:</strong> {info.format}</p>
+              <p><strong>Banlist:</strong> {info.banlist}</p>
+              <p><strong>Información de Deck:</strong> {info.deck_info}</p>
+              <p><strong>Eliminación:</strong> {info.eliminacion}</p>
+            </div>
+          ))}
+        </div>
         <span className="pt-2">
           #FrontendWithZoey
           <span className="py-2" aria-label="computer" role="img">
@@ -142,6 +155,7 @@ export default function Torneos() {
           </span>
         </span>
       </CardBody>
+      
       
       <CardFooter className="gap-3">
         <div className="flex gap-1">
@@ -159,7 +173,7 @@ export default function Torneos() {
 
 </div>
         </div>
-        <Footer />
+        <FooterCustom />
     </>
     
     );

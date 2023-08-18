@@ -9,6 +9,7 @@ import Footer from './Footer'
 import Eventos from './Eventos'
 //import styles from '../styles/Home.module.css'
 import NavbarCustom from './NavbarCustom.js'
+import FooterCustom from './FooterCustom.js'
 
 import stageoftrickstar from "../assets/stageoftrickstar.webp";
 
@@ -23,7 +24,7 @@ export default function Home(){
 
         <Clusters /> 
        
-        <Footer />
+        <FooterCustom />
       </div>
     )
 }

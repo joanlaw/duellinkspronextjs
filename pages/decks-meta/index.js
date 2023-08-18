@@ -3,6 +3,7 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import Head from "next/head"
 import NavbarCustom from "../../components/NavbarCustom"
+import FooterCustom from "../../components/FooterCustom"
 
 export default function index() {
 
@@ -22,11 +23,8 @@ export default function index() {
             <br />
             <h1>Tier List</h1>
       <p>ESTAMOS RECOLECTANDO DATOS PARA PODER MOSTRAR UNA TIER LIST ACORDE AL METAJUEGO ACTUAL.</p>
-      <br />
-      <br />
-      <br />
     </div>
-    <Footer />
+    <FooterCustom />
 </div>
 </>
   )

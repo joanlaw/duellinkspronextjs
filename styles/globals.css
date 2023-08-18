@@ -247,12 +247,3 @@ td {
   position: relative;
   z-index: 1;
 }
-
-/*MOBILE INFO DECKS */
-@media (max-width: 768px) {
-  .card-styles {
-    width: 100%;
-  }
-}
-
-

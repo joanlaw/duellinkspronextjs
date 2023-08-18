@@ -11,6 +11,7 @@ import Head from "next/head.js";
 import NavbarCustom from "../../components/NavbarCustom.js";
 import { SearchIcon } from "../../components/SearchIcon.js";
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import FooterCustom from "../../components/FooterCustom.js";
 
 export default function Cards() {
   const [cardList, setCardList] = useState([]);
@@ -181,7 +182,7 @@ export default function Cards() {
       </Head>
       <NavbarCustom />
       <br />
-      <div className="container mx-auto">
+      <div className="container mx-auto px-32">
         <div className="">
         <Input
             className='w-full lg:w-1/3'
@@ -235,7 +236,7 @@ export default function Cards() {
         )}
       </div>
       <br />
-      <Footer />
+      <FooterCustom />
     </>
   );
 }

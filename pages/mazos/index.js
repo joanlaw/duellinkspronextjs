@@ -9,6 +9,7 @@ import NavbarCustom from "../../components/NavbarCustom";
 import DeckTable from "../../components/CustomTable";
 import { SearchIcon } from "../../components/SearchIcon";
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import FooterCustom from "../../components/FooterCustom";
 
 export default function Index() {
   const [cardList, setCardList] = useState([]);
@@ -304,7 +305,7 @@ export default function Index() {
             "DD/MM/YYYY"
           )})`}</option>
         </select>
-        <label className="label-top">Top</label>
+        <label className="label-top"></label>
         <select
           className=""
           type="text"
@@ -348,7 +349,7 @@ export default function Index() {
         )}
         <br />
       </div>
-      <Footer />
+      <FooterCustom />
     </div>
   );
 }
