@@ -8,6 +8,7 @@ import Footer from '../../components/Footer';
 import Head from 'next/head';
 import NavbarCustom from '../../components/NavbarCustom';
 import { Text, Card, Row, Col, CardBody } from '@nextui-org/react';
+import FooterCustom from '../../components/FooterCustom'
 
 
 const DeckViewer = () => {
@@ -104,7 +105,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   const cardStyles = {
     width: "",
     borderRadius: "0", // Anula el border-radius y hace los bordes cuadrados
-    border: "1px solid #1D3E67", // Agrega un borde para separar visualmente el contenido
+
     backgroundColor: "#010609" // Fondo translúcido (blanco con 80% de opacidad)
   };
 
@@ -135,6 +136,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   {deckData && (
     <div>
       <div className="box-grid">
+        
         <div className='info-grid'>
       <Card style={cardStyles}>
       <CardBody>
@@ -212,8 +214,8 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
           </a>
         </div>
       )}
-<h3>Otros decks</h3>
-<p>Aca va la tabla</p>
+
+{/*<h3>Otros decks</h3> */}
 </div>
 {selectedCard && (
   <div className="popup" onClick={handleClosePopup}>
@@ -254,7 +256,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   )}
 
 </div>
-<Footer />
+<FooterCustom />
 
     </>
   );
