@@ -2,6 +2,7 @@
 
 import React from 'react';
 import TournamentRegistration from './TournamentRegistration';
+import NavbarCustom from '../NavbarCustom';
 
 const TournamentDetails = ({ tournament }) => {
     if (!tournament) {
@@ -10,6 +11,7 @@ const TournamentDetails = ({ tournament }) => {
 
     return (
         <div>
+            <NavbarCustom />
             <h1>{tournament.league_name}</h1>
             <p>ID del Torneo: {tournament._id}</p>
             <h2>Información:</h2>
