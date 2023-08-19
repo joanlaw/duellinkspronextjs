@@ -8,11 +8,11 @@ const TournamentRegistration = ({ tournamentId }) => {
   const [error, setError] = useState(null);
 
   // Usa el Hook useUser para obtener los datos y métodos del usuario
-  const { isAuthenticated, handleLogin, username } = useUser(); // Cambiado de 'login' a 'handleLogin' y de 'user' a 'username'
+  const { isAuthenticated, handleLogin, username } = useUser(); 
 
   const handleRegistration = async () => {
     if (!isAuthenticated) {
-      handleLogin(); // Cambiado de 'login()' a 'handleLogin()'
+      handleLogin(); 
       return;
     }
 
@@ -21,7 +21,7 @@ const TournamentRegistration = ({ tournamentId }) => {
 
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/register/${tournamentId}`, {
-        discordId: username, // Usa el 'username' ya que en tu contexto no tienes una propiedad 'discordId'
+        players: [username], // Enviamos un array con el 'username' dentro del objeto 'players'
       });
 
       if (response.status === 200) {
