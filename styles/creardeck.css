@@ -1,4 +1,4 @@
-.deck-builder {
+/*.deck-builder {
     display: grid;
     width: 100%;
 }
@@ -9,16 +9,16 @@
 
 .gridContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide la pantalla en dos columnas */
+    grid-template-columns: 1fr 1fr; /* Divide la pantalla en dos columnas 
     grid-template-rows: auto;
-    gap: 1rem; /* Espacio entre las secciones */
+    gap: 1rem; /* Espacio entre las secciones 
   }
   
   .leftSection {
-    grid-column: 1 / 2; /* Ocupa la primera columna del grid */
+    grid-column: 1 / 2; /* Ocupa la primera columna del grid 
   }
   
   .rightSection {
-    grid-column: 2 / 3; /* Ocupa la segunda columna del grid */
+    grid-column: 2 / 3; /* Ocupa la segunda columna del grid 
   }
-  
+  */

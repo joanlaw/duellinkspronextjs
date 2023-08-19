@@ -130,11 +130,11 @@
   cursor: pointer;
 }
 
-.button-link:hover {
-  background-color: #0056b3; /* Cambiar el color en hover */
-  transform: scale(1.05); /* Hacer que el botón se agrande un poco al pasar el mouse */
+/*.button-link:hover {
+  background-color: #0056b3; /* Cambiar el color en hover 
+  transform: scale(1.05); /* Hacer que el botón se agrande un poco al pasar el mouse 
 }
-
+*/
 
 
  @media only screen and (max-width: 600px) {

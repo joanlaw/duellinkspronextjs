@@ -43,9 +43,8 @@
 
 .listcards{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     grid-auto-rows: minmax(100px, auto);
-
     background-repeat: repeat;
     border: 2px solid #1D3E67;
     width: 100%;
@@ -54,7 +53,7 @@
       
   }
   
-  .ocultarinfoall{
+ /* .ocultarinfoall{
     display: none;
   }
 
@@ -63,11 +62,11 @@
     width: 100%;
   }
 
-  /*.grid-list-card{
+  .grid-list-card{
     position: relative;
   }
 
-/*.grid-list-card::before, .grid-list-card::after{
+.grid-list-card::before, .grid-list-card::after{
   --scale:0;
   position: absolute;
   
@@ -91,13 +90,13 @@
   font-size: x-small;
 }
 
-.grid-list-card:hover::before{
+/*.grid-list-card:hover::before{
   --scale:1;
 }*/
 
 
 
-.grid-tooltips-nombre-descripcion{
+/*.grid-tooltips-nombre-descripcion{
   display: grid;
 
   font-size: small;
@@ -172,4 +171,4 @@
   margin-left: 370px;
   margin-top: 25px;
   
-}
+}*/

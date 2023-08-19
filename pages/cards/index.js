@@ -18,7 +18,7 @@ export default function Cards() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(36);
+  const [cardsPerPage] = useState(48);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -182,7 +182,7 @@ export default function Cards() {
       </Head>
       <NavbarCustom />
       <br />
-      <div className="container mx-auto px-32">
+      <div className="container mx-auto">
         <div className="">
         <Input
             className='w-full lg:w-1/3'

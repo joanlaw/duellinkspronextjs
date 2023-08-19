@@ -1,4 +1,4 @@
-.blog-list {
+/*.blog-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -19,7 +19,7 @@
     margin-top: 10px;
   }
 
-  /* Estilos para el componente PostBlog */
+  /* Estilos para el componente PostBlog 
 .blog-container {
     max-width: 800px;
     margin: 0 auto;
@@ -40,7 +40,7 @@
     margin-top: 20px;
   }
   
-  /* Estilos adicionales para imágenes dentro del cuerpo del blog */
+  /* Estilos adicionales para imágenes dentro del cuerpo del blog 
   .blog-body img {
     max-width: 100%;
     height: auto;
@@ -48,7 +48,7 @@
     margin: 20px auto;
   }
   
-  /* Estilos responsivos para dispositivos móviles */
+  /* Estilos responsivos para dispositivos móviles 
 @media (max-width: 767px) {
     .blog-container {
       padding: 10px;
@@ -63,7 +63,7 @@
     }
   }
 
-  /* Estilos responsivos para dispositivos móviles */
+  /* Estilos responsivos para dispositivos móviles 
 @media (max-width: 767px) {
     .index-container {
       grid-template-columns: 1fr;
@@ -88,3 +88,4 @@
       margin-bottom: 5px;
     }
   }
+  */

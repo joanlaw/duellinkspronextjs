@@ -1,4 +1,4 @@
-.card {
+/*.card {
   position: relative;
   overflow: hidden;
 }
@@ -13,13 +13,13 @@
 
 .card-title {
   position: absolute;
-  bottom: 0; /* Colocamos el título en la parte inferior */
+  bottom: 0; /* Colocamos el título en la parte inferior 
   left: 50%;
-  transform: translate(-50%, 10%); /* Ajustamos el título un poco más abajo */
+  transform: translate(-50%, 10%); /* Ajustamos el título un poco más abajo 
   font-weight: bold;
   border-radius: 4px;
-  width: 100%; /* Para que el fondo del título ocupe el ancho completo */
-  padding: 8px 16px; /* Modifica el padding según tus preferencias */
+  width: 100%; /* Para que el fondo del título ocupe el ancho completo 
+  padding: 8px 16px; /* Modifica el padding según tus preferencias 
 }
 
 .card-text {

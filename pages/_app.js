@@ -9,7 +9,6 @@ import '../styles/Home.module.css';
 import '../styles/footer.css';
 import '../styles/index.css';
 import '../styles/cluster.css';
-import '../styles/tooltipsdl.css';
 import '../styles/allcards.css';
 import '../styles/listadecks.css';
 import '../styles/cartainfo.css';

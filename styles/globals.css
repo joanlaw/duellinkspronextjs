@@ -65,13 +65,13 @@ td {
 }
 
 * {
-  box-sizing: border-box;
+ /* box-sizing: border-box; */
   font-family: 'Quicksand', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+   /* color-scheme: dark; */
   }
   body {
 

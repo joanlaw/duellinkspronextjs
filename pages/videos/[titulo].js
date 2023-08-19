@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import YouTube from 'react-youtube';
 import Head from 'next/head';
+import FooterCustom from '../../components/FooterCustom'
 
 function VideoDeck() {
   const router = useRouter();
@@ -240,7 +241,7 @@ function VideoDeck() {
         )}
       </div>
 
-      <Footer />
+      <FooterCustom />
     </>
   );
 }

@@ -332,7 +332,7 @@ export default function Index() {
         />
         <br />
         </div>
-        <div className="decksbuttons">
+        <div className="decksbuttons container mx-auto">
           <DeckButtons filteredDecks={elementosFiltrados} />
         </div>
 

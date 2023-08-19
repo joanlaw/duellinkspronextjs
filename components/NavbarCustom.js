@@ -91,6 +91,11 @@
               Decks
             </Link>
           </NavbarItem>
+          <NavbarItem>
+            <Link href="/decks-meta">
+              Tier List
+            </Link>
+          </NavbarItem>
           <NavbarItem isActive>
             <Link href="/torneos">
               Torneos
@@ -113,6 +118,11 @@
           <NavbarItem>
             <Link href="/mazos">
               Decks
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/decks-meta">
+              Tier List
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
