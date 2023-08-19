@@ -10,6 +10,8 @@ import DeckTable from "../../components/CustomTable";
 import { SearchIcon } from "../../components/SearchIcon";
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
 import FooterCustom from "../../components/FooterCustom";
+import { Badge } from "@nextui-org/react";
+
 
 export default function Index() {
   const [cardList, setCardList] = useState([]);
@@ -259,7 +261,12 @@ export default function Index() {
 
           <div>{archetype}</div>
           {groupedDecks[archetype] > 0 && (
-            <div className="count-deck">{groupedDecks[archetype]}</div>
+                   <div className="badge-position"> <Badge content={groupedDecks[archetype]}color="default"
+                      >
+                      {/* Puedes poner aquí cualquier otro componente si lo necesitas, 
+                          pero en este caso, simplemente envolvemos el Badge alrededor 
+                          del contenido numérico para mostrar el número como un Badge. */}
+                    </Badge></div>  
           )}
         </button>
       );
@@ -271,15 +278,20 @@ export default function Index() {
   return (
     <div>
       <NavbarCustom />
-
-      <div className="container mx-auto">
-      <h2 className="text-4xl font-semibold mb-4">Lista de Decks</h2>
-    
-        <select
-          name="createdAt"
-          defaultValue="ultimas2semanas"
-          onChange={handleFiltroChange}
-        >
+      <div className="container mx-auto px-4 py-6">
+  <h2 className="text-4xl font-semibold mb-8">Lista de Decks</h2>
+  <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-end mb-4">
+    <div className="relative w-full md:w-1/2 lg:w-1/3">
+      <label htmlFor="createdAt" className="block text-sm font-medium mb-1">
+        Fecha
+      </label>
+    <select
+      name="createdAt"
+      id="createdAt"
+      defaultValue="ultimas2semanas"
+      onChange={handleFiltroChange}
+      className="block w-full px-4 py-2 border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+    >
           <option value="">Todos los tiempos</option>
           <option value="ultimodia">{`Hoy (${moment().format(
             "DD/MM/YYYY"
@@ -305,14 +317,19 @@ export default function Index() {
             "DD/MM/YYYY"
           )})`}</option>
         </select>
-        <label className="label-top"></label>
-        <select
-          className=""
-          type="text"
-          name="top"
-          value={filtro.top}
-          onChange={handleFiltroChange}
-        >
+        </div>
+        <div className="relative w-full md:w-1/2 lg:w-1/3">
+      <label htmlFor="top" className="block text-sm font-medium mb-1">
+        Top
+      </label>
+      <select
+        className="block w-full px-4 py-2 border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        type="text"
+        name="top"
+        id="top"
+        value={filtro.top}
+        onChange={handleFiltroChange}
+      >
           <option value=""></option>
           <option value="Rey de duelos">Rey de duelos</option>
           <option value="Ensalada">Ensalada</option>
@@ -320,22 +337,24 @@ export default function Index() {
           <option value="Farmeo">Farmeo</option>
         </select>
       </div>
-      <div className="container mx-auto">
-        <div className="">
-        <Input
-            className='w-full lg:w-1/3'
-            type='text'
-            startContent={<SearchIcon size={18} />}
-            placeholder='Busca tu deck, carta o arquetipo favorito'
-            value={search}
-            onChange={searcher}
-        />
-        <br />
+      </div>
+</div>
+<div className="container mx-auto px-4 py-6">
+  <div className="mb-6">
+    <Input
+      className='w-full md:w-1/2 lg:w-1/3'
+      type='text'
+      startContent={<SearchIcon size={18} />}
+      placeholder='Busca tu deck, carta o arquetipo favorito'
+      value={search}
+      onChange={searcher}
+    />
         </div>
-        <div className="decksbuttons container mx-auto">
+        <div className="container mx-2" >
+        <div className="decksbuttons">
           <DeckButtons filteredDecks={elementosFiltrados} />
         </div>
-
+</div>
         <div>
           <p>Cantidad de decks: {elementosFiltrados.length}</p>
         </div>
