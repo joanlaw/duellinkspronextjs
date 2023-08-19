@@ -17,7 +17,7 @@ function Cluster({ imageSource, title, text, url }) {
   </div>
   <div className="p-4 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
     <p className="font-bold">
-      <span className="inline-block bg-red-500 text-white rounded-full px-3 py-1 text-sm font-semibold">{text}</span>
+     
     </p>
   </div>
 </div>
