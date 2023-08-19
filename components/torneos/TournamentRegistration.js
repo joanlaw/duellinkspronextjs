@@ -6,6 +6,7 @@ const TournamentRegistration = ({ tournamentId }) => {
   const [registered, setRegistered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null); // Nuevo estado para el mensaje de éxito
 
   // Usa el Hook useUser para obtener los datos y métodos del usuario
   const { isAuthenticated, handleLogin, username } = useUser(); 
@@ -21,11 +22,12 @@ const TournamentRegistration = ({ tournamentId }) => {
 
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/register/${tournamentId}`, {
-        players: [username], // Enviamos un array con el 'username' dentro del objeto 'players'
+        players: [username],
       });
 
       if (response.status === 200) {
         setRegistered(true);
+        setSuccessMessage('Inscripción exitosa');
       } else {
         setError('No se pudo completar la inscripción.');
       }
@@ -42,14 +44,13 @@ const TournamentRegistration = ({ tournamentId }) => {
     return <div>Inscribiéndose...</div>;
   }
 
-  if (registered) {
-    return <div>Inscripción exitosa!</div>;
-  }
-
   return (
     <div>
-      {error && <p>{error}</p>}
-      <button onClick={handleRegistration}>Inscribirse en el Torneo</button>
+      {error && <p className="text-red-500">{error}</p>}
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {!registered && (
+        <button onClick={handleRegistration}>Inscribirse en el Torneo</button>
+      )}
     </div>
   );
 };
