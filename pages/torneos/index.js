@@ -9,6 +9,7 @@ import NavbarCustom from '../../components/NavbarCustom'
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input, Spinner} from "@nextui-org/react";
 import { SearchIcon } from '../../components/SearchIcon';
 import FooterCustom from '../../components/FooterCustom';
+import Link from 'next/link';
 
 
 export default function Torneos() {
@@ -124,17 +125,16 @@ export default function Torneos() {
             <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
           </div>
         </div>
-        <a href={league?.enlace_torneo} target="_blank" rel="noopener noreferrer">
-          <Button
-            color="primary"
-            radius="full"
-            size="sm"
-            variant="solid"
-            onClick={() => {/* Opcional: Aquí puedes agregar acciones adicionales al hacer clic */}}
-          >
-            Link
-          </Button>
-        </a>
+        <Link href={`/leagues/${league?._id}`} passHref>
+  <Button
+    color="primary"
+    radius="full"
+    size="sm"
+    variant="solid"
+  >
+    Link
+  </Button>
+</Link>
       </CardHeader>
       
       <CardBody className="px-3 py-0 text-small text-default-400">
@@ -145,11 +145,12 @@ export default function Torneos() {
               <p><strong>Banlist:</strong> {info.banlist}</p>
               <p><strong>Información de Deck:</strong> {info.deck_info}</p>
               <p><strong>Eliminación:</strong> {info.eliminacion}</p>
+              
             </div>
           ))}
         </div>
         <span className="pt-2">
-          #FrontendWithZoey
+        <CountdownTimer targetDate={league.start_date} />
           <span className="py-2" aria-label="computer" role="img">
             💻
           </span>
@@ -163,9 +164,9 @@ export default function Torneos() {
           <p className="text-default-400 text-small">Following</p>
         </div>
         <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">97.1K</p>
-          <p className="text-default-400 text-small">Followers</p>
-        </div>
+    <p className="font-semibold text-default-400 text-small">{league?.subscribed_users}</p>
+    <p className="text-default-400 text-small">Inscritos</p>
+  </div>
       </CardFooter>
     </Card>
   ))}

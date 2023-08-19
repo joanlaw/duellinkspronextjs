@@ -2,6 +2,9 @@ import {NextUIProvider} from '@nextui-org/react'
 import {ThemeProvider as NextThemesProvider} from "next-themes";
 import GoogleAnalytics from '@bradgarropy/next-google-analytics';
 import '../styles/tailwind.css'; // Importa tus estilos globales de Tailwind CSS
+import { UserProvider } from '../contexts/UserContext';
+
+
 
 import '../styles/globals.css';
 import '../styles/Home.module.css';
@@ -23,11 +26,13 @@ import '../styles/globals.css';
 function MyApp({ Component, pageProps }) {
   return (
     <NextUIProvider>
-       <NextThemesProvider attribute="class" defaultTheme="dark">
-      <GoogleAnalytics measurementId='G-G7SZ0BHCCP' />
-      <Component {...pageProps} />
-      </NextThemesProvider>
-    </NextUIProvider>
+    <NextThemesProvider attribute="class" defaultTheme="dark">
+        <GoogleAnalytics measurementId='G-G7SZ0BHCCP' />
+        <UserProvider>
+            <Component {...pageProps} />
+        </UserProvider>
+    </NextThemesProvider>
+</NextUIProvider>
   );
 }
 

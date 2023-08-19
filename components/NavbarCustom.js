@@ -17,54 +17,16 @@
   import { SearchIcon } from "./SearchIcon";
   import { AcmeLogo } from "./AcmeLogo";
   import Link from 'next/link';
-  import { parse } from 'cookie';
+  //import { parse } from 'cookie';
+  import { useUser } from '../contexts/UserContext'
+
+
 
   export default function NavbarCustom() {
-    const [userImage, setUserImage] = useState(null);
-    const [authenticated, setAuthenticated] = useState(false);
-    const [username, setUsername] = useState(null);
+    const { userImage, authenticated, username, handleLogin } = useUser();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    useEffect(() => {
-      // Extrae el token de la URL si está presente
-      const urlParams = new URLSearchParams(window.location.search);
-      const tokenFromUrl = urlParams.get('token');
-      
-      // Usa el token de la URL si está presente, de lo contrario, busca en el localStorage
-      const token = tokenFromUrl || localStorage.getItem("token");
-      
-      if (tokenFromUrl) {
-        localStorage.setItem("token", tokenFromUrl); // Almacena el token en el localStorage
-      }
-  
-      if (token) {
-        fetch("https://api.duellinks.pro/get-user-info/", {
-          credentials: "include",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("User info response:", data);
-          setUserImage(data.authenticated ? data.image : null);
-          setAuthenticated(data.authenticated);
-          setUsername(data.username);
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-          localStorage.removeItem("token"); // Borra el token del localStorage
-          setAuthenticated(false); // Actualiza el estado del usuario a no autenticado
-        });
-      } else {
-        setAuthenticated(false); // Set user as unauthenticated if no token
-      }
-    }, []);
-  
-    const handleLogin = () => {
-      window.location.href = "https://api.duellinks.pro/login";
-    };
 
     return (
       <Navbar isBordered className="">
