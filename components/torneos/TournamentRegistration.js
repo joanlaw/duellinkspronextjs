@@ -1,18 +1,27 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useUser } from '../../contexts/UserContext'; // Asegúrate de ajustar la ruta.
 
-const TournamentRegistration = ({ tournamentId, username }) => {
+const TournamentRegistration = ({ tournamentId }) => {
   const [registered, setRegistered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+
+  // Usa el Hook useUser para obtener los datos y métodos del usuario
+  const { isAuthenticated, handleLogin, username } = useUser(); // Cambiado de 'login' a 'handleLogin' y de 'user' a 'username'
+
   const handleRegistration = async () => {
+    if (!isAuthenticated) {
+      handleLogin(); // Cambiado de 'login()' a 'handleLogin()'
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/register/${tournamentId}`, {
-        username: username,
+        discordId: username, // Usa el 'username' ya que en tu contexto no tienes una propiedad 'discordId'
       });
 
       if (response.status === 200) {

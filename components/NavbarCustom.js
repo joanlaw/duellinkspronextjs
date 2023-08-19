@@ -59,7 +59,7 @@
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link href="/torneos">
+            <Link href="/leagues">
               Torneos
             </Link>
           </NavbarItem>
@@ -88,7 +88,7 @@
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link href="/torneos">
+            <Link href="/leagues">
               Torneos
             </Link>
           </NavbarItem>

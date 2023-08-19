@@ -1,6 +1,7 @@
 // components/torneos/TournamentDetails.js
 
 import React from 'react';
+import TournamentRegistration from './TournamentRegistration';
 
 const TournamentDetails = ({ tournament }) => {
     if (!tournament) {
@@ -18,6 +19,7 @@ const TournamentDetails = ({ tournament }) => {
                     <p><strong>Banlist:</strong> {info.banlist}</p>
                     <p><strong>Información de Deck:</strong> {info.deck_info}</p>
                     <p><strong>Eliminación:</strong> {info.eliminacion}</p>
+                    <TournamentRegistration tournamentId={tournament.id} />
                 </div>
             ))}
         </div>

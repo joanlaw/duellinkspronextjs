@@ -1,30 +1,47 @@
-// pages/leagues/[id].js
+// pages/torneos/[_id].js
+
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
-import { Card, Button, Spinner } from '@nextui-org/react';
+import TournamentDetails from '../../components/torneos/TournamentDetails';
 
-export default function LeagueDetailsPage({ league }) {
-  const router = useRouter();
+const TournamentPage = ({ _id }) => {
+    const [tournament, setTournament] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  if (router.isFallback) {
-    return <Spinner />;
-  }
+    useEffect(() => {
+        const fetchTournament = async () => {
+            try {
+                const response = await axios.get(`https://api.duellinks.pro/leagues/${_id}`);
+                setTournament(response.data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  return (
-    <div>
-      <h2>{league.league_name}</h2>
-      <Card shadow hoverable>
-        <p>{league.league_format}</p>
-        <p>{new Date(league.start_date).toLocaleDateString()}</p>
-        {/* Aquí puedes agregar más detalles del torneo */}
-      </Card>
-      <Button color="primary" onClick={() => router.push('/leagues')}>Volver a Torneos</Button>
-    </div>
-  );
+        fetchTournament();
+    }, [_id]);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error.message}</p>;
+    }
+
+    return <TournamentDetails tournament={tournament} />;
 }
 
+// Este función se usa para obtener los parámetros de la ruta actual
 export async function getServerSideProps(context) {
-  const { _id } = context.params;
-  const res = await axios.get(`https://api.duellinks.pro/leagues/${_id}`);
-  return { props: { league: res.data } };
+    return {
+        props: {
+            _id: context.params._id, // El ID del torneo que está en la URL
+        },
+    };
 }
+
+export default TournamentPage;
