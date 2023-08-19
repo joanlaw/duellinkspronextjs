@@ -43,24 +43,36 @@ export const UserProvider = ({ children }) => {
         }
     }, []);
     
-      const handleLogin = () => {
+    const handleLogin = () => {
         // Abrir una nueva ventana para el inicio de sesión.
         const loginWindow = window.open("https://api.duellinks.pro/login", "DuelLinksLogin", "width=500,height=500");
-        
+    
+        const onMessage = (event) => {
+            // Valida el tipo de mensaje
+            if (event.data.type === 'AUTH_SUCCESS') {
+                const token = event.data.token;
+                localStorage.setItem("token", token);
+                setToken(token); // Actualizar el estado del token
+    
+                // Puedes llamar a otros métodos aquí, si es necesario.
+                console.log("Usuario autenticado");
+            }
+        };
+    
+        // Añade un event listener para escuchar mensajes entrantes.
+        window.addEventListener('message', onMessage, false);
+    
         // Monitorear si la ventana se cierra
         const checkWindowClosed = setInterval(() => {
             if (loginWindow.closed) {
                 clearInterval(checkWindowClosed);
-                
-                // Una vez que la ventana se cierra, verifica si el usuario se autenticó.
-                const token = localStorage.getItem("token");
-                if (token) {
-                    // Continuar con el flujo después de la autenticación (por ejemplo, completar la inscripción)
-                    console.log("Usuario autenticado");
-                }
+    
+                // Una vez que la ventana se cierra, elimina el event listener.
+                window.removeEventListener('message', onMessage);
             }
         }, 100);
     };
+    
     
 
     return (
