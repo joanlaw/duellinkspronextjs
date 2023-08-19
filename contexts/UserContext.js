@@ -11,32 +11,32 @@ export const UserProvider = ({ children }) => {
         const urlParams = new URLSearchParams(window.location.search);
         const tokenFromUrl = urlParams.get('token');
         const token = tokenFromUrl || localStorage.getItem("token");
-
+    
         if (tokenFromUrl) {
-            localStorage.setItem("token", tokenFromUrl);
+          localStorage.setItem("token", tokenFromUrl);
         }
-
+    
         if (token) {
-            fetch("https://api.duellinks.pro/get-user-info/", {
-                credentials: "include",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                setUserImage(data.authenticated ? data.image : null);
-                setAuthenticated(data.authenticated);
-                setUsername(data.username);
-            })
-            .catch((error) => {
-                localStorage.removeItem("token");
-                setAuthenticated(false);
-            });
-        } else {
+          fetch("https://api.duellinks.pro/get-user-info/", {
+            credentials: "include",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            setUserImage(data.authenticated ? data.image : null);
+            setAuthenticated(data.authenticated);
+            setUsername(data.username);
+          })
+          .catch((error) => {
+            localStorage.removeItem("token");
             setAuthenticated(false);
+          });
+        } else {
+          setAuthenticated(false);
         }
-    }, []);
+      }, []);
 
     const handleLogin = () => {
         window.location.href = "https://api.duellinks.pro/login";

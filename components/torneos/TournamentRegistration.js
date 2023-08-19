@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useUser } from '../../contexts/UserContext'; // Asegúrate de ajustar la ruta.
+import { useUser } from '../../contexts/UserContext'; // Asegúrate de ajustar la ruta
 
 const TournamentRegistration = ({ tournamentId }) => {
   const [registered, setRegistered] = useState(false);
@@ -21,7 +21,7 @@ const TournamentRegistration = ({ tournamentId }) => {
     setError(null);
 
     try {
-      const response = await axios.post(`https://api.duellinks.pro/leagues/register/${tournamentId}`, {
+      const response = await axios.post(`https://api.duellinks.pro/leagues/${tournamentId}`, {
         players: [username],
       });
 
