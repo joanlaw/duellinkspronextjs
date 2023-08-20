@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useUser } from '../../contexts/UserContext'; // Asegúrate de ajustar la ruta
+import { useUser } from '../../contexts/UserContext';
 
 const TournamentRegistration = ({ tournamentId }) => {
   const [registered, setRegistered] = useState(false);
@@ -8,13 +8,12 @@ const TournamentRegistration = ({ tournamentId }) => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  // Usa el Hook useUser para obtener los datos y métodos del usuario
-  const { isAuthenticated, handleLogin, discordId } = useUser(); // Cambia username por discordId
+  const { authenticated, handleLogin, discordId } = useUser();
 
   const handleRegistration = async () => {
-    if (!isAuthenticated) {
-        handleLogin();
-        return; // Agrega esta línea
+    if (!authenticated) {
+      handleLogin();
+      return;
     }
 
     setLoading(true);
@@ -23,7 +22,7 @@ const TournamentRegistration = ({ tournamentId }) => {
     try {
       console.log('Calling enrollment API with playerId:', discordId, 'and tournamentId:', tournamentId);
       const response = await axios.post(`https://api.duellinks.pro/leagues/${tournamentId}/enroll`, {
-        playerId: discordId, // Cambia username por discordId
+        playerId: discordId,
       });
 
       if (response.status === 200) {
@@ -34,7 +33,7 @@ const TournamentRegistration = ({ tournamentId }) => {
       }
 
     } catch (err) {
-      setError('Ocurrió un error al intentar inscribirse en el torneo.');
+      setError(err.response?.data?.message || 'Ocurrió un error al intentar inscribirse en el torneo.');
       console.error(err);
     } finally {
       setLoading(false);

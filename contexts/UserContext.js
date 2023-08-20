@@ -5,7 +5,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [userImage, setUserImage] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
-  const [username, setUsername] = useState(null);
+  const [discordId, setDiscordId] = useState(null); // Asumiendo que discordId es lo mismo que username
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
       .then((data) => {
         setUserImage(data.authenticated ? data.image : null);
         setAuthenticated(data.authenticated);
-        setUsername(data.username);
+        setDiscordId(data.username); // Asumiendo que discordId es lo mismo que username
       })
       .catch((error) => {
         localStorage.removeItem("token");
@@ -69,7 +69,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ userImage, authenticated, username, handleLogin, token }}>
+    <UserContext.Provider value={{ userImage, authenticated, discordId, handleLogin, token }}>
       {children}
     </UserContext.Provider>
   );
