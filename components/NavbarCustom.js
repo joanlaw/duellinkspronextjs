@@ -140,15 +140,47 @@
                 <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
                 <p className="font-semibold">{userImage ? username : "Login"}</p>
                 </DropdownItem>
-                
-                <DropdownItem key="settings">Crear Torneo</DropdownItem>
-              <DropdownItem key="team_settings">Crear Liga</DropdownItem>
-              <DropdownItem key="analytics">Clan</DropdownItem>
-              <DropdownItem key="system">Mis torneos</DropdownItem>
-              <DropdownItem key="configurations">Configuración</DropdownItem>
-              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                Log Out
+                                
+                    <DropdownItem key="settings">
+                  <Link href="/crear-torneo">
+                    <a>Crear Torneo</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="team_settings">
+                  <Link href="/crear-liga">
+                    <a>Crear Liga</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="analytics">
+                  <Link href="/ruta-del-clan">
+                    <a>Clan</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="system">
+                  <Link href="/mis-torneos">
+                    <a>Mis torneos</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="configurations">
+                  <Link href="/configuracion">
+                    <a>Configuración</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="help_and_feedback">
+                  <Link href="/ayuda-y-opiniones">
+                    <a>Help & Feedback</a>
+                  </Link>
+                </DropdownItem>
+
+                <DropdownItem key="logout" color="danger">
+                  <Link href="/cerrar-sesion">
+                    <a>Log Out</a>
+                  </Link>
                 </DropdownItem>
               </DropdownMenu>
             ) : (
