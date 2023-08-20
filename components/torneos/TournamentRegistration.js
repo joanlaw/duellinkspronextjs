@@ -21,9 +21,10 @@ const TournamentRegistration = ({ tournamentId }) => {
     setError(null);
 
     try {
+        console.log('Calling enrollment API with playerId:', username, 'and tournamentId:', tournamentId);
         const response = await axios.post(`https://api.duellinks.pro/leagues/${tournamentId}/enroll`, {
-            playerId: username,
-          });
+          playerId: username,
+        });
 
       if (response.status === 200) {
         setRegistered(true);
