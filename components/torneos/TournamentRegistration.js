@@ -39,13 +39,12 @@ const TournamentRegistration = ({ tournamentId }) => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    console.log('Tournament ID:', tournamentId);
-  }, [tournamentId]);
   
   if (loading) {
     return <div>Inscribiéndose...</div>;
   }
+
+
 
   return (
     <div>
