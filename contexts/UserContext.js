@@ -7,6 +7,8 @@ export const UserProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [discordId, setDiscordId] = useState(null); // Asumiendo que discordId es lo mismo que username
   const [token, setToken] = useState(null);
+  const [username, setUsername] = useState(null);
+
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -31,7 +33,8 @@ export const UserProvider = ({ children }) => {
       .then((data) => {
         setUserImage(data.authenticated ? data.image : null);
         setAuthenticated(data.authenticated);
-        setDiscordId(data.username); // Asumiendo que discordId es lo mismo que username
+        setDiscordId(data.discordId); // 
+        setUsername(data.username);  // Añade esta línea
       })
       .catch((error) => {
         localStorage.removeItem("token");
@@ -69,9 +72,10 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ userImage, authenticated, discordId, handleLogin, token }}>
-      {children}
-    </UserContext.Provider>
+<UserContext.Provider value={{ userImage, authenticated, discordId, username, handleLogin, token }}>
+    {children}
+</UserContext.Provider>
+
   );
 };
 
