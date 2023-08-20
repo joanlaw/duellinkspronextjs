@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TournamentDetails from '../../components/torneos/TournamentDetails';
+import TournamentRegistration from '../../components/torneos/TournamentRegistration';
 
 const TournamentPage = ({ _id }) => {
     const [tournament, setTournament] = useState(null);
@@ -32,7 +33,12 @@ const TournamentPage = ({ _id }) => {
         return <p>Error: {error.message}</p>;
     }
 
-    return <TournamentDetails tournament={tournament} />;
+    return (
+        <div>
+          <TournamentDetails tournament={tournament} />
+          <TournamentRegistration tournamentId={_id} />
+        </div>
+      );
 }
 
 // Este función se usa para obtener los parámetros de la ruta actual
