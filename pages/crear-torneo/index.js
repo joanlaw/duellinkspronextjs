@@ -8,7 +8,7 @@ function index() {
     <div className="flex flex-col min-h-screen">
 <NavbarCustom />
         <div className='container mx-auto'>
-        <h1>Xrea un torneo</h1>
+        <h1>Crea un torneo</h1>
         <CreateTournamentForm />
         </div>
         <FooterCustom />

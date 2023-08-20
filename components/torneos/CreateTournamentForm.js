@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Input } from '@nextui-org/react';
 
 const CreateTournamentForm = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     league_name: '',
     league_format: '',
     start_date: '',
@@ -15,14 +15,27 @@ const CreateTournamentForm = () => {
       deck_info: '',
       eliminacion: ''
     }
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    if (name.includes('infoTorneo')) {
+      const nestedField = name.split('.')[1];
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        infoTorneo: {
+          ...prevFormData.infoTorneo,
+          [nestedField]: value,
+        },
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -31,12 +44,13 @@ const CreateTournamentForm = () => {
     try {
       const response = await axios.post('https://api.duellinks.pro/leagues', formData);
       console.log('Torneo creado con éxito', response.data);
+      setFormData(initialFormData); // Resetear campos después del envío
     } catch (error) {
       console.error('Hubo un problema al crear el torneo', error);
     }
   };
 
-  const variants = ['flat', 'bordered', 'underlined', 'faded'];
+  const variants = ['format', 'banlist', 'deck_info', 'eliminacion'];
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
@@ -86,10 +100,9 @@ const CreateTournamentForm = () => {
             type="text"
             name={`infoTorneo.${variant}`}
             value={formData.infoTorneo[variant]}
-            onChange={handleChange}
+            onChange={(e) => handleChange(e)}
             placeholder={`Información del Torneo - ${variant}`}
             label={`Información del Torneo - ${variant}`}
-            variant={variant}
           />
         ))}
       </div>

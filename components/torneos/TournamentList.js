@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const TournamentList = () => {
+const TournamentList = ({ discordId }) => {
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const fetchTournaments = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('https://api.duellinks.pro/leagues');
+        const response = await axios.get(`https://api.duellinks.pro/leagues/discordId/${discordId}`);
         setTournaments(response.data);
       } catch (error) {
         console.error('Hubo un problema al cargar la lista de torneos:', error);
@@ -17,10 +14,10 @@ const TournamentList = () => {
         setLoading(false);
       }
     };
-    
+
     fetchTournaments();
-  }, []);
-  
+  }, [discordId]);
+
   if (loading) {
     return <div>Cargando torneos...</div>;
   }
@@ -37,5 +34,3 @@ const TournamentList = () => {
     </div>
   );
 };
-
-export default TournamentList;
