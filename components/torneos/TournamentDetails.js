@@ -21,9 +21,9 @@ const TournamentDetails = ({ tournament }) => {
                     <p><strong>Banlist:</strong> {info.banlist}</p>
                     <p><strong>Información de Deck:</strong> {info.deck_info}</p>
                     <p><strong>Eliminación:</strong> {info.eliminacion}</p>
-                    <TournamentRegistration tournamentId={tournament.id} />
                 </div>
             ))}
+            <TournamentRegistration tournamentId={tournament._id} /> {/* Asegúrate de usar "_id" y no "id" */}
         </div>
     );
 }
