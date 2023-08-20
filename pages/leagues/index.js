@@ -115,6 +115,7 @@ export default function Torneos() {
             <div className='tournament-card-container'>
             <div className='tournament-card-container-grid'>
   {filterLeagues().map(league => (
+    <Link key={league._id} href={`/leagues/${league._id}`}>
     <Card key={league?._id} className="max-w-[340px] tournament-card">
       
       <CardHeader className="justify-between">
@@ -125,16 +126,16 @@ export default function Torneos() {
             <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
           </div>
         </div>
-        <Link href={`/leagues/${league?._id}`} passHref>
+       
   <Button
     color="primary"
     radius="full"
     size="sm"
     variant="solid"
   >
-    Link
+    Seguir
   </Button>
-</Link>
+
       </CardHeader>
       
       <CardBody className="px-3 py-0 text-small text-default-400">
@@ -152,7 +153,7 @@ export default function Torneos() {
         <span className="pt-2">
         <CountdownTimer targetDate={league.start_date} />
           <span className="py-2" aria-label="computer" role="img">
-            💻
+      
           </span>
         </span>
       </CardBody>
@@ -160,15 +161,16 @@ export default function Torneos() {
       
       <CardFooter className="gap-3">
         <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">4</p>
-          <p className="text-default-400 text-small">Following</p>
+          <p className="font-semibold text-default-400 text-small"></p>
+          <p className="text-default-400 text-small">Seguidres</p>
         </div>
         <div className="flex gap-1">
-    <p className="font-semibold text-default-400 text-small">{league?.subscribed_users}</p>
+        <p className="font-semibold text-default-400 text-small">{league.players.length}</p>
     <p className="text-default-400 text-small">Inscritos</p>
   </div>
       </CardFooter>
     </Card>
+    </Link>
   ))}
 </div>
 

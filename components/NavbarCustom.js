@@ -58,7 +58,7 @@
               Tier List
             </Link>
           </NavbarItem>
-          <NavbarItem isActive>
+          <NavbarItem>
             <Link href="/leagues">
               Torneos
             </Link>
@@ -87,7 +87,7 @@
               Tier List
             </Link>
           </NavbarItem>
-          <NavbarItem isActive>
+          <NavbarItem>
             <Link href="/leagues">
               Torneos
             </Link>
@@ -140,11 +140,13 @@
                 <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
                 <p className="font-semibold">{userImage ? username : "Login"}</p>
                 </DropdownItem>
-                <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
+                <Link href="/crear-torneo">
+                <DropdownItem key="settings">Crear Torneo</DropdownItem>
+                </Link>
+              <DropdownItem key="team_settings">Crear Liga</DropdownItem>
+              <DropdownItem key="analytics">Clan</DropdownItem>
+              <DropdownItem key="system">Mis torneos</DropdownItem>
+              <DropdownItem key="configurations">Configuración</DropdownItem>
               <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
               <DropdownItem key="logout" color="danger">
                 Log Out

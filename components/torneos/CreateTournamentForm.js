@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { Input } from '@nextui-org/react';
 
 const CreateTournamentForm = () => {
   const [formData, setFormData] = useState({
@@ -35,17 +36,66 @@ const CreateTournamentForm = () => {
     }
   };
 
+  const variants = ['flat', 'bordered', 'underlined', 'faded'];
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+      <Input
         type="text"
         name="league_name"
         value={formData.league_name}
         onChange={handleChange}
         placeholder="Nombre del Torneo"
+        label="Nombre del Torneo"
       />
-      {/* Agregar otros campos aquí */}
-      <button type="submit">Crear Torneo</button>
+      <Input
+        type="text"
+        name="league_format"
+        value={formData.league_format}
+        onChange={handleChange}
+        placeholder="Formato del Torneo"
+        label="Formato del Torneo"
+      />
+      <Input
+        type="date"
+        name="start_date"
+        value={formData.start_date}
+        onChange={handleChange}
+        label="Fecha de inicio"
+      />
+      <Input
+        type="url"
+        name="enlace_torneo"
+        value={formData.enlace_torneo}
+        onChange={handleChange}
+        placeholder="Enlace del Torneo"
+        label="Enlace del Torneo"
+      />
+      <Input
+        type="url"
+        name="image_torneo"
+        value={formData.image_torneo}
+        onChange={handleChange}
+        placeholder="URL de la imagen del Torneo"
+        label="Imagen del Torneo"
+      />
+      <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+        {variants.map((variant) => (
+          <Input
+            key={variant}
+            type="text"
+            name={`infoTorneo.${variant}`}
+            value={formData.infoTorneo[variant]}
+            onChange={handleChange}
+            placeholder={`Información del Torneo - ${variant}`}
+            label={`Información del Torneo - ${variant}`}
+            variant={variant}
+          />
+        ))}
+      </div>
+      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md">
+        Crear Torneo
+      </button>
     </form>
   );
 };
