@@ -140,9 +140,8 @@
                 <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
                 <p className="font-semibold">{userImage ? username : "Login"}</p>
                 </DropdownItem>
-                <Link href="/crear-torneo">
+                
                 <DropdownItem key="settings">Crear Torneo</DropdownItem>
-                </Link>
               <DropdownItem key="team_settings">Crear Liga</DropdownItem>
               <DropdownItem key="analytics">Clan</DropdownItem>
               <DropdownItem key="system">Mis torneos</DropdownItem>
