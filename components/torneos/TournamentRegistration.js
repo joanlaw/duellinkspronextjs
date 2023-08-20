@@ -13,8 +13,8 @@ const TournamentRegistration = ({ tournamentId }) => {
 
   const handleRegistration = async () => {
     if (!isAuthenticated) {
-      handleLogin(); 
-      return;
+        handleLogin();
+        return; // Agrega esta línea
     }
 
     setLoading(true);
