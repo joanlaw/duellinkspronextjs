@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CreateTournamentForm from '../../components/torneos/CreateTournamentForm';
 import NavbarCustom from '../../components/NavbarCustom';
 import FooterCustom from '../../components/FooterCustom';
+import UserLeagues from '../../components/torneos/UserLeagues';
 
 function index() {
   return (
@@ -11,6 +12,7 @@ function index() {
         <h1>Crea un torneo</h1>
         <CreateTournamentForm />
         </div>
+        <UserLeagues />
         <FooterCustom />
     </div>
   )
