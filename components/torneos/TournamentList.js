@@ -26,11 +26,11 @@ const TournamentList = ({ discordId }) => {
     }
 
     return (
-        <div>
-            <h2>Lista de Torneos</h2>
+        <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
+            <h2 className="text-2xl font-bold mb-4 text-white">Lista de Torneos</h2>
             {tournaments.map((tournament, index) => (
-                <div key={index}>
-                    <h3>{tournament.league_name}</h3>
+                <div key={index} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
+                    <h3 className="text-xl font-medium mb-2">{tournament.league_name}</h3>
                     {/* Aquí puedes agregar más detalles del torneo */}
                 </div>
             ))}
