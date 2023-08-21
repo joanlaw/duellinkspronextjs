@@ -18,18 +18,25 @@ function TournamentAdminPanel({ onClose, leagueId }) {
   }, [leagueId]);
 
   return (
-    <div className="popup">
-      <h2>Jugadores inscritos en el torneo</h2>
-      {loading ? (
-        <p>Cargando jugadores...</p>
-      ) : (
-        <ul>
-          {players.map(player => (
-            <li key={player._id}>{player.username}</li>
-          ))}
-        </ul>
-      )}
-      <button onClick={onClose}>Cerrar</button>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
+      <div className="bg-white p-6 rounded-md shadow-lg">
+        <h2 className="text-xl font-semibold mb-4">Jugadores inscritos en el torneo</h2>
+        {loading ? (
+          <p>Cargando jugadores...</p>
+        ) : (
+          <ul className="list-disc pl-6">
+            {players.map(player => (
+              <li key={player._id}>{player.username}</li>
+            ))}
+          </ul>
+        )}
+        <button
+          className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+          onClick={onClose}
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
   );
 }
