@@ -25,9 +25,21 @@ const CreateTournamentForm = () => {
   const imageFileRef = useRef(null);
 
 
-const handleImageChange = (e) => {
-  setImageFile(e.target.files[0]);
-};
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (!validImageTypes.includes(file.type)) {
+        alert('Formato de imagen no válido. Por favor sube una imagen .jpeg, .jpg o .png');
+        if (imageFileRef.current) {
+          imageFileRef.current.value = ''; // Reinicia el valor del input aquí
+        }
+        return;
+      }
+      setImageFile(file);
+    }
+  };
+  
 
 
 const handleChange = (e) => {

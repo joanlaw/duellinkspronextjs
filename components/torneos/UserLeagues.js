@@ -22,7 +22,7 @@ function UserLeagues() {
 
     return (
         <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Mis ligas</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
             {leagues.map(league => (
                 <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
                     <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
