@@ -7,7 +7,7 @@ function UserLeagues() {
 
     useEffect(() => {
         if (authenticated) {
-            fetch(`https://api.duellinks.pro/leagues/discordId/${discordId}`, {
+            fetch(`https://api.duellinks.pro/leagues/organizer/${discordId}`, {
                 headers: {
                     // Aquí puedes agregar headers si son necesarios para la consulta
                 }

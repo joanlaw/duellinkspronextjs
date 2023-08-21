@@ -72,7 +72,7 @@ const CreateTournamentForm = () => {
       case 'deck_info':
         return ['deck + extra deck', 'deck + extra deck + side deck'];
       case 'eliminacion':
-        return ['Eliminacion directa', 'Llaves suizas', 'Bo3'];
+        return ['Eliminacion directa', 'Rondas suizas', 'Bo3'];
       default:
         return [];
     }
