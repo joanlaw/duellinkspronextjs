@@ -131,7 +131,7 @@ const handleSubmit = async (e) => {
         name="start_date"
         value={formData.start_date}
         onChange={handleChange}
-        label="Fecha de inicio"
+        label=""
       />
       <Input
         type="url"
@@ -146,7 +146,7 @@ const handleSubmit = async (e) => {
         name="image"
         ref={imageFileRef} // Asigna la referencia aquí
         onChange={handleImageChange}
-        label="Imagen del Torneo"
+        label=""
       />
 
 <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
