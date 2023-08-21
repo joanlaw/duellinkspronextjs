@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { Input } from '@nextui-org/react';
 import { useUser } from "../../contexts/UserContext";  // Asegúrate de ajustar la ruta de importación al lugar correcto
@@ -22,6 +22,8 @@ const CreateTournamentForm = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [imageFile, setImageFile] = useState(null);
+  const imageFileRef = useRef(null);
+
 
 const handleImageChange = (e) => {
   setImageFile(e.target.files[0]);
@@ -76,6 +78,9 @@ const handleSubmit = async (e) => {
     console.log('Torneo creado con éxito', response.data);
     setFormData(initialFormData);
     setImageFile(null);
+    if (imageFileRef.current) {
+      imageFileRef.current.value = ''; // Reinicia el campo de archivo aquí
+    }
   } catch (error) {
     console.error('Hubo un problema al crear el torneo', error);
   }
@@ -138,7 +143,8 @@ const handleSubmit = async (e) => {
       />
       <Input
         type="file"
-        name="image" // Cambiar "image_torneo" a "image"
+        name="image"
+        ref={imageFileRef} // Asigna la referencia aquí
         onChange={handleImageChange}
         label="Imagen del Torneo"
       />
