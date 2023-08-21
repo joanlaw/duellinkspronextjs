@@ -51,12 +51,14 @@ const CreateTournamentForm = () => {
     };
 
     try {
+      console.log('Data to send:', dataToSend); // Agrega este console.log
       const response = await axios.post('https://api.duellinks.pro/leagues', dataToSend);
       console.log('Torneo creado con éxito', response.data);
       setFormData(initialFormData); // Resetear campos después del envío
     } catch (error) {
       console.error('Hubo un problema al crear el torneo', error);
     }
+    
   };
 
   const variants = ['format', 'banlist', 'deck_info', 'eliminacion'];
