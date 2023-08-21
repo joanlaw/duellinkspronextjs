@@ -12,12 +12,12 @@ const CreateTournamentForm = () => {
     start_date: '',
     enlace_torneo: '',
     image: '', // Cambiar "image_torneo" a "image"
-    infoTorneo: {
+    infoTorneo: [{
       format: '',
       banlist: '',
       deck_info: '',
       eliminacion: ''
-    }
+    }]
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -34,10 +34,10 @@ const handleChange = (e) => {
     const nestedField = name.split('.')[1];
     setFormData((prevFormData) => ({
       ...prevFormData,
-      infoTorneo: {
-        ...prevFormData.infoTorneo,
+      infoTorneo: [{
+        ...prevFormData.infoTorneo[0],
         [nestedField]: value,
-      },
+      }],
     }));
   } else {
     setFormData({
@@ -47,13 +47,19 @@ const handleChange = (e) => {
   }
 };
 
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   const formDataToSend = new FormData();
   Object.keys(formData).forEach((key) => {
-    formDataToSend.append(key, formData[key]);
+    if (key === 'infoTorneo') {
+      formDataToSend.append(key, JSON.stringify(formData[key]));
+    } else {
+      formDataToSend.append(key, formData[key]);
+    }
   });
+  
 
   if (imageFile) {
     formDataToSend.append('image', imageFile);
