@@ -51,7 +51,12 @@ const TournamentRegistration = ({ tournamentId }) => {
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}
       {!registered && (
-        <button onClick={handleRegistration}>Inscribirse en el Torneo</button>
+              <button
+              className="bg-blue-500 text-white py-2 px-4 rounded-md"
+              onClick={handleRegistration}
+            >
+              Inscribirse en el Torneo
+            </button>
       )}
     </div>
   );

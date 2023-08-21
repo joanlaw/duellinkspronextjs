@@ -11,7 +11,7 @@ const CreateTournamentForm = () => {
     league_format: '',
     start_date: '',
     enlace_torneo: '',
-    image_torneo: '',
+    image: '', // Cambiar "image_torneo" a "image"
     infoTorneo: {
       format: '',
       banlist: '',
@@ -21,45 +21,60 @@ const CreateTournamentForm = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [imageFile, setImageFile] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name.includes('infoTorneo')) {
-      const nestedField = name.split('.')[1];
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        infoTorneo: {
-          ...prevFormData.infoTorneo,
-          [nestedField]: value,
-        },
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
+const handleImageChange = (e) => {
+  setImageFile(e.target.files[0]);
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    // Añadimos el `discordId` como organizer al formData antes de enviarlo
-    const dataToSend = {
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  if (name.includes('infoTorneo')) {
+    const nestedField = name.split('.')[1];
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      infoTorneo: {
+        ...prevFormData.infoTorneo,
+        [nestedField]: value,
+      },
+    }));
+  } else {
+    setFormData({
       ...formData,
-      organizer: user.discordId
-    };
+      [name]: value,
+    });
+  }
+};
 
-    try {
-      console.log('Data to send:', dataToSend); // Agrega este console.log
-      const response = await axios.post('https://api.duellinks.pro/leagues', dataToSend);
-      console.log('Torneo creado con éxito', response.data);
-      setFormData(initialFormData); // Resetear campos después del envío
-    } catch (error) {
-      console.error('Hubo un problema al crear el torneo', error);
-    }
-    
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const formDataToSend = new FormData();
+  Object.keys(formData).forEach((key) => {
+    formDataToSend.append(key, formData[key]);
+  });
+
+  if (imageFile) {
+    formDataToSend.append('image', imageFile);
+  }
+
+  formDataToSend.append('organizer', user.discordId);
+
+  try {
+    const response = await axios.post('https://api.duellinks.pro/leagues', formDataToSend, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log('Torneo creado con éxito', response.data);
+    setFormData(initialFormData);
+    setImageFile(null);
+  } catch (error) {
+    console.error('Hubo un problema al crear el torneo', error);
+  }
+};
+
 
   const variants = ['format', 'banlist', 'deck_info', 'eliminacion'];
 
@@ -116,13 +131,12 @@ const CreateTournamentForm = () => {
         label="Enlace del Torneo"
       />
       <Input
-        type="url"
-        name="image_torneo"
-        value={formData.image_torneo}
-        onChange={handleChange}
-        placeholder="URL de la imagen del Torneo"
+        type="file"
+        name="image" // Cambiar "image_torneo" a "image"
+        onChange={handleImageChange}
         label="Imagen del Torneo"
       />
+
 <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
   {variants.map((variant) => (
     <select
