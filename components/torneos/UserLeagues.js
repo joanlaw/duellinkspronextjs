@@ -21,13 +21,13 @@ function UserLeagues() {
     }, [discordId, authenticated]);
 
     return (
-        <div>
-            <h2>Mis ligas</h2>
+        <div className="container mx-auto mt-10 mb-10 bg-gray-100 p-6 rounded-md shadow-sm">
+            <h2 className="text-2xl font-bold mb-4">Mis ligas</h2>
             {leagues.map(league => (
-                <div key={league._id}>
-                    <h3>{league.league_name}</h3>
-                    <p>Formato: {league.league_format}</p>
-                    <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
+                <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md">
+                    <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
+                    <p className="text-gray-700 mb-1">Formato: {league.league_format}</p>
+                    <p className="text-gray-600">Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
                     {/* Aquí puedes agregar más información de la liga como desees */}
                 </div>
             ))}
