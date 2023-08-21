@@ -123,7 +123,7 @@ export default function Torneos() {
        
           <div className="flex flex-col gap-1 items-start justify-center">
             <h4 className="text-small font-semibold leading-none text-default-600">{league?.league_name}</h4>
-            <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
+            <h5 className="text-small tracking-tight text-default-400">@{league?.organizer?.username}</h5>
           </div>
         </div>
        
