@@ -30,7 +30,7 @@ function UserLeagues() {
           <p className="mb-1">Formato: {league.league_format}</p>
           <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
           <Link href={`/admin/${league._id}`} passHref>
-            <a className="text-blue-500 hover:underline">Administrar torneo</a>
+            <p className="text-blue-500 hover:underline">Administrar torneo</p>
           </Link>
         </div>
       ))}
