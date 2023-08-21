@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Input } from '@nextui-org/react';
+import { useUser } from "../../contexts/UserContext";  // Asegúrate de ajustar la ruta de importación al lugar correcto
 
 const CreateTournamentForm = () => {
+  const user = useUser(); 
+  
   const initialFormData = {
     league_name: '',
     league_format: '',
@@ -41,8 +44,14 @@ const CreateTournamentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Añadimos el `discordId` como organizer al formData antes de enviarlo
+    const dataToSend = {
+      ...formData,
+      organizer: user.discordId
+    };
+
     try {
-      const response = await axios.post('https://api.duellinks.pro/leagues', formData);
+      const response = await axios.post('https://api.duellinks.pro/leagues', dataToSend);
       console.log('Torneo creado con éxito', response.data);
       setFormData(initialFormData); // Resetear campos después del envío
     } catch (error) {
