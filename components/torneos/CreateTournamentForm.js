@@ -63,6 +63,21 @@ const CreateTournamentForm = () => {
 
   const variants = ['format', 'banlist', 'deck_info', 'eliminacion'];
 
+  const getOptionsForVariant = (variant) => {
+    switch (variant) {
+      case 'format':
+        return ['Fun', 'Libre', 'Ensalada'];
+      case 'banlist':
+        return ['Con banlist', 'Sin banlist'];
+      case 'deck_info':
+        return ['deck + extra deck', 'deck + extra deck + side deck'];
+      case 'eliminacion':
+        return ['Eliminacion directa', 'Llaves suizas', 'Bo3'];
+      default:
+        return [];
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
       <Input
@@ -73,14 +88,18 @@ const CreateTournamentForm = () => {
         placeholder="Nombre del Torneo"
         label="Nombre del Torneo"
       />
-      <Input
-        type="text"
+      <select
         name="league_format"
         value={formData.league_format}
         onChange={handleChange}
-        placeholder="Formato del Torneo"
-        label="Formato del Torneo"
-      />
+        className="input-style" // Clase para el estilo, puedes reutilizar la clase de Input
+      >
+        <option value="">Tipo de liga o torneo</option>
+        <option value="formato1">Torneo</option>
+        <option value="formato2">Liga</option>
+        {/* Agrega más opciones aquí si es necesario */}
+      </select>
+      {/* Mantén los campos restantes como Input */}
       <Input
         type="date"
         name="start_date"
@@ -104,19 +123,24 @@ const CreateTournamentForm = () => {
         placeholder="URL de la imagen del Torneo"
         label="Imagen del Torneo"
       />
-      <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-        {variants.map((variant) => (
-          <Input
-            key={variant}
-            type="text"
-            name={`infoTorneo.${variant}`}
-            value={formData.infoTorneo[variant]}
-            onChange={(e) => handleChange(e)}
-            placeholder={`Información del Torneo - ${variant}`}
-            label={`Información del Torneo - ${variant}`}
-          />
-        ))}
-      </div>
+<div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+  {variants.map((variant) => (
+    <select
+      key={variant}
+      name={`infoTorneo.${variant}`}
+      value={formData.infoTorneo[variant]}
+      onChange={(e) => handleChange(e)}
+      className="input-style"
+    >
+      <option value="">{variant}</option>
+      {getOptionsForVariant(variant).map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  ))}
+</div>
       <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md">
         Crear Torneo
       </button>
