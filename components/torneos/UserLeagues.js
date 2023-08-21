@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../../contexts/UserContext"; // Cambia la ruta al archivo donde tienes el UserContext
+import { useUser } from "../../contexts/UserContext"; 
 
 function UserLeagues() {
     const { discordId, authenticated } = useUser();
@@ -7,14 +7,14 @@ function UserLeagues() {
 
     useEffect(() => {
         if (authenticated) {
-            fetch(`https://api.duellinks.pro/get-user-leagues/${discordId}`, {
+            fetch(`https://api.duellinks.pro/leagues/discordId/${discordId}`, {
                 headers: {
                     // Aquí puedes agregar headers si son necesarios para la consulta
                 }
             })
             .then(res => res.json())
             .then(data => {
-                setLeagues(data.leagues || []);
+                setLeagues(data || []); // Nota que he cambiado `data.leagues` a `data` ya que asumo que el servidor devuelve directamente el array de ligas.
             })
             .catch(err => console.error("Error al recuperar las ligas:", err));
         }
