@@ -13,18 +13,46 @@ function TournamentUserPanel({ onClose, leagueId }) {
     especial_deck: null,
   });
 
+  const [playerDeck, setPlayerDeck] = useState(null);
+
   useEffect(() => {
-    fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchTournaments = async () => {
+      try {
+        const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`);
+        const data = await response.json();
         setTournaments(data);
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error('Error al recuperar los torneos:', err);
+      } finally {
         setLoading(false);
-      });
-  }, [leagueId]);
+      }
+    };
+
+    const fetchPlayerDeck = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              discordId: discordId,
+            },
+          }
+        );
+        if (response.data) {
+          setPlayerDeck(response.data);
+        }
+      } catch (error) {
+        console.error('Error al obtener el mazo del jugador:', error);
+      }
+    };
+
+    fetchTournaments();
+    fetchPlayerDeck();
+
+  }, [leagueId, discordId, token]);
 
   const handleImageChange = (event) => {
     const { name, files } = event.target;
@@ -35,7 +63,6 @@ function TournamentUserPanel({ onClose, leagueId }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
 
     for (const deckType in imageFiles) {
@@ -63,6 +90,17 @@ function TournamentUserPanel({ onClose, leagueId }) {
     } catch (error) {
       console.error('Error al subir las imágenes:', error);
     }
+  };
+
+  //obtener las imagenes preview
+  const getImagePreview = (deckType) => {
+    if (imageFiles[deckType]) {
+      return URL.createObjectURL(imageFiles[deckType]);
+    }
+    if (playerDeck && playerDeck[deckType]) {
+      return playerDeck[deckType].url;
+    }
+    return null;
   };
 
   return (
@@ -95,6 +133,13 @@ function TournamentUserPanel({ onClose, leagueId }) {
     <label htmlFor="especial_deck" className="block mb-2">Especial Deck:</label>
     <input type="file" name="especial_deck" onChange={handleImageChange} />
   </div>
+  <div className="mb-4">
+  <label htmlFor="main_deck" className="block mb-2">Main Deck:</label>
+  {getImagePreview('main_deck') && (
+    <img src={getImagePreview('main_deck')} alt="Preview" className="mb-2" />
+  )}
+  <input type="file" name="main_deck" onChange={handleImageChange} />
+</div>
   <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
     Subir Imágenes
   </button>
