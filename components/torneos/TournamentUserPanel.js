@@ -104,8 +104,8 @@ function TournamentUserPanel({ onClose, leagueId }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-    <div className="bg-white p-6 rounded-md shadow-lg text-black">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
+    <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
       <h2 className="text-xl font-semibold mb-4">Torneos en el campeonato</h2>
       {loading ? (
         <p>Cargando torneos...</p>
@@ -124,7 +124,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
                 <div className="mb-4" key={deckType}>
                   <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
                   {getImagePreview(deckType) && (
-                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2" />
+                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
                   )}
                 </div>
               ))}
@@ -135,7 +135,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
                 <div className="mb-4" key={deckType}>
                   <label htmlFor={deckType} className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
                   {getImagePreview(deckType) && (
-                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2" />
+                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
                   )}
                   <input type="file" name={deckType} onChange={handleImageChange} />
                 </div>
