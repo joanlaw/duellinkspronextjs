@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useUser } from '../../contexts/UserContext';
 
 function TournamentUserPanel({ onClose, leagueId }) {
+    const { discordId, token } = useUser();
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageFiles, setImageFiles] = useState({
@@ -43,16 +45,21 @@ function TournamentUserPanel({ onClose, leagueId }) {
     }
 
     try {
-      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/playerdecks`, formData, {
-        headers: {
-          // Aquí puedes agregar headers adicionales si es necesario, 
-          // como Authorization para tokens, etc.
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post(
+        `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            discordId: discordId,
+          },
+        }
+      );
 
       console.log('Imágenes subidas:', response.data);
-
     } catch (error) {
       console.error('Error al subir las imágenes:', error);
     }
