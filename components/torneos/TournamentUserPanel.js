@@ -103,12 +103,14 @@ function TournamentUserPanel({ onClose, leagueId }) {
     if (imageFiles[deckType]) {
       return URL.createObjectURL(imageFiles[deckType]);
     }
-    if (playerDeck && playerDeck[deckType]) {
-      return playerDeck[deckType].url;
+    
+    if (playerDeck && playerDeck.playerDecks && playerDeck.playerDecks[0][deckType]) {
+      return playerDeck.playerDecks[0][deckType].url;
     }
+    
     return null;
   };
-
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
     <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
