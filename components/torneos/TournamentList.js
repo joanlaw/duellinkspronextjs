@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import TournamentUserPanel from './TournamentUserPanel';
 
 const TournamentList = ({ discordId }) => {
     const [tournaments, setTournaments] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showUserPanel, setShowUserPanel] = useState(false);
+    const [selectedLeagueId, setSelectedLeagueId] = useState(null);
 
     useEffect(() => {
         const fetchTournaments = async () => {
@@ -21,6 +24,11 @@ const TournamentList = ({ discordId }) => {
         fetchTournaments();
     }, [discordId]);
 
+    const handleAdminClick = (leagueId) => {
+        setSelectedLeagueId(leagueId);
+        setShowUserPanel(true);
+    }
+
     if (loading) {
         return <div>Cargando torneos...</div>;
     }
@@ -31,9 +39,19 @@ const TournamentList = ({ discordId }) => {
             {tournaments.map((tournament, index) => (
                 <div key={index} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
                     <h3 className="text-xl font-medium mb-2">{tournament.league_name}</h3>
+                    <button onClick={() => handleAdminClick(tournament._id)}>
+                        Administrar
+                    </button>
                     {/* Aquí puedes agregar más detalles del torneo */}
                 </div>
             ))}
+
+            {showUserPanel && (
+                <TournamentUserPanel
+                    onClose={() => setShowUserPanel(false)}
+                    leagueId={selectedLeagueId}
+                />
+            )}
         </div>
     );
 };
