@@ -103,11 +103,11 @@ function TournamentUserPanel({ onClose, leagueId }) {
     if (imageFiles[deckType]) {
       return URL.createObjectURL(imageFiles[deckType]);
     }
-    
-    if (playerDeck && playerDeck.playerDecks && playerDeck.playerDecks[0][deckType]) {
-      return playerDeck.playerDecks[0][deckType].url;
+  
+    if (playerDeck && playerDeck[deckType] && playerDeck[deckType].url) {
+      return playerDeck[deckType].url;
     }
-    
+  
     return null;
   };
   
@@ -126,7 +126,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
           </ul>
           
           {playerDeck ? (
-  <div>
+            <div>
   <h3>Previsualización de tu mazo:</h3>
   {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
     <div className="mb-4" key={deckType}>
