@@ -17,16 +17,22 @@ function TournamentUserPanel({ onClose, leagueId }) {
 
   useEffect(() => {
     const fetchTournaments = async () => {
-      try {
-        const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`);
-        const data = await response.json();
-        setTournaments(data);
-      } catch (err) {
-        console.error('Error al recuperar los torneos:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+        try {
+          const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            setTournaments(data);
+          } else {
+            // Manejo de errores en caso de respuesta no exitosa (por ejemplo, 404)
+            console.error('Error al recuperar los torneos:', response.statusText);
+          }
+        } catch (err) {
+          console.error('Error al recuperar los torneos:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
 
     const fetchPlayerDeck = async () => {
       try {
