@@ -19,7 +19,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-      <div className="bg-white p-6 rounded-md shadow-lg">
+      <div className="bg-white p-6 rounded-md shadow-lg text-black">
         <h2 className="text-xl font-semibold mb-4">Jugadores inscritos en el torneo</h2>
         {loading ? (
           <p>Cargando jugadores...</p>
