@@ -32,29 +32,30 @@ function TournamentUserPanel({ onClose, leagueId }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
+        const formDataToSend = new FormData();
+    
         for (const deckType in imageFiles) {
             if (imageFiles[deckType]) {
-                const formData = new FormData();
-                formData.append('image', imageFiles[deckType]);
-
-                try {
-                    const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/playerdecks`, {
-                        method: 'POST',
-                        body: formData,
-                        // Aquí puedes agregar headers adicionales si es necesario, 
-                        // como Authorization para tokens, etc.
-                    });
-                    
-                    const data = await response.json();
-                    console.log(`Imagen para ${deckType} subida:`, data);
-                    
-                } catch (error) {
-                    console.error(`Error al subir la imagen para ${deckType}:`, error);
-                }
+                formDataToSend.append(deckType, imageFiles[deckType]);
             }
         }
-    };
+    
+        try {
+            const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/playerdecks`, {
+                method: 'POST',
+                body: formDataToSend,
+                // Aquí puedes agregar headers adicionales si es necesario, 
+                // como Authorization para tokens, etc.
+            });
+            
+            const data = await response.json();
+            console.log('Imágenes subidas exitosamente:', data);
+            
+        } catch (error) {
+            console.error('Error al subir las imágenes:', error);
+        }
+    };    
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
