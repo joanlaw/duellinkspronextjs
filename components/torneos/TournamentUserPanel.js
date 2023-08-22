@@ -14,7 +14,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
   });
 
   useEffect(() => {
-    fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`)
+    fetch(`https://api.duellinks.pro/leagues/${discordId}/tournaments`)
       .then((res) => res.json())
       .then((data) => {
         setTournaments(data);
@@ -24,7 +24,9 @@ function TournamentUserPanel({ onClose, leagueId }) {
         console.error('Error al recuperar los torneos:', err);
         setLoading(false);
       });
-  }, [leagueId]);
+      console.log('Discord ID en UserProvider:', discordId);
+      console.log('Username en UserProvider:', username);
+  }, [discordId]);  
 
   const handleImageChange = (event) => {
     const { name, files } = event.target;
