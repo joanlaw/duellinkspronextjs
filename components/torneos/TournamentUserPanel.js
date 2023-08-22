@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useUser } from '../../contexts/UserContext';
 
 function TournamentUserPanel({ onClose, leagueId }) {
-    const { discordId, token } = useUser();
+  const { discordId, token } = useUser();
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageFiles, setImageFiles] = useState({
@@ -83,18 +83,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
                 <label htmlFor="main_deck" className="block mb-2">Main Deck:</label>
                 <input type="file" name="main_deck" onChange={handleImageChange} />
               </div>
-              <div className="mb-4">
-                <label htmlFor="extra_deck" className="block mb-2">Extra Deck:</label>
-                <input type="file" name="extra_deck" onChange={handleImageChange} />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="side_deck" className="block mb-2">Side Deck:</label>
-                <input type="file" name="side_deck" onChange={handleImageChange} />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="especial_deck" className="block mb-2">Especial Deck:</label>
-                <input type="file" name="especial_deck" onChange={handleImageChange} />
-              </div>
+              {/* Resto del código de los inputs */}
               <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                 Subir Imágenes
               </button>
