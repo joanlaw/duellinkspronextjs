@@ -63,8 +63,24 @@ function TournamentUserPanel({ onClose, leagueId }) {
   const handleImageChange = (event) => {
     const { name, files } = event.target;
     if (files.length > 0) {
-      setImageFiles((prevState) => ({ ...prevState, [name]: files[0] }));
+      const file = files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // convertir el archivo en Data URL
+      reader.onloadend = function (e) {
+        setImageFiles((prevState) => ({
+          ...prevState,
+          [name]: { file: files[0], preview: reader.result },
+        }));
+      };
     }
+  };
+
+  const removeImage = (deckType) => {
+    setImageFiles((prevState) => {
+      const newState = { ...prevState };
+      newState[deckType] = null;
+      return newState;
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -135,17 +151,39 @@ function TournamentUserPanel({ onClose, leagueId }) {
               ))}
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
-              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
-                <div className="mb-4" key={deckType}>
-                  <label htmlFor={deckType} className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
-                  <input type="file" name={deckType} onChange={handleImageChange} />
-                </div>
-              ))}
-              <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Subir Imágenes
-              </button>
-            </form>
+<form onSubmit={handleSubmit}>
+  {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(
+    (deckType) => (
+      <div className="mb-4" key={deckType}>
+        <label htmlFor={deckType} className="block mb-2">
+          {deckType.replace("_", " ").toUpperCase()}:
+        </label>
+        <input
+          type="file"
+          name={deckType}
+          accept="image/*" // aceptar solo imágenes
+          onChange={handleImageChange}
+        />
+        {/* Previsualización de la imagen */}
+        {imageFiles[deckType] && imageFiles[deckType].preview && (
+          <div className="image-preview">
+            <img
+              src={imageFiles[deckType].preview}
+              alt={`${deckType} Preview`}
+              className="mb-2 w-1/4 h-auto"
+            />
+            <button onClick={() => removeImage(deckType)}>
+              Eliminar
+            </button>
+          </div>
+        )}
+      </div>
+    )
+  )}
+  <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+    Subir Imágenes
+  </button>
+</form>
           )}
           
           <button
