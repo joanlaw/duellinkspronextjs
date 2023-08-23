@@ -88,10 +88,11 @@ function TournamentUserPanel({ onClose, leagueId }) {
     const formData = new FormData();
 
     for (const deckType in imageFiles) {
-      if (imageFiles[deckType]) {
-        formData.append(deckType, imageFiles[deckType]);
+      if (imageFiles[deckType] && imageFiles[deckType].file) {
+        formData.append(deckType, imageFiles[deckType].file);
       }
     }
+    
 
     try {
       const response = await axios.post(
