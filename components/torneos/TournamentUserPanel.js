@@ -13,26 +13,28 @@ function TournamentUserPanel({ onClose, leagueId }) {
     especial_deck: null,
   });
 
-  const [playerDecksByTournament, setPlayerDecksByTournament] = useState({});
+  const [playerDeck, setPlayerDeck] = useState(null);
 
   useEffect(() => {
     const fetchTournaments = async () => {
-      try {
-        const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`);
-        if (response.ok) {
-          const data = await response.json();
-          setTournaments(data);
-        } else {
-          console.error('Error al recuperar los torneos:', response.statusText);
+        try {
+          const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/tournaments`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            setTournaments(data);
+          } else {
+            // Manejo de errores en caso de respuesta no exitosa (por ejemplo, 404)
+            console.error('Error al recuperar los torneos:', response.statusText);
+          }
+        } catch (err) {
+          console.error('Error al recuperar los torneos:', err);
+        } finally {
+          setLoading(false);
         }
-      } catch (err) {
-        console.error('Error al recuperar los torneos:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
-    const fetchPlayerDeckForTournament = async (tournamentId) => {
+    const fetchPlayerDeck = async () => {
       try {
         const response = await axios.get(
           `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
@@ -42,15 +44,11 @@ function TournamentUserPanel({ onClose, leagueId }) {
             },
             params: {
               discordId: discordId,
-              tournamentId: tournamentId,
             },
           }
         );
-        if (response.data && response.data.playerDecks[0]) {
-          setPlayerDecksByTournament(prevState => ({
-            ...prevState,
-            [tournamentId]: response.data.playerDecks[0],
-          }));
+        if (response.data) {
+          setPlayerDeck(response.data);
         }
       } catch (error) {
         console.error('Error al obtener el mazo del jugador:', error);
@@ -58,10 +56,9 @@ function TournamentUserPanel({ onClose, leagueId }) {
     };
 
     fetchTournaments();
-    tournaments.forEach(tournament => {
-      fetchPlayerDeckForTournament(tournament._id);
-    });
-  }, [leagueId, discordId, token, tournaments]);
+    fetchPlayerDeck();
+
+  }, [leagueId, discordId, token]);
 
   const handleImageChange = (event) => {
     const { name, files } = event.target;
@@ -70,7 +67,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
     }
   };
 
-  const handleSubmit = async (event, tournamentId) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
@@ -91,7 +88,6 @@ function TournamentUserPanel({ onClose, leagueId }) {
           },
           params: {
             discordId: discordId,
-            tournamentId: tournamentId,
           },
         }
       );
@@ -102,86 +98,72 @@ function TournamentUserPanel({ onClose, leagueId }) {
     }
   };
 
-  const getImagePreview = (deckType, tournamentId) => {
+  //obtener las imagenes preview
+  const getImagePreview = (deckType) => {
     if (imageFiles[deckType]) {
       return URL.createObjectURL(imageFiles[deckType]);
     }
-
-    if (
-      playerDecksByTournament[tournamentId] &&
-      playerDecksByTournament[tournamentId][deckType] &&
-      playerDecksByTournament[tournamentId][deckType].url
-    ) {
-      return playerDecksByTournament[tournamentId][deckType].url;
+  
+    if (playerDeck && playerDeck[deckType] && playerDeck[deckType].url) {
+      return playerDeck[deckType].url;
     }
-
+  
     return null;
   };
-
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
-      <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
-        <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
-        {loading ? (
-          <p>Cargando torneos...</p>
-        ) : (
-          <>
+    <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
+      <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
+      {loading ? (
+        <p>Cargando torneos...</p>
+      ) : (
+        <>
+          <ul className="list-disc pl-6 mb-4">
             {tournaments.map((tournament) => (
-              <div key={tournament._id}>
-                <h3>Torneo: {tournament.league_name}</h3>
-                {playerDecksByTournament[tournament._id] ? (
-                  <div>
-                    <h3>Previsualización de tu mazo:</h3>
-                    {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
-                      <div className="mb-4" key={deckType}>
-                        <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
-                        {getImagePreview(deckType, tournament._id) && (
-                          <img
-                            src={getImagePreview(deckType, tournament._id)}
-                            alt="Preview"
-                            className="mb-2 w-1/4 h-auto"
-                          />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <form onSubmit={(event) => handleSubmit(event, tournament._id)}>
-                    {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
-                      <div className="mb-4" key={deckType}>
-                        <label htmlFor={deckType} className="block mb-2">
-                          {deckType.replace("_", " ").toUpperCase()}:
-                        </label>
-                        {getImagePreview(deckType, tournament._id) && (
-                          <img
-                            src={getImagePreview(deckType, tournament._id)}
-                            alt="Preview"
-                            className="mb-2 w-1/4 h-auto"
-                          />
-                        )}
-                        <input type="file" name={deckType} onChange={handleImageChange} />
-                      </div>
-                    ))}
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                      Subir Imágenes
-                    </button>
-                  </form>
-                )}
-              </div>
+              <li key={tournament._id}>{tournament.league_name}</li>
             ))}
-            <button
-              className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-              onClick={onClose}
-            >
-              Cerrar
-            </button>
-          </>
-        )}
-      </div>
+          </ul>
+          
+          {playerDeck ? (
+            <div>
+  <h3>Previsualización de tu mazo:</h3>
+  {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
+    <div className="mb-4" key={deckType}>
+      <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
+      {getImagePreview(deckType) && (
+        <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
+      )}
     </div>
+  ))}
+</div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
+                <div className="mb-4" key={deckType}>
+                  <label htmlFor={deckType} className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
+                  {getImagePreview(deckType) && (
+                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
+                  )}
+                  <input type="file" name={deckType} onChange={handleImageChange} />
+                </div>
+              ))}
+              <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Subir Imágenes
+              </button>
+            </form>
+          )}
+          
+          <button
+            className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+            onClick={onClose}
+          >
+            Cerrar
+          </button>
+        </>
+      )}
+    </div>
+  </div>
   );
 }
 
