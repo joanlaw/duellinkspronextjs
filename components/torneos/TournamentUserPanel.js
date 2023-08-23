@@ -107,6 +107,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
     return null;
   };
   
+  
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
     <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
@@ -121,26 +122,23 @@ function TournamentUserPanel({ onClose, leagueId }) {
             ))}
           </ul>
           
-          {playerDeck ? (
+          {playerDecks[leagueId] ? (
             <div>
-  <h3>Previsualización de tu mazo:</h3>
-  {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
-    <div className="mb-4" key={deckType}>
-      <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
-      {getImagePreview(deckType) && (
-        <img src={getImagePreview(deckType, leagueId)} alt="Preview" className="mb-2 w-1/4 h-auto" />
-      )}
-    </div>
-  ))}
-</div>
+              <h3>Previsualización de tu mazo:</h3>
+              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
+                <div className="mb-4" key={deckType}>
+                  <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
+                  {getImagePreview(deckType, leagueId) && (
+                    <img src={getImagePreview(deckType, leagueId)} alt="Preview" className="mb-2 w-1/4 h-auto" />
+                  )}
+                </div>
+              ))}
+            </div>
           ) : (
             <form onSubmit={handleSubmit}>
-              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(deckType => (
+              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
                 <div className="mb-4" key={deckType}>
                   <label htmlFor={deckType} className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
-                  {getImagePreview(deckType) && (
-                    <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
-                  )}
                   <input type="file" name={deckType} onChange={handleImageChange} />
                 </div>
               ))}
