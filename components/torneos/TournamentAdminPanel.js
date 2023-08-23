@@ -5,6 +5,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
   const [playerDecks, setPlayerDecks] = useState({});
   const [visibleDeckId, setVisibleDeckId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
 
   useEffect(() => {
@@ -50,10 +51,19 @@ function TournamentAdminPanel({ onClose, leagueId }) {
     return null;
   };
 
+  const handleImageClick = (imageSrc) => {
+    setEnlargedImage(imageSrc);
+  };
+
+  const closeEnlargedImage = () => {
+    setEnlargedImage(null);
+  };
+
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-      <div className="bg-white p-6 rounded-md shadow-lg text-black">
+    <>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
+      <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
         <h2 className="text-xl font-semibold mb-4">Jugadores inscritos en el torneo</h2>
         {loading ? (
           <p>Cargando jugadores...</p>
@@ -66,13 +76,14 @@ function TournamentAdminPanel({ onClose, leagueId }) {
                 {playerDecks[player._id] && visibleDeckId === player._id && (
                   <div>
                     {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
-                      <div key={deckType}>
-                        <h3>{deckType.replace("_", " ").toUpperCase()}</h3>
+                      <div key={deckType} className="mb-4">
+                        <h3 className="block mb-2">{deckType.replace("_", " ").toUpperCase()}</h3>
                         {getImagePreview(deckType, player._id) && (
                           <img
                             src={getImagePreview(deckType, player._id)}
                             alt={`${deckType} Preview`}
-                            className="mb-2 w-1/4 h-auto"
+                            className="mb-2 w-1/4 h-auto cursor-pointer"
+                            onClick={() => handleImageClick(getImagePreview(deckType, player._id))}
                           />
                         )}
                       </div>
@@ -83,11 +94,21 @@ function TournamentAdminPanel({ onClose, leagueId }) {
             ))}
           </ul>
         )}
-        <button className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800" onClick={onClose}>
+        <button
+          className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+          onClick={onClose}
+        >
           Cerrar
         </button>
       </div>
     </div>
+    
+    {enlargedImage && (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75" onClick={closeEnlargedImage}>
+        <img src={enlargedImage} alt="Enlarged" />
+      </div>
+    )}
+  </>
   );
 }
 
