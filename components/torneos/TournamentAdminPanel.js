@@ -9,6 +9,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
   const [enlargedImage, setEnlargedImage] = useState(null);
 
 
+
   useEffect(() => {
     // Cargar jugadores (puedes ajustar este llamado a la API según tus necesidades)
     fetch(`https://api.duellinks.pro/leagues/${leagueId}/players`)
@@ -102,7 +103,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
         Cerrar
       </button>
       {/* Agrega el botón de Iniciar Torneo aquí */}
-      <Link href={`/moderacion/${leagueId}/matchups`} passHref>
+      <Link href={`/organizer-dashboard/leagues/${leagueId}`} passHref>
         <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
           Iniciar Torneo
         </button>
