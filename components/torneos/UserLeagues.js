@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../contexts/UserContext"; 
 import TournamentAdminPanel from "./TournamentAdminPanel";
+import axios from "axios";
 
 function UserLeagues() {
     const { discordId, authenticated } = useUser();
