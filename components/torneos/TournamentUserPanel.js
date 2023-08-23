@@ -127,8 +127,8 @@ function TournamentUserPanel({ onClose, leagueId }) {
   
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
-    <div className="bg-white p-6 w-3/4 max-w-3xl rounded-md shadow-lg text-black">
-      <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
+     <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
+     <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
       {loading ? (
         <p>Cargando torneos...</p>
       ) : (
