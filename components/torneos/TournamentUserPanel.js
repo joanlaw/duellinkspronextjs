@@ -214,14 +214,13 @@ function TournamentUserPanel({ onClose, leagueId }) {
                 <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                   Subir Imágenes
                 </button>
-                {alertMessage && (
+              </form>
+            )}
+                            {alertMessage && (
   <div className={`p-4 rounded ${alertType === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
     {alertMessage}
   </div>
 )}
-              </form>
-            )}
-            
             <button
               className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
               onClick={onClose}
