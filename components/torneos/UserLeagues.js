@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "../../contexts/UserContext"; 
 import TournamentAdminPanel from "./TournamentAdminPanel";
 import axios from "axios";
+import MatchupPopup from "./MatchupPopup";
 
 function UserLeagues() {
     const { discordId, authenticated } = useUser();
     const [leagues, setLeagues] = useState([]);
     const [selectedLeague, setSelectedLeague] = useState(null);
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
 
     const openAdminPanel = (leagueId) => {
         setSelectedLeague(leagueId);
@@ -41,12 +45,17 @@ function UserLeagues() {
     };
 
     const startTournament = async (leagueId) => {
-        try {
-            await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
-            updateLeagues();
-        } catch (error) {
-            console.error("Error al iniciar el torneo:", error);
-        }
+      try {
+        const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
+        updateLeagues();
+        
+        // Extrae los emparejamientos de la ronda actual
+        const matches = response.data.rounds[response.data.current_round - 1].matches;
+        setCurrentRoundMatches(matches);
+        setShowPopup(true);
+      } catch (error) {
+        console.error("Error al iniciar el torneo:", error);
+      }
     };
 
     const startNextRound = async (leagueId) => {
@@ -68,7 +77,9 @@ function UserLeagues() {
           <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
           <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
           <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
-          <button onClick={() => startTournament(league._id)}>Iniciar Torneo</button>
+          <button onClick={() => startTournament(league._id)} className="bg-blue-500 text-white p-4 rounded-full">
+        Iniciar Torneo
+      </button>{showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
           <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
         </div>
       ))}
