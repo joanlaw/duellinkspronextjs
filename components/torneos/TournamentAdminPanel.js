@@ -21,7 +21,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
       });
   }, [leagueId]);
 
-  const fetchPlayerDeck = async (playerId) => {
+  const fetchPlayerDeck = async (playerId, discordId) => {
     try {
       const response = await fetch(
         `https://api.duellinks.pro/leagues/${leagueId}/playerdecks?discordId=${discordId}` // Usar discordId aquí
