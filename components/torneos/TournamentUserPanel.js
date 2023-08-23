@@ -14,6 +14,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
   });
 
   const [playerDecks, setPlayerDecks] = useState({});
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   useEffect(() => {
     const fetchTournaments = async () => {
@@ -123,80 +124,100 @@ function TournamentUserPanel({ onClose, leagueId }) {
     }
     return null;
   };
+
+  const handleImageClick = (imageSrc) => {
+    setEnlargedImage(imageSrc);
+  };
+  
+  const closeEnlargedImage = () => {
+    setEnlargedImage(null);
+  };
+  
   
   
   return (
+    <>
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
-     <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
-     <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
-      {loading ? (
-        <p>Cargando torneos...</p>
-      ) : (
-        <>
-          <ul className="list-disc pl-6 mb-4">
-            {tournaments.map((tournament) => (
-              <li key={tournament._id}>{tournament.league_name}</li>
-            ))}
-          </ul>
-          
-          {playerDecks[leagueId] ? (
-            <div>
-              <h3>Previsualización de tu mazo:</h3>
-              {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
-                <div className="mb-4" key={deckType}>
-                  <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
-                  {getImagePreview(deckType, leagueId) && (
-                    <img src={getImagePreview(deckType, leagueId)} alt="Preview" className="mb-2 w-1/4 h-auto" />
-                  )}
-                </div>
+      <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
+        <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
+        {loading ? (
+          <p>Cargando torneos...</p>
+        ) : (
+          <>
+            <ul className="list-disc pl-6 mb-4">
+              {tournaments.map((tournament) => (
+                <li key={tournament._id}>{tournament.league_name}</li>
               ))}
-            </div>
-          ) : (
-<form onSubmit={handleSubmit}>
-  {["main_deck", "extra_deck", "side_deck", "especial_deck"].map(
-    (deckType) => (
-      <div className="mb-4" key={deckType}>
-        <label htmlFor={deckType} className="block mb-2">
-          {deckType.replace("_", " ").toUpperCase()}:
-        </label>
-        <input
-          type="file"
-          name={deckType}
-          accept="image/*" // aceptar solo imágenes
-          onChange={handleImageChange}
-        />
-        {/* Previsualización de la imagen */}
-        {imageFiles[deckType] && imageFiles[deckType].preview && (
-          <div className="image-preview">
-            <img
-              src={imageFiles[deckType].preview}
-              alt={`${deckType} Preview`}
-              className="mb-2 w-1/4 h-auto"
-            />
-            <button onClick={() => removeImage(deckType)}>
-              Eliminar
+            </ul>
+            
+            {playerDecks[leagueId] ? (
+              <div>
+                <h3>Previsualización de tu mazo:</h3>
+                {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
+                  <div className="mb-4" key={deckType}>
+                    <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
+                    {getImagePreview(deckType, leagueId) && (
+                      <img
+                        src={getImagePreview(deckType, leagueId)}
+                        alt="Preview"
+                        className="mb-2 w-1/4 h-auto cursor-pointer"
+                        onClick={() => handleImageClick(getImagePreview(deckType, leagueId))}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
+                  <div className="mb-4" key={deckType}>
+                    <label htmlFor={deckType} className="block mb-2">
+                      {deckType.replace("_", " ").toUpperCase()}:
+                    </label>
+                    <input
+                      type="file"
+                      name={deckType}
+                      accept="image/*"
+                      onChange={handleImageChange}
+                    />
+                    {imageFiles[deckType] && imageFiles[deckType].preview && (
+                      <div className="image-preview">
+                        <img
+                          src={imageFiles[deckType].preview}
+                          alt={`${deckType} Preview`}
+                          className="mb-2 w-1/4 h-auto cursor-pointer"
+                          onClick={() => handleImageClick(imageFiles[deckType].preview)}
+                        />
+                        <button onClick={() => removeImage(deckType)}>
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                  Subir Imágenes
+                </button>
+              </form>
+            )}
+            
+            <button
+              className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+              onClick={onClose}
+            >
+              Cerrar
             </button>
-          </div>
+          </>
         )}
       </div>
-    )
-  )}
-  <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-    Subir Imágenes
-  </button>
-</form>
-          )}
-          
-          <button
-            className="mt-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-            onClick={onClose}
-          >
-            Cerrar
-          </button>
-        </>
-      )}
     </div>
-  </div>
+
+    {enlargedImage && (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75" onClick={closeEnlargedImage}>
+        <img src={enlargedImage} alt="Enlarged" />
+      </div>
+    )}
+  </>
   );
 }
 
