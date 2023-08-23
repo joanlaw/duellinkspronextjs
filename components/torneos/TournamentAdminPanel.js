@@ -6,7 +6,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
   const [visibleDeckId, setVisibleDeckId] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
+
   useEffect(() => {
     // Cargar jugadores (puedes ajustar este llamado a la API según tus necesidades)
     fetch(`https://api.duellinks.pro/leagues/${leagueId}/players`)
@@ -24,7 +24,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
   const fetchPlayerDeck = async (playerId) => {
     try {
       const response = await fetch(
-        `https://api.duellinks.pro/leagues/${leagueId}/playerdecks?discordId=${playerId}`
+        `https://api.duellinks.pro/leagues/${leagueId}/playerdecks?discordId=${discordId}` // Usar discordId aquí
       );
       if (response.ok) {
         const data = await response.json();
