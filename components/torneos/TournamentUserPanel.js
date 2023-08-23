@@ -16,6 +16,11 @@ function TournamentUserPanel({ onClose, leagueId }) {
   const [playerDecks, setPlayerDecks] = useState({});
   const [enlargedImage, setEnlargedImage] = useState(null);
 
+  // Agregamos el estado para la alerta
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [alertType, setAlertType] = useState(null); // puede ser "success", "error", etc.
+
+
   useEffect(() => {
     const fetchTournaments = async () => {
         try {
@@ -87,14 +92,13 @@ function TournamentUserPanel({ onClose, leagueId }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+  
     for (const deckType in imageFiles) {
       if (imageFiles[deckType] && imageFiles[deckType].file) {
         formData.append(deckType, imageFiles[deckType].file);
       }
     }
-    
-
+  
     try {
       const response = await axios.post(
         `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
@@ -109,12 +113,24 @@ function TournamentUserPanel({ onClose, leagueId }) {
           },
         }
       );
-
+  
+      // Si llegamos aquí, la petición fue exitosa.
       console.log('Imágenes subidas:', response.data);
+  
+      // Actualizamos el estado para mostrar una alerta exitosa.
+      setAlertMessage('Imágenes subidas con éxito.');
+      setAlertType('success');
+  
     } catch (error) {
+      // Si llegamos aquí, ocurrió un error en la petición.
       console.error('Error al subir las imágenes:', error);
+  
+      // Actualizamos el estado para mostrar una alerta de error.
+      setAlertMessage('Error al subir las imágenes.');
+      setAlertType('error');
     }
   };
+  
 
   //obtener las imagenes preview
   const getImagePreview = (deckType, leagueId) => {
@@ -140,6 +156,12 @@ function TournamentUserPanel({ onClose, leagueId }) {
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 overflow-y-auto">
       <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
         <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
+        {alertMessage && (
+  <div className={`alert ${alertType === 'success' ? 'alert-success' : 'alert-error'}`}>
+    {alertMessage}
+  </div>
+)}
+
         {loading ? (
           <p>Cargando torneos...</p>
         ) : (
