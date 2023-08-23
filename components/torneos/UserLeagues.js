@@ -45,7 +45,7 @@ function UserLeagues() {
       }
     };
 
-    const startTournament = async (leagueId) => {
+    const startTournament = async (leagueId, leagueStatus) => {
       try {
         const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
         updateLeagues();
@@ -54,9 +54,10 @@ function UserLeagues() {
         const matches = response.data.rounds[response.data.current_round - 1].matches;
         setCurrentRoundMatches(matches);
         setShowPopup(true);
-        
-        // Marcar como torneo iniciado
-        setTournamentStarted(true);
+  
+        if (leagueStatus === 'in_progress') {
+          setTournamentStarted(true);
+        }
       } catch (error) {
         console.error("Error al iniciar el torneo:", error);
       }
@@ -76,28 +77,33 @@ function UserLeagues() {
     };
 
     return (
-      <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
-      <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
-      {leagues.map(league => (
-        <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
-          <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
-          <p className="mb-1">Formato: {league.league_format}</p>
-          <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
-          <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
-          <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
-          {!tournamentStarted ?
-        <button onClick={() => startTournament(league._id)}>Iniciar Torneo</button> :
+<div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
+  <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
+  
+  {leagues.map(league => (
+    <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
+      <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
+      <p className="mb-1">Formato: {league.league_format}</p>
+      <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
+      <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
+      
+      <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
+      {league.status !== 'in_progress' ?
+        <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button> :
         <button onClick={showMatchups}>Ver Emparejamientos</button>
       }
       
-      {showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
-          <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
-        </div>
-      ))}
-      {selectedLeague && (
-        <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
-      )}
+      <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
     </div>
+  ))}
+
+  {showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
+
+  {selectedLeague && (
+    <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
+  )}
+</div>
+
     );
 }
 
