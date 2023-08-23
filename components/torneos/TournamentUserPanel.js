@@ -13,7 +13,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
     especial_deck: null,
   });
 
-  const [playerDeck, setPlayerDeck] = useState(null);
+  const [playerDecks, setPlayerDecks] = useState({});
 
   useEffect(() => {
     const fetchTournaments = async () => {
@@ -34,27 +34,27 @@ function TournamentUserPanel({ onClose, leagueId }) {
         }
       };
 
-    const fetchPlayerDeck = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            params: {
-              discordId: discordId,
-            },
+      const fetchPlayerDeck = async () => {
+        try {
+          const response = await axios.get(
+            `https://api.duellinks.pro/leagues/${leagueId}/playerdecks`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              params: {
+                discordId: discordId,
+              },
+            }
+          );
+          if (response.data) {
+            setPlayerDecks(prevDecks => ({...prevDecks, [leagueId]: response.data}));
           }
-        );
-        if (response.data) {
-          setPlayerDeck(response.data);
+        } catch (error) {
+          console.error('Error al obtener el mazo del jugador:', error);
         }
-      } catch (error) {
-        console.error('Error al obtener el mazo del jugador:', error);
-      }
-    };
-
+      };
+      
     fetchTournaments();
     fetchPlayerDeck();
 
@@ -99,15 +99,11 @@ function TournamentUserPanel({ onClose, leagueId }) {
   };
 
   //obtener las imagenes preview
-  const getImagePreview = (deckType) => {
-    if (imageFiles[deckType]) {
-      return URL.createObjectURL(imageFiles[deckType]);
+  const getImagePreview = (deckType, leagueId) => {
+    const currentDeck = playerDecks[leagueId];
+    if (currentDeck && currentDeck[deckType] && currentDeck[deckType].url) {
+      return currentDeck[deckType].url;
     }
-  
-    if (playerDeck && playerDeck[deckType] && playerDeck[deckType].url) {
-      return playerDeck[deckType].url;
-    }
-  
     return null;
   };
   
@@ -132,7 +128,7 @@ function TournamentUserPanel({ onClose, leagueId }) {
     <div className="mb-4" key={deckType}>
       <label className="block mb-2">{deckType.replace("_", " ").toUpperCase()}:</label>
       {getImagePreview(deckType) && (
-        <img src={getImagePreview(deckType)} alt="Preview" className="mb-2 w-1/4 h-auto" />
+        <img src={getImagePreview(deckType, leagueId)} alt="Preview" className="mb-2 w-1/4 h-auto" />
       )}
     </div>
   ))}
