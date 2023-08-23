@@ -157,11 +157,10 @@ function TournamentUserPanel({ onClose, leagueId }) {
       <div className="bg-white p-6 w-4/5 max-w-4xl h-auto max-h-[80vh] overflow-y-auto rounded-md shadow-lg text-black">
         <h2 className="text-xl font-semibold mb-4">Deck del torneo</h2>
         {alertMessage && (
-  <div className={`alert ${alertType === 'success' ? 'alert-success' : 'alert-error'}`}>
+  <div className={`p-4 rounded ${alertType === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
     {alertMessage}
   </div>
 )}
-
         {loading ? (
           <p>Cargando torneos...</p>
         ) : (
