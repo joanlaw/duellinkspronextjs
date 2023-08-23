@@ -60,23 +60,41 @@ function MatchupsPanel({ leagueId }) {
   };
 
   return (
-    <div>
-      <h2>Panel de Emparejamientos</h2>
-      <div>
-        <p>Estado del Torneo: {tournamentStatus}</p>
-        <p>Ronda Actual: {currentRound}</p>
-        {tournamentStatus === 'open' && (
-          <button onClick={handleStartTournament}>Iniciar Torneo</button>
-        )}
-        {tournamentStatus === 'in_progress' && (
-          <button onClick={handleStartNextRound}>Iniciar Siguiente Ronda</button>
-        )}
-      </div>
-      <div>
-        <h3>Emparejamientos de la Ronda {currentRound}</h3>
-        {/* Renderiza los emparejamientos aquí */}
-      </div>
+<div className="container mx-auto p-4">
+  <h2 className="text-2xl font-bold mb-4">Panel de Emparejamientos</h2>
+  <div className="bg-white p-4 rounded shadow">
+    <p className="mb-2">
+      Estado del Torneo: <span className="font-semibold">{tournamentStatus}</span>
+    </p>
+    <p className="mb-4">
+      Ronda Actual: <span className="font-semibold">{currentRound}</span>
+    </p>
+    {tournamentStatus === 'open' && (
+      <button
+        onClick={handleStartTournament}
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Iniciar Torneo
+      </button>
+    )}
+    {tournamentStatus === 'in_progress' && (
+      <button
+        onClick={handleStartNextRound}
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+      >
+        Iniciar Siguiente Ronda
+      </button>
+    )}
+  </div>
+  <div className="mt-6">
+    <h3 className="text-xl font-bold mb-2">
+      Emparejamientos de la Ronda {currentRound}
+    </h3>
+    <div className="bg-gray-100 p-4 rounded shadow">
+      {/* Renderiza los emparejamientos aquí */}
     </div>
+  </div>
+</div>
   );
 }
 
