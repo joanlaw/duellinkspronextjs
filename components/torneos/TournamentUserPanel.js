@@ -46,10 +46,10 @@ function TournamentUserPanel({ onClose, leagueId }) {
             },
           }
         );
-        if (response.data) {
+        if (response.data && response.data.playerDecks[0]) {
           setPlayerDecksByTournament(prevState => ({
             ...prevState,
-            [tournamentId]: response.data,
+            [tournamentId]: response.data.playerDecks[0],
           }));
         }
       } catch (error) {
