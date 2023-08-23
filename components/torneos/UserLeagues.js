@@ -11,6 +11,7 @@ function UserLeagues() {
 
     const [showPopup, setShowPopup] = useState(false);
     const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
+    const [tournamentStarted, setTournamentStarted] = useState(false);
 
     const openAdminPanel = (leagueId) => {
         setSelectedLeague(leagueId);
@@ -53,9 +54,16 @@ function UserLeagues() {
         const matches = response.data.rounds[response.data.current_round - 1].matches;
         setCurrentRoundMatches(matches);
         setShowPopup(true);
+        
+        // Marcar como torneo iniciado
+        setTournamentStarted(true);
       } catch (error) {
         console.error("Error al iniciar el torneo:", error);
       }
+    };
+  
+    const showMatchups = () => {
+      setShowPopup(true);
     };
 
     const startNextRound = async (leagueId) => {
@@ -77,9 +85,12 @@ function UserLeagues() {
           <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
           <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
           <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
-          <button onClick={() => startTournament(league._id)} className="bg-blue-500 text-white p-4 rounded-full">
-        Iniciar Torneo
-      </button>{showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
+          {!tournamentStarted ?
+        <button onClick={() => startTournament(league._id)}>Iniciar Torneo</button> :
+        <button onClick={showMatchups}>Ver Emparejamientos</button>
+      }
+      
+      {showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
           <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
         </div>
       ))}
