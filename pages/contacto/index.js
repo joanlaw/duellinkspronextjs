@@ -3,6 +3,7 @@ import ContactForm from '../../components/ContactForm';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import NavbarCustom from '../../components/NavbarCustom';
+import FooterCustom from '../../components/FooterCustom'
 
 const ContactPage = () => {
   return (
@@ -19,7 +20,7 @@ const ContactPage = () => {
       </div>
     </div>
   </div>
-  <Footer />
+  <FooterCustom />
     </>
   );
 };

@@ -2,17 +2,24 @@ import React, { useState, useEffect } from "react";
 
 function TournamentAdminPanel({ onClose, leagueId }) {
   const [players, setPlayers] = useState([]);
+  const [playerDecks, setPlayerDecks] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.duellinks.pro/leagues/${leagueId}/players`)
+    fetch(`https://api.duellinks.pro/leagues/${leagueId}/players-decks`)
       .then(res => res.json())
       .then(data => {
-        setPlayers(data);
+        setPlayers(data.players);
+        setPlayerDecks(
+          data.playerDecks.reduce((acc, deck) => {
+            acc[deck.user] = deck;
+            return acc;
+          }, {})
+        );
         setLoading(false);
       })
       .catch(err => {
-        console.error("Error al recuperar los jugadores inscritos:", err);
+        console.error("Error al recuperar los jugadores y mazos:", err);
         setLoading(false);
       });
   }, [leagueId]);
@@ -26,7 +33,20 @@ function TournamentAdminPanel({ onClose, leagueId }) {
         ) : (
           <ul className="list-disc pl-6">
             {players.map(player => (
-              <li key={player._id}>{player.username}</li>
+              <li key={player._id}>
+                {player.username}
+                {playerDecks[player._id] && (
+                  <div>
+                    <button onClick={() => /* Mostrar o esconder los detalles del mazo */}>
+                      Ver mazos
+                    </button>
+                    <div>
+                      {/* Aquí puedes usar el código para mostrar las imágenes o detalles del mazo */}
+                      {/* Ejemplo: playerDecks[player._id].main_deck.url */}
+                    </div>
+                  </div>
+                )}
+              </li>
             ))}
           </ul>
         )}
