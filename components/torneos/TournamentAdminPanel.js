@@ -20,6 +20,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
         setLoading(false);
       });
   }, [leagueId]);
+  
 
   const fetchPlayerDeck = async (playerId, discordId) => {
     try {
@@ -61,7 +62,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
             {players.map((player) => (
               <li key={player._id}>
                 {player.username}
-                <button onClick={() => fetchPlayerDeck(player._id)}>Ver mazos</button>
+                <button onClick={() => fetchPlayerDeck(player._id, player.discordId)}>Ver mazos</button>
                 {playerDecks[player._id] && visibleDeckId === player._id && (
                   <div>
                     {["main_deck", "extra_deck", "side_deck", "especial_deck"].map((deckType) => (
