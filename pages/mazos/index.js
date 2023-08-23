@@ -150,7 +150,7 @@ export default function Index() {
 
   //FILTRADO 2
   const [filtro, setFiltro] = useState({
-    createdAt: "ultimas2semanas",
+    createdAt: "ultimas8semanas",
     habilidad: "",
     arquetipo: "",
     top: "",
@@ -288,7 +288,7 @@ export default function Index() {
     <select
       name="createdAt"
       id="createdAt"
-      defaultValue="ultimas2semanas"
+      defaultValue="ultimas8semanas"
       onChange={handleFiltroChange}
       className="block w-full px-4 py-2 border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
     >
