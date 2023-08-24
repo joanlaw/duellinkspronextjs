@@ -10,6 +10,7 @@ function UserLeagues() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
+  const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -40,15 +41,16 @@ function UserLeagues() {
       updateLeagues();
       
       const matches = response.data.rounds[response.data.current_round - 1].matches;
-      console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
+      console.log('Emparejamientos de la ronda actual:', matches);
+      
+      const totalRounds = response.data.totalRounds; // Obtén el número total de rondas
       setCurrentRoundMatches({
         ...currentRoundMatches,
-        [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
+        [leagueId]: matches,
       });
-
-      if (leagueStatus === 'in_progress') {
-        setTournamentStarted(true);
-      }
+  
+      setTournamentStarted(true); // Marca el torneo como iniciado
+      
     } catch (error) {
       console.error("Error al iniciar el torneo:", error);
     }
