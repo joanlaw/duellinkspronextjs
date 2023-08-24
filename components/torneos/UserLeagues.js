@@ -84,7 +84,7 @@ function UserLeagues() {
               ...currentRoundMatches,
               [leagueId]: enrichedMatches,
           });
-  
+          console.log("Emparejamientos para mostrar en el popup:", currentRoundMatches[selectedLeague]);
           setShowMatchupPopup(true);
       } catch (error) {
           console.error("No se pudieron obtener los emparejamientos:", error);

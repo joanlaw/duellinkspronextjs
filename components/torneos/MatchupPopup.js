@@ -1,6 +1,7 @@
 import React from 'react';
 
 function MatchupPopup({ matches = [], onClose }) {
+    console.log("Emparejamientos en MatchupPopup:", matches);
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
       <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
