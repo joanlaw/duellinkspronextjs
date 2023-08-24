@@ -65,6 +65,17 @@ function UserLeagues() {
     }
   };
 
+  const openAdminPanel = (leagueId) => {
+    setSelectedLeague(leagueId);
+    setShowAdminPanel(true);
+    setShowMatchupPopup(false);
+  };
+
+  const closeAdminPanel = () => {
+    setShowAdminPanel(false);
+  };
+  
+
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
       <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
