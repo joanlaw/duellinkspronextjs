@@ -10,8 +10,9 @@ const CreateTournamentForm = () => {
     league_name: '',
     league_format: '',
     start_date: '',
+    start_time: '', // Nuevo campo para la hora
     enlace_torneo: '',
-    image: '', // Cambiar "image_torneo" a "image"
+    image: '',
     infoTorneo: [{
       format: '',
       banlist: '',
@@ -65,15 +66,20 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  const completeDateTime = `${formData.start_date}T${formData.start_time}:00.000Z`;
+
+
   const formDataToSend = new FormData();
   Object.keys(formData).forEach((key) => {
     if (key === 'infoTorneo') {
       formDataToSend.append(key, JSON.stringify(formData[key]));
-    } else {
+    } else if (key !== 'start_date' && key !== 'start_time') { // Ignora estos dos
       formDataToSend.append(key, formData[key]);
     }
   });
-  
+
+      // Agrega la fecha y hora combinadas
+      formDataToSend.append('start_date', completeDateTime);
 
   if (imageFile) {
     formDataToSend.append('image', imageFile);
@@ -143,7 +149,14 @@ const handleSubmit = async (e) => {
         name="start_date"
         value={formData.start_date}
         onChange={handleChange}
-        label=""
+        label="Fecha de inicio"
+      />
+      <Input
+        type="time" // Campo de tipo "time" para capturar la hora
+        name="start_time"
+        value={formData.start_time}
+        onChange={handleChange}
+        label="Hora de inicio"
       />
       <Input
         type="url"
