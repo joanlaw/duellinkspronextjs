@@ -14,14 +14,7 @@ function UserLeagues() {
     const [tournamentStarted, setTournamentStarted] = useState(false);
     
 
-    const openAdminPanel = (leagueId) => {
-        setSelectedLeague(leagueId);
-      };
-
-      const closeAdminPanel = () => {
-        setSelectedLeague(null);
-      };
-
+ 
     useEffect(() => {
         if (authenticated) {
             fetch(`https://api.duellinks.pro/leagues/organizer/${discordId}`, {
@@ -93,6 +86,15 @@ function UserLeagues() {
             console.error("Error al iniciar la siguiente ronda:", error);
         }
     };
+
+    const openAdminPanel = (leagueId) => {
+      setSelectedLeague(leagueId);
+    };
+
+    const closeAdminPanel = () => {
+      setSelectedLeague(null);
+    };
+
 
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
