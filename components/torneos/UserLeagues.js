@@ -116,13 +116,13 @@ function UserLeagues() {
         </div>
       ))}
   
-      {showPopup && selectedLeague && (  
-        <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
-      )}
+  {showPopup && (
+  <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
+)}
   
-      {selectedLeague && (
-        <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
-      )}
+  {selectedLeague && (
+  <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
+)}
   </div>
   
 
