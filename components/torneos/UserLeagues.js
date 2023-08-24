@@ -66,17 +66,24 @@ function UserLeagues() {
       }
     };
   
-    const showMatchups = (leagueId) => {
-      console.log("La función showMatchups se ha llamado."); // Para debugging
-      if (currentRoundMatches[leagueId]) {
-        console.log('Mostrando emparejamientos para la liga:', leagueId);  
-        setSelectedLeague(leagueId);
+    const showMatchups = async (leagueId, currentRound) => {
+      try {
+        const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
+        const matches = response.data || [];
+        
+        console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
+    
+        setCurrentRoundMatches({
+          ...currentRoundMatches,
+          [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
+        });
+    
         setShowPopup(true);
-      } else {
-        console.log('No hay emparejamientos para mostrar.');  // Para debugging
+      } catch (error) {
+        console.log("No se pudieron obtener los emparejamientos:", error);
       }
     };
-
+    
 
     const startNextRound = async (leagueId) => {
         try {
@@ -101,7 +108,7 @@ function UserLeagues() {
       <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
       {league.status !== 'in_progress' ?
         <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button> :
-        <button onClick={() => showMatchups(league._id)}>Ver Emparejamientos</button>
+        <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>
       }
       
       <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
