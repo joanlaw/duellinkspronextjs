@@ -95,34 +95,34 @@ function UserLeagues() {
     };
 
     return (
-<div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
-  <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
-  
-  {leagues.map(league => (
-    <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
-      <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
-      <p className="mb-1">Formato: {league.league_format}</p>
-      <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
-      <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
-      
-      <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
-      {league.status !== 'in_progress' ?
-        <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button> :
-        <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>
-      }
-      
-      <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
-    </div>
-  ))}
+      <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
+        <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
+        
+        {leagues.map(league => (
+          <div key={league._id} className="bg-white p-4 rounded-md mb-4 shadow-md text-black">
+            <h3 className="text-xl font-medium mb-2">{league.league_name}</h3>
+            <p className="mb-1">Formato: {league.league_format}</p>
+            <p>Ronda actual: {league.current_round || "Torneo no iniciado"}</p>
+            <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
+            
+            {league.status === 'open' && 
+              <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button>}
+            {league.status === 'in_progress' && 
+              <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>}
+              
+            <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
+            <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
+          </div>
+        ))}
 
-  {showPopup && selectedLeague && (  
-    <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
-  )}
+        {showPopup && selectedLeague && (  
+          <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
+        )}
 
-  {selectedLeague && (
-    <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
-  )}
-</div>
+        {selectedLeague && (
+          <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
+        )}
+      </div>
 
     );
 }
