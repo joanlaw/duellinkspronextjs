@@ -12,7 +12,10 @@ function MatchupPopup({ matches, onClose }) {
             </li>
           ))}
         </ul>
-        <button onClick={onClose} className="mt-4 p-2 bg-red-500 text-white rounded-full">
+        <button
+          onClick={onClose}
+          className="mt-4 p-2 bg-red-500 text-white rounded-full"
+        >
           Cerrar
         </button>
       </div>
