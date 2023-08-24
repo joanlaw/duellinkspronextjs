@@ -52,6 +52,7 @@ function UserLeagues() {
         updateLeagues();
         
         const matches = response.data.rounds[response.data.current_round - 1].matches;
+        console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
         setCurrentRoundMatches({
           ...currentRoundMatches,
           [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
@@ -66,9 +67,11 @@ function UserLeagues() {
     };
   
     const showMatchups = (leagueId) => {
+      
       // Asumimos que ya tienes los emparejamientos para esta liga en currentRoundMatches
       if (currentRoundMatches[leagueId]) {
         setSelectedLeague(leagueId);  // Esto es nuevo
+        console.log('Mostrando emparejamientos para la liga:', leagueId);  // Nueva línea para depurar
         setShowPopup(true);
       }
     };
