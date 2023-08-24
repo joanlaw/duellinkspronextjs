@@ -34,6 +34,26 @@ function UserLeagues() {
     }
   };
 
+  const startTournament = async (leagueId, leagueStatus) => {
+    try {
+      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
+      updateLeagues();
+      
+      const matches = response.data.rounds[response.data.current_round - 1].matches;
+      console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
+      setCurrentRoundMatches({
+        ...currentRoundMatches,
+        [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
+      });
+
+      if (leagueStatus === 'in_progress') {
+        setTournamentStarted(true);
+      }
+    } catch (error) {
+      console.error("Error al iniciar el torneo:", error);
+    }
+  };
+
   const showMatchups = async (leagueId, currentRound) => {
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
