@@ -67,12 +67,13 @@ function UserLeagues() {
     };
   
     const showMatchups = (leagueId) => {
-      
-      // Asumimos que ya tienes los emparejamientos para esta liga en currentRoundMatches
+      console.log("La función showMatchups se ha llamado."); // Para debugging
       if (currentRoundMatches[leagueId]) {
-        setSelectedLeague(leagueId);  // Esto es nuevo
-        console.log('Mostrando emparejamientos para la liga:', leagueId);  // Nueva línea para depurar
+        console.log('Mostrando emparejamientos para la liga:', leagueId);  
+        setSelectedLeague(leagueId);
         setShowPopup(true);
+      } else {
+        console.log('No hay emparejamientos para mostrar.');  // Para debugging
       }
     };
 
@@ -100,7 +101,7 @@ function UserLeagues() {
       <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
       {league.status !== 'in_progress' ?
         <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button> :
-        <button onClick={() => showMatchups(league._id)}>Ver Emparejamientos</button> 
+        <button onClick={() => showMatchups(league._id)}>Ver Emparejamientos</button>
       }
       
       <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
