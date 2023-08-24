@@ -12,6 +12,7 @@ function UserLeagues() {
     const [showPopup, setShowPopup] = useState(false);
     const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
     const [tournamentStarted, setTournamentStarted] = useState(false);
+    
 
     const openAdminPanel = (leagueId) => {
         setSelectedLeague(leagueId);
@@ -50,10 +51,11 @@ function UserLeagues() {
         const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
         updateLeagues();
         
-        // Extrae los emparejamientos de la ronda actual
         const matches = response.data.rounds[response.data.current_round - 1].matches;
-        setCurrentRoundMatches(matches);
-        setShowPopup(true);
+        setCurrentRoundMatches({
+          ...currentRoundMatches,
+          [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
+        });
   
         if (leagueStatus === 'in_progress') {
           setTournamentStarted(true);
@@ -63,9 +65,14 @@ function UserLeagues() {
       }
     };
   
-    const showMatchups = () => {
-      setShowPopup(true);
+    const showMatchups = (leagueId) => {
+      // Asumimos que ya tienes los emparejamientos para esta liga en currentRoundMatches
+      if (currentRoundMatches[leagueId]) {
+        setSelectedLeague(leagueId);  // Esto es nuevo
+        setShowPopup(true);
+      }
     };
+
 
     const startNextRound = async (leagueId) => {
         try {
@@ -90,14 +97,16 @@ function UserLeagues() {
       <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
       {league.status !== 'in_progress' ?
         <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button> :
-        <button onClick={showMatchups}>Ver Emparejamientos</button>
+        <button onClick={() => showMatchups(league._id)}>Ver Emparejamientos</button> 
       }
       
       <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
     </div>
   ))}
 
-  {showPopup && <MatchupPopup matches={currentRoundMatches} onClose={() => setShowPopup(false)} />}
+  {showPopup && selectedLeague && (  
+    <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
+  )}
 
   {selectedLeague && (
     <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
