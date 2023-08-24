@@ -8,109 +8,62 @@ function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState(null);
-  const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
+  const [currentRoundMatches, setCurrentRoundMatches] = useState({});
+  const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
 
+  useEffect(() => {
+    if (authenticated) {
+      fetch(`https://api.duellinks.pro/leagues/organizer/${discordId}`)
+        .then(res => res.json())
+        .then(data => {
+          setLeagues(data || []);
+        })
+        .catch(err => console.error("Error al recuperar las ligas:", err));
+    }
+  }, [discordId, authenticated]);
 
- 
-    useEffect(() => {
-        if (authenticated) {
-            fetch(`https://api.duellinks.pro/leagues/organizer/${discordId}`, {
-                headers: {
-                    // Aquí puedes agregar headers si son necesarios para la consulta
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                setLeagues(data || []); // Nota que he cambiado `data.leagues` a `data` ya que asumo que el servidor devuelve directamente el array de ligas.
-            })
-            .catch(err => console.error("Error al recuperar las ligas:", err));
-        }
-    }, [discordId, authenticated]);
-
-    const updateLeagues = async () => {
-      try {
-        const res = await axios.get(`https://api.duellinks.pro/leagues/organizer/${discordId}`);
-        setLeagues(res.data || []);
-      } catch (error) {
-        console.error("Error al actualizar las ligas:", error);
-      }
-    };
-
-    const startTournament = async (leagueId, leagueStatus) => {
-      try {
-        const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
-        updateLeagues();
-        
-        const matches = response.data.rounds[response.data.current_round - 1].matches;
-        console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
-        setCurrentRoundMatches({
-          ...currentRoundMatches,
-          [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
-        });
-  
-        if (leagueStatus === 'in_progress') {
-          setTournamentStarted(true);
-        }
-      } catch (error) {
-        console.error("Error al iniciar el torneo:", error);
-      }
-    };
-  
-    const showMatchups = async (leagueId, currentRound) => {
-      try {
-          const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
-          const matches = response.data || [];
-          console.log('Emparejamientos obtenidos:', matches);
-          
-          const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
-          console.log('IDs de jugadores:', playerIds);
-  
-          const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
-          const usersInfo = usersResponse.data;
-          console.log('Información de usuarios:', usersInfo);
-  
-          const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
-  
-          const enrichedMatches = matches.map(match => ({
-              ...match,
-              player1Info: usersMap[match.player1],
-              player2Info: match.player2 ? usersMap[match.player2] : null
-          }));
-          
-          setCurrentRoundMatches({
-              ...currentRoundMatches,
-              [leagueId]: enrichedMatches,
-          });
-          console.log("Emparejamientos para mostrar en el popup:", currentRoundMatches[selectedLeague]);
-          setShowMatchupPopup(true);
-      } catch (error) {
-          console.error("No se pudieron obtener los emparejamientos:", error);
-      }
+  const updateLeagues = async () => {
+    try {
+      const res = await axios.get(`https://api.duellinks.pro/leagues/organizer/${discordId}`);
+      setLeagues(res.data || []);
+    } catch (error) {
+      console.error("Error al actualizar las ligas:", error);
+    }
   };
-  
-    
 
-    const startNextRound = async (leagueId) => {
-        try {
-            await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
-            updateLeagues();
-        } catch (error) {
-            console.error("Error al iniciar la siguiente ronda:", error);
-        }
-    };
+  const showMatchups = async (leagueId, currentRound) => {
+    try {
+      const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
+      const matches = response.data || [];
+      
+      const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
+      const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
+      const usersInfo = usersResponse.data;
 
-    const openAdminPanel = (leagueId) => {
+      const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
+
+      const enrichedMatches = matches.map(match => ({
+        ...match,
+        player1Info: usersMap[match.player1],
+        player2Info: match.player2 ? usersMap[match.player2] : null
+      }));
+
+      const updatedMatchesData = {
+        ...currentRoundMatches,
+        [leagueId]: enrichedMatches,
+      };
+
+      setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
       setSelectedLeague(leagueId);
-      setShowAdminPanel(true);
-      setShowMatchupPopup(false);
-    };
-  
-    const closeAdminPanel = () => {
-      setShowAdminPanel(false);
-    };
+      setShowMatchupPopup(true);
+
+    } catch (error) {
+      console.log("No se pudieron obtener los emparejamientos:", error);
+    }
+  };
 
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
@@ -130,9 +83,9 @@ function UserLeagues() {
         </div>
       ))}
   
-      {showMatchupPopup && (
-        <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowMatchupPopup(false)} />
-      )}
+  {showMatchupPopup && (
+  <MatchupPopup matches={updatedMatches[selectedLeague]} onClose={() => setShowMatchupPopup(false)} />
+)}
   
       {showAdminPanel && (
         <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
