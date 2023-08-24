@@ -12,9 +12,9 @@ const MatchupPopup = ({ rounds, onClose }) => {
           {round.matches.map((match, matchIndex) => (
             <div key={match._id}>
               <h3>Partida {matchIndex + 1}</h3>
-              <p>{match.player1 ? match.player1.username : 'Esperando...'}</p>
+              <p>{match.player1 ? match.player1._id : 'Esperando...'}</p>
               <p>vs</p>
-              <p>{match.player2 ? match.player2.username : 'Esperando...'}</p>
+              <p>{match.player2 ? match.player2._id : 'Esperando...'}</p>
             </div>
           ))}
         </div>
