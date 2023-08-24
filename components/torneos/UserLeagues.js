@@ -111,7 +111,7 @@ function UserLeagues() {
               <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>}
               
             <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
-            <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
+           
           </div>
         ))}
 
@@ -119,9 +119,7 @@ function UserLeagues() {
           <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
         )}
 
-        {selectedLeague && (
-          <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
-        )}
+     
       </div>
 
     );
