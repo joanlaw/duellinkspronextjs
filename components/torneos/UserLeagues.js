@@ -117,7 +117,7 @@ function UserLeagues() {
       ))}
   
   {showPopup && (
-  <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowPopup(false)} />
+  <MatchupPopup matches={currentRoundMatches[selectedLeague] || []} onClose={() => setShowPopup(false)} />
 )}
   
   {selectedLeague && (
