@@ -1,11 +1,49 @@
-import { Chat, ChatMessage } from '@nextui-org/chat';
+import React, { useState } from "react";
 
 function ChatRoom({ roomId, onClose }) {
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+
+  const handleSendMessage = () => {
+    if (newMessage.trim() === "") return;
+
+    setMessages([...messages, { text: newMessage, sender: "user" }]);
+    setNewMessage("");
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
       <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
         <h2 className="text-2xl mb-6 text-black">Sala de Chat</h2>
-        <Chat roomId={roomId} />
+        <div className="h-60 overflow-y-auto border border-gray-300 p-4">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`mb-2 p-2 ${
+                message.sender === "user"
+                  ? "bg-blue-200 rounded-md self-start"
+                  : "bg-gray-200 rounded-md self-end"
+              }`}
+            >
+              {message.text}
+            </div>
+          ))}
+        </div>
+        <div className="flex mt-4">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            className="flex-1 border rounded-md p-2 mr-2"
+            placeholder="Escribe un mensaje..."
+          />
+          <button
+            onClick={handleSendMessage}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+          >
+            Enviar
+          </button>
+        </div>
         <button
           onClick={onClose}
           className="mt-6 p-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"
