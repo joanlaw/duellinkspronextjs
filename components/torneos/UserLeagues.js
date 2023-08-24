@@ -5,14 +5,14 @@ import axios from "axios";
 import MatchupPopup from "./MatchupPopup";
 
 function UserLeagues() {
-    const { discordId, authenticated } = useUser();
-    const [leagues, setLeagues] = useState([]);
-    const [selectedLeague, setSelectedLeague] = useState(null);
+  const { discordId, authenticated } = useUser();
+  const [leagues, setLeagues] = useState([]);
+  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
 
-    const [showPopup, setShowPopup] = useState(false);
-    const [currentRoundMatches, setCurrentRoundMatches] = useState([]);
-    const [tournamentStarted, setTournamentStarted] = useState(false);
-    
+  const [showMatchupPopup, setShowMatchupPopup] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+
 
  
     useEffect(() => {
@@ -63,16 +63,16 @@ function UserLeagues() {
       try {
         const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
         const matches = response.data || [];
-        
-        console.log('Emparejamientos de la ronda actual:', matches);
     
+        console.log('Emparejamientos de la ronda actual:', matches);
+        
         setCurrentRoundMatches({
           ...currentRoundMatches,
-          [leagueId]: matches,
+          [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
         });
     
-        setSelectedLeague(null);  // Asegurarnos de que TournamentAdminPanel esté cerrado
-        setShowPopup(true);
+        setShowAdminPanel(false); // Cierra el panel de administración si está abierto
+        setShowMatchupPopup(true); // Abre el popup de emparejamientos
       } catch (error) {
         console.log("No se pudieron obtener los emparejamientos:", error);
       }
@@ -89,14 +89,14 @@ function UserLeagues() {
     };
 
     const openAdminPanel = (leagueId) => {
-      setShowPopup(false);  // Asegurarnos de que MatchupPopup esté cerrado
       setSelectedLeague(leagueId);
+      setShowAdminPanel(true);
+      setShowMatchupPopup(false);
     };
-
+  
     const closeAdminPanel = () => {
-      setSelectedLeague(null);
+      setShowAdminPanel(false);
     };
-
 
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
@@ -116,16 +116,14 @@ function UserLeagues() {
         </div>
       ))}
   
-  {showPopup && (
-  <MatchupPopup matches={currentRoundMatches[selectedLeague] || []} onClose={() => setShowPopup(false)} />
-)}
+      {showMatchupPopup && (
+        <MatchupPopup matches={currentRoundMatches[selectedLeague]} onClose={() => setShowMatchupPopup(false)} />
+      )}
   
-  {selectedLeague && (
-  <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
-)}
-  </div>
-  
-
+      {showAdminPanel && (
+        <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
+      )}
+    </div>
     );
 }
 
