@@ -61,32 +61,36 @@ function UserLeagues() {
   
     const showMatchups = async (leagueId, currentRound) => {
       try {
-        const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
-        const matches = response.data || [];
+          const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
+          const matches = response.data || [];
+          console.log('Emparejamientos obtenidos:', matches);
+          
+          const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
+          console.log('IDs de jugadores:', playerIds);
   
-        const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
+          const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
+          const usersInfo = usersResponse.data;
+          console.log('Información de usuarios:', usersInfo);
   
-        const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
-        const usersInfo = usersResponse.data;
+          const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
   
-        const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
+          const enrichedMatches = matches.map(match => ({
+              ...match,
+              player1Info: usersMap[match.player1],
+              player2Info: match.player2 ? usersMap[match.player2] : null
+          }));
+          
+          setCurrentRoundMatches({
+              ...currentRoundMatches,
+              [leagueId]: enrichedMatches,
+          });
   
-        const enrichedMatches = matches.map(match => ({
-          ...match,
-          player1Info: usersMap[match.player1],
-          player2Info: match.player2 ? usersMap[match.player2] : null
-        }));
-  
-        setCurrentRoundMatches({
-          ...currentRoundMatches,
-          [leagueId]: enrichedMatches,
-        });
-  
-        setShowMatchupPopup(true);
+          setShowMatchupPopup(true);
       } catch (error) {
-        console.log("No se pudieron obtener los emparejamientos:", error);
+          console.error("No se pudieron obtener los emparejamientos:", error);
       }
-    };
+  };
+  
     
 
     const startNextRound = async (leagueId) => {
