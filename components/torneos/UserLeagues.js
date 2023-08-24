@@ -64,13 +64,14 @@ function UserLeagues() {
         const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
         const matches = response.data || [];
         
-        console.log('Emparejamientos de la ronda actual:', matches);  // Nueva línea para depurar
+        console.log('Emparejamientos de la ronda actual:', matches);
     
         setCurrentRoundMatches({
           ...currentRoundMatches,
-          [leagueId]: matches,  // Almacenamos los emparejamientos bajo el leagueId
+          [leagueId]: matches,
         });
     
+        setSelectedLeague(null);  // Asegurarnos de que TournamentAdminPanel esté cerrado
         setShowPopup(true);
       } catch (error) {
         console.log("No se pudieron obtener los emparejamientos:", error);
@@ -88,6 +89,7 @@ function UserLeagues() {
     };
 
     const openAdminPanel = (leagueId) => {
+      setShowPopup(false);  // Asegurarnos de que MatchupPopup esté cerrado
       setSelectedLeague(leagueId);
     };
 
