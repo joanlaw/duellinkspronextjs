@@ -11,7 +11,7 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
-        const totalRounds = Math.log2(matches.length * 2);
+        const totalRounds = Math.ceil(Math.log2(matches.length + 1));
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
@@ -22,7 +22,7 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
-        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
+        const matchesForRound = matches.filter(match => match.round === round);
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
@@ -44,7 +44,7 @@ function MatchupPopup({ matches = [], onClose }) {
                 {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                 {!isByeMatch && (
                     <div className="flex-none w-1/3 text-center text-black">
-                        {match.player2Info ? match.player2Info.username : match.player2}
+                        {match.player2Info ? match.player2Info.username : (match.player2 || 'BYE')}
                     </div>
                 )}
                 <button
