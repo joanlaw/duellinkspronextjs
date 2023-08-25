@@ -37,13 +37,13 @@ function MatchupPopup({ matches = [], onClose }) {
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex-none w-1/3">
-                    <div className="text-center">
+                    <div className="text-center text-black">
                         {match.player1Info ? match.player1Info.username : match.player1}
                     </div>
                 </div>
-                {!isByeMatch && <div className="flex-none w-1/3 text-center">vs</div>}
+                {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                 {!isByeMatch && (
-                    <div className="flex-none w-1/3 text-center">
+                    <div className="flex-none w-1/3 text-center text-black">
                         {match.player2Info ? match.player2Info.username : match.player2}
                     </div>
                 )}
@@ -59,8 +59,17 @@ function MatchupPopup({ matches = [], onClose }) {
         );
     }
 
+    const handleBackdropClick = (event) => {
+        if (event.target.classList.contains('backdrop')) {
+            onClose();
+        }
+    };
+
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
+        <div
+            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+            onClick={handleBackdropClick}
+        >
             <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
                 <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
                 <Bracket matches={matches} />
