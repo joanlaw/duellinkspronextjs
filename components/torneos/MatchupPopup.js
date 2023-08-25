@@ -12,8 +12,8 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
-        console.log("Total Rounds:", totalRounds);  // Añade esta línea
         const totalRounds = Math.log2(matches.length * 2);
+        console.log("Total Rounds:", totalRounds);  // Añade esta línea
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
