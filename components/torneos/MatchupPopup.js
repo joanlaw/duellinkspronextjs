@@ -32,6 +32,7 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Match({ match }) {
+        console.log("Datos del emparejamiento:", match);  // Agrega esta línea para depuración
         const isByeMatch = !match.player2;
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
