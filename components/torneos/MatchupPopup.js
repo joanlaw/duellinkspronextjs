@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 
 function MatchupPopup({ matches = [], onClose }) {
+    console.log("MatchupPopup matches:", matches);  // Añade esta línea
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
@@ -11,6 +12,7 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
+        console.log("Total Rounds:", totalRounds);  // Añade esta línea
         const totalRounds = Math.log2(matches.length * 2);
         return (
             <div className="bracket">
