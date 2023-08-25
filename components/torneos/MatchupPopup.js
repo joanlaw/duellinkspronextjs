@@ -11,28 +11,28 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
-        const totalRounds = Object.keys(matches).length; // Cambiado para reflejar que matches es un objeto
+        const totalRounds = Math.log2(matches.length); // Ajustar el cálculo de totalRounds
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round key={index} matches={matches} round={index + 1} />  // round se inicia en 1
-                ))}
-            </div>
-        );
-    }
-    function Round({ matches, round }) {
-        const matchesForRound = matches[round]?.matches || []; // Asegurar que matches[round] existe
-        return (
-            <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
-                    <Match key={index} match={match} />
+                    <Round key={index} matches={matches} round={index} />
                 ))}
             </div>
         );
     }
 
+function Round({ matches, round }) {
+    const matchesForRound = matches[round].matches; // Obtener los emparejamientos de la ronda actual
+    return (
+        <div className="round space-y-4">
+            {matchesForRound.map((match, index) => (
+                <Match key={index} match={match} />
+            ))}
+        </div>
+    );
+}
+
     function Match({ match }) {
-        console.log("Datos del emparejamiento:", match);  // Agrega esta línea para depuración
         const isByeMatch = !match.player2;
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
@@ -67,17 +67,17 @@ function MatchupPopup({ matches = [], onClose }) {
 
     return (
         <div
-        className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-        onClick={handleBackdropClick}
-    >
-        <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-            <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-            <Bracket matches={matches} />
+            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+            onClick={handleBackdropClick}
+        >
+            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
+                <Bracket matches={matches} />
+            </div>
+            {showChat && (
+                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+            )}
         </div>
-        {showChat && (
-            <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-        )}
-    </div>
     );
 }
 
