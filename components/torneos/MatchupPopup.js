@@ -24,13 +24,8 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
-        const matchesForRound = matches.filter(match => {
-            const matchRound = Math.floor(Math.log2(matches.length)) - Math.floor(Math.log2(index + 1));
-            return matchRound === round;
-        });
-    
+        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
         console.log("Matches for Round", round, ":", matchesForRound);
-    
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
