@@ -11,6 +11,7 @@ function UserLeagues() {
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
   const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
+  const [totalRounds, setTotalRounds] = useState(0); // Agrega el estado totalRounds
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -39,23 +40,23 @@ function UserLeagues() {
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
       updateLeagues();
-      
-      const matches = response.data.rounds[response.data.current_round - 1].matches;
+  
+      const { matches, totalRounds } = response.data; // Obtén los emparejamientos y el número total de rondas
       console.log('Emparejamientos de la ronda actual:', matches);
-      
-      const totalRounds = response.data.totalRounds; // Obtén el número total de rondas
+  
       setCurrentRoundMatches({
         ...currentRoundMatches,
         [leagueId]: matches,
       });
   
+      setTotalRounds(totalRounds); // Actualiza el estado de totalRounds
       setTournamentStarted(true); // Marca el torneo como iniciado
-      
+  
     } catch (error) {
       console.error("Error al iniciar el torneo:", error);
     }
   };
-
+  
   const showMatchups = async (leagueId, currentRound) => {
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
