@@ -11,18 +11,18 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
+        const totalRounds = Math.log2(matches.length); // Ajustar el cálculo de totalRounds
         return (
             <div className="bracket">
-                {matches.map((round, index) => (
-                    <Round key={index} matches={round.matches} />
+                {Array.from({ length: totalRounds }).map((_, index) => (
+                    <Round key={index} matches={matches} round={index} />
                 ))}
             </div>
         );
     }
-    
 
     function Round({ matches, round }) {
-        const matchesForRound = matches[round].matches; // Obtener los emparejamientos de la ronda actual
+        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
