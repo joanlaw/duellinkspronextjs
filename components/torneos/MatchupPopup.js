@@ -50,14 +50,12 @@ function MatchupPopup({ matches = [], onClose }) {
                         {match.player2Info ? match.player2Info.username : match.player2}
                     </div>
                 )}
-                <button
-                    className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${
-                        match.chatRoom ? 'visible' : 'invisible'
-                    }`}
-                    onClick={() => openChatRoom(match.chatRoom)}
-                >
-                    Chat
-                </button>
+<button
+    className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
+    onClick={() => openChatRoom(match.chatRoom)}
+>
+    Chat
+</button>
             </div>
         );
     }
