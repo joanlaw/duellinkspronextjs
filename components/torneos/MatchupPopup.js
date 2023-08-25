@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 
-function MatchupPopup({ matches = [], onClose }) {
+function MatchupPopup({ rounds = [], onClose }) {
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
@@ -10,23 +10,21 @@ function MatchupPopup({ matches = [], onClose }) {
         setShowChat(true);
     };
 
-    function Bracket({ matches }) {
-        const totalRounds = Math.ceil(Math.log2(matches.length * 2));
+    function Bracket({ rounds }) {
         return (
             <div className="bracket">
-                {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round key={index} matches={matches} round={index} />
+                {rounds.map((round, index) => (
+                    <Round key={index} matches={round.matches} round={index + 1} />
                 ))}
             </div>
         );
     }
 
     function Round({ matches, round }) {
-        // Asumiendo que matches es un array plano que contiene todos los matches de todas las rondas
-        const matchesForRound = matches.filter(match => match.round === round);
         return (
             <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
+                <h3>Ronda {round}</h3>
+                {matches.map((match, index) => (
                     <Match key={index} match={match} />
                 ))}
             </div>
@@ -37,15 +35,13 @@ function MatchupPopup({ matches = [], onClose }) {
         const isByeMatch = !match.player2;
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
-                <div className="flex-none w-1/3">
-                    <div className="text-center text-black">
-                        {match.player1Info ? match.player1Info.username : match.player1}
-                    </div>
+                <div className="flex-none w-1/3 text-center text-black">
+                    {match.player1}
                 </div>
                 {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                 {!isByeMatch && (
                     <div className="flex-none w-1/3 text-center text-black">
-                        {match.player2Info ? match.player2Info.username : match.player2}
+                        {match.player2}
                     </div>
                 )}
                 <button
@@ -73,7 +69,7 @@ function MatchupPopup({ matches = [], onClose }) {
         >
             <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg overflow-y-auto" style={{ maxHeight: '80vh' }}>
                 <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} />
+                <Bracket rounds={rounds} />
             </div>
             {showChat && (
                 <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
