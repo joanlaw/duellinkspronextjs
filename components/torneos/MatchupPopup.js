@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 
 function MatchupPopup({ matches = [], onClose }) {
+    console.log('Datos de emparejamientos recibidos:', matches);
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+    
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
@@ -11,6 +13,7 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
+        console.log('Emparejamientos en el componente Bracket:', matches);
         const totalRounds = Math.log2(matches.length * 2);
         return (
             <div className="bracket">
@@ -22,6 +25,7 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
+        console.log('Emparejamientos en el componente Round:', matches);
         const roundMatches = matches[round]?.matches || [];
         return (
             <div className="round space-y-4">
