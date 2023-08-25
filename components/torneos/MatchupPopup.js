@@ -14,16 +14,17 @@ function MatchupPopup({ matches = [], onClose }) {
 
     function Bracket({ matches }) {
         console.log('Emparejamientos en el componente Bracket:', matches);
+    
         const totalRounds = Math.log2(matches.length * 2);
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round key={index} matches={matches} round={index} />
+                    <Round key={index} matches={matches[index]} round={index} />
                 ))}
             </div>
         );
     }
-
+    
     function Round({ matches, round }) {
         console.log('Emparejamientos en el componente Round:', matches);
         const roundMatches = matches[round]?.matches || [];
