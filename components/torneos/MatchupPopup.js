@@ -25,7 +25,7 @@ function MatchupPopup({ matches = [], onClose }) {
 
     function Round({ matches, round }) {
         const matchesForRound = matches.filter(match => {
-            const matchRound = Math.floor(Math.log2(matches.length)) - Math.floor(Math.log2(match.index));
+            const matchRound = Math.floor(Math.log2(matches.length)) - Math.floor(Math.log2(index + 1));
             return matchRound === round;
         });
     
@@ -39,6 +39,7 @@ function MatchupPopup({ matches = [], onClose }) {
             </div>
         );
     }
+    
 
     function Match({ match }) {
         const isByeMatch = !match.player2;
