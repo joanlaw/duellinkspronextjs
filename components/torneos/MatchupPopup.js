@@ -11,7 +11,7 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
-        const totalRounds = Math.log2(matches.length * 2);
+        const totalRounds = Math.ceil(Math.log2(matches.length * 2));
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
@@ -22,7 +22,8 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
-        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
+        // Asumiendo que matches es un array plano que contiene todos los matches de todas las rondas
+        const matchesForRound = matches.filter(match => match.round === round);
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
@@ -70,7 +71,7 @@ function MatchupPopup({ matches = [], onClose }) {
             className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
             onClick={handleBackdropClick}
         >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg overflow-y-auto" style={{ maxHeight: '80vh' }}>
                 <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
                 <Bracket matches={matches} />
             </div>
