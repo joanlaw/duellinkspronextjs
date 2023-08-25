@@ -33,6 +33,8 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Match({ match }) {
+        console.log('Información del jugador 1:', match.player1Info);
+        console.log('Información del jugador 2:', match.player2Info);
         const isByeMatch = !match.player2;
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
