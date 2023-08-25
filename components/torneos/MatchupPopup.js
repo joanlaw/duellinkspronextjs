@@ -11,7 +11,7 @@ function MatchupPopup({ matches = [], onClose }) {
     };
 
     function Bracket({ matches }) {
-        const totalRounds = Math.log2(matches.length * 2);
+        const totalRounds = Math.log2(matches.length); // Ajustar el cálculo de totalRounds
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
@@ -22,7 +22,7 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
-        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
+        const matchesForRound = matches[round].matches; // Obtener los emparejamientos de la ronda actual
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
