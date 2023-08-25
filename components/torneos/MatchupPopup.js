@@ -15,17 +15,17 @@ function MatchupPopup({ matches = [], onClose }) {
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round key={index} matches={matches[index]} round={index} />
+                    <Round key={index} matches={matches} round={index} />
                 ))}
             </div>
         );
     }
-    
+
     function Round({ matches, round }) {
-        const roundMatches = matches[round]?.matches || [];
+        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
         return (
             <div className="round space-y-4">
-                {roundMatches.map((match, index) => (
+                {matchesForRound.map((match, index) => (
                     <Match key={index} match={match} />
                 ))}
             </div>
@@ -33,8 +33,6 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Match({ match }) {
-        console.log('Información del jugador 1:', match.player1Info);
-        console.log('Información del jugador 2:', match.player2Info);
         const isByeMatch = !match.player2;
         return (
             <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
@@ -72,7 +70,7 @@ function MatchupPopup({ matches = [], onClose }) {
             className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
             onClick={handleBackdropClick}
         >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg overflow-y-auto" style={{ maxHeight: '80vh' }}>
+            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
                 <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
                 <Bracket matches={matches} />
             </div>
