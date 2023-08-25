@@ -22,10 +22,10 @@ function MatchupPopup({ matches = [], onClose }) {
     }
 
     function Round({ matches, round }) {
-        const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
+        const roundMatches = matches[round]?.matches || [];
         return (
             <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
+                {roundMatches.map((match, index) => (
                     <Match key={index} match={match} />
                 ))}
             </div>
