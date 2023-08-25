@@ -25,6 +25,7 @@ function MatchupPopup({ matches = [], onClose }) {
 
     function Round({ matches, round }) {
         const matchesForRound = matches.slice(2 ** round, 2 ** (round + 1));
+        console.log("Matches for Round", round, ":", matchesForRound);  // Agrega esta línea
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
