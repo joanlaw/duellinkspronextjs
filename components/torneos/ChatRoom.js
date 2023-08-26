@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useUser } from "../../contexts/UserContext";  // Importar el hook useUser
 
 function ChatRoom({ roomId, onClose }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const { token } = useUser();  // Obtén el token del contexto del usuario
 
   useEffect(() => {
-    // Cargar los mensajes de la sala de chat al montar el componente
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.duellinks.pro/chat-rooms/${roomId}/messages`);
@@ -19,26 +20,34 @@ function ChatRoom({ roomId, onClose }) {
     fetchData();
   }, [roomId]);
 
+  const handleSendMessage = async () => {
+    if (newMessage.trim() === "") return;
 
-const handleSendMessage = async () => {
-  if (newMessage.trim() === "") return;
+    try {
+      const messageData = {
+        content: newMessage,
+      };
 
-  try {
-    const messageData = {
-      content: newMessage,
-      // Otros campos relevantes para el mensaje, como 'sender', si es necesario
-    };
+      console.log("Enviando mensaje:", messageData);  // Depuración
 
-    // Enviar el mensaje al back-end
-    await axios.post(`https://api.duellinks.pro/chat-rooms/${roomId}/send-message`, messageData);
+      await axios.post(
+        `https://api.duellinks.pro/chat-rooms/${roomId}/send-message`,
+        messageData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
 
-    // Actualizar el estado local con el nuevo mensaje
-    setMessages([...messages, { text: newMessage, sender: "user" }]);
-    setNewMessage("");
-  } catch (error) {
-    console.error("Error al enviar el mensaje:", error);
-  }
-};
+      console.log("Mensaje enviado exitosamente.");  // Depuración
+
+      setMessages([...messages, { text: newMessage, sender: "user" }]);
+      setNewMessage("");
+    } catch (error) {
+      console.error("Error al enviar el mensaje:", error);
+    }
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
