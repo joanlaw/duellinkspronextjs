@@ -7,7 +7,7 @@ function ScorePopup({ leagueId, roundNumber, match, onClose }) {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${roundNumber}/record-scores`, {
+            const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/${roundNumber}/record-scores`, {
                 matchId: match.id,
                 scorePlayer1: scorePlayer1,
                 scorePlayer2: scorePlayer2
