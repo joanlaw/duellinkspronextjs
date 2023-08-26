@@ -30,14 +30,14 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                     }
                 });
 
-                const playerIds = [...new Set(response.data.flatMap(match => [match.player1, match.player2]))];
+                const playerIds = response.data.flatMap(match => [match.player1, match.player2]);
                 const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
                 const usersMap = Object.fromEntries(usersResponse.data.map(user => [user._id, user]));
 
                 const matchesWithUsernames = response.data.map(match => ({
                     ...match,
-                    player1Username: usersMap[match.player1]._id === match.player1 ? usersMap[match.player1].username : "",
-                    player2Username: match.player2 && usersMap[match.player2]._id === match.player2 ? usersMap[match.player2].username : ""
+                    player1Username: usersMap[match.player1] ? usersMap[match.player1].username : "",
+                    player2Username: match.player2 && usersMap[match.player2] ? usersMap[match.player2].username : ""
                 }));
                 
                 setMatches(matchesWithUsernames);
