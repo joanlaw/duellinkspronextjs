@@ -4,12 +4,40 @@ function ChatRoom({ roomId, onClose }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() === "") return;
+  useEffect(() => {
+    // Cargar los mensajes de la sala de chat al montar el componente
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://api.duellinks.pro/chat-rooms/${roomId}/messages`);
+        setMessages(response.data);
+      } catch (error) {
+        console.error("Error al cargar los mensajes:", error);
+      }
+    };
 
+    fetchData();
+  }, [roomId]);
+
+
+const handleSendMessage = async () => {
+  if (newMessage.trim() === "") return;
+
+  try {
+    const messageData = {
+      content: newMessage,
+      // Otros campos relevantes para el mensaje, como 'sender', si es necesario
+    };
+
+    // Enviar el mensaje al back-end
+    await axios.post(`https://api.duellinks.pro/chat-rooms/${roomId}/send-message`, messageData);
+
+    // Actualizar el estado local con el nuevo mensaje
     setMessages([...messages, { text: newMessage, sender: "user" }]);
     setNewMessage("");
-  };
+  } catch (error) {
+    console.error("Error al enviar el mensaje:", error);
+  }
+};
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
