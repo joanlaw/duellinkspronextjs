@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useUser } from "../../contexts/UserContext";  // Importar el hook useUser
 
@@ -6,6 +6,8 @@ function ChatRoom({ roomId, onClose }) {
   const { discordId, token, username } = useUser();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const lastMessageRef = useRef(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +27,12 @@ function ChatRoom({ roomId, onClose }) {
   
     return () => clearInterval(interval);
   }, [roomId]);
+
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   
 
   const handleSendMessage = async () => {
@@ -70,18 +78,19 @@ function ChatRoom({ roomId, onClose }) {
       <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
         <h2 className="text-2xl mb-6 text-black">Sala de Chat</h2>
         <div className="h-60 overflow-y-auto border border-gray-300 p-4">
-        {messages.map((message, index) => (
-  <div
-    key={index}
-    className={`mb-2 p-2 bg-white text-black rounded-md ${
-      message.sender.discordId === discordId // Compara con el discordId del usuario actual
-        ? "self-start"
-        : "self-end"
-    }`}
-  >
-    <strong>{message.sender.username}: </strong> {message.content}
-  </div>
-))}
+              {messages.map((message, index) => (
+        <div
+          ref={index === messages.length - 1 ? lastMessageRef : null}
+          key={index}
+          className={`mb-2 p-2 bg-white text-black rounded-md ${
+            message.sender.discordId === discordId // Compara con el discordId del usuario actual
+              ? "self-start"
+              : "self-end"
+          }`}
+        >
+          <strong>{message.sender.username}: </strong> {message.content}
+        </div>
+      ))}
         </div>
         <div className="flex mt-4">
         <input
