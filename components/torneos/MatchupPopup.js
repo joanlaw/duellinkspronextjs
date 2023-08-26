@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
+import ScorePopup from './ScorePopup';
 
 function MatchupPopup({ matches = [], onClose }) {
     console.log("MatchupPopup matches:", matches);  // Añade esta línea
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+    const [showScorePopup, setShowScorePopup] = useState(false);
+
+    const openScorePopup = () => {
+        setShowScorePopup(true);
+    };
+
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
@@ -65,12 +72,16 @@ function MatchupPopup({ matches = [], onClose }) {
                             Chat
                         </button>
                         <button
-                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
-                            // Aquí puedes añadir el manejador del clic para abrir el componente de Marcador
-                        >
-                            Marcador
-                        </button>
-                    </div>
+                className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
+                onClick={openScorePopup} // Abre el popup del marcador aquí
+            >
+                Marcador
+            </button>
+            {showScorePopup && (
+                <ScorePopup match={match} onClose={() => setShowScorePopup(false)} />
+            )}
+        </div>
+                   
                 )}
             </div>
         );
