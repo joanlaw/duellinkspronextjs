@@ -84,13 +84,19 @@ function ChatRoom({ roomId, onClose }) {
 ))}
         </div>
         <div className="flex mt-4">
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            className="flex-1 border rounded-md p-2 mr-2"
-            placeholder="Escribe un mensaje..."
-          />
+        <input
+  type="text"
+  value={newMessage}
+  onChange={(e) => setNewMessage(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
+      e.preventDefault();  // Prevenir el comportamiento por defecto de "Enter"
+    }
+  }}
+  className="flex-1 border rounded-md p-2 mr-2"
+  placeholder="Escribe un mensaje..."
+/>
           <button
             onClick={handleSendMessage}
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
