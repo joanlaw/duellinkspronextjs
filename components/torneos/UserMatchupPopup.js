@@ -69,23 +69,24 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-                <h2 className="text-2xl mb-6">Tus emparejamientos</h2>
-                <ul>
-                    {matches.map((match, index) => (
-                        <li key={index}>
-                            {match.player1Username} vs {match.player2Username}
-                            <button onClick={() => openChatRoom(match.chatRoom)}>Ir al chat</button>
-                        </li>
-                    ))}
-                </ul>
-                <button onClick={onClose}>Cerrar</button>
-            </div>
-            {showChat && (
-                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-            )}
-        </div>
+<div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
+    <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+        <h2 className="text-2xl mb-6 text-black">Tus emparejamientos</h2>
+        <ul>
+            {matches.map((match, index) => (
+                <li key={index} className="text-black">
+                    {match.player1Username} vs {match.player2Username}
+                    <button onClick={() => openChatRoom(match.chatRoom)}>Ir al chat</button>
+                </li>
+            ))}
+        </ul>
+        <button onClick={onClose} className="text-black">Cerrar</button>
+    </div>
+    {showChat && (
+        <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+    )}
+</div>
+
     );
 };
 
