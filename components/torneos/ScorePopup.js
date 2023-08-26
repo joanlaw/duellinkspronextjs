@@ -14,14 +14,11 @@ function ScorePopup({ leagueId, roundNumber, match, onClose }) {
             });
 
             if (response.status === 200) {
-                // Cerrar el popup y refrescar los datos si es necesario
                 onClose();
             } else {
-                // Manejar el error
                 console.log('Error al actualizar los puntajes');
             }
         } catch (error) {
-            // Manejar el error
             console.error('Error en la solicitud:', error);
         }
     };
@@ -43,15 +40,28 @@ function ScorePopup({ leagueId, roundNumber, match, onClose }) {
                         placeholder="Puntuación Jugador 1"
                         value={scorePlayer1}
                         onChange={e => setScorePlayer1(e.target.value)}
+                        className="bg-white text-black p-2 rounded"
                     />
                     <input
                         type="number"
                         placeholder="Puntuación Jugador 2"
                         value={scorePlayer2}
                         onChange={e => setScorePlayer2(e.target.value)}
+                        className="bg-white text-black p-2 rounded"
                     />
                 </div>
-                <button onClick={handleSubmit}>Actualizar</button>
+                <div className="flex justify-between mt-4">
+                    <button 
+                        onClick={handleSubmit} 
+                        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                        Actualizar
+                    </button>
+                    <button 
+                        onClick={onClose} 
+                        className="bg-red-500 text-white p-2 rounded hover:bg-red-600">
+                        Cerrar
+                    </button>
+                </div>
             </div>
         </div>
     );
