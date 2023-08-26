@@ -57,7 +57,7 @@ function UserLeagues() {
     }
   };
   
-  const showMatchups = async (leagueId, currentRound) => {
+  const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
