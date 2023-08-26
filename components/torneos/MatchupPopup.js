@@ -4,16 +4,11 @@ import ScorePopup from './ScorePopup';
 
 function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
     console.log("leagueId en MatchupPopup:", leagueId);
-console.log("roundNumber en MatchupPopup:", roundNumber);
-    console.log("MatchupPopup matches:", matches);  // Añade esta línea
+    console.log("roundNumber en MatchupPopup:", roundNumber);
+    console.log("MatchupPopup matches:", matches);
+
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
-    const [showScorePopup, setShowScorePopup] = useState(false);
-
-    const openScorePopup = () => {
-        setShowScorePopup(true);
-    };
-
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
@@ -25,17 +20,17 @@ console.log("roundNumber en MatchupPopup:", roundNumber);
         console.log("roundNumber en Bracket:", roundNumber);
 
         const totalRounds = Math.log2(matches.length * 2);
-        console.log("Total Rounds:", totalRounds);  // Añade esta línea
+        console.log("Total Rounds:", totalRounds);
         
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
                     <Round 
-                        key={index} 
-                        matches={matches} 
+                        key={index}
+                        matches={matches}
                         round={index}
-                        leagueId={leagueId}  // Añadido
-                        roundNumber={roundNumber}  // Añadido
+                        leagueId={leagueId}
+                        roundNumber={roundNumber}
                     />
                 ))}
             </div>
@@ -44,10 +39,10 @@ console.log("roundNumber en MatchupPopup:", roundNumber);
     
     function Round({ matches, round, leagueId, roundNumber }) {
         console.log("leagueId en Round:", leagueId);
-console.log("roundNumber en Round:", roundNumber);
+        console.log("roundNumber en Round:", roundNumber);
 
         const matchesForRound = matches.filter((match, index) => {
-            const matchRound = Math.floor(Math.log2(index + 2)); // +2 para compensar el índice basado en cero
+            const matchRound = Math.floor(Math.log2(index + 2));
             return matchRound === round;
         });
     
@@ -57,23 +52,22 @@ console.log("roundNumber en Round:", roundNumber);
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
                     <Match 
-                        key={index} 
-                        match={match} 
-                        leagueId={leagueId}  // Añadido
-                        roundNumber={roundNumber}  // Añadido
+                        key={index}
+                        match={match}
+                        leagueId={leagueId}
+                        roundNumber={roundNumber}
                     />
                 ))}
             </div>
         );
     }    
-    
 
     function Match({ match, leagueId, roundNumber }) {
         console.log("leagueId en Match:", leagueId);
-console.log("roundNumber en Match:", roundNumber);
+        console.log("roundNumber en Match:", roundNumber);
 
         const isByeMatch = !match.player2;
-        const [showScorePopup, setShowScorePopup] = useState(false); // Asumo que este estado esté aquí para que funcione con ScorePopup
+        const [showScorePopup, setShowScorePopup] = useState(false);
     
         const openScorePopup = () => {
             setShowScorePopup(true);
@@ -108,10 +102,10 @@ console.log("roundNumber en Match:", roundNumber);
                         </button>
                         {showScorePopup && (
                             <ScorePopup 
-                                leagueId={leagueId} 
-                                roundNumber={roundNumber} 
-                                match={match} 
-                                onClose={() => setShowScorePopup(false)} 
+                                leagueId={leagueId}
+                                roundNumber={roundNumber}
+                                match={match}
+                                onClose={() => setShowScorePopup(false)}
                             />
                         )}
                     </div>
@@ -119,8 +113,6 @@ console.log("roundNumber en Match:", roundNumber);
             </div>
         );
     }
-    
-    
 
     const handleBackdropClick = (event) => {
         if (event.target.classList.contains('backdrop')) {
@@ -135,7 +127,7 @@ console.log("roundNumber en Match:", roundNumber);
         >
             <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
                 <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} />
+                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
             </div>
             {showChat && (
                 <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
