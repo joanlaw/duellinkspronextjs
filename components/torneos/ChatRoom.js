@@ -3,12 +3,11 @@ import axios from "axios";
 import { useUser } from "../../contexts/UserContext";  // Importar el hook useUser
 
 function ChatRoom({ roomId, onClose }) {
-  const { discordId, token } = useUser();  // Obtener discordId y token del contexto de usuario
+  const { discordId, token, username } = useUser();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
-    // Cargar los mensajes de la sala de chat al montar el componente
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.duellinks.pro/chat-rooms/${roomId}/messages`);
@@ -25,28 +24,25 @@ function ChatRoom({ roomId, onClose }) {
     if (newMessage.trim() === "") return;
 
     try {
-      console.log("Intentando enviar mensaje con los siguientes datos:");
-      console.log("roomId:", roomId);
-      console.log("newMessage:", newMessage);
-      console.log("discordId:", discordId);
-      console.log("token:", token);
-
       const messageData = {
         content: newMessage,
+        username: username, // Asegúrate de que username está disponible en el contexto
       };
 
-      // Enviar el mensaje al back-end
-      await axios.post(`https://api.duellinks.pro/chat-rooms/${roomId}/send-message`, messageData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          discordId: discordId,
-        },
-      });
+      const response = await axios.post(
+        `https://api.duellinks.pro/chat-rooms/${roomId}/send-message`,
+        messageData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            discordId: discordId,
+          },
+        }
+      );
 
-      // Actualizar el estado local con el nuevo mensaje
-      setMessages([...messages, { text: newMessage, sender: "user" }]);
+      setMessages([...messages, { text: newMessage, sender: username }]);
       setNewMessage("");
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
