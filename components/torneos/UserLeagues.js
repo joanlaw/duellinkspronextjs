@@ -7,7 +7,7 @@ import MatchupPopup from "./MatchupPopup";
 function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
-  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [selectedLeague, setSelectedLeague] = useState({ leagueId: null, currentRound: null });
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
   const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
@@ -82,7 +82,7 @@ function UserLeagues() {
       };
 
       setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
-      setSelectedLeague(leagueId);
+      setSelectedLeague({ leagueId, currentRound });  // <-- Cambia aquí
       setShowMatchupPopup(true);
 
     } catch (error) {
@@ -120,8 +120,14 @@ function UserLeagues() {
       ))}
   
   {showMatchupPopup && (
-  <MatchupPopup matches={updatedMatches[selectedLeague]} onClose={() => setShowMatchupPopup(false)} />
+  <MatchupPopup 
+    matches={updatedMatches[selectedLeague.leagueId]} 
+    onClose={() => setShowMatchupPopup(false)} 
+    leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
+    roundNumber={selectedLeague.currentRound}  // <-- Pasa roundNumber aquí
+  />
 )}
+
   
       {showAdminPanel && (
         <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
