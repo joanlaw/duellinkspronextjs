@@ -44,29 +44,38 @@ function MatchupPopup({ matches = [], onClose }) {
     function Match({ match }) {
         const isByeMatch = !match.player2;
         return (
-            <div className={`flex items-center space-x-4 ${isByeMatch ? 'bye' : ''}`}>
-                <div className="flex-none w-1/3">
-                    <div className="text-center text-black">
+            <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
+                <div className="flex items-center space-x-4 w-full">
+                    <div className="flex-none w-1/3 text-center text-black">
                         {match.player1Info ? match.player1Info.username : match.player1}
                     </div>
+                    {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
+                    {!isByeMatch && (
+                        <div className="flex-none w-1/3 text-center text-black">
+                            {match.player2Info ? match.player2Info.username : match.player2}
+                        </div>
+                    )}
                 </div>
-                {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                 {!isByeMatch && (
-                    <div className="flex-none w-1/3 text-center text-black">
-                        {match.player2Info ? match.player2Info.username : match.player2}
+                    <div className="flex space-x-2 mt-2">
+                        <button
+                            className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
+                            onClick={() => openChatRoom(match.chatRoom)}
+                        >
+                            Chat
+                        </button>
+                        <button
+                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
+                            // Aquí puedes añadir el manejador del clic para abrir el componente de Marcador
+                        >
+                            Marcador
+                        </button>
                     </div>
                 )}
-                <div className="flex-none w-1/3">
-                    <button
-                        className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
-                        onClick={() => openChatRoom(match.chatRoom)}
-                    >
-                        Chat
-                    </button>
-                </div>
             </div>
         );
     }
+    
     
 
     const handleBackdropClick = (event) => {
