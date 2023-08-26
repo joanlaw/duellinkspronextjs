@@ -8,10 +8,12 @@ function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState({ leagueId: null, currentRound: null, matchId: null });
+  
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
   const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
   const [totalRounds, setTotalRounds] = useState(0); // Agrega el estado totalRounds
+
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -64,6 +66,9 @@ function UserLeagues() {
       const matches = response.data || [];
       console.log("Received matches:", matches);  // Añade esta línea
       console.log("Received matches:", matches); // Verifica que el array de matches contiene los objetos con los _id
+
+      // Supongamos que deseas seleccionar el primer enfrentamiento disponible
+      const firstMatchId = matches.length > 0 ? matches[0]._id : null;
       
       const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
       const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
@@ -84,7 +89,7 @@ function UserLeagues() {
       };
 
       setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
-      setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
+      setSelectedLeague({ leagueId, currentRound, matchId: firstMatchId });
       console.log("Estado de selectedLeague:", selectedLeague);
       setShowMatchupPopup(true);
 
