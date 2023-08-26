@@ -29,7 +29,18 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                         Authorization: `Bearer ${token}`,  // Incluye el token en las cabeceras
                     }
                 });
-                setMatches([response.data]);
+
+                const playerIds = [...new Set(response.data.flatMap(match => [match.player1, match.player2]))];
+                const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
+                const usersMap = Object.fromEntries(usersResponse.data.map(user => [user._id, user]));
+
+                const matchesWithUsernames = response.data.map(match => ({
+                    ...match,
+                    player1Username: usersMap[match.player1]._id === match.player1 ? usersMap[match.player1].username : "",
+                    player2Username: match.player2 && usersMap[match.player2]._id === match.player2 ? usersMap[match.player2].username : ""
+                }));
+                
+                setMatches(matchesWithUsernames);
             } catch (error) {
                 console.error('Error al obtener los emparejamientos:', error);
             } finally {
@@ -60,7 +71,7 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                 <ul>
                     {matches.map((match, index) => (
                         <li key={index}>
-                            {match.player1} vs {match.player2}
+                            {match.player1Username} vs {match.player2Username}
                             <button onClick={() => openChatRoom(match.chatRoom)}>Ir al chat</button>
                         </li>
                     ))}
