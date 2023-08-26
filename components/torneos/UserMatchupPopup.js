@@ -30,7 +30,7 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                     }
                 });
         
-                const matchesArray = Array.isArray(response.data) ? response.data : [];
+                const matchesArray = Array.isArray(response.data) ? response.data : [response.data];
                 const playerIds = matchesArray.flatMap(match => [match.player1, match.player2]);
                 const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
                 const usersMap = Object.fromEntries(usersResponse.data.map(user => [user._id, user]));
@@ -48,6 +48,7 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                 setLoading(false);
             }
         };
+        
 
         
         fetchCurrentRound();
