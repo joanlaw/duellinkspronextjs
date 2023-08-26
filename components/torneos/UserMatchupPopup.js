@@ -29,11 +29,13 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                         Authorization: `Bearer ${token}`,  // Incluye el token en las cabeceras
                     }
                 });
-
+        
+                console.log('Response from API:', response.data); // Agrega esta línea para imprimir la respuesta en la consola
+        
                 const playerIds = response.data.flatMap(match => [match.player1, match.player2]);
                 const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
                 const usersMap = Object.fromEntries(usersResponse.data.map(user => [user._id, user]));
-
+        
                 const matchesWithUsernames = response.data.map(match => ({
                     ...match,
                     player1Username: usersMap[match.player1] ? usersMap[match.player1].username : "",
@@ -47,7 +49,6 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
                 setLoading(false);
             }
         };
-
         fetchCurrentRound();
         if (currentRound) {
             fetchMatches();
