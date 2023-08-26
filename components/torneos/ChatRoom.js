@@ -23,6 +23,13 @@ function ChatRoom({ roomId, onClose }) {
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
 
+    
+  console.log("Antes de enviar, verificando los datos:");
+  console.log("newMessage:", newMessage);
+  console.log("discordId:", discordId);
+  console.log("username:", username);  // Asegúrate de que esta variable exista
+  console.log("token:", token);
+
     try {
       const messageData = {
         content: newMessage,
