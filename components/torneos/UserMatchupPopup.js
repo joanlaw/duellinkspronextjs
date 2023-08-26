@@ -49,6 +49,7 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
             }
         };
         
+        
 
         
         fetchCurrentRound();
