@@ -6,7 +6,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     console.log("leagueId en MatchupPopup:", leagueId);
     console.log("roundNumber en MatchupPopup:", roundNumber);
     console.log("MatchupPopup matches:", matches);
-    console.log("MatchupPopup matchId:", matchId);
+    console.log("MatchId matchId:", matchId);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);

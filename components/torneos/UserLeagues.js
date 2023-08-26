@@ -62,6 +62,7 @@ function UserLeagues() {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
       console.log("Received matches:", matches);  // Añade esta línea
+      console.log("Received matches:", matches); // Verifica que el array de matches contiene los objetos con los _id
       
       const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
       const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
@@ -83,6 +84,7 @@ function UserLeagues() {
 
       setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
       setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
+      console.log("Estado de selectedLeague:", selectedLeague);
       setShowMatchupPopup(true);
 
     } catch (error) {
