@@ -18,19 +18,25 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
         setShowChat(true);
     };
 
-    function Bracket({ matches }) {
+    function Bracket({ matches, leagueId, roundNumber }) {
         const totalRounds = Math.log2(matches.length * 2);
         console.log("Total Rounds:", totalRounds);  // Añade esta línea
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round key={index} matches={matches} round={index} />
+                    <Round 
+                        key={index} 
+                        matches={matches} 
+                        round={index}
+                        leagueId={leagueId}  // Añadido
+                        roundNumber={roundNumber}  // Añadido
+                    />
                 ))}
             </div>
         );
     }
-
-    function Round({ matches, round }) {
+    
+    function Round({ matches, round, leagueId, roundNumber }) {
         const matchesForRound = matches.filter((match, index) => {
             const matchRound = Math.floor(Math.log2(index + 2)); // +2 para compensar el índice basado en cero
             return matchRound === round;
@@ -41,11 +47,16 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
         return (
             <div className="round space-y-4">
                 {matchesForRound.map((match, index) => (
-                    <Match key={index} match={match} />
+                    <Match 
+                        key={index} 
+                        match={match} 
+                        leagueId={leagueId}  // Añadido
+                        roundNumber={roundNumber}  // Añadido
+                    />
                 ))}
             </div>
         );
-    }
+    }    
     
 
     function Match({ match, leagueId, roundNumber }) {
