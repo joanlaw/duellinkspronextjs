@@ -3,11 +3,12 @@ import axios from "axios";
 import { useUser } from "../../contexts/UserContext";  // Importar el hook useUser
 
 function ChatRoom({ roomId, onClose }) {
+  const { discordId, token } = useUser();  // Obtener discordId y token del contexto de usuario
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const { token } = useUser();  // Obtén el token del contexto del usuario
 
   useEffect(() => {
+    // Cargar los mensajes de la sala de chat al montar el componente
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.duellinks.pro/chat-rooms/${roomId}/messages`);
@@ -24,24 +25,27 @@ function ChatRoom({ roomId, onClose }) {
     if (newMessage.trim() === "") return;
 
     try {
+      console.log("Intentando enviar mensaje con los siguientes datos:");
+      console.log("roomId:", roomId);
+      console.log("newMessage:", newMessage);
+      console.log("discordId:", discordId);
+      console.log("token:", token);
+
       const messageData = {
         content: newMessage,
       };
 
-      console.log("Enviando mensaje:", messageData);  // Depuración
+      // Enviar el mensaje al back-end
+      await axios.post(`https://api.duellinks.pro/chat-rooms/${roomId}/send-message`, messageData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          discordId: discordId,
+        },
+      });
 
-      await axios.post(
-        `https://api.duellinks.pro/chat-rooms/${roomId}/send-message`,
-        messageData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      );
-
-      console.log("Mensaje enviado exitosamente.");  // Depuración
-
+      // Actualizar el estado local con el nuevo mensaje
       setMessages([...messages, { text: newMessage, sender: "user" }]);
       setNewMessage("");
     } catch (error) {
