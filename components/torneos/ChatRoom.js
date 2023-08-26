@@ -79,7 +79,7 @@ function ChatRoom({ roomId, onClose }) {
         : "self-end"
     }`}
   >
-    <strong>{message.sender.discordId}: </strong> {message.content}
+    <strong>{message.sender.username}: </strong> {message.content}
   </div>
 ))}
         </div>
