@@ -16,9 +16,16 @@ function ChatRoom({ roomId, onClose }) {
         console.error("Error al cargar los mensajes:", error);
       }
     };
-
+  
     fetchData();
+  
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000); // Cada 5 segundos
+  
+    return () => clearInterval(interval);
   }, [roomId]);
+  
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
@@ -49,7 +56,9 @@ function ChatRoom({ roomId, onClose }) {
         }
       );
 
-      setMessages([...messages, { text: newMessage, sender: username }]);
+      // Actualizar el estado local con el nuevo mensaje
+      setMessages([...messages, { content: newMessage, sender: { username, discordId } }]);
+
       setNewMessage("");
     } catch (error) {
       console.error("Error al enviar el mensaje:", error);
@@ -64,13 +73,13 @@ function ChatRoom({ roomId, onClose }) {
         {messages.map((message, index) => (
   <div
     key={index}
-    className={`mb-2 p-2 ${
+    className={`mb-2 p-2 bg-white text-black rounded-md ${
       message.sender.discordId === discordId // Compara con el discordId del usuario actual
-        ? "bg-blue-200 rounded-md self-start"
-        : "bg-gray-200 rounded-md self-end"
+        ? "self-start"
+        : "self-end"
     }`}
   >
-    <strong>{message.sender.username}: </strong> {message.content}
+    <strong>{message.sender.discordId}: </strong> {message.content}
   </div>
 ))}
         </div>
