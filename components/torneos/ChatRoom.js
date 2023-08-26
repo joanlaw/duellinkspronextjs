@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function ChatRoom({ roomId, onClose }) {
   const [messages, setMessages] = useState([]);
