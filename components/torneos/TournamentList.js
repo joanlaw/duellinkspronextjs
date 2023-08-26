@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TournamentUserPanel from './TournamentUserPanel';
+import UserMatchupPopup from './UserMatchupPopup';  // Importa el nuevo componente
 
 const TournamentList = ({ discordId }) => {
     const [tournaments, setTournaments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showUserPanel, setShowUserPanel] = useState(false);
+    const [showMatchupPopup, setShowMatchupPopup] = useState(false);  // Nuevo estado
     const [selectedLeagueId, setSelectedLeagueId] = useState(null);
 
     useEffect(() => {
@@ -29,6 +31,11 @@ const TournamentList = ({ discordId }) => {
         setShowUserPanel(true);
     }
 
+    const handleMatchupsClick = (leagueId) => {  // Nuevo manejador
+        setSelectedLeagueId(leagueId);
+        setShowMatchupPopup(true);
+    }
+
     if (loading) {
         return <div>Cargando torneos...</div>;
     }
@@ -42,7 +49,9 @@ const TournamentList = ({ discordId }) => {
                     <button onClick={() => handleAdminClick(tournament._id)}>
                         Administrar
                     </button>
-                    {/* Aquí puedes agregar más detalles del torneo */}
+                    <button onClick={() => handleMatchupsClick(tournament._id)}> 
+                        Ver Emparejamientos
+                    </button>
                 </div>
             ))}
 
@@ -50,6 +59,14 @@ const TournamentList = ({ discordId }) => {
                 <TournamentUserPanel
                     onClose={() => setShowUserPanel(false)}
                     leagueId={selectedLeagueId}
+                />
+            )}
+
+            {showMatchupPopup && (  // Nuevo Popup
+                <UserMatchupPopup
+                    onClose={() => setShowMatchupPopup(false)}
+                    leagueId={selectedLeagueId}
+                    discordId={discordId}
                 />
             )}
         </div>
