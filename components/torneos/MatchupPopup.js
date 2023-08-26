@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose }) {
+function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
     console.log("MatchupPopup matches:", matches);  // Añade esta línea
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -48,8 +48,14 @@ function MatchupPopup({ matches = [], onClose }) {
     }
     
 
-    function Match({ match }) {
+    function Match({ match, leagueId, roundNumber }) {
         const isByeMatch = !match.player2;
+        const [showScorePopup, setShowScorePopup] = useState(false); // Asumo que este estado esté aquí para que funcione con ScorePopup
+    
+        const openScorePopup = () => {
+            setShowScorePopup(true);
+        };
+    
         return (
             <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex items-center space-x-4 w-full">
@@ -72,16 +78,20 @@ function MatchupPopup({ matches = [], onClose }) {
                             Chat
                         </button>
                         <button
-                className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
-                onClick={openScorePopup} // Abre el popup del marcador aquí
-            >
-                Marcador
-            </button>
-            {showScorePopup && (
-                <ScorePopup match={match} onClose={() => setShowScorePopup(false)} />
-            )}
-        </div>
-                   
+                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
+                            onClick={openScorePopup}
+                        >
+                            Marcador
+                        </button>
+                        {showScorePopup && (
+                            <ScorePopup 
+                                leagueId={leagueId} 
+                                roundNumber={roundNumber} 
+                                match={match} 
+                                onClose={() => setShowScorePopup(false)} 
+                            />
+                        )}
+                    </div>
                 )}
             </div>
         );
