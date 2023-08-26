@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
+function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }) {
     console.log("leagueId en MatchupPopup:", leagueId);
     console.log("roundNumber en MatchupPopup:", roundNumber);
     console.log("MatchupPopup matches:", matches);
@@ -15,7 +15,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, roundNumber }) {
+    function Bracket({ matches, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Bracket:", leagueId);
         console.log("roundNumber en Bracket:", roundNumber);
 
@@ -29,6 +29,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
                         key={index}
                         matches={matches}
                         round={index}
+                        matchId={matchId}  // <-- Pasamos matchId aquí
                         leagueId={leagueId}
                         roundNumber={roundNumber}
                     />
@@ -37,7 +38,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
         );
     }
     
-    function Round({ matches, round, leagueId, roundNumber }) {
+    function Round({ matches, round, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", roundNumber);
 
@@ -54,6 +55,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
                     <Match 
                         key={index}
                         match={match}
+                        matchId={matchId}  // <-- Pasamos matchId aquí
                         leagueId={leagueId}
                         roundNumber={roundNumber}
                     />
@@ -62,7 +64,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
         );
     }    
 
-    function Match({ match, leagueId, roundNumber }) {
+    function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", roundNumber);
 
@@ -104,6 +106,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId }) {
                             <ScorePopup 
                                 leagueId={leagueId}
                                 roundNumber={roundNumber}
+                                matchId={matchId}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
                             />

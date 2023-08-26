@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ScorePopup({ leagueId, roundNumber, match, onClose }) {
+function ScorePopup({ leagueId, roundNumber, match, onClose, matchId }) {
     const [scorePlayer1, setScorePlayer1] = useState(0);
     const [scorePlayer2, setScorePlayer2] = useState(0);
 
     const handleSubmit = async () => {
         console.log('leagueId:', leagueId);
 console.log('roundNumber:', roundNumber);
-console.log('matchId:', match.id);
+console.log('matchId:', matchId);
         try {
             const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${roundNumber}/record-scores`, {
-                matchId: match.id,
+                matchId: matchId,
                 scorePlayer1: scorePlayer1,
                 scorePlayer2: scorePlayer2
             });
