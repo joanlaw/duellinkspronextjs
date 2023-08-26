@@ -61,18 +61,18 @@ function ChatRoom({ roomId, onClose }) {
       <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
         <h2 className="text-2xl mb-6 text-black">Sala de Chat</h2>
         <div className="h-60 overflow-y-auto border border-gray-300 p-4">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`mb-2 p-2 ${
-                message.sender === "user"
-                  ? "bg-blue-200 rounded-md self-start"
-                  : "bg-gray-200 rounded-md self-end"
-              }`}
-            >
-              {message.text}
-            </div>
-          ))}
+        {messages.map((message, index) => (
+  <div
+    key={index}
+    className={`mb-2 p-2 ${
+      message.sender.discordId === discordId // Compara con el discordId del usuario actual
+        ? "bg-blue-200 rounded-md self-start"
+        : "bg-gray-200 rounded-md self-end"
+    }`}
+  >
+    <strong>{message.sender.username}: </strong> {message.content}
+  </div>
+))}
         </div>
         <div className="flex mt-4">
           <input
