@@ -3,10 +3,8 @@ import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
 function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }) {
-    console.log("leagueId en MatchupPopup:", leagueId);
-    console.log("roundNumber en MatchupPopup:", roundNumber);
+    console.log("Rendering MatchupPopup");
     console.log("MatchupPopup matches:", matches);
-    console.log("MatchId matchId:", matchId);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -17,8 +15,8 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     };
 
     function Bracket({ matches, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Bracket:", leagueId);
-        console.log("roundNumber en Bracket:", roundNumber);
+        console.log("Rendering Bracket with matches:", matches);
+        
 
         const totalRounds = Math.log2(matches.length * 2);
         console.log("Total Rounds:", totalRounds);
@@ -40,6 +38,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     }
     
     function Round({ matches, round, leagueId, roundNumber, matchId  }) {
+        console.log("Rendering Round with matches:", matches);
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", roundNumber);
       
@@ -65,10 +64,8 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
          
 
     function Match({ match, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Match:", leagueId);
-        console.log("roundNumber en Match:", roundNumber);
-        console.log("roundNumber en Match:", roundNumber);
-
+        console.log("Rendering Match with match:", match);
+      
 
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
