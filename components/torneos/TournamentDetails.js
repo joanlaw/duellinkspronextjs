@@ -65,10 +65,10 @@ const TournamentDetails = ({ tournament }) => {
   readOnly
   editorState={editorState}
   toolbarClassName="hidden-toolbar"
-  wrapperClassName="max-w-full"
+  wrapperClassName="overflow-auto"
 />
 
-<div className="prose prose-sm sm:prose lg:prose-lg max-w-full" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+<div className="prose prose-sm sm:prose lg:prose-lg overflow-auto" dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>
       </div>
       <FooterCustom />
