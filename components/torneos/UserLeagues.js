@@ -66,11 +66,17 @@ function UserLeagues() {
       }));
       console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
       
-      const updatedRoundsData = {
+      const updatedRounds = allRounds[leagueId].map((round, index) => {
+        if (index === currentRound - 1) {
+          return { ...round, matches: enrichedMatches };
+        }
+        return round;
+      });
+      setAllRounds({
         ...allRounds,
-        [leagueId]: enrichedMatches,
-      };
-      setAllRounds(updatedRoundsData);
+        [leagueId]: updatedRounds,
+      });
+
       setSelectedLeague({ leagueId, currentRound, matchId });
       setShowMatchupPopup(true);
 
