@@ -159,7 +159,7 @@ function UserLeagues() {
     matches={updatedMatches[selectedLeague.leagueId]} 
     onClose={() => setShowMatchupPopup(false)} 
     leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
-    roundNumber={selectedLeague.currentRound}  // <-- Ahora
+    currentRound={selectedLeague.currentRound}  // <-- Ahora
     matchId={selectedLeague.matchId}  // <-- Pasa matchId aquí
   />
 )}
