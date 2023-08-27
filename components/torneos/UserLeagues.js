@@ -53,7 +53,18 @@ function UserLeagues() {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
       
-      // (El código para enriquecer los matches sigue aquí como en tu versión original)
+      const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
+      const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
+      const usersInfo = usersResponse.data;
+
+      const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
+
+      const enrichedMatches = matches.map(match => ({
+        ...match,
+        player1Info: usersMap[match.player1],
+        player2Info: match.player2 ? usersMap[match.player2] : null
+      }));
+      console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
       
       const updatedRoundsData = {
         ...allRounds,
