@@ -7,7 +7,7 @@ import MatchupPopup from "./MatchupPopup";
 function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
-  const [selectedLeague, setSelectedLeague] = useState({ leagueId: "", currentRound: "", matchId: "" });
+  const [selectedLeague, setSelectedLeague] = useState({ leagueId: null, currentRound: null, matchId: null });
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
   const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
@@ -15,6 +15,11 @@ function UserLeagues() {
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
+
+    // Este es el nuevo useEffect que rastrea los cambios en selectedLeague
+    useEffect(() => {
+      console.log("Estado actualizado de selectedLeague:", selectedLeague);
+    }, [selectedLeague]);
 
   useEffect(() => {
     if (authenticated) {
