@@ -42,20 +42,19 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         console.log("roundNumber en Round:", currentRound);
     
         return (
-          <div className="round space-y-4">
-            {matches.map((match, index) => (
-              <Match
-                key={index}
-                match={match}
-                matchId={match._id}
-                leagueId={leagueId}
-                currentRound={currentRound}
-              />
-            ))}
-          </div>
+            <div className="round space-y-4">
+                {matches.map((match) => (
+                    <Match
+                        key={match._id}  // Usamos el _id del partido como clave
+                        match={match}
+                        leagueId={leagueId}
+                        currentRound={currentRound}
+                    />
+                ))}
+            </div>
         );
     }
-         
+    
 
     function Match({ match, leagueId, currentRound, matchId  }) {
         console.log("leagueId en Match:", leagueId);
