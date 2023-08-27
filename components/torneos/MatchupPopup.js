@@ -102,7 +102,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
-                                roundNumber={currentRound}
+                                roundNumber={match.current_round}
                                 matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
