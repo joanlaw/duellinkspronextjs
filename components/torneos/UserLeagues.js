@@ -122,10 +122,11 @@ function UserLeagues() {
       const { matches, current_round } = response.data;
       console.log('Emparejamientos de la nueva ronda:', matches);
   
-      setCurrentRoundMatches(prevState => ({
-        ...prevState,
+      setCurrentRoundMatches({
+        ...currentRoundMatches,
         [leagueId]: matches,
-      }));
+      });
+      
       
       console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
   
