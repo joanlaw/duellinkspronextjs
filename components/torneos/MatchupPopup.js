@@ -96,7 +96,7 @@ function MatchupPopup({ rounds = [], onClose, roundNumber, leagueId }) {
         <div onClick={handleBackdropClick}>
             <div>
                 <h2>Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={currentRoundMatches} leagueId={leagueId} roundNumber={roundNumber} />
+                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
             </div>
             {showChat && (
                 <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />

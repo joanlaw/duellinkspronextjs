@@ -88,9 +88,9 @@ function UserLeagues() {
     console.log("currentRoundMatches en showMatchups:", currentRoundMatches);
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
-      
-      // Filtrar objetos vacíos y luego continuar
       const matches = (response.data || []).filter(match => Object.keys(match).length !== 0);
+      
+    
       
       console.log("Received matches:", matches);  // Añade esta línea
       console.log("Received matches:", matches); // Verifica que el array de matches contiene los objetos con los _id
@@ -110,18 +110,16 @@ function UserLeagues() {
   
         console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
   
-        const updatedMatchesData = {
-          ...currentRoundMatches,
+        setUpdatedMatches({
+          ...updatedMatches,
           [leagueId]: enrichedMatches,
-        };
+        });
   
         setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
       }
       
-      setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
-      console.log("Estado de selectedLeague:", selectedLeague);
+      setSelectedLeague({ leagueId, currentRound });
       setShowMatchupPopup(true);
-  
     } catch (error) {
       console.log("No se pudieron obtener los emparejamientos:", error);
     }
@@ -158,14 +156,13 @@ function UserLeagues() {
       ))}
   
   {showMatchupPopup && (
-  <MatchupPopup 
-    matches={updatedMatches[selectedLeague.leagueId]} 
-    onClose={() => setShowMatchupPopup(false)} 
-    leagueId={selectedLeague.leagueId}
-    roundNumber={selectedLeague.currentRound}
-    matchId={selectedLeague.matchId}
-  />
-)}
+        <MatchupPopup
+          matches={updatedMatches[selectedLeague.leagueId] || []}
+          onClose={() => setShowMatchupPopup(false)}
+          leagueId={selectedLeague.leagueId}
+          roundNumber={selectedLeague.currentRound}
+        />
+      )}
 
 
   
