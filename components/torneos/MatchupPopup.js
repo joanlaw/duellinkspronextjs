@@ -42,28 +42,27 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     function Round({ matches, round, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", roundNumber);
-
-        const matchesForRound = matches.filter((match, index) => {
-            const matchRound = Math.floor(Math.log2(index + 2));
-            return matchRound === round;
-        });
-    
+      
+        // Si los partidos ya están filtrados por ronda, simplemente los usas tal cual
+        const matchesForRound = matches;
+      
         console.log("Matches for Round", round, ":", matchesForRound);
-    
+      
         return (
-            <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
-                    <Match 
-                        key={index}
-                        match={match}
-                        matchId={match._id}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        roundNumber={roundNumber}
-                    />
-                ))}
-            </div>
+          <div className="round space-y-4">
+            {matchesForRound.map((match, index) => (
+              <Match 
+                key={index}
+                match={match}
+                matchId={match._id}  // <-- Pasamos matchId aquí
+                leagueId={leagueId}
+                roundNumber={roundNumber}
+              />
+            ))}
+          </div>
         );
-    }    
+      }
+         
 
     function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
