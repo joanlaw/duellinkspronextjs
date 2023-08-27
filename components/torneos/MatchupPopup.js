@@ -14,28 +14,26 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, roundNumber, matchId  }) {
-        console.log("Rendering Bracket with matches:", matches);
-        
-
-        const totalRounds = Math.log2(matches.length * 2);
-        console.log("Total Rounds:", totalRounds);
-        
+    function Bracket({ rounds, leagueId, currentRound, matchId }) {
+        console.log("leagueId en Bracket:", leagueId);
+        console.log("currentRound en Bracket:", currentRound);
+    
+        // Filtra solo los emparejamientos de la ronda actual
+        const currentRoundMatches = rounds.find(round => round._id === currentRound)?.matches || [];
+    
         return (
             <div className="bracket">
-                {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round 
-                        key={index}
-                        matches={matches}
-                        round={index}
-                        matchId={matchId}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        roundNumber={roundNumber}
-                    />
-                ))}
+                <Round 
+                    matches={currentRoundMatches}
+                    round={currentRound}
+                    matchId={matchId}
+                    leagueId={leagueId}
+                    roundNumber={currentRound}
+                />
             </div>
         );
     }
+    
     
     function Round({ matches, round, leagueId, roundNumber, matchId  }) {
         console.log("Rendering Round with matches:", matches);
