@@ -71,13 +71,18 @@ function UserLeagues() {
         [leagueId]: matches,
       });
   
-      // Podrías querer actualizar otros estados aquí, como `selectedLeague`
+      // Actualiza selectedLeague con la ronda y liga actuales
+      setSelectedLeague({
+        leagueId: leagueId,
+        currentRound: current_round,
+        matchId: null  // Puedes asignar un valor real si tienes un matchId específico en mente
+      });
   
     } catch (error) {
       console.error("Error al iniciar la siguiente ronda:", error);
     }
   };
-
+  
   const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
