@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }) {
+function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  }) {
     console.log("Rendering MatchupPopup");
     console.log("MatchupPopup matches:", matches);
 
@@ -35,10 +35,10 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     }
     
     
-    function Round({ matches, round, leagueId, roundNumber, matchId  }) {
+    function Round({ matches, round, leagueId, currentRound, matchId  }) {
         console.log("Rendering Round with matches:", matches);
         console.log("leagueId en Round:", leagueId);
-        console.log("roundNumber en Round:", roundNumber);
+        console.log("roundNumber en Round:", currentRound);
       
         // Si los partidos ya están filtrados por ronda, simplemente los usas tal cual
         const matchesForRound = matches;
