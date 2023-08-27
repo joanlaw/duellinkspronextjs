@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useUser } from "../../contexts/UserContext";  // Importar el hook useUser
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useDisclosure } from "@nextui-org/react";
 
 function ChatRoom({ roomId, onClose }) {
   const { discordId, token, username } = useUser();
@@ -73,52 +74,53 @@ function ChatRoom({ roomId, onClose }) {
     }
   };
 
+  const handleClipboard = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setNewMessage(prevMessage => prevMessage + text);
+    } catch (err) {
+      console.error('Falló la lectura del portapapeles:', err);
+    }
+  }
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
-      <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-        <h2 className="text-2xl mb-6 text-black">Sala de Chat</h2>
-        <div className="h-60 overflow-y-auto border border-gray-300 p-4">
-              {messages.map((message, index) => (
-        <div
-          ref={index === messages.length - 1 ? lastMessageRef : null}
-          key={index}
-          className={`mb-2 p-2 bg-white text-black rounded-md ${
-            message.sender.discordId === discordId // Compara con el discordId del usuario actual
-              ? "self-start"
-              : "self-end"
-          }`}
-        >
-          <strong>{message.sender.username}: </strong> {message.content}
-        </div>
-      ))}
-        </div>
-        <div className="flex mt-4">
-        <input
-  type="text"
-  value={newMessage}
-  onChange={(e) => setNewMessage(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      handleSendMessage();
-      e.preventDefault();  // Prevenir el comportamiento por defecto de "Enter"
-    }
-  }}
-  className="flex-1 border rounded-md p-2 mr-2"
-  placeholder="Escribe un mensaje..."
-/>
-          <button
-            onClick={handleSendMessage}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+    <div className="bg-gray-900 rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+      <h2 className="text-2xl mb-6 text-white">
+        Sala de Chat
+      </h2>
+      <div className="h-60 overflow-y-auto border border-gray-300 p-4">
+        {messages.map((message, index) => (
+          <div
+            ref={index === messages.length - 1 ? lastMessageRef : null}
+            key={index}
+            className={`mb-2 p-2 bg-gray-800 text-white rounded-md ${
+              message.sender.discordId === discordId ? 'self-start' : 'self-end'
+            }`}
           >
-            Enviar
-          </button>
+            <strong>{message.sender.username}: </strong> {message.content}
+          </div>
+        ))}
+      </div>
+      <div className="flex mt-4">
+      <Input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage();
+                e.preventDefault();
+              }
+            }}
+            placeholder="Escribe un mensaje..."
+            width="100%"
+            dark
+          />
+          <Button color="primary" onPress={handleSendMessage}>Enviar</Button>
+          <Button color="primary" onPress={handleClipboard}>Pegar Sala</Button>
+          <Button color="primary" onPress={() => { /* Aquí irá la función para llamar al moderador */ }}>Llamar Mod</Button>
         </div>
-        <button
-          onClick={onClose}
-          className="mt-6 p-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"
-        >
-          Cerrar
-        </button>
+        <Button color="danger" onPress={onClose} className="mt-6">Cerrar</Button>
       </div>
     </div>
   );

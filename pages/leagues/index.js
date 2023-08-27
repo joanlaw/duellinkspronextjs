@@ -127,14 +127,14 @@ export default function Torneos() {
           </div>
         </div>
        
-  <Button
+{/* <Button
     color="primary"
     radius="full"
     size="sm"
     variant="solid"
   >
     Seguir
-  </Button>
+  </Button>*/}  
 
       </CardHeader>
       
@@ -162,7 +162,7 @@ export default function Torneos() {
       <CardFooter className="gap-3">
         <div className="flex gap-1">
           <p className="font-semibold text-default-400 text-small"></p>
-          <p className="text-default-400 text-small">Seguidres</p>
+        {/* <p className="text-default-400 text-small">Seguidres</p>*/ } 
         </div>
         <div className="flex gap-1">
         <p className="font-semibold text-default-400 text-small">{league.players.length}</p>

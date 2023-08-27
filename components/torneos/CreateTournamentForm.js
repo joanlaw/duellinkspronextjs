@@ -4,6 +4,7 @@ import { Input } from '@nextui-org/react';
 import { useUser } from "../../contexts/UserContext";  // Asegúrate de ajustar la ruta de importación al lugar correcto
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { Select, SelectItem } from "@nextui-org/react";
 
 
 const CreateTournamentForm = () => {
@@ -177,34 +178,36 @@ const handleSubmit = async (e) => {
         onChange={handleImageChange}
         label=""
       />
-            <select
+      <Select
         name="league_format"
         value={formData.league_format}
         onChange={handleChange}
-        className="input-style" // Clase para el estilo, puedes reutilizar la clase de Input
+        label="Tipo de liga o torneo" // Etiqueta para el Select
+        className="max-w-xs" // Clase para el estilo
       >
-        <option value="">Tipo de liga o torneo</option>
-        <option value="formato1">Torneo</option>
-        <option value="formato2">Liga</option>
+        <SelectItem value="">Tipo de liga o torneo</SelectItem>
+        <SelectItem value="formato1">Torneo</SelectItem>
+        <SelectItem value="formato2">Liga</SelectItem>
         {/* Agrega más opciones aquí si es necesario */}
-      </select>
+      </Select>
 
       <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
   {variants.map((variant) => (
-    <select
+    <Select
       key={variant}
       name={`infoTorneo.${variant}`}
       value={formData.infoTorneo[0][variant]} // Accede a las propiedades del primer objeto en el arreglo
       onChange={(e) => handleChange(e)}
-      className="input-style"
+      label={variant} // Etiqueta para el Select
+      className="max-w-xs" // Clase para el estilo
     >
-      <option value="">{variant}</option>
+      <SelectItem value="">{variant}</SelectItem>
       {getOptionsForVariant(variant).map((option) => (
-        <option key={option} value={option}>
+        <SelectItem key={option} value={option}>
           {option}
-        </option>
+        </SelectItem>
       ))}
-    </select>
+    </Select>
   ))}
 </div>
       {/* Campo para ingresar reglas con formato */}
