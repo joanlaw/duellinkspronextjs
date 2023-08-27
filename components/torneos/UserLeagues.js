@@ -149,13 +149,15 @@ function UserLeagues() {
   
   {showMatchupPopup && (
   <MatchupPopup 
+    key={selectedLeague.currentRound}  // Añadir una clave que cambie con cada ronda
     matches={updatedMatches[selectedLeague.leagueId]} 
     onClose={() => setShowMatchupPopup(false)} 
-    leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
-    roundNumber={selectedLeague.currentRound}  // <-- Pasa roundNumber aquí
-    matchId={selectedLeague.matchId}  // <-- Pasa matchId aquí
+    leagueId={selectedLeague.leagueId}
+    roundNumber={selectedLeague.currentRound}
+    matchId={selectedLeague.matchId}
   />
 )}
+
 
   
       {showAdminPanel && (
