@@ -44,11 +44,10 @@ function UserLeagues() {
       const { matches, totalRounds } = response.data; // Obtén los emparejamientos y el número total de rondas
       console.log('Emparejamientos de la ronda actual:', matches);
   
-      setCurrentRoundMatches(prevState => ({
-        ...prevState,
+      setCurrentRoundMatches({
+        ...currentRoundMatches,
         [leagueId]: matches,
-      }));
-      
+      });
   
       setTotalRounds(totalRounds); // Actualiza el estado de totalRounds
       setTournamentStarted(true); // Marca el torneo como iniciado
@@ -67,10 +66,11 @@ function UserLeagues() {
       const { matches, current_round } = response.data;
       console.log('Emparejamientos de la nueva ronda:', matches);
   
-      setCurrentRoundMatches({
-        ...currentRoundMatches,
+      setCurrentRoundMatches(prevState => ({
+        ...prevState,
         [leagueId]: matches,
-      });
+      }));
+      
       console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
   
       // Actualiza selectedLeague con la ronda y liga actuales
