@@ -132,17 +132,6 @@ const handleSubmit = async (e) => {
         placeholder="Nombre del Torneo"
         label="Nombre del Torneo"
       />
-      <select
-        name="league_format"
-        value={formData.league_format}
-        onChange={handleChange}
-        className="input-style" // Clase para el estilo, puedes reutilizar la clase de Input
-      >
-        <option value="">Tipo de liga o torneo</option>
-        <option value="formato1">Torneo</option>
-        <option value="formato2">Liga</option>
-        {/* Agrega más opciones aquí si es necesario */}
-      </select>
       {/* Mantén los campos restantes como Input */}
       <Input
         type="date"
@@ -173,6 +162,17 @@ const handleSubmit = async (e) => {
         onChange={handleImageChange}
         label=""
       />
+            <select
+        name="league_format"
+        value={formData.league_format}
+        onChange={handleChange}
+        className="input-style" // Clase para el estilo, puedes reutilizar la clase de Input
+      >
+        <option value="">Tipo de liga o torneo</option>
+        <option value="formato1">Torneo</option>
+        <option value="formato2">Liga</option>
+        {/* Agrega más opciones aquí si es necesario */}
+      </select>
 
 <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
   {variants.map((variant) => (
