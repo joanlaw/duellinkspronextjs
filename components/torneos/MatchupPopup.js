@@ -56,7 +56,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
                     <Match 
                         key={index}
                         match={match}
-                        matchId={matchId}  // <-- Pasamos matchId aquí
+                        matchId={match._id}  // <-- Pasamos matchId aquí
                         leagueId={leagueId}
                         roundNumber={roundNumber}
                     />
@@ -68,6 +68,8 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", roundNumber);
+        console.log("MatchId:", matchId);
+
 
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
