@@ -57,74 +57,61 @@ function UserLeagues() {
     }
   };
   
-  const startNextRound = async (leagueId) => {
-    try {
-      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
-      updateLeagues();  // Actualiza la lista de ligas
-  
-      // Actualiza la información sobre la ronda actual y los emparejamientos
-      const { matches, current_round } = response.data;
-      console.log('Emparejamientos de la nueva ronda:', matches);
-  
-      setCurrentRoundMatches({
-        ...currentRoundMatches,
-        [leagueId]: matches,
-      });
-      console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
-  
-      // Actualiza selectedLeague con la ronda y liga actuales
-      setSelectedLeague({
-        leagueId: leagueId,
-        currentRound: current_round,
-        matchId: null  // Puedes asignar un valor real si tienes un matchId específico en mente
-      });
-  
-    } catch (error) {
-      console.error("Error al iniciar la siguiente ronda:", error);
-    }
-  };
-  
+const startNextRound = async (leagueId) => {
+  try {
+    const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
+    updateLeagues();  // Actualiza la lista de ligas
+
+    // Actualiza la información sobre la ronda actual y los emparejamientos
+    const { matches, current_round } = response.data;
+    console.log('Emparejamientos de la nueva ronda:', matches);
+
+    setCurrentRoundMatches({
+      ...currentRoundMatches,
+      [leagueId]: matches,
+    });
+
+    // Podrías querer actualizar otros estados aquí, como `selectedLeague`
+
+  } catch (error) {
+    console.error("Error al iniciar la siguiente ronda:", error);
+  }
+};
+
   const showMatchups = async (leagueId, currentRound, matchId) => {
-    console.log("currentRoundMatches en showMatchups:", currentRoundMatches);
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
-      const matches = (response.data || []).filter(match => Object.keys(match).length !== 0);
-      
-    
-      
+      const matches = response.data || [];
       console.log("Received matches:", matches);  // Añade esta línea
       console.log("Received matches:", matches); // Verifica que el array de matches contiene los objetos con los _id
       
       const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
-      if (playerIds.length > 0) {  // Verifica que playerIds no esté vacío
-        const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
-        const usersInfo = usersResponse.data;
-  
-        const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
-  
-        const enrichedMatches = matches.map(match => ({
-          ...match,
-          player1Info: usersMap[match.player1],
-          player2Info: match.player2 ? usersMap[match.player2] : null
-        }));
-  
-        console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
-  
-        setUpdatedMatches({
-          ...updatedMatches,
-          [leagueId]: enrichedMatches,
-        });
-  
-        setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
-      }
-      
-      setSelectedLeague({ leagueId, currentRound });
+      const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
+      const usersInfo = usersResponse.data;
+
+      const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
+
+      const enrichedMatches = matches.map(match => ({
+        ...match,
+        player1Info: usersMap[match.player1],
+        player2Info: match.player2 ? usersMap[match.player2] : null
+      }));
+      console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
+
+      const updatedMatchesData = {
+        ...currentRoundMatches,
+        [leagueId]: enrichedMatches,
+      };
+
+      setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
+      setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
+      console.log("Estado de selectedLeague:", selectedLeague);
       setShowMatchupPopup(true);
+
     } catch (error) {
       console.log("No se pudieron obtener los emparejamientos:", error);
     }
   };
-  
 
   const openAdminPanel = (leagueId) => {
     setSelectedLeague(leagueId);
@@ -156,14 +143,14 @@ function UserLeagues() {
       ))}
   
   {showMatchupPopup && (
-        <MatchupPopup
-          matches={updatedMatches[selectedLeague.leagueId] || []}
-          onClose={() => setShowMatchupPopup(false)}
-          leagueId={selectedLeague.leagueId}
-          roundNumber={selectedLeague.currentRound}
-        />
-      )}
-
+  <MatchupPopup 
+    matches={updatedMatches[selectedLeague.leagueId]} 
+    onClose={() => setShowMatchupPopup(false)} 
+    leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
+    roundNumber={selectedLeague.currentRound}  // <-- Pasa roundNumber aquí
+    matchId={selectedLeague.matchId}  // <-- Pasa matchId aquí
+  />
+)}
 
   
       {showAdminPanel && (
