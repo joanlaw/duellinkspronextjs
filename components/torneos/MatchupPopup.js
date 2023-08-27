@@ -21,7 +21,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         console.log("currentRound en Bracket:", currentRound);
     
         // Filtra solo los emparejamientos de la ronda actual
-        const currentRoundMatches = rounds[currentRound - 1]?.matches || [];
+        const currentRoundMatches = rounds[currentRound]?.matches || [];
     
         return (
             <div className="bracket">
@@ -35,6 +35,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
             </div>
         );
     }
+    
     
     
     function Round({ matches, round, leagueId, currentRound, matchId  }) {
