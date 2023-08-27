@@ -39,7 +39,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
         );
     }
     
-    function Round({ matches, round, leagueId, roundNumber,   }) {
+    function Round({ matches, round, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", roundNumber);
 
@@ -68,7 +68,7 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", roundNumber);
-        console.log("MatchId:", matchId);
+        console.log("roundNumber en Match:", roundNumber);
 
 
         const isByeMatch = !match.player2;
