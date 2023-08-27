@@ -108,6 +108,7 @@ const handleSubmit = async (e) => {
       }
     });
     console.log('Torneo creado con éxito', response.data);
+    setEditorState(EditorState.createEmpty());
     setFormData(initialFormData);
     setImageFile(null);
     if (imageFileRef.current) {
