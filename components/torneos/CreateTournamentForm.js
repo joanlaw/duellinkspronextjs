@@ -213,6 +213,7 @@ const handleSubmit = async (e) => {
         <Editor
           editorState={editorState}
           onChange={handleEditorChange}
+          name="reglas"
         />
       </div>
       <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md">
