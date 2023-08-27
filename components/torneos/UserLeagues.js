@@ -8,10 +8,7 @@ function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState({ leagueId: null, currentRound: null, matchId: null });
-  const [currentRoundMatches, setCurrentRoundMatches] = useState({});
-  const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
-  const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
-  const [totalRounds, setTotalRounds] = useState(0); // Agrega el estado totalRounds
+  const [allRounds, setAllRounds] = useState({});  // Nueva variable de estado para todas las rondas
 
   const [showMatchupPopup, setShowMatchupPopup] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
@@ -41,29 +38,20 @@ function UserLeagues() {
       const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
       updateLeagues();
   
-      const { matches, totalRounds } = response.data; // Obtén los emparejamientos y el número total de rondas
-      console.log('Emparejamientos de la ronda actual:', matches);
-  
-      setCurrentRoundMatches({
-        ...currentRoundMatches,
-        [leagueId]: matches,
+      setAllRounds({
+        ...allRounds,
+        [leagueId]: response.data.rounds,
       });
-  
-      setTotalRounds(totalRounds); // Actualiza el estado de totalRounds
-      setTournamentStarted(true); // Marca el torneo como iniciado
   
     } catch (error) {
       console.error("Error al iniciar el torneo:", error);
     }
   };
-  
 
   const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
-      console.log("Received matches:", matches);  // Añade esta línea
-      console.log("Received matches:", matches); // Verifica que el array de matches contiene los objetos con los _id
       
       const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
       const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
@@ -77,15 +65,13 @@ function UserLeagues() {
         player2Info: match.player2 ? usersMap[match.player2] : null
       }));
       console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
-
-      const updatedMatchesData = {
-        ...currentRoundMatches,
+      
+      const updatedRoundsData = {
+        ...allRounds,
         [leagueId]: enrichedMatches,
       };
-
-      setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
-      setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
-      console.log("Estado de selectedLeague:", selectedLeague);
+      setAllRounds(updatedRoundsData);
+      setSelectedLeague({ leagueId, currentRound, matchId });
       setShowMatchupPopup(true);
 
     } catch (error) {
@@ -102,35 +88,9 @@ function UserLeagues() {
   const closeAdminPanel = () => {
     setShowAdminPanel(false);
   };
-  
-  const startNextRound = async (leagueId) => {
-    try {
-      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
-      updateLeagues();  // Actualiza la lista de ligas
-  
-      // Actualiza la información sobre la ronda actual y los emparejamientos
-      const { matches, current_round } = response.data;
-      console.log('Emparejamientos de la nueva ronda:', matches);
-  
-      setCurrentRoundMatches({
-        ...currentRoundMatches,
-        [leagueId]: matches,
-      });
-  
-      setSelectedLeague({
-        ...selectedLeague,
-        currentRound: current_round
-      });
-  
-    } catch (error) {
-      console.error("Error al iniciar la siguiente ronda:", error);
-    }
-  };
-  
-  
 
-    return (
-      <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
+  return (
+    <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
       <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
       
       {leagues.map(league => (
@@ -142,27 +102,24 @@ function UserLeagues() {
           
           <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button>
           <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>
-          <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
           <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
         </div>
       ))}
-  
-  {showMatchupPopup && (
-  <MatchupPopup 
-    matches={updatedMatches[selectedLeague.leagueId]} 
-    onClose={() => setShowMatchupPopup(false)} 
-    leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
-    roundNumber={selectedLeague.currentRound}  // <-- Pasa roundNumber aquí
-    matchId={selectedLeague.matchId}  // <-- Pasa matchId aquí
-  />
-)}
 
+      {showMatchupPopup && (
+        <MatchupPopup 
+          allRounds={allRounds[selectedLeague.leagueId] || []} 
+          currentRound={selectedLeague.currentRound} 
+          onClose={() => setShowMatchupPopup(false)} 
+          leagueId={selectedLeague.leagueId}
+        />
+      )}
   
       {showAdminPanel && (
         <TournamentAdminPanel leagueId={selectedLeague} onClose={closeAdminPanel} />
       )}
     </div>
-    );
+  );
 }
 
 export default UserLeagues;
