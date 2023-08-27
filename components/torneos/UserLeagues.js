@@ -57,26 +57,6 @@ function UserLeagues() {
     }
   };
   
-const startNextRound = async (leagueId) => {
-  try {
-    const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
-    updateLeagues();  // Actualiza la lista de ligas
-
-    // Actualiza la información sobre la ronda actual y los emparejamientos
-    const { matches, current_round } = response.data;
-    console.log('Emparejamientos de la nueva ronda:', matches);
-
-    setCurrentRoundMatches({
-      ...currentRoundMatches,
-      [leagueId]: matches,
-    });
-
-    // Podrías querer actualizar otros estados aquí, como `selectedLeague`
-
-  } catch (error) {
-    console.error("Error al iniciar la siguiente ronda:", error);
-  }
-};
 
   const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
@@ -122,6 +102,31 @@ const startNextRound = async (leagueId) => {
   const closeAdminPanel = () => {
     setShowAdminPanel(false);
   };
+  
+  const startNextRound = async (leagueId) => {
+    try {
+      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
+      updateLeagues();  // Actualiza la lista de ligas
+  
+      // Actualiza la información sobre la ronda actual y los emparejamientos
+      const { matches, current_round } = response.data;
+      console.log('Emparejamientos de la nueva ronda:', matches);
+  
+      setCurrentRoundMatches({
+        ...currentRoundMatches,
+        [leagueId]: matches,
+      });
+  
+      setSelectedLeague({
+        ...selectedLeague,
+        currentRound: current_round
+      });
+  
+    } catch (error) {
+      console.error("Error al iniciar la siguiente ronda:", error);
+    }
+  };
+  
   
 
     return (
