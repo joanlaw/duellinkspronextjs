@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }) {
-    console.log("Rendering MatchupPopup");
+function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  }) {
+     console.log("Rendering MatchupPopup");
+    console.log("MatchupPopup matches:", matches);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -13,15 +14,21 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, currentRound, matchId }) {
+    function Bracket({ matches, leagueId, currentRound, matchId  }) {
+        console.log("leagueId en Bracket:", leagueId);
+        console.log("roundNumber en Bracket:", currentRound);
+
+        const totalRounds = Math.log2(matches.length * 2);
+        console.log("Total Rounds:", totalRounds);
+        
         return (
             <div className="bracket">
                 {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round
+                    <Round 
                         key={index}
                         matches={matches}
                         round={index}
-                        matchId={matchId}
+                        matchId={matchId}  // <-- Pasamos matchId aquí
                         leagueId={leagueId}
                         currentRound={currentRound}
                     />
@@ -29,13 +36,16 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }
             </div>
         );
     }
-
+    
     function Round({ matches, round, leagueId, currentRound, matchId }) {
+        console.log("leagueId en Round:", leagueId);
+        console.log("roundNumber en Round:", currentRound);
+    
         return (
             <div className="round space-y-4">
                 {matches.map((match) => (
                     <Match
-                        key={match._id}
+                        key={match._id}  // Usamos el _id del partido como clave
                         match={match}
                         leagueId={leagueId}
                         currentRound={currentRound}
@@ -44,15 +54,21 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }
             </div>
         );
     }
+    
 
-    function Match({ match, leagueId, currentRound, matchId }) {
+    function Match({ match, leagueId, currentRound, matchId  }) {
+        console.log("leagueId en Match:", leagueId);
+        console.log("roundNumber en Match:", currentRound);
+        console.log("roundNumber en Match:", currentRound);
+
+
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
-
+    
         const openScorePopup = () => {
             setShowScorePopup(true);
         };
-
+    
         return (
             <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex items-center space-x-4 w-full">
@@ -81,10 +97,10 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }
                             Marcador
                         </button>
                         {showScorePopup && (
-                            <ScorePopup
+                            <ScorePopup 
                                 leagueId={leagueId}
                                 currentRound={currentRound}
-                                matchId={match._id}
+                                matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
                             />
@@ -103,17 +119,17 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId }
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-            onClick={handleBackdropClick}
-        >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg max-h-[500px] overflow-y-auto">
-                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} leagueId={leagueId} currentRound={currentRound} />
-            </div>
-            {showChat && (
-                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-            )}
+        className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+        onClick={handleBackdropClick}
+    >
+        <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg max-h-[500px] overflow-y-auto">
+            <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
+            <Bracket matches={matches} leagueId={leagueId} currentRound={currentRound} />
         </div>
+        {showChat && (
+            <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+        )}
+    </div>
     );
 }
 
