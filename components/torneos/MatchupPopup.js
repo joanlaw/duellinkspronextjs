@@ -2,35 +2,38 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }) {
-    console.log("leagueId en MatchupPopup:", leagueId);
-    console.log("roundNumber en MatchupPopup:", roundNumber);
-    console.log("MatchupPopup matches:", matches);
-    console.log("MatchId matchId:", matchId);
-
+function MatchupPopup({ rounds = [], onClose, roundNumber, leagueId }) {
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+
+    // Encuentra los matches para la ronda actual
+    const currentRoundMatches = rounds.find(round => round._id === roundNumber)?.matches || [];
+    console.log("Matches for current round:", currentRoundMatches);
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Bracket:", leagueId);
-        console.log("roundNumber en Bracket:", roundNumber);
-
-        const totalRounds = Math.log2(matches.length * 2);
-        console.log("Total Rounds:", totalRounds);
-        
+    function Bracket({ matches, leagueId, roundNumber }) {
         return (
             <div className="bracket">
-                {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round 
+                <Round 
+                    matches={matches}
+                    leagueId={leagueId}
+                    roundNumber={roundNumber}
+                />
+            </div>
+        );
+    }
+
+    function Round({ matches, leagueId, roundNumber }) {
+        return (
+            <div className="round space-y-4">
+                {matches.map((match, index) => (
+                    <Match 
                         key={index}
-                        matches={matches}
-                        round={index}
-                        matchId={matchId}  // <-- Pasamos matchId aquí
+                        match={match}
                         leagueId={leagueId}
                         roundNumber={roundNumber}
                     />
@@ -38,46 +41,15 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
             </div>
         );
     }
-    
-    function Round({ matches, round, leagueId, roundNumber,   }) {
-        console.log("leagueId en Round:", leagueId);
-        console.log("roundNumber en Round:", roundNumber);
 
-        const matchesForRound = matches.filter((match, index) => {
-            const matchRound = Math.floor(Math.log2(index + 2));
-            return matchRound === round;
-        });
-    
-        console.log("Matches for Round", round, ":", matchesForRound);
-    
-        return (
-            <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
-                    <Match 
-                        key={index}
-                        match={match}
-                        matchId={match._id}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        roundNumber={roundNumber}
-                    />
-                ))}
-            </div>
-        );
-    }    
-
-    function Match({ match, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Match:", leagueId);
-        console.log("roundNumber en Match:", roundNumber);
-        console.log("MatchId:", matchId);
-
-
+    function Match({ match, leagueId, roundNumber }) {
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
-    
+
         const openScorePopup = () => {
             setShowScorePopup(true);
         };
-    
+
         return (
             <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex items-center space-x-4 w-full">
@@ -93,23 +65,17 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
                 </div>
                 {!isByeMatch && (
                     <div className="flex space-x-2 mt-2">
-                        <button
-                            className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
-                            onClick={() => openChatRoom(match.chatRoom)}
-                        >
+                        <button onClick={() => openChatRoom(match.chatRoom)}>
                             Chat
                         </button>
-                        <button
-                            className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
-                            onClick={openScorePopup}
-                        >
+                        <button onClick={openScorePopup}>
                             Marcador
                         </button>
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
                                 roundNumber={roundNumber}
-                                matchId={match._id}  // <-- Pasamos matchId aquí
+                                matchId={match._id}
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
                             />
@@ -127,13 +93,10 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
     };
 
     return (
-        <div
-            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-            onClick={handleBackdropClick}
-        >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
+        <div onClick={handleBackdropClick}>
+            <div>
+                <h2>Emparejamientos de la Ronda Actual</h2>
+                <Bracket matches={currentRoundMatches} leagueId={leagueId} roundNumber={roundNumber} />
             </div>
             {showChat && (
                 <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
