@@ -16,55 +16,34 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Bracket:", leagueId);
-        console.log("roundNumber en Bracket:", roundNumber);
-
-        const totalRounds = Math.log2(matches.length * 2);
-        console.log("Total Rounds:", totalRounds);
-        
+    function Bracket({ matches, leagueId, roundNumber }) {
         return (
-            <div className="bracket">
-                {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round 
-                        key={index}
-                        matches={matches}
-                        round={index}
-                        matchId={matchId}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        roundNumber={roundNumber}
-                    />
-                ))}
-            </div>
+          <div className="bracket">
+            <Round 
+              matches={matches}
+              leagueId={leagueId}
+              roundNumber={roundNumber}
+              matchId={matchId}
+            />
+          </div>
         );
-    }
+      } 
     
-    function Round({ matches, round, leagueId, roundNumber, matchId  }) {
-        console.log("leagueId en Round:", leagueId);
-        console.log("roundNumber en Round:", roundNumber);
-
-        const matchesForRound = matches.filter((match, index) => {
-            const matchRound = Math.floor(Math.log2(index + 2));
-            return matchRound === round;
-        });
-    
-        console.log("Matches for Round", round, ":", matchesForRound);
-    
+    function Round({ matches, leagueId, roundNumber, matchId }) {
         return (
-            <div className="round space-y-4">
-                {matchesForRound.map((match, index) => (
-                    <Match 
-                        key={index}
-                        match={match}
-                        matchId={match._id}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        roundNumber={roundNumber}
-                    />
-                ))}
-            </div>
+          <div className="round space-y-4">
+            {matches.map((match, index) => (
+              <Match 
+                key={index}
+                match={match}
+                matchId={match._id}
+                leagueId={leagueId}
+                roundNumber={roundNumber}
+              />
+            ))}
+          </div>
         );
-    }    
-
+      }
     function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", roundNumber);
@@ -128,17 +107,22 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-            onClick={handleBackdropClick}
-        >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
+        className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+        onClick={handleBackdropClick}
+      >
+        <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+          <h2 className="text-2xl mb-6 text-black">Emparejamientos</h2>
+          {Object.keys(matches).map((roundNumber) => (
+            <div key={roundNumber}>
+              <h3>Ronda {roundNumber}</h3>
+              <Bracket matches={matches[roundNumber]} leagueId={leagueId} roundNumber={roundNumber} />
             </div>
-            {showChat && (
-                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-            )}
+          ))}
         </div>
+        {showChat && (
+          <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+        )}
+      </div>    
     );
 }
 

@@ -46,7 +46,10 @@ function UserLeagues() {
   
       setCurrentRoundMatches({
         ...currentRoundMatches,
-        [leagueId]: matches,
+        [leagueId]: {
+          ...currentRoundMatches[leagueId],
+          [current_round]: matches
+        }
       });
   
       setTotalRounds(totalRounds); // Actualiza el estado de totalRounds
@@ -64,19 +67,22 @@ function UserLeagues() {
   
       // Actualiza la información sobre la ronda actual y los emparejamientos
       const { matches, current_round } = response.data;
-      console.log('Emparejamientos de la nueva ronda:', matches);
   
       setCurrentRoundMatches({
         ...currentRoundMatches,
-        [leagueId]: matches,
+        [leagueId]: {
+          ...currentRoundMatches[leagueId],
+          [current_round]: matches
+        }
       });
   
-      // Podrías querer actualizar otros estados aquí, como `selectedLeague`
+      setSelectedLeague({ ...selectedLeague, currentRound: current_round });
   
     } catch (error) {
       console.error("Error al iniciar la siguiente ronda:", error);
     }
   };
+  
 
   const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
