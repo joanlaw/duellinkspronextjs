@@ -148,13 +148,13 @@
                 </DropdownItem>
 
                 <DropdownItem key="team_settings">
-                  <Link href="/crear-liga">
-                    <a>Crear Liga</a>
+                  <Link href="/organizer-dashboard">
+                    <a>Administrar torneo</a>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="analytics">
-                  <Link href="/ruta-del-clan">
+                  <Link href="/#">
                     <a>Clan</a>
                   </Link>
                 </DropdownItem>
@@ -166,19 +166,19 @@
                 </DropdownItem>
 
                 <DropdownItem key="configurations">
-                  <Link href="/configuracion">
+                  <Link href="/#">
                     <a>Configuración</a>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="help_and_feedback">
-                  <Link href="/ayuda-y-opiniones">
+                  <Link href="/#">
                     <a>Help & Feedback</a>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="logout" color="danger">
-                  <Link href="/cerrar-sesion">
+                  <Link href="/#">
                     <a>Log Out</a>
                   </Link>
                 </DropdownItem>

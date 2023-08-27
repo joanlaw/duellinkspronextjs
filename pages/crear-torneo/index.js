@@ -12,7 +12,7 @@ function index() {
         <h1 className="font-bold text-3xl">Crea un torneo</h1>
         <CreateTournamentForm />
         </div>
-        <UserLeagues />
+       {/* <UserLeagues /> */}
         <FooterCustom />
     </div>
   )
