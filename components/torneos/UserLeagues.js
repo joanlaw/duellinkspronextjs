@@ -36,7 +36,7 @@ function UserLeagues() {
     }
   };
 
-  const startTournament = async (leagueId, leagueStatus) => {
+  const startTournament = async (leagueId, leagueStatus ) => {
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
       updateLeagues();
@@ -152,7 +152,7 @@ function UserLeagues() {
     matches={updatedMatches[selectedLeague.leagueId]} 
     onClose={() => setShowMatchupPopup(false)} 
     leagueId={selectedLeague.leagueId}  // <-- Pasa leagueId aquí
-    roundNumber={selectedLeague.currentRound}  // <-- Pasa roundNumber aquí
+    roundNumber={updatedMatches[selectedLeague.currentRound]}  // <-- Pasa roundNumber aquí
     matchId={selectedLeague.matchId}  // <-- Pasa matchId aquí
   />
 )}
