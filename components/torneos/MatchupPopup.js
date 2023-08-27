@@ -5,6 +5,8 @@ import ScorePopup from './ScorePopup';
 function MatchupPopup({ allRounds = [], currentRound, onClose, leagueId }) {
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+    console.log("allRounds en MatchupPopup:", allRounds); // Depuración
+    console.log("currentRound en MatchupPopup:", currentRound); // Depuración
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
@@ -12,6 +14,7 @@ function MatchupPopup({ allRounds = [], currentRound, onClose, leagueId }) {
     };
 
     const matchesForCurrentRound = allRounds[currentRound - 1]?.matches || [];
+    console.log("matchesForCurrentRound:", matchesForCurrentRound); // Depuración
 
     return (
         <div

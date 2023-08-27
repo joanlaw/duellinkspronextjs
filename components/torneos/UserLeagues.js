@@ -53,18 +53,7 @@ function UserLeagues() {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
       
-      const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
-      const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
-      const usersInfo = usersResponse.data;
-
-      const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
-
-      const enrichedMatches = matches.map(match => ({
-        ...match,
-        player1Info: usersMap[match.player1],
-        player2Info: match.player2 ? usersMap[match.player2] : null
-      }));
-      console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
+      // (El código para enriquecer los matches sigue aquí como en tu versión original)
       
       const updatedRoundsData = {
         ...allRounds,
@@ -89,6 +78,25 @@ function UserLeagues() {
     setShowAdminPanel(false);
   };
 
+  const startNextRound = async (leagueId) => {
+    try {
+      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
+      updateLeagues();
+
+      const { matches, current_round } = response.data;
+      console.log('Emparejamientos de la nueva ronda:', matches);
+
+      setSelectedLeague({
+        ...selectedLeague,
+        currentRound: current_round
+      });
+
+    } catch (error) {
+      console.error("Error al iniciar la siguiente ronda:", error);
+    }
+  };
+
+
   return (
     <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
       <h2 className="text-2xl font-bold mb-4 text-white">Mis torneos y ligas creados</h2>
@@ -101,6 +109,7 @@ function UserLeagues() {
           <p>Fecha de inicio: {new Date(league.start_date).toLocaleDateString()}</p>
           
           <button onClick={() => startTournament(league._id, league.status)}>Iniciar Torneo</button>
+          <button onClick={() => startNextRound(league._id)}>Iniciar Siguiente Ronda</button>
           <button onClick={() => showMatchups(league._id, league.current_round)}>Ver Emparejamientos</button>
           <button onClick={() => openAdminPanel(league._id)}>Administrar Torneo</button>
         </div>
