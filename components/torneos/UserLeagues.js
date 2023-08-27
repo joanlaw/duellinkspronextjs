@@ -84,7 +84,9 @@ function UserLeagues() {
       };
 
       setUpdatedMatches(updatedMatchesData); // Guardamos la información enriquecida en updatedMatches
+      console.log("currentRound antes de setSelectedLeague:", currentRound);
       setSelectedLeague({ leagueId, currentRound, matchId });  // <-- Cambia aquí
+      console.log("Estado de selectedLeague después de setSelectedLeague:", selectedLeague);
       console.log("Estado de selectedLeague:", selectedLeague);
       setShowMatchupPopup(true);
 
@@ -127,7 +129,7 @@ function UserLeagues() {
     }
   };
   
-  
+  console.log("Valor de league.current_round:", league.current_round);
 
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
