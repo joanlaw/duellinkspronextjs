@@ -5,6 +5,7 @@ import ScorePopup from './ScorePopup';
 function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  }) {
     console.log("Rendering MatchupPopup");
     console.log("MatchupPopup matches:", matches);
+    console.log("currentRound en matchupopup:", currentRound);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -102,7 +103,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
-                                roundNumber={match.current_round}
+                                roundNumber={currentRound}
                                 matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
