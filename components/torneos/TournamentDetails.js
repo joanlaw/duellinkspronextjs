@@ -38,28 +38,26 @@ const TournamentDetails = ({ tournament }) => {
   return (
     <div className="bg-black text-white min-h-screen">
       <NavbarCustom />
-      <div className='container mx-auto py-10'>
+      <div className='container mx-auto py-10 px-4 md:px-0'>
         <div className="flex justify-center items-center mb-4">
-          <Image src={tournament.image.url} alt={tournament.league_name} width={500} height={300} />
+          <Image className="w-full md:w-auto" src={tournament.image.url} alt={tournament.league_name} width={500} height={300} />
         </div>
         <h1 className='text-center text-3xl font-bold mb-4'>{tournament.league_name}</h1>
         
         <div className="ml-4 w-full">
-          
           <Spacer y={0.5} />
           <h3>Información:</h3>
           {tournament.infoTorneo.map((info, index) => (
-            <div key={index}>
-              <p><strong>Formato:</strong> {info.format}</p>
-              <p><strong>Banlist:</strong> {info.banlist}</p>
-              <p><strong>Información de Deck:</strong> {info.deck_info}</p>
-              <p><strong>Eliminación:</strong> {info.eliminacion}</p>
+            <div key={index} className="mb-4">
+              <p className="mb-1"><strong>Formato:</strong> {info.format}</p>
+              <p className="mb-1"><strong>Banlist:</strong> {info.banlist}</p>
+              <p className="mb-1"><strong>Información de Deck:</strong> {info.deck_info}</p>
+              <p className="mb-1"><strong>Eliminación:</strong> {info.eliminacion}</p>
               <Spacer y={3} />
               <TournamentRegistration tournamentId={tournament._id} />
               <Spacer y={3} />
               <Divider orientation="horizontal" />
             </div>
-            
           ))}
           <Spacer y={3} />
          
@@ -69,9 +67,7 @@ const TournamentDetails = ({ tournament }) => {
             toolbarClassName="hidden-toolbar"
           />
         
-          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        
-          
+          <div className="prose prose-sm sm:prose lg:prose-lg" dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>
       </div>
       <FooterCustom />
