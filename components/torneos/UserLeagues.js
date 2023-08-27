@@ -36,20 +36,20 @@ function UserLeagues() {
   const startTournament = async (leagueId, leagueStatus) => {
     try {
       const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-tournament`);
+      console.log("Rondas obtenidas al iniciar el torneo:", response.data.rounds);  // Verificación
       updateLeagues();
   
       setAllRounds({
         ...allRounds,
         [leagueId]: response.data.rounds,
       });
-  
     } catch (error) {
       console.error("Error al iniciar el torneo:", error);
     }
   };
-
   const showMatchups = async (leagueId, currentRound, matchId) => {
     try {
+      console.log("allRounds antes de actualizar:", allRounds);  // Verificación
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
       
