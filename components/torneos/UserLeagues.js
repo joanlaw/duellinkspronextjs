@@ -129,7 +129,7 @@ function UserLeagues() {
     }
   };
   
-  console.log("Valor de league.current_round:", league.current_round);
+
 
     return (
       <div className="container mx-auto mt-10 mb-10 p-6 rounded-md shadow-sm" style={{ backgroundColor: '#27272a' }}>
