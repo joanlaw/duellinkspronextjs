@@ -70,6 +70,7 @@ function UserLeagues() {
         ...currentRoundMatches,
         [leagueId]: matches,
       });
+      console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
   
       // Actualiza selectedLeague con la ronda y liga actuales
       setSelectedLeague({
@@ -84,6 +85,7 @@ function UserLeagues() {
   };
   
   const showMatchups = async (leagueId, currentRound, matchId) => {
+    console.log("currentRoundMatches en showMatchups:", currentRoundMatches);
     try {
       const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/matches`);
       const matches = response.data || [];
