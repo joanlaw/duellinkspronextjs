@@ -39,7 +39,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
     
     function Round({ matches, round, leagueId, currentRound, matchId  }) {
         console.log("leagueId en Round:", leagueId);
-        console.log("roundNumber en Round:", currentRound);
+        console.log("roundNumber en Round:", roundNumber);
       
         // Si los partidos ya están filtrados por ronda, simplemente los usas tal cual
         const matchesForRound = matches;
@@ -105,7 +105,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
-                                currentRound={currentRound}
+                                roundNumber={currentRound}
                                 matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
@@ -130,7 +130,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
     >
         <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg max-h-[500px] overflow-y-auto">
             <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-            <Bracket matches={matches} leagueId={leagueId} currentRound={currentRound} />
+            <Bracket matches={matches} leagueId={leagueId} roundNumber={currentRound} />
         </div>
         {showChat && (
             <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
