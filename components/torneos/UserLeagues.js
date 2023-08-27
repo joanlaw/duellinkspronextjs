@@ -56,38 +56,36 @@ function UserLeagues() {
       const playerIds = [...new Set(matches.flatMap(match => [match.player1, match.player2]))];
       const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
       const usersInfo = usersResponse.data;
-
+  
       const usersMap = Object.fromEntries(usersInfo.map(user => [user._id, user]));
-
+  
       const enrichedMatches = matches.map(match => ({
         ...match,
         player1Info: usersMap[match.player1],
         player2Info: match.player2 ? usersMap[match.player2] : null
       }));
-      console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
-      
+  
       if (allRounds[leagueId]) {
-        const updatedRounds = allRounds[leagueId].map((round, index) => {
-          if (index === currentRound - 1) {
-            return { ...round, matches: enrichedMatches };
-          }
-          return round;
-        });
-        setAllRounds({
+        const updatedRounds = {
           ...allRounds,
-          [leagueId]: updatedRounds,
-        });
+          [leagueId]: {
+            ...allRounds[leagueId],
+            [currentRound]: enrichedMatches
+          }
+        };
+        setAllRounds(updatedRounds);
       } else {
         console.error("No se pudieron obtener las rondas para la liga:", leagueId);
       }
-
+  
       setSelectedLeague({ leagueId, currentRound, matchId });
       setShowMatchupPopup(true);
-
+  
     } catch (error) {
       console.log("No se pudieron obtener los emparejamientos:", error);
     }
   };
+  
 
   const openAdminPanel = (leagueId) => {
     setSelectedLeague(leagueId);
