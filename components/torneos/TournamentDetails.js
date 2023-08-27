@@ -62,12 +62,13 @@ const TournamentDetails = ({ tournament }) => {
           <Spacer y={3} />
          
           <Editor
-            readOnly
-            editorState={editorState}
-            toolbarClassName="hidden-toolbar"
-          />
-        
-          <div className="prose prose-sm sm:prose lg:prose-lg" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+  readOnly
+  editorState={editorState}
+  toolbarClassName="hidden-toolbar"
+  wrapperClassName="max-w-full"
+/>
+
+<div className="prose prose-sm sm:prose lg:prose-lg max-w-full" dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </div>
       </div>
       <FooterCustom />
