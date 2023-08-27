@@ -7,7 +7,7 @@ import MatchupPopup from "./MatchupPopup";
 function UserLeagues() {
   const { discordId, authenticated } = useUser();
   const [leagues, setLeagues] = useState([]);
-  const [selectedLeague, setSelectedLeague] = useState({ leagueId: null, currentRound: null, matchId: null });
+  const [selectedLeague, setSelectedLeague] = useState({ leagueId: "", currentRound: "", matchId: "" });
   const [currentRoundMatches, setCurrentRoundMatches] = useState({});
   const [updatedMatches, setUpdatedMatches] = useState({}); // Nueva variable de estado
   const [tournamentStarted, setTournamentStarted] = useState(false); // Agrega el estado tournamentStarted
