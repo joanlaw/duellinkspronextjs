@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { Input } from '@nextui-org/react';
 import { useUser } from "../../contexts/UserContext";  // Asegúrate de ajustar la ruta de importación al lugar correcto
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
+import 'draft-js/dist/Draft.css';
+
 
 const CreateTournamentForm = () => {
   const user = useUser(); 
@@ -24,6 +27,12 @@ const CreateTournamentForm = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [imageFile, setImageFile] = useState(null);
   const imageFileRef = useRef(null);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+
+  const handleEditorChange = (newEditorState) => {
+    setEditorState(newEditorState);
+  };
 
 
   const handleImageChange = (e) => {
@@ -67,6 +76,9 @@ const CreateTournamentForm = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  const contentState = editorState.getCurrentContent();
+  const contentRaw = JSON.stringify(convertToRaw(contentState));
+
   const completeDateTime = `${formData.start_date}T${formData.start_time}:00.000Z`;
 
 
@@ -81,6 +93,7 @@ const handleSubmit = async (e) => {
 
       // Agrega la fecha y hora combinadas
       formDataToSend.append('start_date', completeDateTime);
+      formDataToSend.append('reglas', contentRaw); // Cambia "reglas" por el nombre de campo correcto en tu API
 
   if (imageFile) {
     formDataToSend.append('image', imageFile);
@@ -193,7 +206,15 @@ const handleSubmit = async (e) => {
     </select>
   ))}
 </div>
-
+      {/* Campo para ingresar reglas con formato */}
+      {/* Campo para ingresar reglas con formato */}
+      <div className="input-label">Reglas</div>
+      <div className="editor-container">
+        <Editor
+          editorState={editorState}
+          onChange={handleEditorChange}
+        />
+      </div>
       <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md">
         Crear Torneo
       </button>

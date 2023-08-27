@@ -247,3 +247,11 @@ td {
   position: relative;
   z-index: 1;
 }
+
+/* Agrega estos estilos en tu archivo CSS */
+.editor-container {
+  background-color: #27272a; /* Color de fondo deseado */
+  padding: 10px;
+  border-radius: 5px;
+}
+
