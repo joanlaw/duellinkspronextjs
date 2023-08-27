@@ -127,17 +127,17 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
 
     return (
         <div
-            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-            onClick={handleBackdropClick}
-        >
-            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
-            </div>
-            {showChat && (
-                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-            )}
+        className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+        onClick={handleBackdropClick}
+    >
+        <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg max-h-[500px] overflow-y-auto">
+            <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
+            <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
         </div>
+        {showChat && (
+            <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+        )}
+    </div>
     );
 }
 
