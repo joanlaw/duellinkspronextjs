@@ -39,12 +39,12 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
         );
     }
     
-    function Round({ matches, round, leagueId, roundNumber }) {
+    function Round({ matches, round, leagueId, roundNumber,   }) {
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", roundNumber);
-    
-        const matchesForRound = matches.filter((match) => {
-            const matchRound = Math.floor(Math.log2(match.matchNumber) + 1);
+
+        const matchesForRound = matches.filter((match, index) => {
+            const matchRound = Math.floor(Math.log2(index + 2));
             return matchRound === round;
         });
     
@@ -56,15 +56,14 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
                     <Match 
                         key={index}
                         match={match}
-                        matchId={match._id}
+                        matchId={match._id}  // <-- Pasamos matchId aquí
                         leagueId={leagueId}
                         roundNumber={roundNumber}
                     />
                 ))}
             </div>
         );
-    }
-    
+    }    
 
     function Match({ match, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Match:", leagueId);
