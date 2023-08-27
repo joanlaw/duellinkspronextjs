@@ -66,16 +66,20 @@ function UserLeagues() {
       }));
       console.log("Enriched matches:", enrichedMatches);  // Añade esta línea
       
-      const updatedRounds = allRounds[leagueId].map((round, index) => {
-        if (index === currentRound - 1) {
-          return { ...round, matches: enrichedMatches };
-        }
-        return round;
-      });
-      setAllRounds({
-        ...allRounds,
-        [leagueId]: updatedRounds,
-      });
+      if (allRounds[leagueId]) {
+        const updatedRounds = allRounds[leagueId].map((round, index) => {
+          if (index === currentRound - 1) {
+            return { ...round, matches: enrichedMatches };
+          }
+          return round;
+        });
+        setAllRounds({
+          ...allRounds,
+          [leagueId]: updatedRounds,
+        });
+      } else {
+        console.error("No se pudieron obtener las rondas para la liga:", leagueId);
+      }
 
       setSelectedLeague({ leagueId, currentRound, matchId });
       setShowMatchupPopup(true);
