@@ -74,9 +74,24 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
         <h2 className="text-2xl mb-6 text-black">Tus emparejamientos</h2>
         <ul>
             {matches.map((match, index) => (
-                <li key={index} className="text-black">
-                    {match.player1Username} vs {match.player2Username}
-                    <button onClick={() => openChatRoom(match.chatRoom)}>Ir al chat</button>
+                <li key={index} className="flex flex-col items-center">
+                    <div className="flex items-center space-x-4 w-full">
+                        <div className="flex-none w-1/3 text-center text-black">
+                            {match.player1Username}
+                        </div>
+                        <div className="flex-none w-1/3 text-center text-black">vs</div>
+                        <div className="flex-none w-1/3 text-center text-black">
+                            {match.player2Username}
+                        </div>
+                    </div>
+                    <div className="flex space-x-2 mt-2">
+                        <button
+                            className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
+                            onClick={() => openChatRoom(match.chatRoom)}
+                        >
+                            Chat
+                        </button>
+                    </div>
                 </li>
             ))}
         </ul>
@@ -86,6 +101,7 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
         <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
     )}
 </div>
+
 
     );
 };
