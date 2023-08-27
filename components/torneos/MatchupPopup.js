@@ -14,25 +14,16 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, currentRound, matchId  }) {
-        console.log("leagueId en Bracket:", leagueId);
-        console.log("roundNumber en Bracket:", currentRound);
-
-        const totalRounds = Math.log2(matches.length * 2);
-        console.log("Total Rounds:", totalRounds);
-        
+    function Bracket({ matches, leagueId, currentRound }) {
         return (
             <div className="bracket">
-                {Array.from({ length: totalRounds }).map((_, index) => (
-                    <Round 
-                        key={index}
-                        matches={matches}
-                        round={index}
-                        matchId={matchId}  // <-- Pasamos matchId aquí
-                        leagueId={leagueId}
-                        currentRound={currentRound}
-                    />
-                ))}
+                <Round 
+                    key={`round${currentRound}`}
+                    matches={matches}
+                    round={currentRound}
+                    leagueId={leagueId}
+                    currentRound={currentRound}
+                />
             </div>
         );
     }
