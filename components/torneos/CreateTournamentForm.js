@@ -43,24 +43,25 @@ const CreateTournamentForm = () => {
   
 
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
-  if (name.includes('infoTorneo')) {
-    const nestedField = name.split('.')[1];
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      infoTorneo: [{
-        ...prevFormData.infoTorneo[0],
-        [nestedField]: value,
-      }],
-    }));
-  } else {
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name.includes('infoTorneo')) {
+      const nestedField = name.split('.')[1];
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        infoTorneo: [{
+          ...prevFormData.infoTorneo[0],
+          [nestedField]: value,
+        }],
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+  
 
 
 const handleSubmit = async (e) => {
@@ -174,12 +175,12 @@ const handleSubmit = async (e) => {
         {/* Agrega más opciones aquí si es necesario */}
       </select>
 
-<div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+      <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
   {variants.map((variant) => (
     <select
       key={variant}
       name={`infoTorneo.${variant}`}
-      value={formData.infoTorneo[variant]}
+      value={formData.infoTorneo[0][variant]} // Accede a las propiedades del primer objeto en el arreglo
       onChange={(e) => handleChange(e)}
       className="input-style"
     >
@@ -192,6 +193,7 @@ const handleSubmit = async (e) => {
     </select>
   ))}
 </div>
+
       <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md">
         Crear Torneo
       </button>
