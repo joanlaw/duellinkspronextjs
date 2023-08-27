@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ScorePopup({ leagueId, roundNumber, match, onClose, matchId }) {
+function ScorePopup({ leagueId, currentRound, match, onClose, matchId }) {
     const [scorePlayer1, setScorePlayer1] = useState(0);
     const [scorePlayer2, setScorePlayer2] = useState(0);
 
     const handleSubmit = async () => {
         console.log('Inside handleSubmit function');
         console.log('leagueId:', leagueId);
-        console.log('roundNumber:', roundNumber);
+        console.log('currentRound:', currentRound);
         console.log('matchId:', matchId);
         console.log('scorePlayer1:', scorePlayer1);
         console.log('scorePlayer2:', scorePlayer2);
         try {
-            const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${roundNumber}/record-scores`, {
+            const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/record-scores`, {
                 matchId: matchId,
                 scorePlayer1: scorePlayer1,
                 scorePlayer2: scorePlayer2
