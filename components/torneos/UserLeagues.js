@@ -57,7 +57,32 @@ function UserLeagues() {
     }
   };
   
-
+  const startNextRound = async (leagueId) => {
+    try {
+      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
+      updateLeagues();  // Actualiza la lista de ligas
+  
+      // Actualiza la información sobre la ronda actual y los emparejamientos
+      const { matches, current_round } = response.data;
+      console.log('Emparejamientos de la nueva ronda:', matches);
+  
+      setCurrentRoundMatches({
+        ...currentRoundMatches,
+        [leagueId]: matches,
+      });
+      console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
+  
+      // Actualiza selectedLeague con la ronda y liga actuales
+      setSelectedLeague({
+        leagueId: leagueId,
+        currentRound: current_round,
+        matchId: null  // Puedes asignar un valor real si tienes un matchId específico en mente
+      });
+  
+    } catch (error) {
+      console.error("Error al iniciar la siguiente ronda:", error);
+    }
+  };
   
   const showMatchups = async (leagueId, currentRound, matchId) => {
     console.log("currentRoundMatches en showMatchups:", currentRoundMatches);
@@ -112,35 +137,6 @@ function UserLeagues() {
   const closeAdminPanel = () => {
     setShowAdminPanel(false);
   };
-
-  const startNextRound = async (leagueId) => {
-    try {
-      const response = await axios.post(`https://api.duellinks.pro/leagues/${leagueId}/start-next-round`);
-      updateLeagues();  // Actualiza la lista de ligas
-  
-      // Actualiza la información sobre la ronda actual y los emparejamientos
-      const { matches, current_round } = response.data;
-      console.log('Emparejamientos de la nueva ronda:', matches);
-  
-      setCurrentRoundMatches({
-        ...currentRoundMatches,
-        [leagueId]: matches,
-      });
-      
-      
-      console.log("currentRoundMatches después de la actualización:", currentRoundMatches);
-  
-      // Actualiza selectedLeague con la ronda y liga actuales
-      setSelectedLeague({
-        leagueId: leagueId,
-        currentRound: current_round,
-        matchId: null  // Puedes asignar un valor real si tienes un matchId específico en mente
-      });
-  
-    } catch (error) {
-      console.error("Error al iniciar la siguiente ronda:", error);
-    }
-  };
   
 
     return (
@@ -163,7 +159,6 @@ function UserLeagues() {
   
   {showMatchupPopup && (
   <MatchupPopup 
-    key={selectedLeague.currentRound}  // Añadir una clave que cambie con cada ronda
     matches={updatedMatches[selectedLeague.leagueId]} 
     onClose={() => setShowMatchupPopup(false)} 
     leagueId={selectedLeague.leagueId}
