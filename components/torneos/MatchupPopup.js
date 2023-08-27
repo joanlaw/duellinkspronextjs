@@ -6,6 +6,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
     console.log("Rendering MatchupPopup");
     console.log("MatchupPopup matches:", matches);
     console.log("currentRound en matchupopup:", currentRound);
+    console.log("leagueId en matchupopup:", leagueId);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -20,7 +21,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         console.log("currentRound en Bracket:", currentRound);
     
         // Filtra solo los emparejamientos de la ronda actual
-        const currentRoundMatches = rounds.find(round => round._id === currentRound)?.matches || [];
+        const currentRoundMatches = rounds[currentRound - 1]?.matches || [];
     
         return (
             <div className="bracket">
