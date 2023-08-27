@@ -16,9 +16,6 @@ function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }
         setShowChat(true);
     };
 
-     // Encuentra los matches para la ronda actual
-     const currentRoundMatches = rounds.find(round => round._id === roundNumber)?.matches || [];
-
     function Bracket({ matches, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Bracket:", leagueId);
         console.log("roundNumber en Bracket:", roundNumber);
