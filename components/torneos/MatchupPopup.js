@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  }) {
-    console.log("Rendering MatchupPopup");
+function MatchupPopup({ matches = [], onClose, roundNumber, leagueId, matchId  }) {
+    console.log("leagueId en MatchupPopup:", leagueId);
+    console.log("roundNumber en MatchupPopup:", roundNumber);
     console.log("MatchupPopup matches:", matches);
-    console.log("currentRound en matchupopup:", currentRound);
-    console.log("leagueId en matchupopup:", leagueId);
+    console.log("MatchId matchId:", matchId);
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
@@ -39,12 +39,9 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         );
     }
     
-    
-    
-    function Round({ matches, round, leagueId, currentRound, matchId  }) {
-        console.log("Rendering Round with matches:", matches);
+    function Round({ matches, round, leagueId, roundNumber, matchId  }) {
         console.log("leagueId en Round:", leagueId);
-        console.log("currentRound en Round:", currentRound);
+        console.log("roundNumber en Round:", roundNumber);
       
         // Si los partidos ya están filtrados por ronda, simplemente los usas tal cual
         const matchesForRound = matches;
@@ -59,7 +56,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                 match={match}
                 matchId={match._id}  // <-- Pasamos matchId aquí
                 leagueId={leagueId}
-                currentRound={currentRound}
+                roundNumber={roundNumber}
               />
             ))}
           </div>
@@ -67,9 +64,11 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
       }
          
 
-    function Match({ match, leagueId, currentRound, matchId  }) {
-        console.log("Rendering Match with match:", match);
-      
+    function Match({ match, leagueId, roundNumber, matchId  }) {
+        console.log("leagueId en Match:", leagueId);
+        console.log("roundNumber en Match:", roundNumber);
+        console.log("roundNumber en Match:", roundNumber);
+
 
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
@@ -108,7 +107,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
-                                roundNumber={currentRound}
+                                roundNumber={roundNumber}
                                 matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
@@ -128,17 +127,17 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
 
     return (
         <div
-        className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
-        onClick={handleBackdropClick}
-    >
-        <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg max-h-[500px] overflow-y-auto">
-            <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
-            <Bracket matches={matches} leagueId={leagueId} currentRound={currentRound} />
+            className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black backdrop"
+            onClick={handleBackdropClick}
+        >
+            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+                <h2 className="text-2xl mb-6 text-black">Emparejamientos de la Ronda Actual</h2>
+                <Bracket matches={matches} leagueId={leagueId} roundNumber={roundNumber} />
+            </div>
+            {showChat && (
+                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+            )}
         </div>
-        {showChat && (
-            <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-        )}
-    </div>
     );
 }
 
