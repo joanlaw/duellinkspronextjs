@@ -15,7 +15,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
         setSelectedChatRoom(chatRoomId);
         setShowChat(true);
     };
-    console.log("Datos de los jugadores en Match:", matches.player1Info, matches.player2Info);
+    console.log("Datos de los jugadores en Match:", match.player1Info, match.player2Info);
 
     function updateMatchScores(matchId, player1Score, player2Score) {
         const updatedMatches = matches.map(match => {
@@ -72,7 +72,6 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
 
     function Match({ match, leagueId, currentRound, updateMatchScores   }) {
         console.log("leagueId en Match:", leagueId);
-        console.log("roundNumber en Match:", currentRound);
         console.log("roundNumber en Match:", currentRound);
 
         const isByeMatch = !match.player2;
