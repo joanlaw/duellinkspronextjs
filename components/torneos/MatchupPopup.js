@@ -14,7 +14,25 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
         setShowChat(true);
     };
 
-    function Bracket({ matches, leagueId, currentRound }) {
+    function updateMatchScores(matchId, player1Score, player2Score) {
+        const updatedMatches = matches.map(match => {
+            if (match._id === matchId) {
+                return {
+                    ...match,
+                    scores: {
+                        player1: player1Score,
+                        player2: player2Score
+                    }
+                };
+            }
+            return match;
+        });
+
+        // Actualiza el estado local con los nuevos marcadores
+        setMatches(updatedMatches);
+    }
+
+    function Bracket({ matches, leagueId, currentRound, updateMatchScores }) {
         return (
             <div className="bracket">
                 <Round 
@@ -23,12 +41,13 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                     round={currentRound}
                     leagueId={leagueId}
                     currentRound={currentRound}
+                    updateMatchScores={updateMatchScores}
                 />
             </div>
         );
     }
     
-    function Round({ matches, round, leagueId, currentRound, matchId }) {
+    function Round({ matches, round, leagueId, currentRound, matchId, updateMatchScores }) {
         console.log("leagueId en Round:", leagueId);
         console.log("roundNumber en Round:", currentRound);
     
@@ -40,6 +59,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         match={match}
                         leagueId={leagueId}
                         currentRound={currentRound}
+                        updateMatchScores={updateMatchScores}
                     />
                 ))}
             </div>
@@ -47,7 +67,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
     }
     
 
-    function Match({ match, leagueId, currentRound, matchId  }) {
+    function Match({ match, leagueId, currentRound, matchId, updateMatchScores   }) {
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", currentRound);
         console.log("roundNumber en Match:", currentRound);
@@ -97,6 +117,7 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                                 matchId={match._id}  // <-- Pasamos matchId aquí
                                 match={match}
                                 onClose={() => setShowScorePopup(false)}
+                                updateMatchScores={updateMatchScores}
                             />
                         )}
                     </div>
