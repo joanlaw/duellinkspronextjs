@@ -93,10 +93,21 @@ function TournamentUserPanel({ onClose, leagueId }) {
     event.preventDefault();
     const formData = new FormData();
   
+    // Añadir solo las imágenes que existen al FormData
     for (const deckType in imageFiles) {
       if (imageFiles[deckType] && imageFiles[deckType].file) {
         formData.append(deckType, imageFiles[deckType].file);
       }
+    }
+  
+    // Verificar si hay al menos una imagen para enviar
+    if (formData.getAll('main_deck').length === 0 &&
+        formData.getAll('extra_deck').length === 0 &&
+        formData.getAll('side_deck').length === 0 &&
+        formData.getAll('especial_deck').length === 0) {
+      setAlertMessage('Por favor, suba al menos una imagen.');
+      setAlertType('error');
+      return;
     }
   
     try {
@@ -114,18 +125,12 @@ function TournamentUserPanel({ onClose, leagueId }) {
         }
       );
   
-      // Si llegamos aquí, la petición fue exitosa.
       console.log('Imágenes subidas:', response.data);
-  
-      // Actualizamos el estado para mostrar una alerta exitosa.
       setAlertMessage('Imágenes subidas con éxito.');
       setAlertType('success');
   
     } catch (error) {
-      // Si llegamos aquí, ocurrió un error en la petición.
       console.error('Error al subir las imágenes:', error);
-  
-      // Actualizamos el estado para mostrar una alerta de error.
       setAlertMessage('Error al subir las imágenes.');
       setAlertType('error');
     }
