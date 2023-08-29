@@ -115,7 +115,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
         ? `${match.scores.player1} - ${match.scores.player2}`
         : match.scores === null
         ? "0 - 0"
-        : "Sin marcadores"}
+        : "0 - 0"}
 </div>
 
                         {showScorePopup && (
