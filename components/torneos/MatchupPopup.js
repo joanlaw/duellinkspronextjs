@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
-function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  }) {
+function MatchupPopup({matches: initialMatches = [], onClose, currentRound, leagueId, matchId  }) {
      console.log("Rendering MatchupPopup");
     console.log("MatchupPopup matches:", matches);
+
+    const [matches, setMatches] = useState(initialMatches); // Estado local para los marcadores
 
     const [showChat, setShowChat] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
