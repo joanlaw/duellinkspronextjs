@@ -109,7 +109,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
                             Marcador
                         </button>
                         <div className="flex-none w-1/3 text-center text-black">
-                        {match.scores && `${match.scores.player1} - ${match.scores.player2}`}
+                        {match.scores && `${matches.scores.player1} - ${matches.scores.player2}`}
                         </div>
                         {showScorePopup && (
                             <ScorePopup 
