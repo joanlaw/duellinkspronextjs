@@ -73,8 +73,8 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
         console.log("leagueId en Match:", leagueId);
         console.log("roundNumber en Match:", currentRound);
         console.log("roundNumber en Match:", currentRound);
-        console.log("Match Object:", match);
-        console.log("Match Scores:", match.scores);
+            console.log("Match Object:", match);
+    console.log("Match Scores:", match.scores);
 
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
@@ -111,8 +111,10 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
                             Marcador
                         </button>
                         <div className="flex-none w-1/3 text-center text-black">
-                        {`${match.player1Info.username || match.player1} - ${match.player2Info.username || match.player2}`}
-                        </div>
+    {match.scores.player1 !== 0 || match.scores.player2 !== 0
+        ? `${match.scores.player1} - ${match.scores.player2}`
+        : "Sin marcadores"}
+</div>
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
