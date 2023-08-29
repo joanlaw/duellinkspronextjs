@@ -13,6 +13,13 @@ function TournamentUserPanel({ onClose, leagueId }) {
     especial_deck: null,
   });
 
+  const [mainDeckImage, setMainDeckImage] = useState(null);
+const [extraDeckImage, setExtraDeckImage] = useState(null);
+const [sideDeckImage, setSideDeckImage] = useState(null);
+const [especialDeckImage, setEspecialDeckImage] = useState(null);
+const [hasUploadedImages, setHasUploadedImages] = useState(false);
+
+
   const [playerDecks, setPlayerDecks] = useState({});
   const [enlargedImage, setEnlargedImage] = useState(null);
 
@@ -71,22 +78,33 @@ function TournamentUserPanel({ onClose, leagueId }) {
     if (files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(file); // convertir el archivo en Data URL
+      reader.readAsDataURL(file);
       reader.onloadend = function (e) {
-        setImageFiles((prevState) => ({
-          ...prevState,
-          [name]: { file: files[0], preview: reader.result },
-        }));
+        if (name === "main_deck") {
+          setMainDeckImage({ file: files[0], preview: reader.result });
+        } else if (name === "extra_deck") {
+          setExtraDeckImage({ file: files[0], preview: reader.result });
+        } else if (name === "side_deck") {
+          setSideDeckImage({ file: files[0], preview: reader.result });
+        } else if (name === "especial_deck") {
+          setEspecialDeckImage({ file: files[0], preview: reader.result });
+        }
+        setHasUploadedImages(true);
       };
     }
   };
 
   const removeImage = (deckType) => {
-    setImageFiles((prevState) => {
-      const newState = { ...prevState };
-      newState[deckType] = null;
-      return newState;
-    });
+    if (deckType === "main_deck") {
+      setMainDeckImage(null);
+    } else if (deckType === "extra_deck") {
+      setExtraDeckImage(null);
+    } else if (deckType === "side_deck") {
+      setSideDeckImage(null);
+    } else if (deckType === "especial_deck") {
+      setEspecialDeckImage(null);
+    }
+    setHasUploadedImages(false);
   };
 
   const handleSubmit = async (event) => {
@@ -211,9 +229,13 @@ function TournamentUserPanel({ onClose, leagueId }) {
                     )}
                   </div>
                 ))}
-                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                  Subir Imágenes
-                </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    disabled={!hasUploadedImages}
+                  >
+                    Subir Imágenes
+                  </button>
               </form>
             )}
                             {alertMessage && (
