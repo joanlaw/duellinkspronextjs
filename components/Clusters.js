@@ -25,7 +25,7 @@ const clusters = [
     id: 3,
     title: "Torneos",
     image: image3,
-    url: "/torneos",
+    url: "/leagues",
     text: "torneos",
   },
 ];
