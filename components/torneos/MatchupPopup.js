@@ -87,6 +87,9 @@ function MatchupPopup({ matches = [], onClose, currentRound, leagueId, matchId  
                         >
                             Marcador
                         </button>
+                        <div className="flex-none w-1/3 text-center text-black">
+                        {match.scores.player1} - {match.scores.player2}
+                    </div>
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}

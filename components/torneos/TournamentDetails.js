@@ -6,6 +6,7 @@ import FooterCustom from '../FooterCustom';
 import { Divider, Image, Spacer } from "@nextui-org/react";
 import { stateToHTML } from 'draft-js-export-html';  
 import { convertFromRaw, EditorState, ContentState } from 'draft-js';
+import CountdownTimer from '../CountdownTimer';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -45,6 +46,7 @@ const TournamentDetails = ({ tournament }) => {
         <h1 className='text-center text-3xl font-bold mb-4'>{tournament.league_name}</h1>
         
         <div className="ml-4 w-full">
+          
           <Spacer y={0.5} />
           <h3>Información:</h3>
           {tournament.infoTorneo.map((info, index) => (
