@@ -3,9 +3,6 @@ import ChatRoom from './ChatRoom';
 import ScorePopup from './ScorePopup';
 
 function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, leagueId, matchId }) {
-    console.log("Rendering MatchupPopup");
-    console.log("MatchupPopup matches:", initialMatches);
-
     const [matches, setMatches] = useState(initialMatches); // Estado local para los marcadores
 
     const [showChat, setShowChat] = useState(false);
@@ -15,7 +12,6 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
         setSelectedChatRoom(chatRoomId);
         setShowChat(true);
     };
-    console.log("Datos de los jugadores en Match:", match.player1Info, match.player2Info);
 
     function updateMatchScores(matchId, player1Score, player2Score) {
         const updatedMatches = matches.map(match => {
@@ -51,9 +47,6 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
     }
     
     function Round({ matches, round, leagueId, currentRound, updateMatchScores }) {
-        console.log("leagueId en Round:", leagueId);
-        console.log("roundNumber en Round:", currentRound);
-    
         return (
             <div className="round space-y-4">
                 {matches.map((match) => (
@@ -71,9 +64,6 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
     
 
     function Match({ match, leagueId, currentRound, updateMatchScores   }) {
-        console.log("leagueId en Match:", leagueId);
-        console.log("roundNumber en Match:", currentRound);
-
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
     
