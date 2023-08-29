@@ -111,10 +111,8 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
                             Marcador
                         </button>
                         <div className="flex-none w-1/3 text-center text-black">
-    {match.scores.player1 !== 0 || match.scores.player2 !== 0
-        ? `${match.scores.player1} - ${match.scores.player2}`
-        : "Sin marcadores"}
-</div>
+                        {match.scores && `${match.scores.player1} - ${match.scores.player2}`}
+                        </div>
                         {showScorePopup && (
                             <ScorePopup 
                                 leagueId={leagueId}
