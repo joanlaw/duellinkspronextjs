@@ -85,7 +85,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
             <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex items-center space-x-4 w-full">
                     <div className="flex-none w-1/3 text-center text-black">
-                        {match.player1Info ? match.player1Info.username : match.player1}
+                        {match.player1Info ? match.player1Info && match.player1Info.username : match.player1}
                     </div>
                     {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                     {!isByeMatch && (
