@@ -15,6 +15,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
         setSelectedChatRoom(chatRoomId);
         setShowChat(true);
     };
+    console.log("Datos de los jugadores en Match:", matches.player1Info, matches.player2Info);
 
     function updateMatchScores(matchId, player1Score, player2Score) {
         const updatedMatches = matches.map(match => {
@@ -85,7 +86,7 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
             <div className={`flex flex-col items-center ${isByeMatch ? 'bye' : ''}`}>
                 <div className="flex items-center space-x-4 w-full">
                     <div className="flex-none w-1/3 text-center text-black">
-                        {match.player1Info ? match.player1Info && match.player1Info.username : match.player1}
+                        {match.player1Info ? match.player1Info.username : match.player1}
                     </div>
                     {!isByeMatch && <div className="flex-none w-1/3 text-center text-black">vs</div>}
                     {!isByeMatch && (
