@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function ScorePopup({ leagueId, currentRound, match, onClose, matchId }) {
+function ScorePopup({ leagueId, currentRound, match, onClose, matchId, updateMatchScores }) {
     const [scorePlayer1, setScorePlayer1] = useState(0);
     const [scorePlayer2, setScorePlayer2] = useState(0);
 
@@ -20,6 +20,8 @@ function ScorePopup({ leagueId, currentRound, match, onClose, matchId }) {
             });
 
             if (response.status === 200) {
+                // Llama a la función para actualizar los marcadores
+                updateMatchScores(matchId, parseInt(scorePlayer1), parseInt(scorePlayer2));
                 onClose();
             } else {
                 console.log('Error al actualizar los puntajes');
