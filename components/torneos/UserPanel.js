@@ -30,6 +30,12 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
         <p className="text-white text-center lg:text-left">
           <strong>Torneos ganados: 0</strong>
         </p>
+        <a href="https://chat.whatsapp.com/GP3mBjmtzR90ZGJS3awl74" target="_blank" rel="nofollow noopener noreferrer">
+  <Button color="warning" className="mt-4">
+    Ayuda
+  </Button>
+</a>
+
         <Button color="danger" onClick={handleLogout} className="mt-4">
           Logout
         </Button>
