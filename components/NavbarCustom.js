@@ -136,50 +136,53 @@
 
             {authenticated ? (
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <Link href="/user-panel">
                 <p className="font-semibold">{userImage ? "Logged in as" : "Login"}</p>
                 <p className="font-semibold">{userImage ? username : "Login"}</p>
+                </Link>
                 </DropdownItem>
+                
                                 
                     <DropdownItem key="settings">
                   <Link href="/crear-torneo">
-                    <a>Crear Torneo</a>
+                    <p>Crear Torneo</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="team_settings">
                   <Link href="/organizer-dashboard">
-                    <a>Administrar torneo</a>
+                    <p>Administrar torneo</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="analytics">
                   <Link href="/#">
-                    <a>Clan</a>
+                    <p>Clan</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="system">
                   <Link href="/mis-torneos">
-                    <a>Mis torneos</a>
+                    <p>Mis torneos</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="configurations">
                   <Link href="/#">
-                    <a>Configuración</a>
+                    <p>Configuración</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="help_and_feedback">
                   <Link href="/#">
-                    <a>Help & Feedback</a>
+                    <p>Help & Feedback</p>
                   </Link>
                 </DropdownItem>
 
                 <DropdownItem key="logout" color="danger">
                   <Link href="/#">
-                    <a>Log Out</a>
+                    <p>Log Out</p>
                   </Link>
                 </DropdownItem>
               </DropdownMenu>
