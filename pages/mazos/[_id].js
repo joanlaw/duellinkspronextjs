@@ -9,6 +9,7 @@ import Head from 'next/head';
 import NavbarCustom from '../../components/NavbarCustom';
 import { Text, Card, Row, Col, CardBody } from '@nextui-org/react';
 import FooterCustom from '../../components/FooterCustom'
+import DeckTableFiltered from '../../components/DeckTableFiltered';
 
 
 const DeckViewer = () => {
@@ -21,6 +22,8 @@ const DeckViewer = () => {
   
 
   useEffect(() => {
+      // Limpia el estado del deckData
+  setDeckData(null);
     if (_id) {
       axios
         .get(`https://backend-dlp-neuronube.koyeb.app/mazos/${_id}`)
@@ -33,6 +36,9 @@ const DeckViewer = () => {
   }, [_id]);
 
   useEffect(() => {
+      // Limpia los estados mainDeckData y extraDeckData
+  setMainDeckData([]);
+  setExtraDeckData([]);
     const fetchCardData = async () => {
       if (deckData) {
         const mainDeckCards = deckData.mainDeck;
@@ -215,6 +221,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
         </div>
       )}
 
+{deckData && <DeckTableFiltered arquetipo={deckData.arquetipo} />}
 {/*<h3>Otros decks</h3> */}
 </div>
 {selectedCard && (

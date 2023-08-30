@@ -1,31 +1,25 @@
 import { useState, useEffect } from "react";
-import Header from "../../components/Header";
 import axios from "axios";
-import Footer from "../../components/Footer";
-import Link from "next/link";
 import moment from "moment";
-import { useRouter } from "next/router";
 import NavbarCustom from "../../components/NavbarCustom";
 import DeckTable from "../../components/CustomTable";
 import { SearchIcon } from "../../components/SearchIcon";
-import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import { Input, Badge, Button } from "@nextui-org/react";
 import FooterCustom from "../../components/FooterCustom";
-import { Badge } from "@nextui-org/react";
 
 
 export default function Index() {
   const [cardList, setCardList] = useState([]);
   const [search, setSearch] = useState("");
-  const [recordForEdit, setrecordForEdit] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(36);
-  const [groupedDecks, setGroupedDecks] = useState({});
   const [archetypes, setArchetypes] = useState([]);
-
   const [resultsToShow, setResultsToShow] = useState(10);
+  const [filtro, setFiltro] = useState({
+    createdAt: "ultimas8semanas",
+    habilidad: "",
+    arquetipo: "",
+    top: "",
+  });
 
-  const router = useRouter();
 
   useEffect(() => {
     refreshCardList();
@@ -148,13 +142,6 @@ export default function Index() {
   const fechaActual = moment();
   const fechaFormateada = fechaActual.format("YYYY-MM-DD");
 
-  //FILTRADO 2
-  const [filtro, setFiltro] = useState({
-    createdAt: "ultimas8semanas",
-    habilidad: "",
-    arquetipo: "",
-    top: "",
-  });
 
   function handleFiltroChange(event) {
     const { name, value } = event.target;
@@ -361,9 +348,9 @@ export default function Index() {
         <DeckTable data={elementosFiltrados} archetypes={archetypes} resultsToShow={resultsToShow} />
         {resultsToShow < elementosFiltrados.length && (
           <div className="show-more-container">
-            <button className="show-more-button" onClick={handleShowMore}>
-              Mostrar Más
-            </button>
+      <Button color="primary" onClick={handleShowMore}>
+        Mostrar más
+      </Button> 
           </div>
         )}
         <br />

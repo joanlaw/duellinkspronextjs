@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-//import Card from "../components/Card.js";
 import axios from "axios";
-import Header from "../../components/Header.js";
-//import Cardlist from "../components/Cardlist.js";
-import Image from "next/image.js";
-import Footer from "../../components/Footer.js";
-//import Cardinfo from "../components/Cardinfo.js";
 import Head from "next/head.js";
 import NavbarCustom from "../../components/NavbarCustom.js";
 import { SearchIcon } from "../../components/SearchIcon.js";

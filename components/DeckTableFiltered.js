@@ -1,101 +1,76 @@
-import React, { useState } from "react";
-import moment from "moment";
-import { useRouter } from "next/router";
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  RadioGroup,
-  Radio,
-} from "@nextui-org/react";
-import ImageCard from "./ImageCard"; // Ajusta la ruta según la ubicación real
-import ImageCardTable from "./ImageCardDecksTable";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination } from "@nextui-org/react";
 
-const colors = ["default", "primary", "secondary", "success", "warning", "danger"];
-
-const DeckTableFiltered = ({ data, archetypes, resultsToShow, currentArquetipo }) => {
+function DeckTableFiltered ({ arquetipo }) {
+  const [mazos, setMazos] = useState([]);
+  const [page, setPage] = useState(1);
   const router = useRouter();
-  const [selectedColor, setSelectedColor] = useState("default");
+  const rowsPerPage = 10;  // Número de filas por página
 
-  const filteredData = data.filter(deck => deck.arquetipo === currentArquetipo);
+  console.log(arquetipo);
+
+  useEffect(() => {
+    if (arquetipo) {
+      fetch('https://api.duellinks.pro/mazos')
+        .then((response) => response.json())
+        .then((data) => {
+          const filteredMazos = data.filter(
+            (mazo) => mazo.arquetipo.toLowerCase() === arquetipo.toLowerCase()
+          ).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          setMazos(filteredMazos);
+        });
+    }
+  }, [arquetipo]);
+
+  // Calcula el número total de páginas
+  const total = Math.ceil(mazos.length / rowsPerPage);
+
+  // Obtiene los mazos para la página actual
+  const currentMazos = mazos.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
-    <div className="flex flex-col gap-3">
-      <Table
-        color={selectedColor}
-        selectionMode="single"
-        defaultSelectedKeys={["2"]}
-        aria-label="Tabla de mazos filtrada"
+    <div className="w-full h-full">
+      <Table 
+        selectionMode="single" 
+        aria-label="Mazos filtrados por arquetipo"
+        bottomContent={
+          total > 0 ? (
+            <div className="flex w-full justify-center">
+              <Pagination
+                isCompact
+                showControls
+                showShadow
+                color="primary"
+                page={page}
+                total={total}
+                onChange={(newPage) => setPage(newPage)}
+              />
+            </div>
+          ) : null
+        }
       >
         <TableHeader>
-          <TableColumn>Arquetipo</TableColumn>
+          <TableColumn>Jugador</TableColumn>
           <TableColumn>Habilidad</TableColumn>
           <TableColumn>Top</TableColumn>
-          <TableColumn>Jugador</TableColumn>
-          <TableColumn>Motor</TableColumn>
-          <TableColumn>Fecha</TableColumn>
+          <TableColumn className="hidden md:table-cell">Motor</TableColumn>
+          <TableColumn className="hidden md:table-cell">Fecha</TableColumn>
         </TableHeader>
         <TableBody>
-          {filteredData
-            .slice(Math.max(filteredData.length - resultsToShow, 0), filteredData.length)
-            .map((element) => (
-              <TableRow
-                key={element._id}
-                onClick={() => router.push(`/mazos/${element._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "background-color 0.3s ease",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#5093bc")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "")
-                }
-              >
-                <TableCell>
-                  <div className="arquetipo-image">
-                    <ImageCard
-                      data={element}
-                      archetypes={archetypes}
-                      style={{ width: "100px", height: "auto" }} // Ajusta las dimensiones aquí
-                    />
-                  </div>
-                </TableCell>
-                <TableCell>{element.habilidad}</TableCell>
-                <TableCell>{element.top}</TableCell>
-                <TableCell>{element.jugador}</TableCell>
-                <TableCell>{element.engine}</TableCell>
-                <TableCell>
-                  {moment(element.createdAt).format("MMM DD, YYYY")}
-                </TableCell>
-              </TableRow>
-            ))
-            .reverse()}
+          {currentMazos.map((mazo) => (
+            <TableRow key={mazo._id} onClick={() => router.push(`/mazos/${mazo._id}`)}>
+              <TableCell>{mazo.jugador}</TableCell>
+              <TableCell>{mazo.habilidad}</TableCell>
+              <TableCell>{mazo.top}</TableCell>
+              <TableCell className="hidden md:table-cell">{mazo.engine}</TableCell>
+              <TableCell className="hidden md:table-cell">{new Date(mazo.createdAt).toLocaleDateString()}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
-      <RadioGroup
-        label="Color de selección"
-        orientation="horizontal"
-        value={selectedColor}
-        onValueChange={setSelectedColor}
-      >
-        {colors.map((color) => (
-          <Radio
-            key={color}
-            color={color}
-            value={color}
-            className="capitalize"
-          >
-            {color}
-          </Radio>
-        ))}
-      </RadioGroup>
     </div>
   );
-};
+}
 
 export default DeckTableFiltered;
