@@ -119,6 +119,7 @@
                 <div className="flex gap-4 items-center">
                 <Avatar
                   isBordered radius="full"
+                  color="success"
                   className="flex gap-4 items-center cursor-pointer"
                   src={userImage}
                 />
@@ -126,9 +127,11 @@
               ) : (
                 <div className="flex gap-4 items-center cursor-pointer">
                 <Avatar
+                  
                   isBordered radius="full"
+                  color="danger"
                   className="flex gap-4 items-center"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1693376680/iconos%20dlp/403017_avatar_default_head_person_unknown_icon_grry7q.png"
                 />
                 </div>
               )}

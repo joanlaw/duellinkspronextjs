@@ -15,7 +15,7 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
         <Avatar
           src={avatar}
           alt={username}
-          size="xl"
+          size="lg"
           className="w-40 h-40 mb-4 lg:mb-0 lg:mr-4"
         />
         <p className="text-white text-center lg:text-left">
