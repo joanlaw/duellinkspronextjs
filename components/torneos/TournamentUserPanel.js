@@ -101,10 +101,12 @@ function TournamentUserPanel({ onClose, leagueId }) {
     }
   
     // Verificar si hay al menos una imagen para enviar
-    if (formData.getAll('main_deck').length === 0 &&
-        formData.getAll('extra_deck').length === 0 &&
-        formData.getAll('side_deck').length === 0 &&
-        formData.getAll('especial_deck').length === 0) {
+    let atLeastOneImage = formData.getAll('main_deck').length > 0 ||
+                          formData.getAll('extra_deck').length > 0 ||
+                          formData.getAll('side_deck').length > 0 ||
+                          formData.getAll('especial_deck').length > 0;
+  
+    if (!atLeastOneImage) {
       setAlertMessage('Por favor, suba al menos una imagen.');
       setAlertType('error');
       return;
@@ -124,14 +126,19 @@ function TournamentUserPanel({ onClose, leagueId }) {
           },
         }
       );
-  
-      console.log('Imágenes subidas:', response.data);
-      setAlertMessage('Imágenes subidas con éxito.');
-      setAlertType('success');
-  
+    
+      if (response.status === 200 || response.status === 201) {
+        setAlertMessage('Imágenes subidas con éxito.');
+        setAlertType('success');
+      } else {
+        setAlertMessage(`No se pudo subir las imágenes. Código de estado: ${response.status}`);
+        setAlertType('error');
+      }
+    
     } catch (error) {
       console.error('Error al subir las imágenes:', error);
-      setAlertMessage('Error al subir las imágenes.');
+      const errorMessage = error.response?.data?.error || 'Error al subir las imágenes. Verifique su conexión y vuelva a intentar.';
+      setAlertMessage(errorMessage);
       setAlertType('error');
     }
   };
