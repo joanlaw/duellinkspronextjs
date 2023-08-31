@@ -1,17 +1,16 @@
 // YouTubeVideo.js
 import React from 'react';
+import YouTube from 'react-youtube';
 
 const YouTubeVideo = ({ videoId }) => {
-  return (
-    <div className="relative pt-56.25% overflow-hidden">
-      <iframe
-        className="absolute top-0 left-0 w-full h-full border-0"  // Aquí se añade la clase de Tailwind para eliminar el borde
-        src={`https://www.youtube.com/embed/${videoId}`}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
-  );
+    const opts = {
+        width: '100%',  // Establecer el ancho al 100% para que sea responsivo
+        playerVars: {
+          autoplay: 1,
+        },
+      };
+
+  return <YouTube videoId={videoId} opts={opts} />;
 };
 
 export default YouTubeVideo;
