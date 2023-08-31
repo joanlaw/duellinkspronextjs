@@ -10,15 +10,23 @@ import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input, Spinner} 
 import { SearchIcon } from '../../components/SearchIcon';
 import FooterCustom from '../../components/FooterCustom';
 import Link from 'next/link';
+import { useRouter } from 'next/router'; // Paso 1: Importar useRouter
 
 
 export default function Torneos() {
+
+  const router = useRouter(); // Paso 2: Utilizar el hook
+
     const [leagues, setLeagues] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+
+    const handleTournamentClick = (leagueId) => {
+      router.push(`/leagues/${leagueId}`); // Paso 3: Navegar al URL
+  };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -115,7 +123,6 @@ export default function Torneos() {
             <div className='tournament-card-container'>
             <div className='tournament-card-container-grid'>
   {filterLeagues().map(league => (
-    <Link key={league._id} href={`/leagues/${league._id}`}>
     <Card key={league?._id} className="max-w-[340px] tournament-card">
       
       <CardHeader className="justify-between">
@@ -169,8 +176,15 @@ export default function Torneos() {
     <p className="text-default-400 text-small">Inscritos</p>
   </div>
       </CardFooter>
+      <Button 
+                  color="primary" 
+                  variant="solid"
+                  onClick={() => handleTournamentClick(league._id)}  // Usar handleTournamentClick aquí
+                >
+                  Ver Torneo
+                </Button>
     </Card>
-    </Link>
+    
   ))}
 </div>
 
