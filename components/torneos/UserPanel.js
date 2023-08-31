@@ -3,6 +3,7 @@ import { Avatar, Card, Textarea, Badge, Button } from '@nextui-org/react';
 import NavbarCustom from "../NavbarCustom"
 import FooterCustom from "../FooterCustom"
 import UserDecks from './UserDecks';
+import YouTubeVideo from './YouTubeVideo ';
 
 const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
   return (
@@ -39,6 +40,9 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
         <Button color="danger" onClick={handleLogout} className="mt-4">
           Logout
         </Button>
+        <div className="mt-4 w-full">
+          <YouTubeVideo videoId="RManmwMRt4c" />
+        </div>
       </div>
 
       {/* Sección para "Decks" */}
