@@ -39,7 +39,10 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
       <Button color="danger" onClick={handleLogout} className="mt-4">
         Logout
       </Button>
-      <div className="mt-4 w-full">
+      <p className="text-white text-center lg:text-left mt-4">
+        <strong>Tutorial para torneos</strong>
+      </p>
+      <div className="mt-2 w-full">
         <YouTubeVideo videoId="RManmwMRt4c" />
       </div>
     </div>
@@ -49,13 +52,17 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
 
     {/* Sección para "Decks" */}
     <div className="flex flex-col items-center lg:items-start lg:w-3/5 lg:pl-4">
-      <div className="w-full h-full rounded-lg mt-4 flex items-center justify-center overflow-y-auto">
+      <p className="text-white text-center lg:text-left mt-4">
+        <strong>Tus decks</strong>
+      </p>
+      <div className="w-full h-full rounded-lg mt-2 flex items-center justify-center overflow-y-auto">
         <UserDecks />
       </div>
     </div>
   </Card>
   <FooterCustom />
 </div>
+
 </>
   );
 };
