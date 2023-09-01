@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../contexts/UserContext';
+import { Button } from '@nextui-org/react';
 
 function TournamentUserPanel({ onClose, leagueId }) {
   const { discordId, token } = useUser();
