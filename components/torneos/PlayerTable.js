@@ -62,6 +62,7 @@ const PlayerTable = ({ players }) => {
     <div>
       <div className="flex justify-between gap-3 items-end">
         <Input
+         className="w-full sm:w-64 md:w-96 lg:max-w-md"  // Ancho responsivo
           isClearable
           placeholder="Search by name..."
           startContent={<SearchIcon />}
