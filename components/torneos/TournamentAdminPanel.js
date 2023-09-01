@@ -9,19 +9,11 @@ import {
   TableRow,
   TableCell,
   Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Pagination,
   Popover,
   PopoverTrigger,
   PopoverContent,
   Spinner,
 } from '@nextui-org/react';
-
-import { EyeIcon } from '../nextuiicons/EyeIcon';
-import { DeleteIcon } from '../nextuiicons/DeleteIcon';
 
 function TournamentAdminPanel({ onClose, leagueId }) {
   const [players, setPlayers] = useState([]);
@@ -94,9 +86,23 @@ function TournamentAdminPanel({ onClose, leagueId }) {
 
   const items = players.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
-  const disqualifyPlayer = (playerId) => {
-    // Implementa la lógica para descalificar a un jugador aquí
+  const disqualifyPlayer = async (playerId) => {
+    try {
+      const response = await fetch(`https://duellinks.pro/leagues/${leagueId}/players/${playerId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        // Si la solicitud se realizó con éxito, actualiza la lista de jugadores
+        setPlayers(prevPlayers => prevPlayers.filter(player => player._id !== playerId));
+      } else {
+        console.error('Error al descalificar al jugador:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al descalificar al jugador:', error);
+    }
   };
+  
 
   const renderDeckImage = (playerId, deckType) => (
     <Popover placement="bottom" showArrow offset={10}>
