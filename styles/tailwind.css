@@ -4,3 +4,6 @@
 @import 'tailwindcss/utilities';
 
 /* Agrega tus estilos personalizados aquí si es necesario */
+body {
+    font-family: 'Quicksand', sans-serif;
+  }
