@@ -3,10 +3,11 @@ import dynamic from 'next/dynamic';
 import TournamentRegistration from './TournamentRegistration';
 import NavbarCustom from '../NavbarCustom';
 import FooterCustom from '../FooterCustom';
-import { Divider, Image, Spacer } from "@nextui-org/react";
+import { Divider, Image, Spacer, Tabs, Tab } from "@nextui-org/react";
 import { stateToHTML } from 'draft-js-export-html';  
 import { convertFromRaw, EditorState, ContentState } from 'draft-js';
 import CountdownTimer from '../CountdownTimer';
+import PlayerTable from './PlayerTable';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -32,10 +33,6 @@ const TournamentDetails = ({ tournament }) => {
     }
   }, [tournament]);
 
-  if (!tournament) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className="bg-black text-white min-h-screen">
       <NavbarCustom />
@@ -45,33 +42,41 @@ const TournamentDetails = ({ tournament }) => {
         </div>
         <h1 className='text-center text-3xl font-bold mb-4'>{tournament.league_name}</h1>
         
-        <div className="ml-4 w-full">
-          
-          <Spacer y={0.5} />
-          <h3>Información:</h3>
-          {tournament.infoTorneo.map((info, index) => (
-            <div key={index} className="mb-4">
-              <p className="mb-1"><strong>Formato:</strong> {info.format}</p>
-              <p className="mb-1"><strong>Banlist:</strong> {info.banlist}</p>
-              <p className="mb-1"><strong>Información de Deck:</strong> {info.deck_info}</p>
-              <p className="mb-1"><strong>Eliminación:</strong> {info.eliminacion}</p>
-              <Spacer y={3} />
-              <TournamentRegistration tournamentId={tournament._id} />
-              <Spacer y={3} />
-              <Divider orientation="horizontal" />
+        <Tabs variant="bordered" aria-label="Tournament tabs">
+          <Tab key="detalles" title="Detalles">
+            <div className="ml-4 w-full">
+              <Spacer y={0.5} />
+              <h3>Información:</h3>
+              {tournament.infoTorneo.map((info, index) => (
+                <div key={index} className="mb-4">
+                  <p className="mb-1"><strong>Formato:</strong> {info.format}</p>
+                  <p className="mb-1"><strong>Banlist:</strong> {info.banlist}</p>
+                  <p className="mb-1"><strong>Información de Deck:</strong> {info.deck_info}</p>
+                  <p className="mb-1"><strong>Eliminación:</strong> {info.eliminacion}</p>
+                  <Spacer y={3} />
+                  <TournamentRegistration tournamentId={tournament._id} />
+                  <Spacer y={3} />
+                  <Divider orientation="horizontal" />
+                </div>
+              ))}
+            <strong><h3>Reglas</h3></strong>  
+              <Editor
+                readOnly
+                editorState={editorState}
+                toolbarClassName="hidden-toolbar"
+                wrapperClassName="overflow-auto"
+              />
+              
             </div>
-          ))}
-          <Spacer y={3} />
-         
-          <Editor
-  readOnly
-  editorState={editorState}
-  toolbarClassName="hidden-toolbar"
-  wrapperClassName="overflow-auto"
-/>
-
-<div className="prose prose-sm sm:prose lg:prose-lg overflow-auto" dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        </div>
+          </Tab>
+          <Tab key="participantes" title="Participantes">
+            <h2 className="text-center text-2xl font-bold mb-4">Jugadores Inscritos</h2>
+            <PlayerTable players={tournament.players} />
+          </Tab>
+          <Tab key="campeon" title="Campeón">
+            {/* Contenido vacío por ahora */}
+          </Tab>
+        </Tabs>
       </div>
       <FooterCustom />
     </div>
