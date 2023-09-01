@@ -8,6 +8,7 @@ import { stateToHTML } from 'draft-js-export-html';
 import { convertFromRaw, EditorState, ContentState } from 'draft-js';
 import CountdownTimer from '../CountdownTimer';
 import PlayerTable from './PlayerTable';
+import Head from 'next/head';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -35,6 +36,18 @@ const TournamentDetails = ({ tournament }) => {
 
   return (
     <div className="bg-black text-white min-h-screen">
+            <Head>
+        <title>{tournament.league_name} - Torneo de Yu-Gi-Oh! Duel Links</title>
+        <meta name="description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta property="og:title" content={tournament.league_name} />
+        <meta property="og:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta property="og:image" content={tournament.image.url} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={tournament.league_name} />
+        <meta name="twitter:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta name="twitter:image" content={tournament.image.url} />
+      </Head>
       <NavbarCustom />
       <div className='container mx-auto py-10 px-4 md:px-0'>
         <div className="flex justify-center items-center mb-4">
