@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TournamentUserPanel from './TournamentUserPanel';
 import UserMatchupPopup from './UserMatchupPopup';  // Importa el nuevo componente
+import UserMatches from './UserMatches';
 
 const TournamentList = ({ discordId }) => {
     const [tournaments, setTournaments] = useState([]);
@@ -9,6 +10,8 @@ const TournamentList = ({ discordId }) => {
     const [showUserPanel, setShowUserPanel] = useState(false);
     const [showMatchupPopup, setShowMatchupPopup] = useState(false);  // Nuevo estado
     const [selectedLeagueId, setSelectedLeagueId] = useState(null);
+    const [showUserMatches, setShowUserMatches] = useState(false);
+
 
     useEffect(() => {
         const fetchTournaments = async () => {
@@ -25,6 +28,12 @@ const TournamentList = ({ discordId }) => {
 
         fetchTournaments();
     }, [discordId]);
+
+    const handleUserMatchesClick = (leagueId) => {
+        setSelectedLeagueId(leagueId);
+        setShowUserMatches(true);
+    }
+    
 
     const handleAdminClick = (leagueId) => {
         setSelectedLeagueId(leagueId);
@@ -52,6 +61,10 @@ const TournamentList = ({ discordId }) => {
                     <button onClick={() => handleMatchupsClick(tournament._id)}> 
                         Ver Emparejamientos
                     </button>
+                    <button onClick={() => handleUserMatchesClick(tournament._id)}> 
+    Historial de Duelos
+</button>
+
                 </div>
             ))}
 
@@ -69,6 +82,14 @@ const TournamentList = ({ discordId }) => {
                     discordId={discordId}
                 />
             )}
+            {showUserMatches && (
+    <UserMatches
+        onClose={() => setShowUserMatches(false)}
+        leagueId={selectedLeagueId}
+        discordId={discordId}
+    />
+)}
+
         </div>
     );
 };

@@ -88,7 +88,7 @@ function TournamentAdminPanel({ onClose, leagueId }) {
 
   const disqualifyPlayer = async (playerId) => {
     try {
-      const response = await fetch(`https://duellinks.pro/leagues/${leagueId}/players/${playerId}`, {
+      const response = await fetch(`https://api.duellinks.pro/leagues/${leagueId}/players/${playerId}`, {
         method: 'DELETE',
       });
   

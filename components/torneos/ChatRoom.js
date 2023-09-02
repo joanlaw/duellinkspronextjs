@@ -122,7 +122,7 @@ function ChatRoom({ roomId, onClose }) {
       <Button color="danger" onPress={onClose}>Cerrar</Button>
       <div className="space-x-4">
         <Button color="primary" onPress={handleClipboard}>Pegar Sala</Button>
-        <Button color="primary" onPress={() => { /* Aquí irá la función para llamar al moderador */ }}>Llamar Mod</Button>
+ {/*  <Button color="primary" onPress={() => { }}> Llamar Mod</Button>  */} 
       </div>
     </div>
   </div>
