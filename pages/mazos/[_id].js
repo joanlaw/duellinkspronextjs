@@ -112,7 +112,7 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
     width: "",
     borderRadius: "0", // Anula el border-radius y hace los bordes cuadrados
 
-    backgroundColor: "#010609" // Fondo translúcido (blanco con 80% de opacidad)
+  //  backgroundColor: "#010609" // Fondo translúcido (blanco con 80% de opacidad)
   };
 
 

@@ -49,8 +49,14 @@ const UserMatches = ({ leagueId, onClose }) => {
   };
 
   const calculateMatchResult = (match) => {
+    if (!match || !match.match || !match.match.scores) {
+      return "Información de partido no disponible";
+    }
     const player1Score = match.match.scores.player1;
     const player2Score = match.match.scores.player2;
+    if (player1Score === null || player2Score === null) {
+      return "Puntuación no disponible";
+    }
     if (player1Score > player2Score) {
       return `${match.player1Username} ganó`;
     } else if (player2Score > player1Score) {
@@ -59,7 +65,6 @@ const UserMatches = ({ leagueId, onClose }) => {
       return "Empate";
     }
   };
-
   const renderMatchesByRound = () => {
     const groupedMatches = groupMatchesByRound();
     return Object.entries(groupedMatches).map(([roundId, matchesInRound], index) => (
@@ -67,15 +72,23 @@ const UserMatches = ({ leagueId, onClose }) => {
         <h3 className="text-xl font-semibold mb-2 text-black">Rondas</h3>
         {matchesInRound.map((matchInfo, matchIndex) => (
           <div key={matchIndex} className="mb-4 border rounded-lg p-4 text-black">
-            <p className="text-lg font-semibold">{matchInfo.player1Username} vs {matchInfo.player2Username}</p>
-            <p className="text-sm">Marcador: {matchInfo.match.scores.player1} - {matchInfo.match.scores.player2}</p>
-            <p className="text-sm">Resultado: {calculateMatchResult(matchInfo)}</p>
+            <p className="text-lg font-semibold">
+              {matchInfo.player1Username || "Jugador 1 desconocido"} vs {matchInfo.player2Username || "Jugador 2 desconocido"}
+            </p>
+            <p className="text-sm">
+              Marcador: {(matchInfo.match?.scores?.player1 ?? "N/A")} - {(matchInfo.match?.scores?.player2 ?? "N/A")}
+            </p>
+            <p className="text-sm">
+              Resultado: {calculateMatchResult(matchInfo)}
+            </p>
             {/* Agrega aquí la lógica para abrir el chat si es necesario */}
           </div>
         ))}
       </div>
     ));
   };
+  
+  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">

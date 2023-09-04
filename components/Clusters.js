@@ -5,12 +5,13 @@ import Link from "next/link";
 import image1 from "../assets/Pick_Tierlist.png";
 import image2 from "../assets/Pick_Comunidad.png";
 import image3 from "../assets/Pick_Noticias.png";
+import image4 from "../assets/tieractual.png";
 
 const clusters = [
   {
     id: 1,
     title: "Tier List",
-    image: image1,
+    image: image4,
     url: "/decks-meta",
     text: "los mejores decks meta",
   },
@@ -33,6 +34,8 @@ const clusters = [
 function Clusters() {
   const [videos, setVideos] = useState([]);
   const [resultsToShow, setResultsToShow] = useState(6);
+
+  const [reportes, setReportes] = useState([]);
 
   // Función para manejar el evento de clic del botón "Mostrar Más"
   const handleShowMore = () => {
@@ -57,6 +60,25 @@ function Clusters() {
 
   console.log("Videos state:", videos);
 
+  
+  // Función para obtener la lista de reportes desde la API
+  const fetchReportes = async () => {
+    try {
+      const response = await fetch("https://backend-dlp-neuronube.koyeb.app/torneos");
+      const data = await response.json();
+      console.log("Data from API:", data);
+      setReportes(data.docs);
+    } catch (error) {
+      console.error("Error fetching reportes:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchReportes();
+  }, []);
+
+  console.log("Reportes state:", reportes);
+
   return (
     <>
 <div className="min-h-screen bg-black-900 text-white">
@@ -72,16 +94,16 @@ function Clusters() {
     </div>
   </div>
   <h2 className="text-2xl font-bold mt-8 mx-auto text-center">
-    Últimos artículos y videos
+    Reportes de torneos
   </h2>
   <div className="container mx-auto py-6">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {videos
+      {reportes
         .slice(-resultsToShow)
         .reverse()
-        .map(({ titulo, banner_video, _id }) => (
+        .map(({ nombre, banner_video, _id }) => (
           <div className="col-span-1" key={_id}>
-            <Link href={`/videos/${encodeURIComponent(titulo)}`}>
+            <Link href={`/torneos/${encodeURIComponent(nombre)}`}>
               <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 ease-in-out animate__animated animate__fadeInUp relative">
                 <img
                   src={banner_video}
@@ -89,7 +111,7 @@ function Clusters() {
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-75">
-                  <h4 className="text-white font-semibold text-center">{titulo}</h4>
+                  <h4 className="text-white font-semibold text-center">{nombre}</h4>
                 </div>
               </div>
             </Link>

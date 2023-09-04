@@ -264,3 +264,16 @@ td {
   pointer-events: none;
 }
 
+/* CSS */
+.chart-container {
+  width: 50%; /* Ocupa el 50% del contenedor en pantallas grandes */
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .chart-container {
+    width: 100%; /* Ocupa el 100% del contenedor en dispositivos móviles */
+  }
+}
+
+
