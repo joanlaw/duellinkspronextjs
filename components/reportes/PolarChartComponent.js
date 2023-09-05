@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Chart, CategoryScale, ArcElement, PieController } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Chart, CategoryScale, LinearScale, BarElement, BarController } from 'chart.js';
 import axios from 'axios';
 
 // Registrar los elementos necesarios para Chart.js
-Chart.register(CategoryScale, ArcElement, PieController);
+Chart.register(CategoryScale, LinearScale, BarElement, BarController);
 
-const PieChartComponent = ({ decks }) => {
+const BarChartComponent = ({ decks }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -34,52 +33,20 @@ const PieChartComponent = ({ decks }) => {
     const total = data.reduce((acc, value) => acc + value, 0); // Calcular el total
 
     chartInstance.current = new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels,
         datasets: [{
           data,
           backgroundColor: [
-            // Colores de fondo para los segmentos del gráfico
-            // Añade más colores si es necesario
-            '#1e88e5', '#43a047', '#f4511e', '#8e24aa', '#e53935',
-            '#fdd835', '#00acc1', '#546e7a', '#d81b60', '#6d4c41'
+            '#0070f0', 
+            '#27272a'
           ]
         }]
       },
       options: {
-        responsive: true,
-        plugins: {
-          datalabels: {
-            color: '#000',
-            font: {
-              size: window.innerWidth > 767 ? 14 : 8,
-              weight: 'bold'
-            },
-            formatter: (value, ctx) => {
-              const label = ctx.chart.data.labels[ctx.dataIndex];
-              const percent = ((value / total) * 100).toFixed(2) + '%';
-              return `${label}: ${value} (${percent})`;
-            },
-            rotation: (ctx) => {
-                const index = ctx.dataIndex;
-                const meta = ctx.chart.getDatasetMeta(0);
-                if (meta.data[index] && meta.data[index]._model) {
-                  const startAngle = meta.data[index]._model.startAngle;
-                  const endAngle = meta.data[index]._model.endAngle;
-                  const midAngle = (startAngle + endAngle) / 2;
-                  const midAngleDeg = midAngle * (180 / Math.PI);
-    
-                  console.log("Ángulo medio en grados:", midAngleDeg);  // Depuración
-    
-                  return midAngleDeg;
-                }
-                return 0; // Valor predeterminado si el modelo no está disponible
-            }
-          }
-        }
-      },
-      plugins: [ChartDataLabels]
+        responsive: true
+      }
     });
   }, [decks]);
 
@@ -90,4 +57,4 @@ const PieChartComponent = ({ decks }) => {
   );
 };
 
-export default PieChartComponent;
+export default BarChartComponent;
