@@ -73,125 +73,105 @@ export default function Torneos() {
     if (error) return <p>Hubo un error al cargar la data: {error.message}</p>;
 
     return (
-        <>
-        <NavbarCustom />
-        <div className='container mx-auto p-4'>
-    <h1 className='text-4xl font-semibold mb-4'>Torneos</h1>
-
-    <div className='flex flex-col lg:flex-row gap-6 items-center'>
-      
-        <Input
-            className='w-full lg:w-1/3'
-            type='text'
-            startContent={<SearchIcon size={18} />}
-            placeholder='Buscar torneos...'
-            value={searchTerm}
-            onChange={event => setSearchTerm(event.target.value)}
+      <>
+  <NavbarCustom />
+  <div className="container mx-auto p-4">
+    <h1 className="text-4xl font-semibold mb-4">Torneos</h1>
+    <div className="flex flex-col lg:flex-row gap-6 items-center">
+      <input
+        className="w-full lg:w-1/3 border border-gray-300 rounded-lg p-2"
+        type="text"
+        placeholder="Buscar torneos..."
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
+      />
+      <div className="w-full lg:w-1/4">
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          placeholderText="Rango inicial"
+          className="w-full border border-gray-300 rounded-lg p-2"
         />
-        
-        <div className='w-full lg:w-1/4 react-datepicker-wrapper'>
-  <div className='date-picker-input'>
-    <DatePicker
-      selected={startDate}
-      onChange={date => setStartDate(date)}
-      placeholderText='Rango inicial'
-      className='w-full'
-    />
-  </div>
-</div>
-
-<div className='w-full lg:w-1/4 react-datepicker-wrapper'>
-  <div className='date-picker-input'>
-    <DatePicker
-      selected={endDate}
-      onChange={date => setEndDate(date)}
-      placeholderText='Rango final'
-      className='w-full'
-    />
-  </div>
-</div>
-
-        <Button 
-            color="primary" 
-            variant="solid" 
-            onClick={() => { setStartDate(null); setEndDate(null); setSearchTerm(''); }}
-        >
-            Borrar Filtros
-        </Button>
-
+      </div>
+      <div className="w-full lg:w-1/4">
+        <DatePicker
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          placeholderText="Rango final"
+          className="w-full border border-gray-300 rounded-lg p-2"
+        />
+      </div>
+      <Button
+        color="primary"
+        variant="solid"
+        onClick={() => {
+          setStartDate(null);
+          setEndDate(null);
+          setSearchTerm("");
+        }}
+      >
+        Borrar Filtros
+      </Button>
     </div>
-            <div className='tournament-card-container'>
-            <div className='tournament-card-container-grid'>
-  {filterLeagues().map(league => (
-    <Card key={league?._id} className="max-w-[340px] tournament-card">
-      
-      <CardHeader className="justify-between">
-        <div className="flex gap-5">
-       
-          <div className="flex flex-col gap-1 items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600">{league?.league_name}</h4>
-            <h5 className="text-small tracking-tight text-default-400">@{league?.organizer?.username}</h5>
-          </div>
-        </div>
-       
-{/* <Button
-    color="primary"
-    radius="full"
-    size="sm"
-    variant="solid"
-  >
-    Seguir
-  </Button>*/}  
-
-      </CardHeader>
-      
-      <CardBody className="px-3 py-0 text-small text-default-400">
-        <div className="tournament-info">
-          {league?.infoTorneo.map((info, index) => (
-            <div key={index}>
-              <p><strong>Formato:</strong> {info.format}</p>
-              <p><strong>Banlist:</strong> {info.banlist}</p>
-              <p><strong>Información de Deck:</strong> {info.deck_info}</p>
-              <p><strong>Eliminación:</strong> {info.eliminacion}</p>
-              
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
+      {filterLeagues().map((league) => (
+        <div key={league?._id} className="max-w-[340px] border rounded-lg p-4">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex gap-5">
+              <div className="flex flex-col gap-1 items-start justify-center">
+              <h4 className="text-lg font-semibold text-gray-600 text-center">
+                {league?.league_name}
+              </h4>
+                <h5 className="text-sm text-gray-400">
+                  @{league?.organizer?.username}
+                </h5>
+              </div>
             </div>
-          ))}
-        </div>
-        <span className="pt-2">
-        <CountdownTimer targetDate={league.start_date} />
-          <span className="py-2" aria-label="computer" role="img">
-      
-          </span>
-        </span>
-      </CardBody>
-      
-      
-      <CardFooter className="gap-3">
-        <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small"></p>
-        {/* <p className="text-default-400 text-small">Seguidres</p>*/ } 
-        </div>
-        <div className="flex gap-1">
-        <p className="font-semibold text-default-400 text-small">{league.players.length}</p>
-    <p className="text-default-400 text-small">Inscritos</p>
-  </div>
-      </CardFooter>
-      <Button 
-                  color="primary" 
-                  variant="solid"
-                  onClick={() => handleTournamentClick(league._id)}  // Usar handleTournamentClick aquí
-                >
-                  Ver Torneo
-                </Button>
-    </Card>
-    
-  ))}
-</div>
+          </div>
+          <div className="text-sm text-gray-400">
+            {league?.infoTorneo.map((info, index) => (
+              <div key={index}>
+                <p>
+                  <strong>Formato:</strong> {info.format}
+                </p>
+                <p>
+                  <strong>Banlist:</strong> {info.banlist}
+                </p>
+                <p>
+                  <strong>Información de Deck:</strong> {info.deck_info}
+                </p>
+                <p>
+                  <strong>Eliminación:</strong> {info.eliminacion}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="pt-2">
+            <CountdownTimer targetDate={league.start_date} />
+          </div>
+          <div className="flex gap-1 mt-4">
+            <p className="font-semibold text-gray-400 text-sm">
+              {league.players.length}
+            </p>
+            <p className="text-gray-400 text-sm">Inscritos</p>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Button
+              color="primary"
+              variant="solid"
+              onClick={() => handleTournamentClick(league._id)}
+            >
+              Ver Torneo
+            </Button>
+          </div>
 
-</div>
         </div>
-        <FooterCustom />
-    </>
+      ))}
+    </div>
+  </div>
+  <FooterCustom />
+</>
+
     
     );
 }
