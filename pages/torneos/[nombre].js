@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import NavbarCustom from '../../components/NavbarCustom';
 import FooterCustom from '../../components/FooterCustom';
+import { Image } from '@nextui-org/react';
+import Head from 'next/head';
 
 import { DecksTournaments } from '../../components/reportes/DecksTournaments';
 import PolarChartComponent from '../../components/reportes/PolarChartComponent';
@@ -28,10 +30,25 @@ function ReporteTorneos() {
 
   return (
     <>
+          <Head>
+        <title>{torneo?.nombre || 'Título predeterminado'}</title>
+        <meta name="description" content={torneo?.informacion_torneo || 'Descripción predeterminada'} />
+        <meta property="og:title" content={torneo?.nombre || 'Título predeterminado'} />
+        <meta property="og:description" content={torneo?.informacion_torneo || 'Descripción predeterminada'} />
+        <meta property="og:image" content={torneo?.banner || 'URL de la imagen predeterminada'} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://tudominio.com/${torneo?.nombre}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
             <NavbarCustom />
     <div className='container mx-auto' >
+   
 
     <h1 className="text-4xl text-center">{torneo?.nombre}</h1>
+    <div className="flex justify-center items-center">
+  <Image className="w-full md:w-auto" src={torneo?.banner} alt={torneo?.nombre} width={500} height={300} />
+</div>
+
       {torneo ? (
         <div>
         
