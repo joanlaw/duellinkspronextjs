@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -15,62 +15,56 @@ import { useRouter } from 'next/router'; // Paso 1: Importar useRouter
 
 export default function Torneos() {
 
-  const router = useRouter(); // Paso 2: Utilizar el hook
+  const router = useRouter();
 
-    const [leagues, setLeagues] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
+  const [leagues, setLeagues] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const handleTournamentClick = (leagueId) => {
-      router.push(`/leagues/${leagueId}`); // Paso 3: Navegar al URL
+  const handleTournamentClick = (leagueId) => {
+    router.push(`/leagues/${leagueId}`);
   };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://api.duellinks.pro/leagues');
-
-                if (response.data && Array.isArray(response.data.docs)) {
-                    setLeagues(response.data.docs);
-                }
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    const filterLeagues = () => {
-        let filteredLeagues = leagues;
-
-        if (searchTerm) {
-            const lowerCaseSearchTerm = searchTerm.toLowerCase();
-            filteredLeagues = filteredLeagues.filter(league =>
-                league.league_name.toLowerCase().includes(lowerCaseSearchTerm)
-            );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://api.duellinks.pro/leagues');
+        if (response.data && Array.isArray(response.data.docs)) {
+          setLeagues(response.data.docs);
         }
-
-        if (startDate && endDate) {
-            filteredLeagues = filteredLeagues.filter(league => {
-                const leagueStartDate = new Date(league.start_date);
-                return leagueStartDate >= startDate && leagueStartDate <= endDate;
-            });
-        }
-
-        return filteredLeagues;
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
     };
+    fetchData();
+  }, []);
 
-    if (loading) return     <div className="flex gap-4">
+  // Use useMemo to optimize the filter operation
+  const filteredLeagues = useMemo(() => {
+    let filtered = [...leagues];
+    if (searchTerm) {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      filtered = filtered.filter(league =>
+        league.league_name.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+    }
+    if (startDate && endDate) {
+      filtered = filtered.filter(league => {
+        const leagueStartDate = new Date(league.start_date);
+        return leagueStartDate >= startDate && leagueStartDate <= endDate;
+      });
+    }
+    return filtered;
+  }, [leagues, searchTerm, startDate, endDate]);
 
-    <Spinner size="lg" />
-  </div> ;
-    if (error) return <p>Hubo un error al cargar la data: {error.message}</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen"><Spinner size="lg" /></div>;
+  if (error) return <p>Hubo un error al cargar la data: {error.message}</p>;
+
 
     return (
       <>
@@ -114,7 +108,7 @@ export default function Torneos() {
       </Button>
     </div>
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-      {filterLeagues().map((league) => (
+      {filteredLeagues.map((league) => (
         <div key={league?._id} className="max-w-[340px] border rounded-lg p-4">
           <div className="flex justify-between items-center mb-4">
             <div className="flex gap-5">
