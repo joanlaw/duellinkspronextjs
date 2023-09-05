@@ -35,7 +35,17 @@ function ReporteTorneos() {
       {torneo ? (
         <div>
         
-          <PolarChartComponent decks={torneo.decks} />
+          <PolarChartComponent decks={torneo?.decks} />
+
+          <div>
+  <h3 className="text-2xl font-bold mb-4">Información de torneo:</h3>
+  <ul className="list-disc list-inside">
+    <li className="mb-2"><strong>Organizador:</strong> {torneo?.organizador}</li>
+    <li className="mb-2"><strong>Información del Torneo:</strong> {torneo?.informacion_torneo}</li>
+    <li className="mb-2"><strong>Formato del Torneo:</strong> {torneo?.formato_torneo}</li>
+  </ul>
+</div>
+
 
           <DecksTournaments tournamentName={torneo?.nombre} />
 

@@ -9,6 +9,9 @@ const BarChartComponent = ({ decks }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
+  const data = decks.map(deck => deck.cantidad);
+  const total = data.reduce((acc, value) => acc + value, 0); // Calcular el total
+
   useEffect(() => {
     axios.get('https://api.duellinks.pro/arquetipos')
       .then(response => {
@@ -30,8 +33,6 @@ const BarChartComponent = ({ decks }) => {
       chartInstance.current = null; // Establecerlo en null para asegurarse de que se ha destruido
     }
 
-    const total = data.reduce((acc, value) => acc + value, 0); // Calcular el total
-
     chartInstance.current = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -45,14 +46,35 @@ const BarChartComponent = ({ decks }) => {
         }]
       },
       options: {
-        responsive: true
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              callback: function(value) {
+                if (Math.floor(value) === value) {
+                  return value;
+                }
+              }
+            }
+          }
+        
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: `Total: ${total}`
+        }
       }
+    }
     });
-  }, [decks]);
+  }, [decks, total]);
 
   return (
     <div className="chart-container">
       <canvas ref={chartRef} />
+      <div>Total: {total}</div>
     </div>
   );
 };
