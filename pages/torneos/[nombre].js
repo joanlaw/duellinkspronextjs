@@ -37,7 +37,7 @@ function ReporteTorneos() {
         <meta property="og:description" content={torneo?.informacion_torneo || 'Descripción predeterminada'} />
         <meta property="og:image" content={torneo?.banner || 'URL de la imagen predeterminada'} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://tudominio.com/${torneo?.nombre}`} />
+        <meta property="og:url" content={`https://duellinks.pro/${torneo?.nombre}`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
             <NavbarCustom />
