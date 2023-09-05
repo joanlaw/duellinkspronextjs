@@ -101,12 +101,12 @@ function Clusters() {
       {reportes
         .slice(-resultsToShow)
         .reverse()
-        .map(({ nombre, banner_video, _id }) => (
+        .map(({ nombre, banner, _id }) => (
           <div className="col-span-1" key={_id}>
             <Link href={`/torneos/${encodeURIComponent(nombre)}`}>
               <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 ease-in-out animate__animated animate__fadeInUp relative">
                 <img
-                  src={banner_video}
+                  src={banner}
                   alt="a wallpaper"
                   className="w-full h-auto object-cover"
                 />

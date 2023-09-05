@@ -134,7 +134,7 @@ export const DecksTournaments = ({ tournamentName }) => {
                             <Card style={cardStyles}>
                                 <CardBody>
                                     <h2 style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold" }}>
-                                        Deck: {deck.arquetipo}
+                                         {deck.puesto}
                                     </h2>
                                     <h3 style={{ textAlign: "center" }}>Top: {deck.top}</h3>
                                     <div className="">
