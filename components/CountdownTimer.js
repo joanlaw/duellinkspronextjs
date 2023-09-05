@@ -24,23 +24,23 @@ const CountdownTimer = ({ targetDate }) => {
 
     return (
         <div className="countdown-container">
-        <div className="countdown-item">
-          <span className="countdown-number">{timeLeft.days}</span>
-          <p>días</p>
+            <div className="countdown-item">
+                <span className="countdown-number">{timeLeft.days}</span>
+                <p>días</p>
+            </div>
+            <div className="countdown-item">
+                <span className="countdown-number">{timeLeft.hours}</span>
+                <p>horas</p>
+            </div>
+            <div className="countdown-item">
+                <span className="countdown-number">{timeLeft.minutes}</span>
+                <p>minutos</p>
+            </div>
+            <div className="countdown-item">
+                <span className="countdown-number">{timeLeft.seconds}</span>
+                <p>segundos</p>
+            </div>
         </div>
-        <div className="countdown-item">
-          <span className="countdown-number">{timeLeft.hours}</span>
-          <p>horas</p>
-        </div>
-        <div className="countdown-item">
-          <span className="countdown-number">{timeLeft.minutes}</span>
-          <p>minutos</p>
-        </div>
-        <div className="countdown-item">
-          <span className="countdown-number">{timeLeft.seconds}</span>
-          <p>segundos</p>
-        </div>
-      </div>
     );
 }
 
@@ -62,6 +62,17 @@ const calculateTimeLeft = (targetDate) => {
     const now = new Date();
     const difference = +target - +now;
     const total = difference;
+
+    // Si el tiempo total es menor o igual a cero, devolver todo en ceros
+    if (total <= 0) {
+        return {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            total: 0
+        };
+    }
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);

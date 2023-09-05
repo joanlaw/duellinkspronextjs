@@ -206,9 +206,9 @@ export const DecksTournaments = ({ tournamentName }) => {
     <div className="popup" onClick={handleClosePopup}>
         <div className="popup-content" onClick={(event) => event.stopPropagation()}>
             <div className="popup-image">
-                {selectedCard.rareza && (
+          {/*      {selectedCard.rareza && (
                     <img src={rarityUrls[selectedCard.rareza]} className="rareza" alt="" />
-                )}
+                )} */} 
              {/*  {selectedCard.limitacion !== 0 && selectedCard.limitacion <= 4 && (
                     <img src={limitationUrls[selectedCard.limitacion]} alt="" className="limitacion" />
                 )}  */} 

@@ -108,59 +108,65 @@ export default function Torneos() {
       </Button>
     </div>
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-      {filteredLeagues.map((league) => (
-        <div key={league?._id} className="max-w-[340px] border rounded-lg p-4">
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex gap-5">
-              <div className="flex flex-col gap-1 items-start justify-center">
-              <h4 className="text-lg font-semibold text-gray-600 text-center">
-                {league?.league_name}
-              </h4>
-                <h5 className="text-sm text-gray-400">
-                  @{league?.organizer?.username}
-                </h5>
-              </div>
-            </div>
-          </div>
-          <div className="text-sm text-gray-400">
-            {league?.infoTorneo.map((info, index) => (
-              <div key={index}>
-                <p>
-                  <strong>Formato:</strong> {info.format}
-                </p>
-                <p>
-                  <strong>Banlist:</strong> {info.banlist}
-                </p>
-                <p>
-                  <strong>Información de Deck:</strong> {info.deck_info}
-                </p>
-                <p>
-                  <strong>Eliminación:</strong> {info.eliminacion}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="pt-2">
-            <CountdownTimer targetDate={league.start_date} />
-          </div>
-          <div className="flex gap-1 mt-4">
-            <p className="font-semibold text-gray-400 text-sm">
-              {league.players.length}
-            </p>
-            <p className="text-gray-400 text-sm">Inscritos</p>
-          </div>
-          <div className="flex justify-center mt-4">
-            <Button
-              color="primary"
-              variant="solid"
-              onClick={() => handleTournamentClick(league._id)}
-            >
-              Ver Torneo
-            </Button>
-          </div>
-
+    {filteredLeagues.map((league) => (
+  <div key={league?._id} className="relative max-w-[340px] border rounded-lg p-4">
+    {/* Etiqueta para torneo finalizado */}
+    {league.status === 'finalized' && (
+      <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold rounded-tr-md px-2 py-1">
+        Torneo finalizado
+      </div>
+    )}
+    <div className="flex justify-between items-center mb-4">
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-1 items-start justify-center">
+          <h4 className="text-lg font-semibold text-gray-600 text-center">
+            {league?.league_name}
+          </h4>
+          <h5 className="text-sm text-gray-400">
+            @{league?.organizer?.username}
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div className="text-sm text-gray-400">
+      {league?.infoTorneo.map((info, index) => (
+        <div key={index}>
+          <p>
+            <strong>Formato:</strong> {info.format}
+          </p>
+          <p>
+            <strong>Banlist:</strong> {info.banlist}
+          </p>
+          <p>
+            <strong>Información de Deck:</strong> {info.deck_info}
+          </p>
+          <p>
+            <strong>Eliminación:</strong> {info.eliminacion}
+          </p>
         </div>
       ))}
+    </div>
+    <div className="pt-2">
+      <CountdownTimer targetDate={league.start_date} />
+    </div>
+    <div className="flex gap-1 mt-4">
+      <p className="font-semibold text-gray-400 text-sm">
+        {league.players.length}
+      </p>
+      <p className="text-gray-400 text-sm">Inscritos</p>
+    </div>
+    <div className="flex justify-center mt-4">
+      <Button
+        color="primary"
+        variant="solid"
+        onClick={() => handleTournamentClick(league._id)}
+      >
+        Ver Torneo
+      </Button>
+    </div>
+  </div>
+))}
+
     </div>
   </div>
   <FooterCustom />
