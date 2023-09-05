@@ -15,18 +15,27 @@ function ReporteTorneos() {
   const [torneo, setTorneo] = useState(null);
 
   useEffect(() => {
+    console.log("useEffect se está ejecutando con nombre:", nombre);
+    
     if (nombre) {
+      setTorneo(null);
+      console.log("Iniciando solicitud fetch para:", nombre);
+      // Codificar el nombre del torneo antes de usarlo en la URL
+      const encodedNombre = encodeURIComponent(nombre);
       // Realizar la solicitud HTTP para obtener el torneo por su nombre
-      fetch(`https://api.duellinks.pro/torneos/nombre/${nombre}`)
+      fetch(`https://api.duellinks.pro/torneos/nombre/${encodedNombre}`)
         .then((response) => response.json())
-        .then((data) => setTorneo(data))
+        .then((data) => {
+          console.log("Datos recibidos:", data);
+          setTorneo(data);
+        })
         .catch((error) => {
           console.error('Error fetching data:', error);
         });
     }
   }, [nombre]);
 
-  console.log(nombre);
+  console.log("Valor de nombre:", nombre);
 
   return (
     <>

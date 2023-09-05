@@ -12,7 +12,8 @@ export const DecksTournaments = ({ tournamentName }) => {
   
     useEffect(() => {
       if (tournamentName) {
-        axios.get(`https://api.duellinks.pro/torneos/nombre/${tournamentName}`)
+        const encodedTournamentName = encodeURIComponent(tournamentName);
+        axios.get(`https://api.duellinks.pro/torneos/nombre/${encodedTournamentName}`)
           .then(response => {
             const tournamentData = response.data;
             const allDeckIds = [
@@ -25,22 +26,23 @@ export const DecksTournaments = ({ tournamentName }) => {
               tournamentData.top8_3, 
               tournamentData.top8_4,
             ].filter(id => id); // Eliminar null o strings vacíos
-  
+    
             const fetchDecksData = async () => {
               const deckPromises = allDeckIds.map(deckId => 
                 axios.get(`https://api.duellinks.pro/mazos/${deckId}`)
               );
-  
+    
               const decksResponse = await Promise.all(deckPromises);
-  
+    
               setDecksData(decksResponse.map(response => response.data));
             };
-  
+    
             fetchDecksData();
           })
           .catch(error => console.error(error));
       }
     }, [tournamentName]);
+    
   
     useEffect(() => {
       if (decksData.length > 0) {
