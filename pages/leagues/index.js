@@ -68,6 +68,8 @@ export default function Torneos() {
 
     return (
       <>
+ 
+  <div className='flex flex-col min-h-screen'>
   <NavbarCustom />
   <div className="container mx-auto p-4">
     <h1 className="text-4xl font-semibold mb-4">Torneos</h1>
@@ -176,6 +178,8 @@ export default function Torneos() {
     </div>
   </div>
   <FooterCustom />
+  </div>
+
 </>
 
     

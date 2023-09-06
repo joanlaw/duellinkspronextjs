@@ -175,9 +175,10 @@ export default function Cards() {
         />
       </Head>
       <NavbarCustom />
-      <br />
+    <div className="flex flex-col min-h-screen">
       <div className="container mx-auto">
         <div className="">
+          <br />
         <Input
             className='w-full lg:w-1/3'
             type='text'
@@ -229,8 +230,8 @@ export default function Cards() {
           </div>
         )}
       </div>
-      <br />
       <FooterCustom />
+      </div>
     </>
   );
 }
