@@ -97,32 +97,38 @@ function Clusters() {
     Reportes de torneos
   </h2>
   <div className="container mx-auto py-6">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {reportes
-        .slice(-resultsToShow)
-        .reverse()
-        .map(({ nombre, banner, _id }) => (
-          <div className="col-span-1" key={_id}>
-            <Link href={`/torneos/${encodeURIComponent(nombre)}`}>
-              <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 ease-in-out animate__animated animate__fadeInUp relative">
-                <img
-                  src={banner}
-                  alt="a wallpaper"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-75">
-                  <h4 className="text-white font-semibold text-center">{nombre}</h4>
-                </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {reportes
+      .slice(-resultsToShow)
+      .reverse()
+      .map(({ nombre, banner, _id }) => (
+        <div className="col-span-1 relative" key={_id}>
+          <Link href={`/torneos/${encodeURIComponent(nombre)}`}>
+            <div className="flex flex-col items-center justify-center bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300 ease-in-out animate__animated animate__fadeInUp">
+              <img
+                src={banner}
+                alt="a wallpaper"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold px-2 py-1">
+                Torneos
               </div>
-            </Link>
-          </div>
-        ))}
-    </div>
+              <div className="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-75">
+                <h4 className="text-white font-semibold text-center">{nombre}</h4>
+              </div>
+            </div>
+          </Link>
+        </div>
+      ))}
+  </div>
 </div>
 
 
 
-  {resultsToShow < videos?.length && (
+
+
+
+  {resultsToShow < reportes?.length && (
     <div className="text-center mt-6">
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

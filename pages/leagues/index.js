@@ -116,6 +116,12 @@ export default function Torneos() {
         Torneo finalizado
       </div>
     )}
+        {/* Etiqueta para torneo en progreso */}
+        {league.status === 'in_progress' && (
+      <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold rounded-tr-md px-2 py-1">
+        En progreso
+      </div>
+    )}
     <div className="flex justify-between items-center mb-4">
       <div className="flex gap-5">
         <div className="flex flex-col gap-1 items-start justify-center">
