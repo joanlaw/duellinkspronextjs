@@ -4,7 +4,7 @@ import axios from "axios";
 import Head from "next/head.js";
 import NavbarCustom from "../../components/NavbarCustom.js";
 import { SearchIcon } from "../../components/SearchIcon.js";
-import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input} from "@nextui-org/react";
+import {Pagination, Input} from "@nextui-org/react";
 import FooterCustom from "../../components/FooterCustom.js";
 
 export default function Cards() {
@@ -12,8 +12,8 @@ export default function Cards() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(48);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [totalPages, setTotalPages] = useState(1); // New state for the total number of pages
+
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleClosePopup = () => {
@@ -26,36 +26,32 @@ export default function Cards() {
 
   useEffect(() => {
     refreshCardList();
-  }, []);
+  }, [currentPage, search]);
 
   const cardsApi = (url = "https://api.duellinks.pro/cards/") => {
     return {
-      fetchAll: (searchTerm, page, size) =>
+      fetchAll: (searchTerm, page) =>
         axios.get(url, {
           params: {
             search: searchTerm,
             page: page - 1,
-            size: size
           }
         }),
-      create: (newRecord) => axios.post(url, newRecord),
-      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
-      delete: (id) => axios.delete(url + id),
     };
   };
 
   const searcher = (e) => {
     setSearch(e.target.value);
-    setCurrentPage(1); // Reset current page when search changes
-    refreshCardList();
+    setCurrentPage(1); // Reset to the first page when a new search is made
   };
 
   function refreshCardList() {
     setLoading(true);
     cardsApi()
-      .fetchAll(search, currentPage, cardsPerPage)
+      .fetchAll(search, currentPage)
       .then((res) => {
         setCardList(res.data.docs);
+        setTotalPages(res.data.totalPages); // Update the total number of pages
         setLoading(false);
       })
       .catch((err) => {
@@ -64,17 +60,9 @@ export default function Cards() {
       });
   }
 
-  const addOrEdit = (formData, onSuccess) => {
-    cardsApi()
-      .create(formData)
-      .then((res) => {
-        onSuccess();
-        refreshCardList();
-      })
-      .catch((err) => console.log(err));
-  };
 
-  const ImageCard = ({ data }) => (
+
+    const ImageCard = ({ data }) => (
     <div className="listacards">
       <div>
         <img
@@ -129,41 +117,6 @@ export default function Cards() {
     </div>
   );
 
-  const results = !search
-    ? cardList
-    : cardList.filter((data) =>
-        data.nombre.toLowerCase().includes(search.toLowerCase()) ||
-        data.name_english.toLowerCase().includes(search.toLowerCase())
-      );
-  const currentPost = results.slice(
-    (currentPage - 1) * cardsPerPage,
-    currentPage * cardsPerPage
-  );
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const renderPagination = () => {
-    const pageNumbers = [];
-
-    for (let i = 1; i <= Math.ceil(results.length / cardsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-
-    return (
-      <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            className={`pagination-btn ${number === currentPage ? 'active' : ''}`}
-            onClick={() => paginate(number)}
-          >
-            {number}
-          </button>
-        ))}
-      </div>
-    );
-  };
-
 
   return (
     <>
@@ -189,13 +142,23 @@ export default function Cards() {
         />
         </div>
         <div>
-          <p>Cantidad de cartas: {currentPost.length}</p>
+          <p>Cantidad de cartas: {cardList.length}</p>
         </div>
         <div className="listcards ">
-          {currentPost.map((element) => (
+          {cardList.map((element) => (
             <ImageCard key={element._id} data={element} />
           ))}
         </div>
+<div className="text-center mx-auto">
+  <Pagination
+    className="inline-block"
+    isCompact
+    showControls
+    total={totalPages} // Usar el número total de páginas
+    initialPage={1}
+    onChange={(newPage) => setCurrentPage(newPage)}
+  />
+</div>
         {selectedCard && (
           <div className="popup" onClick={handleClosePopup}>
             <div className="popup-content" onClick={(event) => event.stopPropagation()}>
