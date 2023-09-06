@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Divider, CardBody, Spacer } from '@nextui-org/react';
+import CardPopup from './CardPopup';
 
 export const DecksTournaments = ({ tournamentName }) => {
     const [decksData, setDecksData] = useState([]);
@@ -66,8 +67,6 @@ export const DecksTournaments = ({ tournamentName }) => {
                 Promise.all(extraDeckPromises)
               ]);
               
-         //     console.log('Main Deck Response:', mainDeckResponse);
-         //     console.log('Extra Deck Response:', extraDeckResponse);
               
               newCardsData[deck._id] = {
                 mainDeck: mainDeckResponse.map((response, i) => {
@@ -105,19 +104,22 @@ export const DecksTournaments = ({ tournamentName }) => {
   };
 
 
+  const baseUrlRareza = "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106735/iconos%20dlp/"
   const rarityUrls = {
-    ur: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106735/iconos%20dlp/UR_rpfhm2.png",
-    sr: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106742/iconos%20dlp/SR_lwpagj.png",
-    r: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106750/iconos%20dlp/R_btrot4.png",
-    n: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661106746/iconos%20dlp/N_lofrdg.png"
+      ur: baseUrlRareza + "UR_rpfhm2.png",
+      sr: baseUrlRareza + "SR_lwpagj.png",
+      r: baseUrlRareza + "R_btrot4.png",
+      n: baseUrlRareza + "N_lofrdg.png"
   };
-  
+
+  const baseUrlLimitation = "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661107074/iconos%20dlp/"
   const limitationUrls = {
-    1: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661107074/iconos%20dlp/limited-1-dlp_b2mgxg.svg",
-    2: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661107082/iconos%20dlp/limited-2-dlp_yf3ttg.svg",
-    3: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1661107087/iconos%20dlp/limited-3-dlp_aq3dv8.svg",
-    4: "https://res.cloudinary.com/dqofcbeaq/image/upload/v1665724325/iconos%20dlp/prihibidas_itbkvb.svg"
+      1: baseUrlLimitation + "limited-1-dlp_b2mgxg.svg",
+      2: baseUrlLimitation + "limited-2-dlp_yf3ttg.svg",
+      3: baseUrlLimitation + "limited-3-dlp_aq3dv8.svg",
+      4: baseUrlLimitation + "prihibidas_itbkvb.svg"
   };
+
 
   const cardStyles = {
     width: "",
@@ -202,41 +204,8 @@ export const DecksTournaments = ({ tournamentName }) => {
         );
       })}
 
-{selectedCard && (
-    <div className="popup" onClick={handleClosePopup}>
-        <div className="popup-content" onClick={(event) => event.stopPropagation()}>
-            <div className="popup-image">
-          {/*      {selectedCard.rareza && (
-                    <img src={rarityUrls[selectedCard.rareza]} className="rareza" alt="" />
-                )} */} 
-             {/*  {selectedCard.limitacion !== 0 && selectedCard.limitacion <= 4 && (
-                    <img src={limitationUrls[selectedCard.limitacion]} alt="" className="limitacion" />
-                )}  */} 
-                {selectedCard.image && selectedCard.image.secure_url && (
-                    <img src={selectedCard.image.secure_url} alt={selectedCard.nombre} />
-                )}
-            </div>
-            <div className="popup-info">
-                <h2>{selectedCard.nombre}</h2>
-                <p>{selectedCard.descripcion}</p>
-                <p>Tipo: {selectedCard.tipo}</p>
-                <p>Atributo: {selectedCard.atributo}</p>
-                <p>Nivel/Rango: {selectedCard.nivel_rango_link}</p>
-                <p>ATK: {selectedCard.atk}</p>
-                <p>DEF: {selectedCard.def}</p>
-            </div>
-            <button className="close-button" onClick={(event) => { event.preventDefault(); handleClosePopup(); }}>
-                x
-            </button>
-            <a href={`/cards/${selectedCard.name_english}`} className="more-info-button">Más información</a>
-        </div>
-    </div>
-)}
+{selectedCard && <CardPopup selectedCard={selectedCard} handleClosePopup={handleClosePopup} />}
 
-    </div>
-           
-
-    
-  
+    </div>          
   );
 };

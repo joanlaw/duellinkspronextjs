@@ -1,7 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import NavbarCustom from "../../components/NavbarCustom";
-import Footer from "../../components/Footer";
+
+import FooterCustom from "../../components/FooterCustom";
 
 const Cardinfo = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ const Cardinfo = () => {
         </div>
       </div>
     </div>
-    <Footer />
+    <FooterCustom />
     </>
   );
 };

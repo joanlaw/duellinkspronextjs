@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ChatRoom from './ChatRoom';  // Importamos el componente de la sala de chat
-import { useUser } from '../../contexts/UserContext'; // Importa el contexto del usuario
+import ChatRoom from './ChatRoom';
+import { useUser } from '../../contexts/UserContext';
+import { Avatar, Button } from '@nextui-org/react';
 
 const UserMatchupPopup = ({ onClose, leagueId }) => {
-    const { discordId, token } = useUser();  // Usa useUser para obtener discordId y token
+    const { discordId, token } = useUser();
     const [matches, setMatches] = useState([]);
     const [currentRound, setCurrentRound] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -26,38 +27,38 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
             try {
                 const response = await axios.get(`https://api.duellinks.pro/leagues/${leagueId}/rounds/${currentRound}/match`, {
                     headers: {
-                        Authorization: `Bearer ${token}`,  // Incluye el token en las cabeceras
+                        Authorization: `Bearer ${token}`,
                     }
                 });
         
                 const matchesArray = Array.isArray(response.data) ? response.data : [response.data];
                 const playerIds = matchesArray.flatMap(match => [match.player1, match.player2]);
+                
+                // Obtener información de los usuarios y sus avatares
                 const usersResponse = await axios.get(`https://api.duellinks.pro/users?ids=${playerIds.join(',')}`);
                 const usersMap = Object.fromEntries(usersResponse.data.map(user => [user._id, user]));
-        
-                const matchesWithUsernames = matchesArray.map(match => ({
+
+                const matchesWithUsernamesAndAvatars = matchesArray.map(match => ({
                     ...match,
                     player1Username: usersMap[match.player1] ? usersMap[match.player1].username : "",
-                    player2Username: match.player2 && usersMap[match.player2] ? usersMap[match.player2].username : ""
+                    player1Avatar: usersMap[match.player1] ? usersMap[match.player1].avatar : "", // Obtener el enlace del avatar
+                    player2Username: usersMap[match.player2] ? usersMap[match.player2].username : "",
+                    player2Avatar: usersMap[match.player2] ? usersMap[match.player2].avatar : "", // Obtener el enlace del avatar
                 }));
                 
-                setMatches(matchesWithUsernames);
+                setMatches(matchesWithUsernamesAndAvatars);
             } catch (error) {
                 console.error('Error al obtener los emparejamientos:', error);
             } finally {
                 setLoading(false);
             }
         };
-        
-        
 
-        
         fetchCurrentRound();
         if (currentRound) {
             fetchMatches();
         }
-
-    }, [leagueId, discordId, currentRound, token]);  // Agrega token y discordId como dependencias
+    }, [leagueId, discordId, currentRound, token]);
 
     const openChatRoom = (chatRoomId) => {
         setSelectedChatRoom(chatRoomId);
@@ -69,40 +70,40 @@ const UserMatchupPopup = ({ onClose, leagueId }) => {
     }
 
     return (
-<div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
-    <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
-        <h2 className="text-2xl mb-6 text-black">Tus emparejamientos</h2>
-        <ul>
-            {matches.map((match, index) => (
-                <li key={index} className="flex flex-col items-center">
-                    <div className="flex items-center space-x-4 w-full">
-                        <div className="flex-none w-1/3 text-center text-black">
-                            {match.player1Username}
-                        </div>
-                        <div className="flex-none w-1/3 text-center text-black">vs</div>
-                        <div className="flex-none w-1/3 text-center text-black">
-                            {match.player2Username}
-                        </div>
-                    </div>
-                    <div className="flex space-x-2 mt-2">
-                        <button
-                            className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
-                            onClick={() => openChatRoom(match.chatRoom)}
-                        >
-                            Chat
-                        </button>
-                    </div>
-                </li>
-            ))}
-        </ul>
-        <button onClick={onClose} className="text-black">Cerrar</button>
-    </div>
-    {showChat && (
-        <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
-    )}
-</div>
-
-
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
+            <div className="bg-white rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
+                <h2 className="text-2xl mb-6 text-black">Tus emparejamientos</h2>
+                <ul>
+                    {matches.map((match, index) => (
+                        <li key={index} className="flex flex-col items-center">
+                            <div className="flex items-center space-x-4 w-full">
+                                <div className="flex-none w-1/3 text-center text-black">
+                                    <Avatar src={match.player1Avatar} size="lg" /> {/* Mostrar avatar */}
+                                    {match.player1Username}
+                                </div>
+                                <div className="flex-none w-1/3 text-center text-black">vs</div>
+                                <div className="flex-none w-1/3 text-center text-black">
+                                    <Avatar src={match.player2Avatar} size="md" /> {/* Mostrar avatar */}
+                                    {match.player2Username}
+                                </div>
+                            </div>
+                            <div className="flex space-x-2 mt-2">
+                                <button
+                                    className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600`}
+                                    onClick={() => openChatRoom(match.chatRoom)}
+                                >
+                                    Chat
+                                </button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                <Button onClick={onClose} color='danger'>Cerrar</Button>
+            </div>
+            {showChat && (
+                <ChatRoom roomId={selectedChatRoom} onClose={() => setShowChat(false)} />
+            )}
+        </div>
     );
 };
 
