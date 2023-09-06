@@ -8,7 +8,12 @@ import { stateToHTML } from 'draft-js-export-html';
 import { convertFromRaw, EditorState, ContentState } from 'draft-js';
 import CountdownTimer from '../CountdownTimer';
 import PlayerTable from './PlayerTable';
+import format from 'date-fns/format';
+import { es } from 'date-fns/locale';
+
 import Head from 'next/head';
+
+
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
@@ -18,6 +23,15 @@ const Editor = dynamic(
 const TournamentDetails = ({ tournament }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [htmlContent, setHtmlContent] = useState('');
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = format(date, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
+  
+    // Capitalizar la primera letra de cada palabra
+    return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+  
 
   useEffect(() => {
     if (tournament && tournament.reglas) {
@@ -38,14 +52,14 @@ const TournamentDetails = ({ tournament }) => {
     <div className="bg-black text-white min-h-screen">
             <Head>
         <title>{tournament.league_name} - Torneo de Yu-Gi-Oh! Duel Links</title>
-        <meta name="description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta name="description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${formatDate(tournament.start_date)}.`} />
         <meta property="og:title" content={tournament.league_name} />
-        <meta property="og:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta property="og:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${formatDate(tournament.start_date)}.`} />
         <meta property="og:image" content={tournament.image.url} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={tournament.league_name} />
-        <meta name="twitter:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${new Date(tournament.start_date).toLocaleString()}.`} />
+        <meta name="twitter:description" content={`Participa en el torneo ${tournament.league_name}. Comienza el ${formatDate(tournament.start_date)}.`} />
         <meta name="twitter:image" content={tournament.image.url} />
       </Head>
       <NavbarCustom />
@@ -66,6 +80,7 @@ const TournamentDetails = ({ tournament }) => {
                   <p className="mb-1"><strong>Banlist:</strong> {info.banlist}</p>
                   <p className="mb-1"><strong>Información de Deck:</strong> {info.deck_info}</p>
                   <p className="mb-1"><strong>Eliminación:</strong> {info.eliminacion}</p>
+                  <p className="mb-1"><strong>¿Cuándo?</strong> {formatDate(tournament.start_date)}</p>
                   <Spacer y={3} />
                   <TournamentRegistration tournamentId={tournament._id} />
                   <Spacer y={3} />
