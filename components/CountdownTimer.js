@@ -45,7 +45,15 @@ const CountdownTimer = ({ targetDate }) => {
 }
 
 const calculateTimeLeft = (targetDate) => {
+    // Extrae la hora, minuto y segundo del tiempo UTC
+    const timeParts = targetDate.split('T')[1].split('.')[0].split(':');
+    const hour = parseInt(timeParts[0], 10);
+    const minute = parseInt(timeParts[1], 10);
+    const second = parseInt(timeParts[2], 10);
+
+    // Crea una nueva fecha en la zona horaria local pero usando la hora, minuto y segundo de UTC
     const target = new Date(targetDate);
+    target.setHours(hour, minute, second);
 
     // Verificar validez de la fecha
     if (isNaN(target.getTime())) {
@@ -87,5 +95,6 @@ const calculateTimeLeft = (targetDate) => {
         total
     };
 }
+
 
 export default CountdownTimer;

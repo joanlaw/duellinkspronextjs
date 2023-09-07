@@ -8,8 +8,10 @@ import { stateToHTML } from 'draft-js-export-html';
 import { convertFromRaw, EditorState, ContentState } from 'draft-js';
 import CountdownTimer from '../CountdownTimer';
 import PlayerTable from './PlayerTable';
-import format from 'date-fns/format';
+import { utcToZonedTime, format } from 'date-fns-tz';
 import { es } from 'date-fns/locale';
+import { parseISO } from 'date-fns';
+
 
 import Head from 'next/head';
 
@@ -25,12 +27,23 @@ const TournamentDetails = ({ tournament }) => {
   const [htmlContent, setHtmlContent] = useState('');
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const formattedDate = format(date, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
+    // Extrae la hora, minuto y segundo del tiempo UTC
+    const timeParts = dateString.split('T')[1].split('.')[0].split(':');
+    const hour = timeParts[0];
+    const minute = timeParts[1];
+    const second = timeParts[2];
+  
+    // Crea una nueva fecha en la zona horaria local pero usando la hora, minuto y segundo de UTC
+    const localDate = new Date(dateString);
+    localDate.setHours(hour, minute, second);
+  
+    // Formatea la nueva fecha
+    const formattedDate = format(localDate, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
   
     // Capitalizar la primera letra de cada palabra
     return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   }
+  
   
 
   useEffect(() => {

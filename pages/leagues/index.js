@@ -17,13 +17,24 @@ import { es } from 'date-fns/locale';
 
 export default function Torneos() {
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const formattedDate = format(date, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
-
-  // Capitalizar la primera letra de cada palabra
-  return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-}
+  const formatDate = (dateString) => {
+    // Extrae la hora, minuto y segundo del tiempo UTC
+    const timeParts = dateString.split('T')[1].split('.')[0].split(':');
+    const hour = parseInt(timeParts[0], 10);
+    const minute = parseInt(timeParts[1], 10);
+    const second = parseInt(timeParts[2], 10);
+  
+    // Crea una nueva fecha en la zona horaria local pero usando la hora, minuto y segundo de UTC
+    const date = new Date(dateString);
+    date.setHours(hour, minute, second);
+  
+    // Formatea la nueva fecha
+    const formattedDate = format(date, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
+  
+    // Capitalizar la primera letra de cada palabra
+    return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
+  
 
   const router = useRouter();
 
