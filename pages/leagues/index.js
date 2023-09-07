@@ -122,16 +122,22 @@ const formatDate = (dateString) => {
       <div key={league?._id} className="relative max-w-[340px] border p-4">
         {/* Etiqueta para torneo finalizado */}
         {league.status === 'finalized' && (
-          <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold px-2 py-1">
-            Torneo finalizado
-          </div>
-        )}
-            {/* Etiqueta para torneo en progreso */}
-            {league.status === 'in_progress' && (
-          <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold px-2 py-1">
-            En progreso
-          </div>
-        )}
+  <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold px-2 py-1">
+    Torneo finalizado
+  </div>
+)}
+{/* Etiqueta para torneo en progreso */}
+{league.status === 'in_progress' && (
+  <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold px-2 py-1">
+    En progreso
+  </div>
+)}
+{/* Etiqueta para torneo con inscripciones abiertas */}
+{league.status === 'open' && (
+  <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs font-semibold px-2 py-1">
+    Inscripciones abiertas
+  </div>
+)}
         <div className="flex justify-between items-center mb-4">
           <div className="flex gap-5">
             <div className="flex flex-col gap-1 items-start justify-center">
