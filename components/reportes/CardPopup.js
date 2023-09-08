@@ -153,11 +153,14 @@ const CardPopup = ({ selectedCard, handleClosePopup }) => {
         </p>
     )}
 
-{selectedCard.tipo_de_carta === "Link Monster" && (
+{selectedCard.tipo_de_carta === "Link Monster" ? (
     <p>
-        ATK: {selectedCard.atk}
-        {selectedCard.nivel_rango_link ? ` | Link-${selectedCard.nivel_rango_link}` : ''}
+        ATK: {selectedCard.atk} | Link-{selectedCard.nivel_rango_link}
     </p>
+) : (
+    selectedCard.tipo_de_carta && !["Trap Card", "Spell Card"].includes(selectedCard.tipo_de_carta) && (
+        <p>ATK: {selectedCard.atk}</p>
+    )
 )}
 
     {selectedCard.tipo_de_carta && !["Trap Card", "Link Monster", "Spell Card"].includes(selectedCard.tipo_de_carta) && (
