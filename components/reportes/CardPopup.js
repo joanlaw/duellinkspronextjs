@@ -38,7 +38,7 @@ const CardPopup = ({ selectedCard, handleClosePopup }) => {
           </div>
           <div className="popup-info">
             <h2>{selectedCard.nombre}</h2>
-            <p>{selectedCard.descripcion}</p>
+            <p>{selectedCard.descripcion_es}</p>
             <p>Tipo: {selectedCard.tipo}</p>
             <p>Atributo: {selectedCard.atributo}</p>
             <p>Nivel/Rango: {selectedCard.nivel_rango_link}</p>
