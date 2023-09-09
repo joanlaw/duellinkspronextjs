@@ -79,6 +79,29 @@ function ChatRoom({ roomId, onClose }) {
     }
   }
 
+  const handleSendAlert = async () => {
+    try {
+      const alertData = {
+        message: "Tu mensaje de alerta aquí", // puedes personalizar este mensaje
+      };
+  
+      const response = await axios.post(
+        `https://api.duellinks.pro/chat-rooms/${roomId}/alert`,
+        alertData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      console.log("Alerta enviada:", response.data);
+    } catch (error) {
+      console.error("Error al enviar la alerta:", error);
+    }
+  };
+  
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black">
       <div className="bg-gray-900 rounded-lg p-8 w-full md:w-2/3 lg:w-1/2 shadow-lg">
@@ -122,6 +145,7 @@ function ChatRoom({ roomId, onClose }) {
           <Button color="danger" onPress={onClose}>Cerrar</Button>
           <div className="space-x-4">
             <Button color="primary" onPress={handleClipboard}>Pegar Sala</Button>
+            <Button color="warning" onPress={handleSendAlert}>Enviar Alerta</Button>
           </div>
         </div>
       </div>
