@@ -87,12 +87,7 @@ function ChatRoom({ roomId, onClose }) {
   
       const response = await axios.post(
         `https://api.duellinks.pro/chat-rooms/${roomId}/alert`,
-        alertData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        alertData
       );
   
       console.log("Alerta enviada:", response.data);
