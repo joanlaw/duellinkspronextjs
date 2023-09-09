@@ -12,13 +12,14 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
     const [alerts, setAlerts] = useState({});
+    
 
     useEffect(() => {
         const fetchAlerts = async () => {
           const newAlerts = {};
           for (const match of matches) {
             const chatRoomId = match.chatRoom;
-            const response = await fetch(`https://api.duellinks.pro//chat-rooms/${chatRoomId}/alerts`);
+            const response = await fetch(`https://api.duellinks.pro/chat-rooms/${chatRoomId}/alerts`);
             const roomAlerts = await response.json();
             if (roomAlerts && roomAlerts.length > 0) {
               newAlerts[chatRoomId] = roomAlerts;
@@ -100,6 +101,15 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
     const roomAlerts = alerts[match.chatRoom];
     const hasAlerts = roomAlerts && roomAlerts.length > 0;
 
+    const handleAlertClick = () => {
+        // Implementar la lógica para eliminar la alerta
+        setAlerts((prevAlerts) => {
+          const newAlerts = { ...prevAlerts };
+          delete newAlerts[match.chatRoom];
+          return newAlerts;
+        });
+      };
+
         const isByeMatch = !match.player2;
         const [showScorePopup, setShowScorePopup] = useState(false);
     
@@ -129,7 +139,12 @@ function MatchupPopup({ matches: initialMatches = [], onClose, currentRound, lea
                             Chat
                         </button>
                         {hasAlerts && (
-            <span className="text-red-500">¡Alerta!</span>
+            <span
+              className="text-red-500 cursor-pointer"
+              onClick={handleAlertClick}
+            >
+              ¡Alerta!
+            </span>
           )}
                         <button
                             className={`px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600`}
