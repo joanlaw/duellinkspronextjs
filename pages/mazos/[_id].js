@@ -13,10 +13,10 @@ import DeckTableFiltered from '../../components/DeckTableFiltered';
 import CardPopup from '../../components/reportes/CardPopup';
 
 
-const DeckViewer = () => {
+const DeckViewer = ({ initialDeckData }) => {
   const router = useRouter();
   const { _id } = router.query;
-  const [deckData, setDeckData] = useState(null);
+  const [deckData, setDeckData] = useState(initialDeckData);
   const [mainDeckData, setMainDeckData] = useState([]);
   const [extraDeckData, setExtraDeckData] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null); // Estado para la carta seleccionada en el popup
@@ -120,17 +120,17 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
   return (
     <>
 <Head>
-  <title>Deck {deckData ? deckData.arquetipo : 'Cargando...'}</title>
+<title>Deck {deckData ? `${deckData.arquetipo} Top ${deckData.top} del jugador ${deckData.jugador}` : 'Cargando...'}</title>
   <meta
     name="description"
     content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`}
   />
-  {deckData && <link rel="canonical" href={`https://tu-sitio.com/decks/${deckData._id}`} />}
+  {deckData && <link rel="canonical" href={`https://duellinks.pro/mazos/${deckData._id}`} />}
   
   {/* Meta etiquetas para Facebook */}
   <meta property="og:title" content={`Deck ${deckData ? deckData.arquetipo : 'Cargando...'}`} />
   <meta property="og:description" content={`Mira el deck de ${deckData ? deckData.arquetipo : 'Cargando...'} en la comunidad de DuelLinks Pro`} />
-  <meta property="og:url" content={`https://tu-sitio.com/decks/${deckData ? deckData._id : ''}`} />
+  <meta property="og:url" content={`https://duellinks.pro/mazos/${deckData ? deckData._id : ''}`} />
   <meta property="og:image" content="URL_DE_LA_IMAGEN_PARA_COMPARTIR" />
 
   {/* Meta etiquetas para Twitter */}
@@ -236,5 +236,23 @@ const Rarezacard = UrlRareza[Rareza] || RarezaDefault;
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  const { _id } = context.query;
+
+  let deckData = null;
+  try {
+    const res = await axios.get(`https://api.duellinks.pro/mazos/${_id}`);
+    deckData = res.data;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return {
+    props: {
+      initialDeckData: deckData,
+    },
+  };
+}
 
 export default DeckViewer;

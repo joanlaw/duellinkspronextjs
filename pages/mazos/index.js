@@ -6,6 +6,7 @@ import DeckTable from "../../components/CustomTable";
 import { SearchIcon } from "../../components/SearchIcon";
 import { Input, Badge, Button } from "@nextui-org/react";
 import FooterCustom from "../../components/FooterCustom";
+import Head from 'next/head';
 
 
 export default function Index() {
@@ -264,6 +265,16 @@ export default function Index() {
 
   return (
     <div>
+            <Head>
+        <title>Lista de Decks - Duel Links</title>
+        <meta name="description" content="Explora y busca decks en Duel Links. Encuentra tu arquetipo y cartas favoritas." />
+        <meta property="og:title" content="Lista de Decks - Duel Links" />
+        <meta property="og:description" content="Explora y busca decks en Duel Links. Encuentra tu arquetipo y cartas favoritas." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tu-sitio-web.com/ruta-de-la-pagina" />
+        <meta property="og:image" content="https://tu-sitio-web.com/imagen-previa.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <NavbarCustom />
       <div className="container mx-auto px-4 py-6">
   <h2 className="text-4xl font-semibold mb-8">Lista de Decks</h2>

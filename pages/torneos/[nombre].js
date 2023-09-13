@@ -4,21 +4,41 @@ import NavbarCustom from '../../components/NavbarCustom';
 import FooterCustom from '../../components/FooterCustom';
 import { Image } from '@nextui-org/react';
 import Head from 'next/head';
+import axios from 'axios'; // Importar axios si lo vas a utilizar
 
 import { DecksTournaments } from '../../components/reportes/DecksTournaments';
 import PolarChartComponent from '../../components/reportes/PolarChartComponent';
 import { data } from 'autoprefixer';
 
-function ReporteTorneos() {
+export async function getServerSideProps(context) {
+  const { nombre } = context.query;
+  let torneoData = null;
+
+  try {
+    // Codificar el nombre del torneo antes de usarlo en la URL
+    const encodedNombre = encodeURIComponent(nombre);
+    const res = await axios.get(`https://api.duellinks.pro/torneos/nombre/${encodedNombre}`);
+    torneoData = res.data;
+  } catch (error) {
+    console.log('Error al obtener los datos:', error);
+  }
+
+  return {
+    props: {
+      initialTorneoData: torneoData,
+    },
+  };
+}
+
+function ReporteTorneos({ initialTorneoData }) {
   const router = useRouter();
   const { nombre } = router.query;
-  const [torneo, setTorneo] = useState(null);
+  const [torneo, setTorneo] = useState(initialTorneoData);
 
   useEffect(() => {
     console.log("useEffect se está ejecutando con nombre:", nombre);
     
-    if (nombre) {
-      setTorneo(null);
+    if (nombre && !torneo) { // Solo realizar la llamada a la API si 'nombre' está presente y 'torneo' es null
       console.log("Iniciando solicitud fetch para:", nombre);
       // Codificar el nombre del torneo antes de usarlo en la URL
       const encodedNombre = encodeURIComponent(nombre);
@@ -34,6 +54,7 @@ function ReporteTorneos() {
         });
     }
   }, [nombre]);
+
 
   console.log("Valor de nombre:", nombre);
 

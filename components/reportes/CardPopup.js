@@ -78,7 +78,69 @@ const CardPopup = ({ selectedCard, handleClosePopup }) => {
       WATER: baseUrlAtributeMonster +"at-a_bgb8gi.png",
       WIND: baseUrlAtributeMonster +"at-v_tlniay.png"
     }
-  
+
+    //TRADUCCIONES TIPO EFECTO ETC
+
+    const efectType = {
+        "Effect Monster": "Efecto ]",
+        "Flip Effect Monster": " Volteo / Efecto",
+        "Flip Tuner Effect Monster": "",
+        "Gemini Monster": "",
+        "Normal Monster": "Normal ]",
+        "Normal Tuner Monster": "Cantante / Normal ]",
+        "Pendulum Effect Monster": "Péndulo / Efecto ]",
+        "Pendulum Effect Ritual Monster": "",
+        "Pendulum Flip Effect Monster": "",
+        "Pendulum Normal Monster": "",
+        "Pendulum Tuner Effect Monster": "",
+        "Ritual Effect Monster": "",
+        "Ritual Monster": "",
+        "Spell Card": "MÁGICA",
+        "Spirit Monster": "",
+        "Toon Monster": "",
+        "Trap Card": "TRAMPA",
+        "Tuner Monster": "Cantante / Efecto ]",
+        "Union Effect Monster": "",
+        "Fusion Monster": "Fusión / Efecto ]",
+        "Link Monster": " Link / Efecto ]",
+        "Pendulum Effect Fusion Monster": "",
+        "Synchro Monster": "Sincronía / Efecto ]",
+        "Synchro Pendulum Effect Monster": "",
+        "Synchro Tuner Monster": "Sincronía / Cantante /Efecto ]",
+        "XYZ Monster": "XYZ / Efecto ]",
+        "XYZ Pendulum Effect Monster": "XYZ / Péndulo / Efecto ]"
+    }
+
+    const tipoMonsters = {
+        Aqua: "[ Aqua / ",
+        Beast: "[ Bestia / ",
+        "Beast-Warrior": "[ Guerrero-Bestia /",
+        "Creator-God": "",
+        Cyberse: "[ Ciberso /",
+        Dinosaur: "[ Dinosaurio /",
+        "Divine-Beast": "[ Bestia-Divina /",
+        Dragon: "[ Dragón /",
+        Fairy: "[ Hada /",
+        Fiend: "[ Demonio /",
+        Fish: "[ Pez /",
+        Insect: "[ Insecto /",
+        Machine: "[ Máquina / ",
+        Plant: "Planta",
+        Psychic: "[ Psíquico /",
+        Pyro: "[ Piro / ",
+        Reptile: "[ Reptil /",
+        Rock: "[ Roca /",
+        "Sea Serpent": "[ Serpiente Marina /",
+        Spellcaster: "[ Lanzador de conjuros /",
+        Thunder: "[ Trueno /",
+        Warrior: "[ Guerrero / ",
+        "Winged Beast": "",
+        Wyrm: "[ Wyrm / ",
+        Zombie: "[ Zombi / ",
+    }
+
+
+    
     return (
         <div className="popup" onClick={handleClosePopup}>
         <div className="popup-content" onClick={(event) => event.stopPropagation()}>
@@ -96,30 +158,50 @@ const CardPopup = ({ selectedCard, handleClosePopup }) => {
           <div className="popup-info">
     <h2 className="text-xl font-semibold">{selectedCard.nombre}</h2>
     <p className="flex items-center">
-        {selectedCard.tipo_de_carta === "Spell Card" || selectedCard.tipo_de_carta === "Trap Card" ? (
-            <>
-                <img
-                    src={baseUrlAtributoMagicaTrampa + MagicaTrampa[selectedCard.tipo_de_carta]}
-                    alt={selectedCard.tipo_de_carta}
-                    className="w-6 h-6 mr-2"
-                />
-                {selectedCard.tipo_de_carta}
-            </>
-        ) : (
-            selectedCard.tipo_de_carta
-        )}
-        {" " /* Agrega un espacio entre las dos partes del texto */}
-        {selectedCard.tipo in tipoMagicTrap && (
+    {selectedCard.tipo_de_carta === "Spell Card" || selectedCard.tipo_de_carta === "Trap Card" ? (
+        <>
+            {selectedCard.tipo_de_carta}
+            <img
+                src={baseUrlAtributoMagicaTrampa + MagicaTrampa[selectedCard.tipo_de_carta]}
+                alt={selectedCard.tipo_de_carta}
+                className="w-6 h-6 ml-2"
+            />
+        </>
+    ) : (
+        <>
+            {selectedCard.tipo in tipoMonsters ? (
+                <>
+                    {tipoMonsters[selectedCard.tipo]}
+                    {efectType[selectedCard.tipo]}
+                </>
+            ) : (
+                selectedCard.tipo_magica_trampa
+            )}
+        </>
+    )}
+    {" " /* Agrega un espacio entre las dos partes del texto */}
+    {selectedCard.tipo_de_carta === "Spell Card" || selectedCard.tipo_de_carta === "Trap Card" ? (
+        <>
+            {selectedCard.tipo}
             <img
                 src={tipoMagicTrap[selectedCard.tipo]}
                 alt={selectedCard.tipo}
-                className="w-6 h-6 mr-2"
+                className="w-6 h-6 ml-2"
             />
-        )}
-        {" " /* Agrega un espacio entre las dos partes del texto */}
-        {selectedCard.tipo}
-    </p>
-
+        </>
+    ) : (
+        <>
+            {selectedCard.tipo in tipoMonsters ? (
+                <>
+                    
+                    {efectType[selectedCard.tipo_de_carta]}
+                </>
+            ) : (
+                selectedCard.tipo
+            )}
+        </>
+    )}
+</p>
     <p>{selectedCard.descripcion_es}</p>
 
     {selectedCard.tipo_de_carta && !["Trap Card", "Spell Card"].includes(selectedCard.tipo_de_carta) && (

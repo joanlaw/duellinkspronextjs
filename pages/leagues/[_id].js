@@ -1,36 +1,19 @@
-// pages/torneos/[_id].js
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import TournamentDetails from '../../components/torneos/TournamentDetails';
 import Head from 'next/head';
 
-const TournamentPage = ({ _id }) => {
-    const [tournament, setTournament] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchTournament = async () => {
-            try {
-                const response = await axios.get(`https://api.duellinks.pro/leagues/${_id}`);
-                setTournament(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchTournament();
-    }, [_id]);
-
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
-    if (error) {
-        return <p>Error: {error.message}</p>;
+const TournamentPage = ({ tournament }) => {
+    if (!tournament) {
+        return (
+            <>
+                <Head>
+                    <title>Error: Torneo no encontrado</title>
+                    <meta name="description" content="No se pudo obtener información sobre el torneo." />
+                </Head>
+                <p>Error: No se pudo obtener el torneo</p>
+            </>
+        );
     }
 
     return (
@@ -39,13 +22,23 @@ const TournamentPage = ({ _id }) => {
             <TournamentDetails tournament={tournament} />
         </>
     );
-}
+};
 
-// Este función se usa para obtener los parámetros de la ruta actual
+// Esta función se usa para obtener los parámetros de la ruta actual y realizar la llamada a la API
 export async function getServerSideProps(context) {
+    const { _id } = context.params;
+    let tournamentData = null;
+
+    try {
+        const response = await axios.get(`https://api.duellinks.pro/leagues/${_id}`);
+        tournamentData = response.data;
+    } catch (error) {
+        console.error("Error al obtener los datos del torneo:", error);
+    }
+
     return {
         props: {
-            _id: context.params._id, // El ID del torneo que está en la URL
+            tournament: tournamentData,
         },
     };
 }
