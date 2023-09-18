@@ -38,9 +38,9 @@ const FooterCustom = () => {
           <Link href="/politica-de-cookies">
             <i className="hover:underline">Política de Cookies</i>
           </Link>
-          <a href="https://panel.duellinks.pro/" target="_blank" rel="noopener noreferrer">
+      {/*  <a href="https://panel.duellinks.pro/" target="_blank" rel="noopener noreferrer">
             <i className="hover:underline">Panel</i>
-          </a>
+          </a>  */}  
         </div>
         
         {/* Sección de Iconos a la Derecha */}

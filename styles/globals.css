@@ -48,19 +48,19 @@ button {
 
 /* Estilo personalizado para los textos dentro de las tablas */
 table {
-  font-family: var(--font-principal);
+  font-family: var(--font-principal) !important;
   /* Otros estilos personalizados para las tablas */
 }
 
 /* Estilo personalizado para los encabezados de tabla */
 th {
-  font-family: var(--font-principal);
+  font-family: var(--font-principal) !important;
   /* Otros estilos personalizados para los encabezados de tabla */
 }
 
 /* Estilo personalizado para los datos de tabla */
 td {
-  font-family: var(--font-principal);
+  font-family: var(--font-principal) !important;
   /* Otros estilos personalizados para los datos de tabla */
 }
 
@@ -276,4 +276,6 @@ td {
   }
 }
 
-
+.my-custom-image {
+  position: relative !important;
+}

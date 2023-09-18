@@ -6,7 +6,7 @@ import CountdownTimer from '../../components/CountdownTimer';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import NavbarCustom from '../../components/NavbarCustom'
-import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input, Spinner} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Avatar, Button, Input, Spinner, Image} from "@nextui-org/react";
 import { SearchIcon } from '../../components/SearchIcon';
 import FooterCustom from '../../components/FooterCustom';
 import Link from 'next/link';
@@ -88,11 +88,11 @@ export default function Torneos() {
 
 
     return (
-      <div className='flex flex-col min-h-screen'>
-      <NavbarCustom />
-      <div className="container mx-auto p-4">
-        <h1 className="text-4xl font-semibold mb-4">Torneos</h1>
-        <div className="flex flex-col lg:flex-row gap-6 items-center">
+<div className='flex flex-col min-h-screen'>
+  <NavbarCustom />
+  <div className="container mx-auto p-4">
+    <h1 className="text-4xl font-semibold mb-4">Torneos</h1>
+    <div className="flex flex-col lg:flex-row gap-6 items-center">
           <input
             className="w-full lg:w-1/3 border border-gray-300 p-2"
             type="text"
@@ -128,82 +128,81 @@ export default function Torneos() {
             Borrar Filtros
           </Button>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-        {filteredLeagues.map((league) => (
-      <div key={league?._id} className="relative max-w-[340px] border p-4">
-        {/* Etiqueta para torneo finalizado */}
-        {league.status === 'finalized' && (
-  <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold px-2 py-1">
-    Torneo finalizado
-  </div>
-)}
-{/* Etiqueta para torneo en progreso */}
-{league.status === 'in_progress' && (
-  <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold px-2 py-1">
-    En progreso
-  </div>
-)}
-{/* Etiqueta para torneo con inscripciones abiertas */}
-{league.status === 'open' && (
-  <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs font-semibold px-2 py-1">
-    Inscripciones abiertas
-  </div>
-)}
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex gap-5">
-            <div className="flex flex-col gap-1 items-start justify-center">
-              <h4 className="text-lg font-semibold text-gray-600 text-center">
-                {league?.league_name}
-              </h4>
-              <h5 className="text-sm text-gray-400">
-                @{league?.organizer?.username}
-              </h5>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8 justify-items-center">
+      {filteredLeagues.map((league) => (
+        <div key={league?._id} className="relative max-w-[340px] border p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+          {/* Etiquetas con más estilo y z-index */}
+          {league.status === 'finalized' && (
+            <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-semibold px-2 py-1 shadow-md z-10">
+              Torneo finalizado
+            </div>
+          )}
+          {league.status === 'in_progress' && (
+            <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold px-2 py-1 shadow-md z-10">
+              En progreso
+            </div>
+          )}
+          {league.status === 'open' && (
+            <div className="absolute top-0 right-0 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 shadow-md z-10">
+              Inscripciones abiertas
+            </div>
+          )}
+       {/*  
+            <Image
+              width="100%"
+              height="160px"
+              alt="Tournament Image"
+              src={league?.image?.url}
+              className="mb-4"
+            />
+ */}
+          {/* Resto de tu código */}
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex gap-5">
+              <div className="flex flex-col gap-1 items-start justify-center">
+                <h4 className="text-lg font-semibold text-gray-600 text-center">
+                  {league?.league_name}
+                </h4>
+                <h5 className="text-sm text-gray-400">
+                  @{league?.organizer?.username}
+                </h5>
+              </div>
             </div>
           </div>
+          <div className="text-sm text-gray-400">
+            {league?.infoTorneo.map((info, index) => (
+              <div key={index}>
+                <p><strong>Formato:</strong> {info.format}</p>
+                <p><strong>Banlist:</strong> {info.banlist}</p>
+                <p><strong>Información de Deck:</strong> {info.deck_info}</p>
+                <p><strong>Eliminación:</strong> {info.eliminacion}</p>
+              </div>
+            ))}
+          </div>
+          <div className="pt-2">
+            <CountdownTimer targetDate={league.start_date} />
+          </div>
+          <div className="pt-2 text-center">
+            {formatDate(league.start_date)}
+          </div>
+          <div className="flex gap-1 mt-4">
+            <p className="font-semibold text-gray-400 text-sm">
+              {league.players.length}
+            </p>
+            <p className="text-gray-400 text-sm">Inscritos</p>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Button
+              color="primary"
+              variant="solid"
+              onClick={() => handleTournamentClick(league._id)}
+            >
+              Ir a detalles del torneo
+            </Button>
+          </div>
         </div>
-        <div className="text-sm text-gray-400">
-          {league?.infoTorneo.map((info, index) => (
-            <div key={index}>
-              <p>
-                <strong>Formato:</strong> {info.format}
-              </p>
-              <p>
-                <strong>Banlist:</strong> {info.banlist}
-              </p>
-              <p>
-                <strong>Información de Deck:</strong> {info.deck_info}
-              </p>
-              <p>
-                <strong>Eliminación:</strong> {info.eliminacion}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="pt-2">
-          <CountdownTimer targetDate={league.start_date} />
-        </div>
-        <div className="pt-2 text-center">
-          {formatDate(league.start_date)}
-        </div>
-        <div className="flex gap-1 mt-4">
-          <p className="font-semibold text-gray-400 text-sm">
-            {league.players.length}
-          </p>
-          <p className="text-gray-400 text-sm">Inscritos</p>
-        </div>
-        <div className="flex justify-center mt-4">
-          <Button
-            color="primary"
-            variant="solid"
-            onClick={() => handleTournamentClick(league._id)}
-          >
-            Ver Torneo
-          </Button>
-        </div>
-      </div>
-    ))}
-    
-        </div>
+      ))}
+    </div>
       </div>
       <FooterCustom />
     </div>

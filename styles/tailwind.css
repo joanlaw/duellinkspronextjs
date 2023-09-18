@@ -5,6 +5,6 @@
 
 /* Agrega tus estilos personalizados aquí si es necesario */
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand' !important;
   }
 /**/

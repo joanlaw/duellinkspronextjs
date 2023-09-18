@@ -35,7 +35,7 @@ export default function Cards() {
         axios.get(url, {
           params: {
             search: searchTerm,
-            page: page - 1,
+            page: page,
           }
         }),
     };

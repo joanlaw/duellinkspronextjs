@@ -1,0 +1,70 @@
+[
+    {
+      "_id": "1",
+      "arquetipo": "Tenyi",
+      "tier": 1,
+      "url": "/mazos/6507c4e03eb1172b399cb4b9"
+    },
+    {
+      "_id": "2",
+      "arquetipo": "Destiny Hero",
+      "tier": 1,
+      "url": "/mazos/64fe8f267a9daa5ec4153bc7"
+    },
+    {
+        "_id": "3",
+        "arquetipo": "Rokket",
+        "tier": 2,
+        "url": "/mazos/64fffe4d7a9daa5ec4154d22"
+      },
+      {
+        "_id": "4",
+        "arquetipo": "Orcust",
+        "tier": 2,
+        "url": "/mazos/64f6cbaf8a282a88368e5b48"
+      },
+      {
+        "_id": "5",
+        "arquetipo": "Black Luster Soldier",
+        "tier": 3,
+        "url": "/mazos/65089cb63eb1172b399e2df6"
+      },
+      {
+        "_id": "6",
+        "arquetipo": "Trickstar",
+        "tier": 3,
+        "url": "/mazos/64f6745d8a282a88368e3325"
+      },
+      {
+        "_id": "7",
+        "arquetipo": "Gouki",
+        "tier": 4,
+        "url": "/mazos/64f671118a282a88368e2ff4"
+      },
+      {
+        "_id": "8",
+        "arquetipo": "Infinitrack",
+        "tier": 4,
+        "url": "/mazos/65066b143eb1172b3997caa2"
+      },
+      {
+        "_id": "9",
+        "arquetipo": "Odd-Eyes",
+        "tier": 3,
+        "url": "/mazos/6503b49d0f201bf5790f531d"
+      },
+      {
+        "_id": "10",
+        "arquetipo": "Armed Dragon",
+        "tier": 4,
+        "url": "/mazos/64ffff4f7a9daa5ec4154ec4"
+      },
+      {
+        "_id": "11",
+        "arquetipo": "Crusadia",
+        "tier": 4,
+        "url": "/mazos/650858593eb1172b399d6b58"
+      }
+
+  ]
+  

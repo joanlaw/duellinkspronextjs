@@ -97,6 +97,11 @@
               Cartas
             </Link>
           </NavbarItem>
+         {/* <NavbarItem>
+          <Link href="/deck-calculator">
+              Calculadora DLP
+            </Link>
+          </NavbarItem> */}   
         </NavbarContent>
 
         <NavbarContent as="div" className="items-center" justify="end">

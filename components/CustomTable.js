@@ -19,6 +19,9 @@ const DeckTable = ({ data, archetypes, resultsToShow }) => {
   // Número de filas por página, que se basa en resultsToShow
   const rowsPerPage = resultsToShow; 
 
+  // Ordena los datos por createdAt en orden descendente (del más nuevo al más viejo)
+  data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   // Calcula el número total de páginas
   const total = Math.ceil(data.length / rowsPerPage);
 
