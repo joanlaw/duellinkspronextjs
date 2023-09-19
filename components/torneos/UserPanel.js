@@ -43,7 +43,7 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
         <strong>Tutorial para torneos</strong>
       </p>
       <div className="mt-2 w-full">
-        <YouTubeVideo videoId="RManmwMRt4c" />
+        <YouTubeVideo videoId="0H3ptUETR0k" />
       </div>
     </div>
 
