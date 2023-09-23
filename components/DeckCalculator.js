@@ -34,17 +34,24 @@ function DeckCalculator() {
         refreshCardList();
     }, [currentPage, search]);
 
-    const cardsApi = (url = "https://api.duellinks.pro/cards/") => {
-        return {
-            fetchAll: (searchTerm, page) =>
-                axios.get(url, {
-                    params: {
-                        search: searchTerm,
-                        page: page,
-                    }
-                }),
-        };
+    const cardsApi = (baseURL = "https://api.duellinks.pro/") => {
+    return {
+        fetchAll: (searchTerm, page) =>
+            axios.get(`${baseURL}cards`, {
+                params: {
+                    search: searchTerm,
+                    page: page,
+                }
+            }),
+        fetchFiltered: (searchTerm, page) =>
+            axios.get(`${baseURL}filteredCards`, {
+                params: {
+                    search: searchTerm,
+                    page: page,
+                }
+            }),
     };
+};
 
     const searcher = (e) => {
         setSearch(e.target.value);
@@ -53,15 +60,14 @@ function DeckCalculator() {
 
     function refreshCardList() {
         cardsApi()
-            .fetchAll(search, currentPage)
-            .then((res) => {
-                const filteredCards = res.data.docs.filter(card => card.rareza);
-                setCardList(filteredCards);
-                setTotalPages(res.data.totalPages);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        .fetchFiltered(search, currentPage)
+        .then((res) => {
+            setCardList(res.data.docs);
+            setTotalPages(res.data.totalPages);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
     
 
