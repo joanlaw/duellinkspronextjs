@@ -3,6 +3,21 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* En tu archivo de estilos CSS */
+/* Estilo predeterminado para el encabezado */
+header {
+  max-width: 80vw !important; /* El ancho máximo es el 80% del ancho de la ventana gráfica */
+  margin: 0 auto; /* Para centrar horizontalmente */
+}
+
+/* Media query para pantallas móviles */
+@media (max-width: 768px) {
+  header {
+    max-width: 100vw !important; /* Ancho del 100% del ancho de la ventana gráfica en dispositivos móviles */
+  }
+}
+
+
 
 :root {
   --font-principal: 'Quicksand', sans-serif;
@@ -278,4 +293,15 @@ td {
 
 .my-custom-image {
   position: relative !important;
+}
+
+
+/*ALERTAS DE ERROR */
+
+.floating-alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }

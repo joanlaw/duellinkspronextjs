@@ -30,9 +30,37 @@ function DeckCalculator() {
         // Estado para mantener el costo total del deck
     const [totalCost, setTotalCost] = useState(0);
 
+    const [allCards, setAllCards] = useState([]); // Todos los datos obtenidos de la API
+    const [filteredCards, setFilteredCards] = useState([]); // Datos después de aplicar el filtro
+
+    const itemsPerPage = 50; // Cantidad de items por página
+
     useEffect(() => {
-        refreshCardList();
-    }, [currentPage, search]);
+        let fetchedCards = [];
+        const fetchAllCards = async (page = 1) => {
+            try {
+                const res = await cardsApi().fetchAll(search, page);
+                fetchedCards = [...fetchedCards, ...res.data.docs];
+                if (page < res.data.totalPages) {
+                    await fetchAllCards(page + 1);
+                } else {
+                    setAllCards(fetchedCards);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        setCurrentPage(1);
+        fetchAllCards();
+    }, [search]);
+    
+
+    useEffect(() => {
+        const filtered = allCards.filter(card => card.rareza);
+        setFilteredCards(filtered);
+    }, [allCards]);
+
+    
 
     const cardsApi = (url = "https://api.duellinks.pro/cards/") => {
         return {
@@ -55,13 +83,15 @@ function DeckCalculator() {
         cardsApi()
             .fetchAll(search, currentPage)
             .then((res) => {
-                setCardList(res.data.docs);
+                const filteredCards = res.data.docs.filter(card => card.rareza);
+                setCardList(filteredCards);
                 setTotalPages(res.data.totalPages);
             })
             .catch((err) => {
                 console.log(err);
             });
     }
+    
 
     const ImageCard = ({ data, onClick }) => (
         <div className="listacards" onClick={onClick}>
@@ -140,13 +170,19 @@ const fetchTotalCost = async () => {
 
 useEffect(() => {
     fetchTotalCost();
-}, [mainDeck, extraDeck]);  
+}, [mainDeck, extraDeck]); 
+
+// Calcula qué cartas mostrar basándose en la paginación del cliente
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = filteredCards.slice(indexOfFirstItem, indexOfLastItem);
      
 
   return (
 
     <div className='container-grids'>
       {/* Primer contenedor */}
+      
       <div className="box-grid-creator">
         <div className="deck">
           <div className="info-grid">
@@ -163,23 +199,21 @@ useEffect(() => {
                     </div>
                     <br />
           <div className="deck-grid-creator">
-          {cardList.map((element) => (
-                            <ImageCard 
-                                key={element._id} 
-                                data={element}
-                                onClick={() => onClick(element)} // Aquí se pasa la función onClick como prop
-                            />
-                        ))}
-                    </div>
+          {currentItems.map((element) => (
+                <ImageCard 
+                    key={element._id} 
+                    data={element}
+                    onClick={() => onClick(element)}
+                />
+            ))}
+</div>
+
                     <div className="text-center mx-auto">
-                        <Pagination
-                            className="inline-block"
-                            isCompact
-                            showControls
-                            total={totalPages}
-                            initialPage={1}
-                            onChange={(newPage) => setCurrentPage(newPage)}
-                        />
+                    <Pagination
+                total={Math.ceil(filteredCards.length / itemsPerPage)}
+                current={currentPage}
+                onChange={(page) => setCurrentPage(page)}
+            />
                     </div>
           {/* Grid para el extra deck */}
 
@@ -187,15 +221,15 @@ useEffect(() => {
       </div>
 
       {/* Segundo contenedor */}
-      
-      <div className="box-grid2-creator">
+  
+      <div className="box-grid-creator">
         <div className="deck">
           <div className="info-grid">
             {/* Contenido de la información */}
           </div>
           {/* Grid para el main deck */}
           <div>Costo total del Deck: {totalCost} Gemas</div>
-          <div className="deck-grid2">
+          <div className="deck-grid-creator">
                         {mainDeck.map((carta, index) => (
                             <ImageCard 
                                 key={index} 
@@ -205,6 +239,7 @@ useEffect(() => {
                         ))}
                     </div>
           {/* Grid para el extra deck */}
+          <span>Extra deck</span>
           <div className="extra-grid2">
                         {extraDeck.map((carta, index) => (
                             <ImageCard 
@@ -217,6 +252,7 @@ useEffect(() => {
                     
         </div>
       </div>
+      
     </div>
 
   )

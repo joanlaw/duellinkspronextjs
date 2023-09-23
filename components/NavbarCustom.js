@@ -29,7 +29,9 @@
 
 
     return (
-      <Navbar isBordered className="">
+      
+      <Navbar isBordered >
+          
         <NavbarContent className="sm:hidden" justify="start">
           <NavbarMenuToggle
             aria-label="Open Menu"
@@ -70,11 +72,11 @@
           </NavbarItem>
         </NavbarMenu>
 
-        <NavbarContent className="hidden sm:flex flex-grow gap-4 justify-between">
-          <NavbarBrand className="mr-4">
+        <NavbarContent className="hidden sm:flex flex-grow gap-4 justify-between items-center" justify="start">
+          <NavbarBrand >
             <AcmeLogo />
             <Link href="/">
-              <p className="font-bold text-inherit">DUEL LINKS PRO</p>
+            <p className="font-bold text-inherit" style={{ fontSize: "1.2rem" }}> DUEL LINKS PRO</p>  
             </Link>
           </NavbarBrand>
           <NavbarItem>
@@ -97,12 +99,18 @@
               Cartas
             </Link>
           </NavbarItem>
-         {/* <NavbarItem>
+        <NavbarItem>
           <Link href="/deck-calculator">
               Calculadora DLP
             </Link>
-          </NavbarItem> */}   
+          </NavbarItem>
+          <NavbarItem>
+          <Link href="/clanes">
+              Clanes
+            </Link>
+          </NavbarItem>     
         </NavbarContent>
+     
 
         <NavbarContent as="div" className="items-center" justify="end">
         <Input
@@ -112,7 +120,7 @@
               input: "text-small",
               inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
             }}
-            placeholder="Type to search..."
+            placeholder=""
             size="sm"
             startContent={<SearchIcon size={18} />}
             type="search"
@@ -165,8 +173,8 @@
                 </DropdownItem>
 
                 <DropdownItem key="analytics">
-                  <Link href="/#">
-                    <p>Clan</p>
+                  <Link href="/crear-clan">
+                    <p>Administrador de clan</p>
                   </Link>
                 </DropdownItem>
 
@@ -204,5 +212,6 @@
           </Dropdown>
         </NavbarContent>
       </Navbar>
+
     );
   }

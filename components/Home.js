@@ -19,12 +19,15 @@ export default function Home(){
 
 
     return(
+      <>
+      <NavbarCustom />
       <div className='flex flex-col min-h-screen'>
-            <NavbarCustom />
+            
 
         <Clusters /> 
        
         <FooterCustom />
       </div>
+      </>
     )
 }

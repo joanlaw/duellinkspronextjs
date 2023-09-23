@@ -150,6 +150,7 @@ export default function Cards() {
             <ImageCard key={element._id} data={element} />
           ))}
         </div>
+        <br />
 <div className="text-center mx-auto">
   <Pagination
     className="inline-block"

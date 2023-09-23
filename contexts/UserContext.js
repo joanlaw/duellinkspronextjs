@@ -8,6 +8,7 @@ export const UserProvider = ({ children }) => {
   const [discordId, setDiscordId] = useState(null); // Asumiendo que discordId es lo mismo que username
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
+  const [userId, setUserId] = useState(null); // Añadir esta línea para el _id del usuario
 
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export const UserProvider = ({ children }) => {
         setAuthenticated(data.authenticated);
         setDiscordId(data.discordId); // 
         setUsername(data.username);  // Añade esta línea
+        setUserId(data.userId);  // Añadir esta línea para actualizar el _id del usuario
       })
       .catch((error) => {
         localStorage.removeItem("token");
@@ -58,8 +60,10 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("token", token);
         setToken(token);
         console.log("Usuario autenticado");
+        window.location.reload();  // Recargar la página
       }
     };
+    
 
     window.addEventListener('message', onMessage, false);
 
@@ -72,7 +76,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-<UserContext.Provider value={{ userImage, authenticated, discordId, username, handleLogin, token }}>
+<UserContext.Provider value={{ userImage, authenticated, discordId, username, handleLogin, token, userId  }}>
     {children}
 </UserContext.Provider>
 
