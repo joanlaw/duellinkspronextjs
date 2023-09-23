@@ -54,7 +54,15 @@ export default function Torneos() {
       try {
         const response = await axios.get('https://api.duellinks.pro/leagues');
         if (response.data && Array.isArray(response.data.docs)) {
-          setLeagues(response.data.docs);
+          const sortedLeagues = response.data.docs.sort((a, b) => {
+            // Convertir las fechas de inicio a objetos Date para compararlas
+            const startDateA = new Date(a.start_date);
+            const startDateB = new Date(b.start_date);
+            
+            // Retorna 1 si la fechaA es menor que la fechaB, -1 si la fechaA es mayor que la fechaB, y 0 si son iguales
+            return startDateA < startDateB ? 1 : startDateA > startDateB ? -1 : 0;
+          });
+          setLeagues(sortedLeagues);
         }
       } catch (error) {
         setError(error);
@@ -63,7 +71,9 @@ export default function Torneos() {
       }
     };
     fetchData();
-  }, []);
+}, []);
+
+
 
   // Use useMemo to optimize the filter operation
   const filteredLeagues = useMemo(() => {
