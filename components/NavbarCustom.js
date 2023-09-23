@@ -70,6 +70,16 @@
               Cartas
             </Link>
           </NavbarItem>
+          <NavbarItem>
+          <Link href="/deck-calculator">
+              Calculadora DLP
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+          <Link href="/clanes">
+              Clanes
+            </Link>
+          </NavbarItem>
         </NavbarMenu>
 
         <NavbarContent className="hidden sm:flex flex-grow gap-4 justify-between items-center" justify="start">
