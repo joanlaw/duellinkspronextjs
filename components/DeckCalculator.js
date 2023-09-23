@@ -30,37 +30,9 @@ function DeckCalculator() {
         // Estado para mantener el costo total del deck
     const [totalCost, setTotalCost] = useState(0);
 
-    const [allCards, setAllCards] = useState([]); // Todos los datos obtenidos de la API
-    const [filteredCards, setFilteredCards] = useState([]); // Datos después de aplicar el filtro
-
-    const itemsPerPage = 50; // Cantidad de items por página
-
     useEffect(() => {
-        let fetchedCards = [];
-        const fetchAllCards = async (page = 1) => {
-            try {
-                const res = await cardsApi().fetchAll(search, page);
-                fetchedCards = [...fetchedCards, ...res.data.docs];
-                if (page < res.data.totalPages) {
-                    await fetchAllCards(page + 1);
-                } else {
-                    setAllCards(fetchedCards);
-                }
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        setCurrentPage(1);
-        fetchAllCards();
-    }, [search]);
-    
-
-    useEffect(() => {
-        const filtered = allCards.filter(card => card.rareza);
-        setFilteredCards(filtered);
-    }, [allCards]);
-
-    
+        refreshCardList();
+    }, [currentPage, search]);
 
     const cardsApi = (url = "https://api.duellinks.pro/cards/") => {
         return {
@@ -171,11 +143,6 @@ const fetchTotalCost = async () => {
 useEffect(() => {
     fetchTotalCost();
 }, [mainDeck, extraDeck]); 
-
-// Calcula qué cartas mostrar basándose en la paginación del cliente
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = filteredCards.slice(indexOfFirstItem, indexOfLastItem);
      
 
   return (
@@ -199,21 +166,25 @@ const currentItems = filteredCards.slice(indexOfFirstItem, indexOfLastItem);
                     </div>
                     <br />
           <div className="deck-grid-creator">
-          {currentItems.map((element) => (
-                <ImageCard 
-                    key={element._id} 
-                    data={element}
-                    onClick={() => onClick(element)}
-                />
-            ))}
+    {cardList.map((element) => (
+
+        <ImageCard 
+            key={element._id} 
+            data={element}
+            onClick={() => onClick(element)}
+        />
+    ))}
 </div>
 
                     <div className="text-center mx-auto">
-                    <Pagination
-                total={Math.ceil(filteredCards.length / itemsPerPage)}
-                current={currentPage}
-                onChange={(page) => setCurrentPage(page)}
-            />
+                        <Pagination
+                            className="inline-block"
+                            isCompact
+                            showControls
+                            total={totalPages}
+                            initialPage={1}
+                            onChange={(newPage) => setCurrentPage(newPage)}
+                        />
                     </div>
           {/* Grid para el extra deck */}
 
