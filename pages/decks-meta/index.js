@@ -20,13 +20,6 @@ export default function index() {
     </Head>
     <div className="flex flex-col min-h-screen">
     <NavbarCustom />
-    
-    <div className="container mx-auto my-4 p-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-700">
-  <p className="font-medium">
-    <i className="fas fa-info-circle mr-2"></i>
-    Actualmente hubo una Ban List en el juego por lo que esta Tier List no es válida, se está a la espera de los resultados de los torneos para actualizarla.
-  </p>
-</div>
     <div className='container mx-auto'>
     <LocalDeckButtons />
         <h2 className="text-2xl font-bold mb-4">¿Qué es un Deck Meta en Yu-Gi-Oh?</h2>
