@@ -4,7 +4,7 @@ import moment from "moment";
 import NavbarCustom from "../../components/NavbarCustom";
 import DeckTable from "../../components/CustomTable";
 import { SearchIcon } from "../../components/SearchIcon";
-import { Input, Badge, Button } from "@nextui-org/react";
+import { Input, Badge, Button, Select, SelectItem  } from "@nextui-org/react";
 import FooterCustom from "../../components/FooterCustom";
 import Head from 'next/head';
 
@@ -277,63 +277,43 @@ export default function Index() {
       </Head>
       <NavbarCustom />
       <div className="container mx-auto px-4 py-6">
-  <h2 className="text-4xl font-semibold mb-8">Lista de Decks</h2>
-  <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-end mb-4">
-    <div className="relative w-full md:w-1/2 lg:w-1/3">
-      <label htmlFor="createdAt" className="block text-sm font-medium mb-1">
-        Fecha
-      </label>
-    <select
-      name="createdAt"
-      id="createdAt"
-      defaultValue="ultimas8semanas"
-      onChange={handleFiltroChange}
-      className="block w-full px-4 py-2 border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-    >
-          <option value="">Todos los tiempos</option>
-          <option value="ultimodia">{`Hoy (${moment().format(
-            "DD/MM/YYYY"
-          )})`}</option>
-          <option value="ultimos7dias">{`Últimos 7 días (${moment()
-            .subtract(7, "days")
-            .format("DD/MM/YYYY")} - ${moment().format(
-            "DD/MM/YYYY"
-          )})`}</option>
-          <option value="ultimas2semanas">{`Últimas 2 semanas (${moment()
-            .subtract(14, "days")
-            .format("DD/MM/YYYY")} - ${moment().format(
-            "DD/MM/YYYY"
-          )})`}</option>
-          <option value="ultimas4semanas">{`Últimas 4 semanas (${moment()
-            .subtract(28, "days")
-            .format("DD/MM/YYYY")} - ${moment().format(
-            "DD/MM/YYYY"
-          )})`}</option>
-          <option value="ultimas8semanas">{`Últimas 8 semanas (${moment()
-            .subtract(56, "days")
-            .format("DD/MM/YYYY")} - ${moment().format(
-            "DD/MM/YYYY"
-          )})`}</option>
-        </select>
+        <h2 className="text-4xl font-semibold mb-8">Lista de Decks</h2>
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-end mb-4">
+          <div className="relative w-full md:w-1/2 lg:w-1/3">
+            <label htmlFor="createdAt" className="block text-sm font-medium mb-1">
+              Fecha
+            </label>
+    {/* Se ha reemplazado el elemento select estándar con el componente Select de NextUI */}
+    <Select
+              name="createdAt"
+              onChange={handleFiltroChange}
+              defaultValue="ultimas8semanas"
+              className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            >
+              <SelectItem value="">Todos los tiempos</SelectItem>
+              <SelectItem value="ultimodia">{`Hoy (${moment().format("DD/MM/YYYY")})`}</SelectItem>
+              <SelectItem value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
+              <SelectItem value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
+              <SelectItem value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
+              <SelectItem value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
+            </Select>
         </div>
         <div className="relative w-full md:w-1/2 lg:w-1/3">
-      <label htmlFor="top" className="block text-sm font-medium mb-1">
-        Top
-      </label>
-      <select
-        className="block w-full px-4 py-2 border rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-        type="text"
-        name="top"
-        id="top"
-        value={filtro.top}
-        onChange={handleFiltroChange}
-      >
-          <option value=""></option>
-          <option value="Rey de duelos">Rey de duelos</option>
-          <option value="Ensalada">Ensalada</option>
-          <option value="Fun">Fun</option>
-          <option value="Farmeo">Farmeo</option>
-        </select>
+            <label htmlFor="top" className="block text-sm font-medium mb-1">
+              Top
+            </label>
+      <Select
+              name="top"
+              onChange={handleFiltroChange}
+              value={filtro.top}
+              className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            >
+              <SelectItem value=""></SelectItem>
+              <SelectItem value="Rey de duelos">Rey de duelos</SelectItem>
+              <SelectItem value="Ensalada">Ensalada</SelectItem>
+              <SelectItem value="Fun">Fun</SelectItem>
+              <SelectItem value="Farmeo">Farmeo</SelectItem>
+            </Select>
       </div>
       </div>
 </div>
