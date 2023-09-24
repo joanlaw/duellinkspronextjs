@@ -15,8 +15,13 @@ const TournamentRegistration = ({ tournamentId }) => {
   const [registrationClicked, setRegistrationClicked] = useState(false);
 
   // Manejador de eventos para el botón de inscripción
-  const handleRegistrationClick = async () => {
-    setRegistrationClicked(true); // Marcar que se hizo clic en el botón de inscripción
+  // Manejador de eventos para el botón de inscripción
+  const handleRegistrationClick = () => {
+    if (!authenticated) {
+      handleLogin(); // Si el usuario no está autenticado, abre la ventana de login
+      return; // Sal del método para no proceder con la inscripción
+    }
+    setRegistrationClicked(true); // Si el usuario está autenticado, procede con la inscripción
   };
 
   useEffect(() => {
