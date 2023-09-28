@@ -71,6 +71,11 @@
             </Link>
           </NavbarItem>
           <NavbarItem>
+            <Link href="/rushes">
+              Rush
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
           <Link href="/deck-calculator">
               Calculadora DLP
             </Link>
@@ -107,6 +112,11 @@
           <NavbarItem>
             <Link href="/cards">
               Cartas
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="/rushes">
+              Rush
             </Link>
           </NavbarItem>
         <NavbarItem>
