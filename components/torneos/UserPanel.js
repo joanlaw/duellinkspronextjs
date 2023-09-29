@@ -1,11 +1,28 @@
 import React from 'react';
-import { Avatar, Card, Textarea, Badge, Button } from '@nextui-org/react';
+import { Avatar, Card, Textarea, Badge, Button, Tooltip } from '@nextui-org/react';
 import NavbarCustom from "../NavbarCustom"
 import FooterCustom from "../FooterCustom"
 import UserDecks from './UserDecks';
 import YouTubeVideo from './YouTubeVideo ';
+import { useUser } from '../../contexts/UserContext'; // Asegúrate de tener el path correcto
 
-const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
+const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
+
+  const { userId } = useUser(); // Accede al userId desde el contexto.
+
+  console.log('UserPanel userId:', userId); // Log the current userId in UserPanel
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(userId)
+      .then(() => {
+        // Puedes mostrar una notificación o un mensaje para informar al usuario que el texto ha sido copiado
+        console.log('Text copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Could not copy text: ', err);
+      });
+  };
+
   return (
     <>
 <div className="flex flex-col min-h-screen">
@@ -25,15 +42,24 @@ const UserPanel = ({ username, avatar, puntos, handleLogout  }) => {
       <p className="text-white text-center lg:text-left">
         <strong>Puntos:</strong> {puntos}
       </p>
-      <p className="text-white text-center lg:text-left">
+  {/*    <p className="text-white text-center lg:text-left">
         <strong>$: 0</strong>
-      </p>
-      <p className="text-white text-center lg:text-left">
+      </p>  */}
+            <p className="text-white text-center lg:text-left">
         <strong>Torneos ganados: 0</strong>
       </p>
-      <a href="https://chat.whatsapp.com/GP3mBjmtzR90ZGJS3awl74" target="_blank" rel="nofollow noopener noreferrer">
+      <p className="text-white text-center lg:text-left">
+        <strong>Id:</strong> {userId}
+        <Tooltip content="Copiar Id" placement="top">
+          <Button auto size="mini" onClick={copyToClipboard}>
+            Copiar
+          </Button>
+        </Tooltip>
+      </p>
+
+      <a href="https://discord.gg/vfB636u" target="_blank" rel="nofollow noopener noreferrer">
         <Button color="warning" className="mt-4">
-          Ayuda
+          Discord
         </Button>
       </a>
       <Button color="danger" onClick={handleLogout} className="mt-4">

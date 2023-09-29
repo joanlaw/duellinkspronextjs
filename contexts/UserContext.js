@@ -32,6 +32,7 @@ export const UserProvider = ({ children }) => {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data); // Verifica si userId está presente en los datos recibidos.
         setUserImage(data.authenticated ? data.image : null);
         setAuthenticated(data.authenticated);
         setDiscordId(data.discordId); // 

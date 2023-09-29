@@ -25,7 +25,9 @@ export default function Index() {
   useEffect(() => {
     refreshCardList();
     getArchetypes();
+    console.log('useEffect se ha ejecutado');
   }, []);
+  
 
   const getArchetypes = () => {
     const baseUrl = "https://backend-dlp-neuronube.koyeb.app/arquetipos/";
@@ -85,12 +87,16 @@ export default function Index() {
         return arquetipoMatches || mainDeckMatches || extraDeckMatches;
       });
 
-  function refreshCardList() {
-    decksApi()
-      .fetchAll()
-      .then((res) => setCardList(res.data))
-      .catch((err) => console.log(err));
-  }
+      function refreshCardList() {
+        decksApi()
+          .fetchAll()
+          .then((res) => {
+            setCardList(res.data);
+            console.log('Lista de Cartas Recibida: ', res.data);
+          })
+          .catch((err) => console.log(err));
+      }
+      
 
   const addOrEdit = (formData, onSuccess) => {
     decksApi()
@@ -144,15 +150,19 @@ export default function Index() {
   const fechaFormateada = fechaActual.format("YYYY-MM-DD");
 
 
-  function handleFiltroChange(event) {
-    const { name, value } = event.target;
-    setFiltro((prevFiltro) => ({
+  function handleFiltroChange(name, value) {
+    setFiltro(prevFiltro => ({
       ...prevFiltro,
       [name]: value,
     }));
+    console.log(`Filtro ${name} actualizado a ${value}`); // Ahora debería imprimir el valor correcto
   }
+  
+  
+  
 
   const elementosFiltrados = results.filter((currentPost) => {
+   
     let fechaLimite;
     switch (filtro.createdAt) {
       case "ultimos7dias":
@@ -284,36 +294,44 @@ export default function Index() {
               Fecha
             </label>
     {/* Se ha reemplazado el elemento select estándar con el componente Select de NextUI */}
-    <Select
-              name="createdAt"
-              onChange={handleFiltroChange}
-              defaultValue="ultimas8semanas"
-              className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            >
-              <SelectItem value="">Todos los tiempos</SelectItem>
-              <SelectItem value="ultimodia">{`Hoy (${moment().format("DD/MM/YYYY")})`}</SelectItem>
-              <SelectItem value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
-              <SelectItem value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
-              <SelectItem value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
-              <SelectItem value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</SelectItem>
-            </Select>
+<select
+    name="createdAt"
+    onChange={(e) => {
+        console.log(e.target.value); // Imprime el valor seleccionado
+        handleFiltroChange('createdAt', e.target.value); // Accede a e.target.value
+    }}
+    defaultValue="ultimas8semanas"
+    className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+>
+    <option value="">Todos los tiempos</option>
+    <option value="ultimodia">{`Hoy (${moment().format("DD/MM/YYYY")})`}</option>
+    <option value="ultimos7dias">{`Últimos 7 días (${moment().subtract(7, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
+    <option value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
+    <option value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
+    <option value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
+</select>
+
         </div>
         <div className="relative w-full md:w-1/2 lg:w-1/3">
             <label htmlFor="top" className="block text-sm font-medium mb-1">
               Top
             </label>
-      <Select
-              name="top"
-              onChange={handleFiltroChange}
-              value={filtro.top}
-              className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            >
-              <SelectItem value=""></SelectItem>
-              <SelectItem value="Rey de duelos">Rey de duelos</SelectItem>
-              <SelectItem value="Ensalada">Ensalada</SelectItem>
-              <SelectItem value="Fun">Fun</SelectItem>
-              <SelectItem value="Farmeo">Farmeo</SelectItem>
-            </Select>
+<select
+    name="top"
+    onChange={(e) => {
+        console.log(e.target.value); // Imprime el valor seleccionado
+        handleFiltroChange('top', e.target.value); // Accede a e.target.value
+    }}
+    value={filtro.top}
+    className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+>
+    <option value="">Seleccione una opción</option>
+    <option value="Rey de duelos">Rey de duelos</option>
+    <option value="Ensalada">Ensalada</option>
+    <option value="Fun">Fun</option>
+    <option value="Farmeo">Farmeo</option>
+</select>
+
       </div>
       </div>
 </div>
