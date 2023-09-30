@@ -84,7 +84,7 @@ const TournamentDetails = ({ tournament }) => {
         </div>
         <h1 className='text-center text-3xl font-bold mb-4'>{tournament.league_name}</h1>
         
-        <Tabs variant="bordered" aria-label="Tournament tabs">
+        <Tabs variant="bordered" color="primary" aria-label="Tournament tabs">
           <Tab key="detalles" title="Detalles">
             <div className="ml-4 w-full">
               <Spacer y={0.5} />
