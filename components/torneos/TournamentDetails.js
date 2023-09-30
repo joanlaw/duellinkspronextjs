@@ -29,22 +29,22 @@ const TournamentDetails = ({ tournament }) => {
   const [htmlContent, setHtmlContent] = useState('');
 
   const formatDate = (dateString) => {
-    // Extrae la hora, minuto y segundo del tiempo UTC
-    const timeParts = dateString.split('T')[1].split('.')[0].split(':');
-    const hour = timeParts[0];
-    const minute = timeParts[1];
-    const second = timeParts[2];
-  
-    // Crea una nueva fecha en la zona horaria local pero usando la hora, minuto y segundo de UTC
-    const localDate = new Date(dateString);
-    localDate.setHours(hour, minute, second);
-  
-    // Formatea la nueva fecha
-    const formattedDate = format(localDate, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
-  
-    // Capitalizar la primera letra de cada palabra
-    return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
+    try {
+        const mexicoCityTimezone = "America/Mexico_City";
+        // Convertir la fecha a la zona horaria de México antes de formatearla
+        const dateInMexicoCityTimezone = new Date(new Date(dateString).toLocaleString("en-US", { timeZone: mexicoCityTimezone }));
+
+        // Formatea la nueva fecha
+        const formattedDate = format(dateInMexicoCityTimezone, "EEEE d 'de' MMMM 'a las' HH:mm aaaa 'MX'", { locale: es });
+
+        // Capitalizar la primera letra de cada palabra
+        return formattedDate.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    } catch (error) {
+        console.error("Error al formatear la fecha", error);
+        return dateString; // En caso de error, retorna la fecha original
+    }
+};
+
   
   
 
