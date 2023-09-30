@@ -43,6 +43,8 @@ const CountdownTimer = ({ targetDate }) => {
     );
 }
 
+//UPDATE
+
 const calculateTimeLeft = (targetDate) => {
     try {
         const target = new Date(targetDate);
