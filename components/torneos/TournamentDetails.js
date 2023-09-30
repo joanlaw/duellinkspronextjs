@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import TournamentRegistration from './TournamentRegistration';
+import TournamentBracket from './llaves/TournamentBracket';
+
 import NavbarCustom from '../NavbarCustom';
 import FooterCustom from '../FooterCustom';
 import { Divider, Image, Spacer, Tabs, Tab } from "@nextui-org/react";
@@ -117,6 +119,10 @@ const TournamentDetails = ({ tournament }) => {
           <Tab key="campeon" title="Campeón">
             {/* Contenido vacío por ahora */}
           </Tab>
+          <Tab key="bracket" title="Llave del Torneo">
+          <TournamentBracket tournament={tournament} />
+        </Tab>
+
         </Tabs>
       </div>
       <FooterCustom />
