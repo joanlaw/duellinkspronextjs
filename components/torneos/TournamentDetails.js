@@ -116,10 +116,10 @@ const TournamentDetails = ({ tournament }) => {
             <h2 className="text-center text-2xl font-bold mb-4">Jugadores Inscritos</h2>
             <PlayerTable players={tournament.players} />
           </Tab>
-          <Tab key="campeon" title="Campeón">
-            {/* Contenido vacío por ahora */}
-          </Tab>
-          <Tab key="bracket" title="Llave del Torneo">
+       {/*   <Tab key="campeon" title="Campeón">
+             Contenido vacío por ahora 
+          </Tab> */}
+          <Tab key="bracket" title="Braket">
           <TournamentBracket tournament={tournament} />
         </Tab>
 

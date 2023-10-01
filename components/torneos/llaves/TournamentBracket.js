@@ -40,19 +40,44 @@ function TournamentBracket({ tournament }) {
     );
 }
 
-function Round({ round, roundNumber, userData }) {
+function Round({ round, roundNumber, userData, totalRounds }) {
     return (
-        <div className="flex flex-col items-center space-y-4">
-            <h3 className="mb-4 text-lg font-bold">Ronda {roundNumber}</h3>
-            <div className="space-y-4">
-                {round.matches.map((match, matchIndex) => (
-                    <Match key={match._id} match={match} userData={userData} />
-                ))}
+        <div className="flex space-x-4 items-start relative">
+            <div className="flex flex-col items-center space-y-4">
+                <h3 className="mb-4 text-lg font-bold">Ronda {roundNumber}</h3>
+                <div className="space-y-4 relative">
+                    {round.matches.map((match, matchIndex) => {
+                        let marginTop = 0;
+                        if (roundNumber > 1) {
+                            const matchHeightWithMargin = 84; // Incluyendo margen inferior
+                            const totalRows = Math.pow(2, totalRounds - 1); // Total de celdas verticales
+                            const rowsPerMatch = totalRows / round.matches.length; // Celdas verticales por match en esta ronda
+                            const centerRow = (rowsPerMatch * (matchIndex * 2 + 1)) / 2; // Fila central para este match
+                            marginTop = centerRow * matchHeightWithMargin - matchHeightWithMargin / 2;
+                        }
+                        return (
+                            <div key={match._id} className="relative" style={{ marginTop: marginTop + 'px' }}>
+                                <Match match={match} userData={userData} />
+                                {(matchIndex % 2 === 0 && matchIndex < round.matches.length - 1) && <PairConnector />}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
 }
 
+function PairConnector() {
+    return (
+        <div style={{ position: 'absolute', right: '-30px', top: 'calc(50% + 42px)', transform: 'translateY(-35%)', height: '68px', width: '30px' }}>
+            <svg height="68" width="30">
+                <path d="M0 34 q15 0 15 -34" strokeWidth="2" stroke="#E6E6E6" fill="none"></path>
+                <path d="M0 34 q15 0 15 34" strokeWidth="2" stroke="#E6E6E6" fill="none"></path>
+            </svg>
+        </div>
+    );
+}
 
 function Match({ match, userData }) {
     const player1 = userData[match.player1] || 'BYE';
@@ -78,8 +103,5 @@ function Match({ match, userData }) {
         </div>
     );
 }
-
-
-
 
 export default TournamentBracket;
