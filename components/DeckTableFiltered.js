@@ -54,7 +54,7 @@ function DeckTableFiltered ({ arquetipo }) {
           <TableColumn>Jugador</TableColumn>
           <TableColumn>Habilidad</TableColumn>
           <TableColumn>Top</TableColumn>
-          <TableColumn className="hidden md:table-cell">Motor</TableColumn>
+          <TableColumn className="hidden md:table-cell">Puesto</TableColumn>
           <TableColumn className="hidden md:table-cell">Fecha</TableColumn>
         </TableHeader>
         <TableBody>
@@ -63,7 +63,7 @@ function DeckTableFiltered ({ arquetipo }) {
               <TableCell>{mazo.jugador}</TableCell>
               <TableCell>{mazo.habilidad}</TableCell>
               <TableCell>{mazo.top}</TableCell>
-              <TableCell className="hidden md:table-cell">{mazo.engine}</TableCell>
+              <TableCell className="hidden md:table-cell">{mazo.puesto}</TableCell>
               <TableCell className="hidden md:table-cell">{new Date(mazo.createdAt).toLocaleDateString()}</TableCell>
             </TableRow>
           ))}

@@ -56,7 +56,7 @@ const DeckTable = ({ data, archetypes, resultsToShow }) => {
           <TableColumn>Habilidad</TableColumn>
           <TableColumn>Top</TableColumn>
           <TableColumn className="hidden md:table-cell">Jugador</TableColumn>
-          <TableColumn>Motor</TableColumn>
+          <TableColumn>Puesto</TableColumn>
           <TableColumn className="hidden md:table-cell">Fecha</TableColumn>
         </TableHeader>
         <TableBody>
@@ -82,7 +82,7 @@ const DeckTable = ({ data, archetypes, resultsToShow }) => {
               <TableCell>{element.habilidad}</TableCell>
               <TableCell>{element.top}</TableCell>
               <TableCell className="hidden md:table-cell">{element.jugador}</TableCell>
-              <TableCell>{element.engine}</TableCell>
+              <TableCell>{element.puesto}</TableCell>
               <TableCell className="hidden md:table-cell">
                 {moment(element.createdAt).format("MMM DD, YYYY")}
               </TableCell>
