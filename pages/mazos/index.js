@@ -239,9 +239,10 @@ export default function Index() {
       const archetype = sortedDeckGroups[i][0];
       const isDeckToday = filteredDecks.some(
         (deck) =>
-          deck.arquetipo === archetype &&
-          moment(deck.createdAt).isSame(moment(), "day")
-      );
+            deck.arquetipo === archetype &&
+            moment(deck.createdAt).isSameOrAfter(moment().subtract(7, 'days'), "day")
+    );
+    
       buttons.push(
         <button
           className={`deck-button ${isDeckToday ? "with-icon" : ""}`}
