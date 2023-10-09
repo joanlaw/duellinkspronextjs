@@ -282,8 +282,8 @@ export default function Index() {
         <meta property="og:title" content="Lista de Decks - Duel Links" />
         <meta property="og:description" content="Explora y busca decks en Duel Links. Encuentra tu arquetipo y cartas favoritas." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tu-sitio-web.com/ruta-de-la-pagina" />
-        <meta property="og:image" content="https://tu-sitio-web.com/imagen-previa.jpg" />
+        <meta property="og:url" content="https://duellinks.pro/ruta-de-la-pagina" />
+        <meta property="og:image" content="https://duellinks.pro/imagen-previa.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <NavbarCustom />
