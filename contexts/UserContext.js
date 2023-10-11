@@ -9,6 +9,9 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
   const [userId, setUserId] = useState(null); // Añadir esta línea para el _id del usuario
+  const [ID_DL, setID_DL] = useState(null);
+  const [clanId, setClanId] = useState(null);
+
 
 
   useEffect(() => {
@@ -38,6 +41,8 @@ export const UserProvider = ({ children }) => {
         setDiscordId(data.discordId); // 
         setUsername(data.username);  // Añade esta línea
         setUserId(data.userId);  // Añadir esta línea para actualizar el _id del usuario
+        setID_DL(data.ID_DL);  // Aquí añades el ID_DL
+        setClanId(data.clanId);  // Aquí añades el clanId
       })
       .catch((error) => {
         localStorage.removeItem("token");
@@ -77,9 +82,10 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-<UserContext.Provider value={{ userImage, authenticated, discordId, username, handleLogin, token, userId  }}>
+<UserContext.Provider value={{ userImage, authenticated, discordId, username, handleLogin, token, userId, ID_DL, clanId }}>
     {children}
 </UserContext.Provider>
+
 
   );
 };

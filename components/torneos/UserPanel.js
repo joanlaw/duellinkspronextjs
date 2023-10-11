@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Avatar, Card, Textarea, Badge, Button, Tooltip } from '@nextui-org/react';
 import NavbarCustom from "../NavbarCustom"
 import FooterCustom from "../FooterCustom"
@@ -7,15 +8,30 @@ import YouTubeVideo from './YouTubeVideo ';
 import { useUser } from '../../contexts/UserContext'; // Asegúrate de tener el path correcto
 
 const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
+  const { userId, ID_DL, clanId } = useUser();
+  const [idDL, setIdDL] = useState('');  // Estado para ID_DL.
+  const [idDuelista, setIdDuelista] = useState(''); // Estado para almacenar el ID Duelista después de actualizarlo.
+  
 
-  const { userId } = useUser(); // Accede al userId desde el contexto.
 
-  console.log('UserPanel userId:', userId); // Log the current userId in UserPanel
+  const handleIdDLChange = (e) => {
+    setIdDL(e.target.value);
+  };
+
+  const handleIdDLSubmit = () => {
+    axios.post('https://api.duellinks.pro/update-id-dl', { _id: userId, ID_DL: idDL }) // Cambié la URL a tu API.
+      .then(response => {
+        console.log('ID_DL actualizado:', response.data);
+        setIdDuelista(idDL); // Actualiza el ID Duelista en el frontend.
+      })
+      .catch(error => {
+        console.error('Error actualizando el ID_DL:', error);
+      });
+  };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(userId)
       .then(() => {
-        // Puedes mostrar una notificación o un mensaje para informar al usuario que el texto ha sido copiado
         console.log('Text copied to clipboard');
       })
       .catch(err => {
@@ -23,6 +39,9 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
       });
   };
 
+
+
+  
   return (
     <>
 <div className="flex flex-col min-h-screen">
@@ -56,6 +75,23 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
           </Button>
         </Tooltip>
       </p>
+      <p className="text-white text-center lg:text-left">
+  <strong>Clan:</strong> {clanId ? `Perteneces al clan con ID: ${clanId}` : 'No perteneces a ningún clan'}
+</p>
+
+      <p className="text-white text-center lg:text-left">
+  <strong>ID Duelista:</strong> {ID_DL || 'No has establecido tu ID_DL'}
+</p>
+
+
+         {/* Sección para ingresar y enviar ID_DL */}
+         <Textarea
+              value={idDL}
+              onChange={handleIdDLChange}
+              placeholder="Introduce tu ID_DL aquí"
+              className="mt-4"
+            />
+            <Button onClick={handleIdDLSubmit} className="mt-4">Actualizar ID_DL</Button>
 
       <a href="https://discord.gg/vfB636u" target="_blank" rel="nofollow noopener noreferrer">
         <Button color="warning" className="mt-4">

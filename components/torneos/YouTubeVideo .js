@@ -6,7 +6,7 @@ const YouTubeVideo = ({ videoId }) => {
     const opts = {
         width: '100%',  // Establecer el ancho al 100% para que sea responsivo
         playerVars: {
-          autoplay: 1,
+          autoplay: 0,
         },
       };
 
