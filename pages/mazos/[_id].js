@@ -27,7 +27,7 @@ const DeckViewer = ({ initialDeckData }) => {
   setDeckData(null);
     if (_id) {
       axios
-        .get(`https://backend-dlp-neuronube.koyeb.app/mazos/${_id}`)
+        .get(`https://https://api.duellinks.pro/mazos/${_id}`)
         .then((response) => {
           console.log("Deck Data:", response.data);
           setDeckData(response.data);
@@ -46,11 +46,11 @@ const DeckViewer = ({ initialDeckData }) => {
         const extraDeckCards = deckData.extraDeck;
 
         const mainDeckPromises = mainDeckCards.map((card) =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
+          axios.get(`https://https://api.duellinks.pro/cards/${card.cardId}`)
         );
 
         const extraDeckPromises = extraDeckCards.map((card) =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${card.cardId}`)
+          axios.get(`https://https://api.duellinks.pro/cards/${card.cardId}`)
         );
 
         const mainDeckResponse = await Promise.all(mainDeckPromises);
