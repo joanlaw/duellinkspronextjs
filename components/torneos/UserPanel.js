@@ -83,18 +83,20 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
   <strong>ID Duelista:</strong> {ID_DL || 'No has establecido tu ID_DL'}
 </p>
 
-
-         {/* Sección para ingresar y enviar ID_DL */}
-         <Textarea
-              value={idDL}
-              onChange={handleIdDLChange}
-              placeholder="Introduce tu ID_DL aquí"
-              className="mt-4"
-            />
-            <Button onClick={handleIdDLSubmit} className="mt-4">Actualizar ID_DL</Button>
-
+{/* Si ID_DL está vacío, muestra la sección para ingresar y actualizar */}
+{!ID_DL && (
+        <>
+          <Textarea
+            value={idDL}
+            onChange={handleIdDLChange}
+            placeholder="Introduce tu ID_DL aquí"
+            className="mt-4"
+          />
+          <Button onClick={handleIdDLSubmit} className="mt-4">Actualizar ID_DL</Button>
+        </>
+      )}
       <a href="https://discord.gg/vfB636u" target="_blank" rel="nofollow noopener noreferrer">
-        <Button color="warning" className="mt-4">
+        <Button color="primary" className="mt-4">
           Discord
         </Button>
       </a>

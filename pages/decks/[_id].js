@@ -13,7 +13,7 @@ const DeckViewer = () => {
   useEffect(() => {
     if (_id) {
       axios
-        .get(`https://back-render-cloud-dlp.onrender.com/mazos/${_id}`)
+        .get(`https://api.duellinks.pro/mazos/${_id}`)
         .then((response) => {
           console.log("Deck Data:", response.data);
           setDeckData(response.data);
@@ -29,13 +29,13 @@ const DeckViewer = () => {
 
       const fetchMainDeckData = axios.all(
         mainDeckIds.map((cardId) =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/mazos/${cardId}`)
+          axios.get(`https://api.duellinks.pro/mazos/${cardId}`)
         )
       );
 
       const fetchExtraDeckData = axios.all(
         extraDeckIds.map((cardId) =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/mazos/${cardId}`)
+          axios.get(`https://api.duellinks.pro/mazos/${cardId}`)
         )
       );
 

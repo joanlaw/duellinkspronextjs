@@ -4,32 +4,28 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input
 
 export default function AddDuelistsModal({ clanId, token, onDuelistsAdded }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [duelists, setDuelists] = useState(['']); // Estado inicial con un campo de entrada vacío
+  const [duelists, setDuelists] = useState(['']); 
 
-  // Función para agregar un nuevo campo de entrada
   const addDuelistInput = () => {
-    setDuelists([...duelists, '']); // Añade un nuevo campo de entrada vacío
+    setDuelists([...duelists, '']); 
   };
 
-  // Función para manejar el envío de IDs de duelistas
   const handleAddDuelists = async () => {
     try {
       await axios.post(`https://api.duellinks.pro/clans/${clanId}/members`, {
-        memberIds: duelists.filter(duelist => duelist.trim() !== ''), // Envía los memberIds como un array
+        memberIds: duelists.filter(duelist => duelist.trim() !== ''), 
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setDuelists(['']); // Reinicia los campos de entrada después del envío exitoso
-      onClose(); // Cierra el modal después del envío exitoso
-      if (onDuelistsAdded) onDuelistsAdded(); // Llama a la función onDuelistsAdded si se pasa como prop
+      setDuelists(['']); 
+      onClose(); 
+      if (onDuelistsAdded) onDuelistsAdded(); 
     } catch (error) {
       console.error('Error adding duelists:', error);
     }
   };
-  
-  
 
   return (
     <>
