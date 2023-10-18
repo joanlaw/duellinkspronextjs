@@ -30,7 +30,7 @@ export default function Index() {
   
 
   const getArchetypes = () => {
-    const baseUrl = "https://backend-dlp-neuronube.koyeb.app/arquetipos/";
+    const baseUrl = "https://api.duellinks.pro/arquetipos/";
     const allArchetypes = [];
 
     const fetchPage = (url) => {
@@ -60,7 +60,7 @@ export default function Index() {
     setResultsToShow((prevResults) => prevResults + 10);
   };
 
-  const decksApi = (url = "https://backend-dlp-neuronube.koyeb.app/mazos/") => {
+  const decksApi = (url = "https://api.duellinks.pro/mazos/") => {
     return {
       fetchAll: () => axios.get(url),
       create: (newRecord) => axios.post(url, newRecord),
