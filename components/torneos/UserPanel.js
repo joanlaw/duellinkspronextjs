@@ -11,6 +11,7 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
   const { userId, ID_DL, clanId } = useUser();
   const [idDL, setIdDL] = useState('');  // Estado para ID_DL.
   const [idDuelista, setIdDuelista] = useState(''); // Estado para almacenar el ID Duelista después de actualizarlo.
+  const [success, setSuccess] = useState(false);  // Nuevo estado para manejar el éxito
   
 
 
@@ -19,15 +20,20 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
   };
 
   const handleIdDLSubmit = () => {
-    axios.post('https://api.duellinks.pro/update-id-dl', { _id: userId, ID_DL: idDL }) // Cambié la URL a tu API.
+    axios.post('https://api.duellinks.pro/update-id-dl', { _id: userId, ID_DL: idDL })
       .then(response => {
         console.log('ID_DL actualizado:', response.data);
-        setIdDuelista(idDL); // Actualiza el ID Duelista en el frontend.
+        setIdDuelista(idDL);  // Actualiza el ID Duelista en el frontend.
+        setSuccess(true);  // Set success to true on successful operation
+
+        // Refrescar la página
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error actualizando el ID_DL:', error);
       });
   };
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(userId)
@@ -95,6 +101,12 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
           <Button onClick={handleIdDLSubmit} className="mt-4">Actualizar ID_DL</Button>
         </>
       )}
+      {success && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4" role="alert">
+            <strong className="font-bold">¡Éxito!</strong>
+            <span className="block sm:inline"> ID_DL ha sido actualizado exitosamente.</span>
+          </div>
+        )}
       <a href="https://discord.gg/vfB636u" target="_blank" rel="nofollow noopener noreferrer">
         <Button color="primary" className="mt-4">
           Discord
