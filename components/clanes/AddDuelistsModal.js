@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, useDisclosure } from '@nextui-org/react';
 
 export default function AddDuelistsModal({ clanId, token, onDuelistsAdded }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [duelists, setDuelists] = useState(['']); 
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+        setSuccess(false);  // Reset success state when modal is opened
+    }
+  }, [isOpen]);
+
 
   const addDuelistInput = () => {
     setDuelists([...duelists, '']); 
@@ -12,20 +20,22 @@ export default function AddDuelistsModal({ clanId, token, onDuelistsAdded }) {
 
   const handleAddDuelists = async () => {
     try {
-      await axios.post(`https://api.duellinks.pro/clans/${clanId}/members`, {
-        memberIds: duelists.filter(duelist => duelist.trim() !== ''), 
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setDuelists(['']); 
-      onClose(); 
-      if (onDuelistsAdded) onDuelistsAdded(); 
+        await axios.post(`https://api.duellinks.pro/clans/${clanId}/members`, {
+            memberIds: duelists.filter(duelist => duelist.trim() !== ''),
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setDuelists(['']);
+        setSuccess(true);  // Set success to true on successful operation
+        onClose();
+        if (onDuelistsAdded) onDuelistsAdded();
     } catch (error) {
-      console.error('Error adding duelists:', error);
+        console.error('Error adding duelists:', error);
     }
-  };
+};
+
 
   return (
     <>
@@ -70,6 +80,12 @@ export default function AddDuelistsModal({ clanId, token, onDuelistsAdded }) {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      {success && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong className="font-bold">¡Éxito!</strong>
+            <span className="block sm:inline"> Los duelists han sido añadidos exitosamente.</span>
+        </div>
+      )}
     </>
   );
 }
