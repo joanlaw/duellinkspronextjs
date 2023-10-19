@@ -85,11 +85,11 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
   <strong>Clan:</strong> {clanId ? `Perteneces al clan con ID: ${clanId}` : 'No perteneces a ningún clan'}
 </p>
 
-      <p className="text-white text-center lg:text-left">
+  {/*    <p className="text-white text-center lg:text-left">
   <strong>ID Duelista:</strong> {ID_DL || 'No has establecido tu ID_DL'}
 </p>
 
-{/* Si ID_DL está vacío, muestra la sección para ingresar y actualizar */}
+
 {!ID_DL && (
         <>
           <Textarea
@@ -106,7 +106,7 @@ const UserPanel = ({ username, avatar, puntos, handleLogout }) => {
             <strong className="font-bold">¡Éxito!</strong>
             <span className="block sm:inline"> ID_DL ha sido actualizado exitosamente.</span>
           </div>
-        )}
+        )}  */}
       <a href="https://discord.gg/vfB636u" target="_blank" rel="nofollow noopener noreferrer">
         <Button color="primary" className="mt-4">
           Discord
