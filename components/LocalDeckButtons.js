@@ -98,12 +98,12 @@ function LocalDeckButtons() {
       Bienvenidos a la Tier List definitiva de Yu-Gi-Oh! Duel Links en nuestra comunidad. Esta lista representa los mazos más competitivos y potentes utilizados en nuestros torneos. Se actualizará regularmente para reflejar las nuevas tendencias y estrategias que emergen con cada torneo, así que asegúrate de volver a consultar para mantenerte al día.
     </p>
   </div>
-  <div className="container mx-auto my-4 p-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-700">
+ {/* <div className="container mx-auto my-4 p-4 bg-yellow-100 border-l-4 border-yellow-400 text-yellow-700">
   <p className="font-medium">
     <i className="fas fa-info-circle mr-2"></i>
     Actualmente hubo una Ban List en el juego por lo que esta Tier List no es válida, se está a la espera de los resultados de los torneos para actualizarla.
   </p>
-</div>
+</div>  */} 
     <div className="local-deck-buttons-container">
       <div>
         <h2 className="text-xl font-bold mb-2">Tier 1</h2>
