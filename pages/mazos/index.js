@@ -15,7 +15,7 @@ export default function Index() {
   const [archetypes, setArchetypes] = useState([]);
   const [resultsToShow, setResultsToShow] = useState(10);
   const [filtro, setFiltro] = useState({
-    createdAt: "ultimas8semanas",
+    createdAt: "",
     habilidad: "",
     arquetipo: "",
     top: "",
@@ -180,6 +180,9 @@ export default function Index() {
       case "ultimodia":
         fechaLimite = moment().startOf("day");
         break;
+        case "ultimoano":
+    fechaLimite = moment().subtract(1, "year");
+    break;
       default:
         fechaLimite = moment("1970-01-01");
     }
@@ -295,13 +298,13 @@ export default function Index() {
               Fecha
             </label>
     {/* Se ha reemplazado el elemento select estándar con el componente Select de NextUI */}
-<select
+    <select
     name="createdAt"
     onChange={(e) => {
         console.log(e.target.value); // Imprime el valor seleccionado
         handleFiltroChange('createdAt', e.target.value); // Accede a e.target.value
     }}
-    defaultValue="ultimas8semanas"
+    defaultValue=""
     className="block w-full px-4 py-2 no-border rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50"
 >
     <option value="">Todos los tiempos</option>
@@ -310,6 +313,7 @@ export default function Index() {
     <option value="ultimas2semanas">{`Últimas 2 semanas (${moment().subtract(14, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
     <option value="ultimas4semanas">{`Últimas 4 semanas (${moment().subtract(28, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
     <option value="ultimas8semanas">{`Últimas 8 semanas (${moment().subtract(56, "days").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>
+   {/* <option value="ultimoano">{`Último año (${moment().subtract(1, "year").format("DD/MM/YYYY")} - ${moment().format("DD/MM/YYYY")})`}</option>  */}
 </select>
 
         </div>
