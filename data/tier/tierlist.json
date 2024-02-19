@@ -20,14 +20,14 @@
       {
         "_id": "4",
         "arquetipo": "Tenyi",
-        "tier": 2,
-        "url": "/mazos/64f6cbaf8a282a88368e5b48"
+        "tier": 3,
+        "url": "/mazos/651201c94ef1a46418ecd11e"
       },
       {
         "_id": "5",
         "arquetipo": "Mayakashi",
-        "tier": 2,
-        "url": "/mazos/65089cb63eb1172b399e2df6"
+        "tier": 3,
+        "url": "/mazos/65d2f0b31e54386a6b8061ff"
       },
       {
         "_id": "6",
@@ -51,7 +51,7 @@
         "_id": "9",
         "arquetipo": "Live☆Twin",
         "tier": 3,
-        "url": "/mazos/6503b49d0f201bf5790f531d"
+        "url": "/mazos/65d2ef6a1e54386a6b8007f9"
       },
       {
         "_id": "10",
@@ -69,7 +69,7 @@
         "_id": "12",
         "arquetipo": "Constellar",
         "tier": 3,
-        "url": "/mazos/6503b49d0f201bf5790f531d"
+        "url": "/mazos/65d2f1d81e54386a6b80c574"
       }
 
   ]
