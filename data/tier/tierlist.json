@@ -1,8 +1,8 @@
 [
     {
       "_id": "1",
-      "arquetipo": "Tachyon",
-      "tier": 1,
+      "arquetipo": "",
+      "tier": "",
       "url": "/mazos/65c2e15a1e54386a6b520281"
     },
     {
@@ -14,19 +14,19 @@
     {
         "_id": "3",
         "arquetipo": "Shiranui",
-        "tier": 2,
-        "url": "/mazos/65c9b9dc1e54386a6b6712ca"
+        "tier": 1,
+        "url": "/mazos/65effe7e79f1010271f7052d"
       },
       {
         "_id": "4",
         "arquetipo": "Tenyi",
-        "tier": 3,
+        "tier": 2,
         "url": "/mazos/651201c94ef1a46418ecd11e"
       },
       {
         "_id": "5",
         "arquetipo": "Mayakashi",
-        "tier": 3,
+        "tier": 2,
         "url": "/mazos/65d2f0b31e54386a6b8061ff"
       },
       {

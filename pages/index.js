@@ -12,7 +12,7 @@ export default function Index() {
         <meta name='description' content='Bienvenidos a Duel Links Pro, una web especializada en el juego Yugioh Duel Links, con contenido en español' />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5210980356764360"
           crossorigin="anonymous"></script>
 
